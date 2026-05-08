@@ -8,6 +8,8 @@ const BOOKS = [
       { file: '01 - What is a Proof.md', title: '1. What is a Proof?' },
       { file: '02 - Proof by Contradiction and Induction.md', title: '2. Contradiction & Induction' },
       { file: '03 - Gödel\'s Incompleteness.md', title: '3. Undecidability & Gödel' },
+      { file: '04 - Invariants and Strong Induction.md', title: '4. Invariants & Strong Induction' },
+      { file: '05 - Number Theory and the GCD.md', title: '5. Number Theory & GCD' },
     ]
   },
   {
@@ -91,6 +93,32 @@ function getFullPath(book, file) {
   return book.basePath ? book.basePath + '/' + file : file;
 }
 
+let mathStore = [];
+
+function protectMath(md) {
+  mathStore = [];
+  let id = 0;
+  const placeholder = (content) => {
+    const key = '\x00MATH' + (id++) + '\x00';
+    mathStore.push({ key, content });
+    return key;
+  };
+  // Protect $$...$$ (display) first, then $...$ (inline)
+  md = md.replace(/\$\$([\s\S]*?)\$\$/g, (m) => placeholder(m));
+  md = md.replace(/(?<![\\$])\$(?!\$)((?:[^$\\]|\\.)+?)\$/g, (m) => placeholder(m));
+  // Protect \[...\] and \(...\)
+  md = md.replace(/\\\[([\s\S]*?)\\\]/g, (m) => placeholder(m));
+  md = md.replace(/\\\(([\s\S]*?)\\\)/g, (m) => placeholder(m));
+  return md;
+}
+
+function restoreMath(html) {
+  for (const { key, content } of mathStore) {
+    html = html.split(key).join(content);
+  }
+  return html;
+}
+
 function processMarkdown(md) {
   md = md.replace(/<!--\s*page\s+(\d+)\s*-->/gi, '<div class="page-marker">Page $1</div>');
   return md;
@@ -117,6 +145,7 @@ async function loadChapter(idx) {
     let md = await resp.text();
     console.log('Loaded markdown:', md.length, 'chars,', md.split('\n').length, 'lines');
     md = processMarkdown(md);
+    md = protectMath(md);
     currentBasePath = book.basePath;
 
     let html;
@@ -127,6 +156,7 @@ async function loadChapter(idx) {
       pane.innerHTML = '<div class="error">Markdown parse error: ' + e.message + '</div>';
       return;
     }
+    html = restoreMath(html);
     pane.innerHTML = '<div class="md">' + html + '</div>';
 
     try {
