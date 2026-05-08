@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 200" width="450" height="200">
+  <!-- Background -->
+  <rect width="450" height="200" fill="white"/>
+
+  <!-- Title -->
+  <text x="225" y="25" text-anchor="middle" font-family="system-ui" font-size="14" font-weight="bold" fill="#333">Gödel's Self-Referential Statement</text>
+
+  <!-- The statement G -->
+  <rect x="50" y="45" width="350" height="50" fill="#fff3e0" stroke="#e65100" stroke-width="2" rx="6"/>
+  <text x="225" y="70" text-anchor="middle" font-family="system-ui" font-size="13" fill="#333" font-style="italic">G: "This statement is not provable in the system."</text>
+  <text x="225" y="88" text-anchor="middle" font-family="system-ui" font-size="11" fill="#666">(encoded as a number via Gödel numbering)</text>
+
+  <!-- Fork into two cases -->
+  <line x1="225" y1="95" x2="225" y2="110" stroke="#333" stroke-width="1.5"/>
+  <line x1="225" y1="110" x2="120" y2="125" stroke="#333" stroke-width="1.5"/>
+  <line x1="225" y1="110" x2="330" y2="125" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Case 1: G is provable -->
+  <rect x="30" y="125" width="180" height="55" fill="#ffebee" stroke="#c62828" stroke-width="1" rx="4"/>
+  <text x="120" y="143" text-anchor="middle" font-family="system-ui" font-size="10" fill="#c62828" font-weight="bold">If G is provable:</text>
+  <text x="120" y="158" text-anchor="middle" font-family="system-ui" font-size="10" fill="#333">Then G is false</text>
+  <text x="120" y="173" text-anchor="middle" font-family="system-ui" font-size="10" fill="#c62828">→ System proves a falsehood!</text>
+
+  <!-- Case 2: G is not provable -->
+  <rect x="240" y="125" width="180" height="55" fill="#e8f5e9" stroke="#4caf50" stroke-width="1" rx="4"/>
+  <text x="330" y="143" text-anchor="middle" font-family="system-ui" font-size="10" fill="#2e7d32" font-weight="bold">If G is not provable:</text>
+  <text x="330" y="158" text-anchor="middle" font-family="system-ui" font-size="10" fill="#333">Then G is true</text>
+  <text x="330" y="173" text-anchor="middle" font-family="system-ui" font-size="10" fill="#2e7d32">→ True statement with no proof!</text>
+
+  <!-- Conclusion -->
+  <text x="225" y="195" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">Either way, the system is inconsistent or incomplete.</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "source": "pim/02 - Polynomials.pdf",
+  "source_size": 361199,
+  "model": "mistral-ocr-latest",
+  "pages": 29,
+  "images": 6,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 29,
+    "doc_size_bytes": 361199
+  }
+}

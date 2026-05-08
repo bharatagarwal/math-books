@@ -1,0 +1,12 @@
+{
+  "source": "mcs/01 - Proofs/08 - Induction.pdf",
+  "source_size": 818016,
+  "model": "mistral-ocr-latest",
+  "pages": 17,
+  "images": 6,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 17,
+    "doc_size_bytes": 818016
+  }
+}

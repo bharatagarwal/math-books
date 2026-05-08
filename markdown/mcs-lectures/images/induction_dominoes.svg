@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" width="520" height="140">
+  <rect width="520" height="140" fill="white"/>
+
+  <!-- Ground line -->
+  <line x1="30" y1="110" x2="340" y2="110" stroke="#999" stroke-width="1"/>
+
+  <!-- Dominoes in a chain - close together, each hitting the next -->
+  <!-- P(0) - fallen, hitting P(1) -->
+  <rect x="45" y="60" width="12" height="48" fill="#2e7d32" stroke="#1b5e20" stroke-width="1.5" rx="2"
+        transform="rotate(70 51 108)"/>
+
+  <!-- P(1) - falling, being hit by P(0), hitting P(2) -->
+  <rect x="80" y="60" width="12" height="48" fill="#388e3c" stroke="#1b5e20" stroke-width="1.5" rx="2"
+        transform="rotate(50 86 108)"/>
+
+  <!-- P(2) - starting to fall -->
+  <rect x="115" y="60" width="12" height="48" fill="#43a047" stroke="#2e7d32" stroke-width="1.5" rx="2"
+        transform="rotate(30 121 108)"/>
+
+  <!-- P(3) - just tipping -->
+  <rect x="150" y="60" width="12" height="48" fill="#66bb6a" stroke="#2e7d32" stroke-width="1.5" rx="2"
+        transform="rotate(12 156 108)"/>
+
+  <!-- P(4) - standing -->
+  <rect x="185" y="60" width="12" height="48" fill="#81c784" stroke="#2e7d32" stroke-width="1.5" rx="2"/>
+
+  <!-- P(5) - standing -->
+  <rect x="215" y="60" width="12" height="48" fill="#a5d6a7" stroke="#2e7d32" stroke-width="1.5" rx="2"/>
+
+  <!-- Dots -->
+  <text x="255" y="90" font-family="system-ui" font-size="16" fill="#888">···</text>
+
+  <!-- P(n) - standing -->
+  <rect x="295" y="60" width="12" height="48" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.5" rx="2"/>
+
+  <!-- Labels -->
+  <text x="51" y="128" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">P(0)</text>
+  <text x="86" y="128" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">P(1)</text>
+  <text x="121" y="128" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">P(2)</text>
+  <text x="156" y="128" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">P(3)</text>
+  <text x="191" y="128" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">P(4)</text>
+  <text x="301" y="128" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">P(n)</text>
+
+  <!-- Push arrow at P(0) -->
+  <path d="M 30 45 L 45 60" fill="none" stroke="#d32f2f" stroke-width="2" marker-end="url(#redarrow)"/>
+  <text x="20" y="38" font-family="system-ui" font-size="10" fill="#d32f2f">Base case</text>
+
+  <defs>
+    <marker id="redarrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#d32f2f"/>
+    </marker>
+  </defs>
+
+  <!-- Right side annotation -->
+  <text x="400" y="60" font-family="system-ui" font-size="11" fill="#555">Each domino</text>
+  <text x="400" y="75" font-family="system-ui" font-size="11" fill="#555">knocks over</text>
+  <text x="400" y="90" font-family="system-ui" font-size="11" fill="#555">the next:</text>
+  <text x="400" y="110" font-family="system-ui" font-size="11" fill="#1565c0" font-style="italic">P(n) ⇒ P(n+1)</text>
+</svg>

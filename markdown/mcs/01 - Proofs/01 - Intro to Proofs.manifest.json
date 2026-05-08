@@ -1,0 +1,12 @@
+{
+  "source": "mcs/01 - Proofs/01 - Intro to Proofs.pdf",
+  "source_size": 399825,
+  "model": "mistral-ocr-latest",
+  "pages": 12,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 12,
+    "doc_size_bytes": 399825
+  }
+}

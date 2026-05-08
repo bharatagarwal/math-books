@@ -1,0 +1,16 @@
+# ── Secrets ─────────────────────────────────────────────────────────
+.env
+.venv/
+
+# ── Python ──────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+
+# ── macOS ───────────────────────────────────────────────────────────
+.DS_Store
+
+# ── Source PDFs (huge, read-only, not tracked) ─────────────────────
+*.pdf
+
+# ── OCR-generated images (regenerable from PDFs via pdftoppm+magick) ─
+*.jpeg

@@ -1,0 +1,12 @@
+{
+  "source": "mcs/01 - Proofs/10 - Recursive Definition.pdf",
+  "source_size": 406012,
+  "model": "mistral-ocr-latest",
+  "pages": 33,
+  "images": 2,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 33,
+    "doc_size_bytes": 406012
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" width="150" height="150">
+  <rect width="150" height="150" fill="white"/>
+
+  <!-- L-shaped tile -->
+  <path d="M 25 25 L 125 25 L 125 75 L 75 75 L 75 125 L 25 125 Z"
+        fill="#bbdefb" stroke="#1565c0" stroke-width="2"/>
+
+  <!-- Grid lines inside -->
+  <line x1="75" y1="25" x2="75" y2="75" stroke="#1565c0" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="25" y1="75" x2="75" y2="75" stroke="#1565c0" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Missing square indicator -->
+  <rect x="75" y="75" width="50" height="50" fill="#fff" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Labels -->
+  <text x="50" y="55" text-anchor="middle" font-family="system-ui" font-size="12" fill="#1565c0">1</text>
+  <text x="100" y="55" text-anchor="middle" font-family="system-ui" font-size="12" fill="#1565c0">2</text>
+  <text x="50" y="105" text-anchor="middle" font-family="system-ui" font-size="12" fill="#1565c0">3</text>
+</svg>
