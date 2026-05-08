@@ -14,3 +14,6 @@ __pycache__/
 
 # ── OCR-generated images (regenerable from PDFs via pdftoppm+magick) ─
 *.jpeg
+
+# ── Build output (regenerable) ─────────────────────────────────────
+public/
