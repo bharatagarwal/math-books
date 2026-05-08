@@ -238,6 +238,33 @@ print(f"Decoded: {decode(g)}")
 # Mathematics can reason about itself.
 ```
 
+The encode/decode pair must be a perfect round-trip — `decode(encode(s))` must return exactly the original string for *any* input. This bijectivity is what makes Gödel numbering work: if two different formulas mapped to the same number, self-reference would break. We can test the round-trip property with **Hypothesis**:
+
+```python
+# uv run --with hypothesis pytest test_godel.py
+from hypothesis import given, strategies as st
+
+def encode(text: str) -> int:
+    n = 0
+    for ch in text:
+        n = n * 256 + ord(ch)
+    return n
+
+def decode(n: int) -> str:
+    chars = []
+    while n > 0:
+        chars.append(chr(n % 256))
+        n //= 256
+    return ''.join(reversed(chars))
+
+@given(st.text(min_size=1, max_size=50,
+               alphabet=st.characters(min_codepoint=1, max_codepoint=255)))
+def test_round_trip(s):
+    assert decode(encode(s)) == s
+```
+
+Hypothesis generates hundreds of random strings — including edge cases with special characters, single characters, and maximum-length strings — and checks that encoding then decoding always recovers the original. The `alphabet` parameter restricts to non-null bytes (null would cause `n = 0` mid-string, breaking the encoding — a real bug that property-based testing catches and manual testing usually misses).
+
 Gödel used prime factorization (each symbol gets a prime power); we use base-256. The principle is identical: strings ↔ integers, bijectively. Once formulas are numbers, the formal system can make statements about its own formulas. That's what enables the self-reference.
 
 ## From Halting to Gödel: The Translation

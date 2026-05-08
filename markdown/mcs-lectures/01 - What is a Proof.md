@@ -42,6 +42,26 @@ Z3 is an SMT solver—it searches for values that satisfy constraints. We asked:
 
 This is the central tension that makes mathematics different from empirical science. No amount of examples can prove a universal statement. You can check a billion cases, a trillion cases, and still be wrong. Proof requires something more.
 
+**Hypothesis** — a property-based testing library — automates the search for counterexamples. Instead of checking cases by hand, you declare what should be true, and the tool generates random test inputs. When it finds a failure, it *shrinks* the input to the smallest counterexample:
+
+```python
+# uv run --with hypothesis pytest test_prime_formula.py
+from hypothesis import given, strategies as st
+
+@given(st.integers(min_value=0, max_value=200))
+def test_prime_formula(n):
+    """Claim: n² + n + 41 is always prime."""
+    val = n**2 + n + 41
+    if val < 2:
+        assert False
+    for d in range(2, int(val**0.5) + 1):
+        assert val % d != 0, f"n={n}: {val} is divisible by {d}"
+```
+
+The `@given` decorator says "test this for random integers in 0–200." Hypothesis tries random values, hits the failure, then automatically shrinks to the smallest $n$ that breaks the property: `n = 40`. The `strategies` module (`st`) controls what kind of values to generate — integers, text, lists, tuples, or custom composite types.
+
+But here's the crucial point: if Hypothesis *doesn't* find a counterexample, that's not proof. It means a few hundred random attempts didn't break it. Passing tests are evidence, not proof — which is exactly why we need the techniques in this course. Z3 (the SMT solver above) goes further: it searches *all* values satisfying the constraints, not just random samples. When Z3 says `sat`, it has found a concrete counterexample. When it says `unsat`, no counterexample exists — that's a proof.
+
 ## Euler's Conjecture and the 218-Year Wait
 
 The pattern repeats throughout mathematical history. In 1769, Leonhard Euler—one of the most prolific mathematicians who ever lived—conjectured that the equation
@@ -188,6 +208,21 @@ In Lean4, the proof mirrors the English version:
 ```lean
 <!-- include: code/mcs-lectures/01 - What is a Proof/01_lean.lean -->
 ```
+
+**Dafny** verifies the same theorem through *program verification*. You write a function with a specification — what the function requires (precondition) and what it guarantees (postcondition) — and Dafny's verifier checks that the code satisfies its spec for *all possible inputs*:
+
+```dafny
+// dafny verify even_squared.dfy
+method SquareEven(n: int) returns (result: int)
+  requires n % 2 == 0       // precondition: n is even
+  ensures result % 2 == 0   // postcondition: n² is even
+{
+  result := n * n;
+  // Dafny verifies automatically: if n = 2k, then n*n = 4k² = 2(2k²).
+}
+```
+
+`requires` is the hypothesis ("$n$ is even") and `ensures` is the conclusion ("$n^2$ is even"). Dafny proves the postcondition holds for *every* input satisfying the precondition — the same logical structure as the pen-and-paper proof, but verified mechanically by an SMT solver. Where Hypothesis finds bugs by testing random inputs, and Z3 finds counterexamples by solving constraints, Dafny verifies that code *always* meets its spec — it's the closest thing to a machine-checked proof for programs.
 
 ### Example: Sum of Two Even Numbers
 
