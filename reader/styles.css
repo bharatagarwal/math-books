@@ -1,5 +1,5 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --content-width: 570px; }
+:root { --content-width: 680px; }
 html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; background: #fff; color: #1f2328; overscroll-behavior: none; }
 
 .top-bar {
@@ -45,22 +45,71 @@ html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; ba
 .md h3 { font-size: 16px; font-weight: 600; color: #656d76; margin-top: 24px; margin-bottom: 8px; }
 .md p { margin-bottom: 14px; }
 .md blockquote { border-left: 2px solid #1f2328; padding: 0 12px; margin: 14px 0; color: #1f2328; font-style: italic; }
+/* Exercise / problem cards: first-class, distinct from prose AND from the
+   ordinary (italic, black-bar) blockquote above. Tinted card, blue accent. */
+.md blockquote.exercise {
+  border-left: 3px solid #0969da;
+  background: #f3f7fc;
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  margin: 18px 0;
+  color: #1f2328;
+  font-style: normal;
+}
+.md blockquote.exercise > :first-child { margin-top: 0; }
+.md blockquote.exercise > :last-child { margin-bottom: 0; }
+.md blockquote.exercise p { margin-bottom: 10px; }
+/* The exercise number badge — small monospace pill in the accent colour. */
+.md .exercise-num {
+  display: inline-block;
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  background: #0969da;
+  padding: 3px 7px;
+  border-radius: 10px;
+  margin-right: 8px;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+/* MCS "Problem N.M." headings get the same badge but keep heading rhythm. */
+.md h1.exercise-heading, .md h2.exercise-heading, .md h3.exercise-heading,
+.md h4.exercise-heading, .md h5.exercise-heading, .md h6.exercise-heading {
+  color: #0969da;
+  font-weight: 600;
+  margin-top: 24px;
+}
 .md ul, .md ol { margin: 0 0 14px 24px; }
 .md li { margin-bottom: 4px; }
 .md a { color: #0969da; }
 .md code { font-family: 'SF Mono', Menlo, monospace; font-size: 0.88em; background: #f0f3f6; padding: 2px 6px; border-radius: 3px; }
 .md pre { background: #f6f8fa; border: 1px solid #d1d9e0; border-radius: 6px; padding: 16px; margin: 14px 0; overflow-x: auto; }
 .md pre code { background: none; padding: 0; font-size: 13px; }
-.md img { max-width: 100%; border-radius: 4px; }
-.md figure { margin: 24px 0; }
-.md figure img { margin: 0; display: block; }
-.md figcaption { font-size: 13px; color: #656d76; margin-top: 8px; text-align: center; font-style: italic; }
+/* Figures: cap and center so small diagrams aren't blown up to full column width */
+.md img { max-width: min(100%, 460px); height: auto; display: block; margin: 4px auto; border-radius: 4px; }
+.md figure { margin: 24px auto; max-width: 460px; }
+.md figure img { margin: 0 auto; }
+.md figcaption { font-size: 13px; color: #656d76; margin-top: 8px; text-align: center; font-style: italic; line-height: 1.45; }
+/* Image carousel (grouped panels) */
+.md .carousel { margin: 24px auto; max-width: 480px; }
+.md .carousel-viewport { position: relative; }
+.md .carousel-slide { margin: 0 auto; }
+.md .carousel-slide.carousel-hidden { display: none; }
+.md .carousel-slide figure { margin: 0 auto; }
+.md .carousel-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 8px; }
+.md .carousel-btn { font: inherit; font-size: 18px; line-height: 1; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: 1px solid #d1d9e0; border-radius: 6px; background: #f6f8fa; color: #1f2328; cursor: pointer; }
+.md .carousel-btn:hover { background: #eaeef2; }
+.md .carousel-counter { font-size: 12px; color: #656d76; min-width: 46px; text-align: center; }
+.md .carousel-start, .md .carousel-end { display: none; }
 .md table { border-collapse: collapse; margin: 14px 0; width: 100%; font-size: 14px; }
 .md th, .md td { border: 1px solid #d1d9e0; padding: 8px 12px; text-align: left; }
 .md th { background: #f6f8fa; font-weight: 600; }
 .md hr { border: none; border-top: 1px solid #d8dee4; margin: 32px 0; }
 .md .page-marker { text-align: center; font-size: 11px; color: #8b949e; margin: 32px 0; text-transform: uppercase; letter-spacing: 0.1em; }
-.katex-display { margin: 20px 0; }
+/* Wide display equations scroll horizontally instead of clipping against the column */
+.katex-display { margin: 20px 0; overflow-x: auto; overflow-y: hidden; padding: 4px 2px; }
 
 /* Zen mode */
 body.zen .top-bar { display: none; }

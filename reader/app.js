@@ -7,9 +7,34 @@ const BOOKS = [
     chapters: [
       { file: '01 - What is a Proof.md', title: '1. What is a Proof?' },
       { file: '02 - Proof by Contradiction and Induction.md', title: '2. Contradiction & Induction' },
-      { file: '03 - Gödel\'s Incompleteness.md', title: '3. Undecidability & Gödel' },
-      { file: '04 - Invariants and Strong Induction.md', title: '4. Invariants & Strong Induction' },
-      { file: '05 - Number Theory and the GCD.md', title: '5. Number Theory & GCD' },
+      { file: '03 - Invariants and Strong Induction.md', title: '3. Invariants & Strong Induction' },
+      { file: '04 - Number Theory and the GCD.md', title: '4. Number Theory & GCD' },
+      { file: 'Appendix - Gödel\'s Incompleteness.md', title: 'Appendix: Undecidability & Gödel' },
+    ]
+  },
+  {
+    id: 'dm',
+    title: 'Discrete Mathematics',
+    meta: 'Lovász & Vesztergombi · Yale, Spring 1999',
+    basePath: 'dm',
+    chapters: [
+      { file: '01 - Introduction.md', title: '1. Introduction' },
+      { file: '02 - Let us count.md', title: '2. Let us count!' },
+      { file: '03 - Induction.md', title: '3. Induction' },
+      { file: '04 - Counting subsets.md', title: '4. Counting subsets' },
+      { file: '05 - Pascals Triangle.md', title: "5. Pascal's Triangle" },
+      { file: '06 - Fibonacci numbers.md', title: '6. Fibonacci numbers' },
+      { file: '07 - Combinatorial probability.md', title: '7. Combinatorial probability' },
+      { file: '08 - Integers divisors and primes.md', title: '8. Integers, divisors & primes' },
+      { file: '09 - Graphs.md', title: '9. Graphs' },
+      { file: '10 - Trees.md', title: '10. Trees' },
+      { file: '11 - Finding the optimum.md', title: '11. Finding the optimum' },
+      { file: '12 - Matchings in graphs.md', title: '12. Matchings in graphs' },
+      { file: '13 - Graph coloring.md', title: '13. Graph coloring' },
+      { file: '14 - A Connecticut class in King Arthurs court.md', title: "14. King Arthur's Court" },
+      { file: '15 - A glimpse of cryptography.md', title: '15. A glimpse of cryptography' },
+      { file: '16 - One-time pads.md', title: '16. One-time pads' },
+      { file: '17 - Answers to exercises.md', title: 'Answers to Exercises' },
     ]
   },
   {
@@ -42,12 +67,24 @@ const BOOKS = [
     ]
   },
   {
-    id: 'outline',
+    id: 'bradfield',
     title: 'Bradfield Math Course',
-    meta: 'June 2020',
-    basePath: '',
+    meta: 'Mathematics for Computing · Tom Alcorn, 2020',
+    basePath: 'bradfield',
     chapters: [
-      { file: 'math-2020-06-outline.md', title: 'Course Outline' },
+      { file: '00 - Course Outline.md', title: 'Course Outline' },
+      { file: '01 - Counting.md', title: '1. Counting' },
+      { file: '02 - Probability.md', title: '2. Probability' },
+      { file: "03 - Bayes' Rule.md", title: "3. Bayes' Rule" },
+      { file: '04 - Logic.md', title: '4. Logic' },
+      { file: '05 - Proofs.md', title: '5. Proofs' },
+      { file: '06 - Induction and Recursive Data Types.md', title: '6. Induction & Recursion' },
+      { file: '07 - Linear Algebra.md', title: '7. Linear Algebra' },
+      { file: '08 - Linear Algebra 2.md', title: '8. Linear Algebra 2' },
+      { file: '09 - Graph Theory.md', title: '9. Graph Theory' },
+      { file: '10 - Number Theory.md', title: '10. Number Theory' },
+      { file: '11 - Cryptography.md', title: '11. Cryptography' },
+      { file: '12 - Revision and Problem Solving.md', title: '12. Revision & Practice' },
     ]
   }
 ];
@@ -103,13 +140,20 @@ function protectMath(md) {
     mathStore.push({ key, content });
     return key;
   };
-  // Protect $$...$$ (display) first, then $...$ (inline)
-  md = md.replace(/\$\$([\s\S]*?)\$\$/g, (m) => placeholder(m));
-  md = md.replace(/(?<![\\$])\$(?!\$)((?:[^$\\]|\\.)+?)\$/g, (m) => placeholder(m));
-  // Protect \[...\] and \(...\)
-  md = md.replace(/\\\[([\s\S]*?)\\\]/g, (m) => placeholder(m));
-  md = md.replace(/\\\(([\s\S]*?)\\\)/g, (m) => placeholder(m));
-  return md;
+  // Split on code fences — only protect math outside code blocks
+  const parts = md.split(/(^```[\s\S]*?^```)/gm);
+  for (let i = 0; i < parts.length; i++) {
+    if (parts[i].startsWith('```')) continue;
+    let p = parts[i];
+    // Protect $$...$$ (display) first, then $...$ (inline)
+    p = p.replace(/\$\$([\s\S]*?)\$\$/g, (m) => placeholder(m));
+    p = p.replace(/(?<![\\$])\$(?!\$)((?:[^$\\]|\\.)+?)\$/g, (m) => placeholder(m));
+    // Protect \[...\] and \(...\)
+    p = p.replace(/\\\[([\s\S]*?)\\\]/g, (m) => placeholder(m));
+    p = p.replace(/\\\(([\s\S]*?)\\\)/g, (m) => placeholder(m));
+    parts[i] = p;
+  }
+  return parts.join('');
 }
 
 function restoreMath(html) {
@@ -119,9 +163,142 @@ function restoreMath(html) {
   return html;
 }
 
-function processMarkdown(md) {
+async function processMarkdown(md) {
   md = md.replace(/<!--\s*page\s+(\d+)\s*-->/gi, '<div class="page-marker">Page $1</div>');
+
+  // marked.js renders ![alt](dest) only when dest has no unescaped spaces, but OCR'd
+  // figure paths contain them (e.g. "04 - Counting subsets_images/img-0.jpeg"). Wrap any
+  // spaced image destination in <> (CommonMark angle-bracket form) so it parses as an image.
+  md = md.replace(/(!\[[^\]\n]*\]\()([^)\n<>"]*\s[^)\n"]*)(\))/g, '$1<$2>$3');
+
+  // Carousel markers: <!-- carousel --> ... <!-- endcarousel --> groups the images
+  // between them into a single swipeable widget (built after render in buildCarousels).
+  md = md.replace(/<!--\s*carousel\s*-->/gi, '\n\n<div class="carousel-start"></div>\n\n');
+  md = md.replace(/<!--\s*endcarousel\s*-->/gi, '\n\n<div class="carousel-end"></div>\n\n');
+
+  const includeRe = /<!--\s*include:\s*(.+?)\s*-->/g;
+  const matches = [...md.matchAll(includeRe)];
+  if (matches.length === 0) return md;
+
+  const fetches = matches.map(async (m) => {
+    const path = '../' + m[1].split('/').map(encodeURIComponent).join('/');
+    try {
+      const resp = await fetch(path);
+      if (!resp.ok) return { match: m, code: '# Failed to load: ' + m[1] };
+      return { match: m, code: (await resp.text()).trimEnd() };
+    } catch {
+      return { match: m, code: '# Failed to load: ' + m[1] };
+    }
+  });
+
+  const results = await Promise.all(fetches);
+  for (const { match, code } of results.reverse()) {
+    md = md.slice(0, match.index) + code + md.slice(match.index + match[0].length);
+  }
   return md;
+}
+
+// Turn each <!-- carousel -->…<!-- endcarousel --> region into a one-at-a-time
+// figure carousel with prev/next controls. Runs after KaTeX so captions stay rendered.
+function buildCarousels(root) {
+  root.querySelectorAll('.carousel-start').forEach(start => {
+    const between = [];
+    let el = start.nextElementSibling;
+    while (el && !(el.classList && el.classList.contains('carousel-end'))) {
+      between.push(el);
+      el = el.nextElementSibling;
+    }
+    const end = el;
+    const slides = [];
+    between.forEach(n => {
+      if (n.tagName === 'FIGURE' || n.tagName === 'IMG') { slides.push(n); return; }
+      n.querySelectorAll('figure, img').forEach(x => {
+        if (x.tagName === 'FIGURE' || (x.tagName === 'IMG' && !x.closest('figure'))) slides.push(x);
+      });
+    });
+    const uniq = [...new Set(slides)];
+    if (uniq.length < 2) { start.remove(); if (end) end.remove(); return; }
+
+    const car = document.createElement('div'); car.className = 'carousel';
+    const vp = document.createElement('div'); vp.className = 'carousel-viewport';
+    uniq.forEach((s, i) => { s.classList.add('carousel-slide'); if (i) s.classList.add('carousel-hidden'); vp.appendChild(s); });
+    const nav = document.createElement('div'); nav.className = 'carousel-nav';
+    const prev = document.createElement('button'); prev.type = 'button'; prev.className = 'carousel-btn'; prev.setAttribute('aria-label', 'Previous figure'); prev.textContent = '‹';
+    const next = document.createElement('button'); next.type = 'button'; next.className = 'carousel-btn'; next.setAttribute('aria-label', 'Next figure'); next.textContent = '›';
+    const counter = document.createElement('span'); counter.className = 'carousel-counter';
+    nav.append(prev, counter, next); car.append(vp, nav);
+
+    let cur = 0;
+    const show = n => {
+      cur = (n + uniq.length) % uniq.length;
+      uniq.forEach((s, i) => s.classList.toggle('carousel-hidden', i !== cur));
+      counter.textContent = (cur + 1) + ' / ' + uniq.length;
+    };
+    prev.onclick = () => show(cur - 1);
+    next.onclick = () => show(cur + 1);
+    show(0);
+
+    start.replaceWith(car);
+    between.forEach(n => { if (!uniq.includes(n)) n.remove(); });
+    if (end) end.remove();
+  });
+}
+
+// Mark up exercise/problem blocks as first-class "exercise cards". Runs after
+// KaTeX so any math inside the exercise stays rendered. Two shapes are handled:
+//   1. dm blockquotes whose first text token is a bold exercise number, e.g.
+//      `> **2.5** …` → marked leaves a leading <strong>2.5</strong>.
+//   2. MCS problem headings, e.g. `### Problem 6.1.` → an <h3> "Problem 6.1.".
+// Ordinary blockquotes (no leading bold number) and ordinary headings are left
+// untouched.
+function styleExercises(root) {
+  // Leading bold number like "2.5", "10", "3.1." (optional trailing dot).
+  const numRe = /^\d+(\.\d+)?\.?$/;
+
+  // 1) dm-style exercise blockquotes.
+  root.querySelectorAll('blockquote').forEach(bq => {
+    const strong = bq.querySelector('strong');
+    if (!strong) return;
+    // The <strong> must be the very first rendered token of the blockquote
+    // (ignoring whitespace), so we don't badge a bolded word mid-sentence.
+    const firstP = bq.firstElementChild;
+    if (!firstP) return;
+    const owner = firstP.querySelector ? firstP.querySelector('strong') : null;
+    if (owner !== strong) return;
+    // Nothing but whitespace may precede the <strong> inside its paragraph.
+    let pre = '';
+    for (const node of firstP.childNodes) {
+      if (node === strong) break;
+      pre += node.textContent || '';
+    }
+    if (pre.trim() !== '') return;
+    const label = strong.textContent.trim();
+    if (!numRe.test(label)) return;
+
+    bq.classList.add('exercise');
+    const badge = document.createElement('span');
+    badge.className = 'exercise-num';
+    badge.textContent = label.replace(/\.$/, '');
+    // Replace the inline bold number with the badge, tidy a leading space.
+    strong.replaceWith(badge);
+    const after = badge.nextSibling;
+    if (after && after.nodeType === Node.TEXT_NODE) {
+      after.textContent = after.textContent.replace(/^\s+/, ' ');
+    }
+  });
+
+  // 2) MCS-style problem headings ("Problem N.M.").
+  const probRe = /^Problem\s+(\d+(?:\.\d+)?)\.?$/;
+  root.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(h => {
+    const m = h.textContent.trim().match(probRe);
+    if (!m) return;
+    h.classList.add('exercise-heading');
+    const badge = document.createElement('span');
+    badge.className = 'exercise-num';
+    badge.textContent = m[1];
+    h.textContent = '';
+    h.append(badge, document.createTextNode(' Problem'));
+  });
 }
 
 
@@ -144,7 +321,7 @@ async function loadChapter(idx) {
 
     let md = await resp.text();
     console.log('Loaded markdown:', md.length, 'chars,', md.split('\n').length, 'lines');
-    md = processMarkdown(md);
+    md = await processMarkdown(md);
     md = protectMath(md);
     currentBasePath = book.basePath;
 
@@ -172,6 +349,9 @@ async function loadChapter(idx) {
     } catch (e) {
       console.error('KaTeX render error:', e);
     }
+
+    buildCarousels(pane);
+    styleExercises(pane);
 
     const headings = Array.from(pane.querySelectorAll('h2, h3'));
     headings.forEach((h, i) => { h.id = 'h-' + i; });
