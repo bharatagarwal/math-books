@@ -664,24 +664,24 @@ If the romance of different-size infinities and continuum hypotheses doesn't app
 
 ### Practice Problems
 
-#### Problem 7.1.
+### Problem 7.1.
 
 Prove that if $A$ and $B$ are countable sets, then so is $A \cup B$.
 
 
-## Problem 7.2.
+### Problem 7.2.
 
 Show that the set $\{0,1\}^*$ of finite binary strings is countable.
 
-## Problem 7.3.
+### Problem 7.3.
 
 Describe an example of two uncountable sets $A$ and $B$ such that there is no bijection between $A$ and $B$.
 
-## Problem 7.4.
+### Problem 7.4.
 
 Prove that if there is a total injective ($[\geq 1 \text{ out}, \leq 1 \text{ in}]$) relation from $S \to \mathbb{N}$, then $S$ is countable.
 
-## Problem 7.5.
+### Problem 7.5.
 
 For each of the following sets, indicate whether it is finite, countably infinite, or uncountable.
 
@@ -696,7 +696,7 @@ For each of the following sets, indicate whether it is finite, countably infinit
 9. An infinite set $S$ with the property that there exists a total surjective function $f: \mathbb{N} \to S$.
 10. A set $A \cup B$ where $A$ is countable and $B$ is uncountable.
 
-## Problem 7.6.
+### Problem 7.6.
 
 Circle the correct completions (there may be more than one)
 
@@ -713,7 +713,7 @@ $A$ strict $\mathbb{N}$ IFF ...
 - $\exists n \in \mathbb{N}. |A| \leq n$.
 - $\exists n \in \mathbb{N}. |A| < n$.
 
-## Problem 7.7.
+### Problem 7.7.
 
 Let $A$ to be some infinite set and $B$ to be some countable set. We know from Lemma 7.1.7 that
 
@@ -758,14 +758,16 @@ To illustrate this point, let $A$ be the nonnegative integers and $B$ be the non
 
 Class Problems
 
-Problem 7.8.
+### Problem 7.8.
 Show that the set  $\mathbb{N}^{\star}$  of finite sequences of nonnegative integers is countable.
 
-Problem 7.9. (a) Several students felt the proof of Lemma 7.1.7 was worrisome, if not circular. What do you think?
+### Problem 7.9.
+
+(a) Several students felt the proof of Lemma 7.1.7 was worrisome, if not circular. What do you think?
 
 (b) Use the proof of Lemma 7.1.7 to show that if  $A$  is an infinite set, then  $A$  surj  $\mathbb{N}$ , that is, every infinite set is "as big as" the set of nonnegative integers.
 
-Problem 7.10.
+### Problem 7.10.
 The rational numbers fill the space between integers, so a first thought is that there must be more of them than the integers, but it's not true. In this problem you'll show that there are the same number of positive rationals as positive integers. That is, the positive rationals are countable.
 
 
@@ -784,7 +786,7 @@ $$
 
 (b) Conclude that the set, $\mathbb{Q}^+$, of all positive rational numbers is countable.
 
-## Problem 7.11.
+### Problem 7.11.
 
 This problem provides a proof of the [Schröder-Bernstein] Theorem:
 
@@ -823,7 +825,9 @@ For which kinds of paths do both sets of arrows define bijections?
 
 (e) Explain how to piece these bijections together to prove that $A$ and $B$ are the same size.
 
-Problem 7.12. (a) Prove that if a nonempty set, $C$, is countable, then there is a total surjective function $f: \mathbb{N} \to C$.
+### Problem 7.12.
+
+(a) Prove that if a nonempty set, $C$, is countable, then there is a total surjective function $f: \mathbb{N} \to C$.
 
 (b) Conversely, suppose that $\mathbb{N}$ surj $D$, that is, there is a not necessarily total surjective function $f: \mathbb{N}D$. Prove that $D$ is countable.
 
@@ -895,7 +899,7 @@ Show that their product, $A \times B$, is also a countable set by showing how to
 
 (b) Prove that if $C$ is a countable set and $D$ is infinite, then there is a bijection between $D$ and $C \cup D$.
 
-## Problem 7.18.
+### Problem 7.18.
 
 Let $\{0,1\}^*$ be the set of finite binary sequences, $\{0,1\}^w$ be the set of infinite binary sequences, and $F$ be the set of sequences in $\{0,1\}^w$ that contain only a finite number of occurrences of 1's.
 
@@ -905,17 +909,17 @@ Let $\{0,1\}^*$ be the set of finite binary sequences, $\{0,1\}^w$ be the set of
 
 Hint: We know that $\{0,1\}^*$ is countable and $\{0,1\}^w$ is not.
 
-## Problem 7.19.
+### Problem 7.19.
 
 Let $\{0,1\}^w$ be the set of infinite binary strings, and let $B \subset \{0,1\}^w$ be the set of infinite binary strings containing infinitely many occurrences of 1's. Prove that $B$ is uncountable. (We have already shown that $\{0,1\}^w$ is uncountable.)
 
 Hint: Define a suitable function from $\{0,1\}^w$ to $B$.
 
-## Problem 7.20.
+### Problem 7.20.
 
 A real number is called quadratic when it is a root of a degree two polynomial with integer coefficients. Explain why there are only countably many quadratic reals.
 
-## Problem 7.21.
+### Problem 7.21.
 
 Describe which of the following sets have bijections between them:
 
@@ -1123,7 +1127,7 @@ The only issue here is that set theory is technically supposed to be expressed i
 
 For example, the formula $x = y$ could be replaced with the pure formula $\forall z. z \in x \text{ IFF } z \in y$.
 
-## Problem 7.29.
+### Problem 7.29.
 
 Let $R: A \to A$ be a binary relation on a set, $A$. If $a_1 R a_0$, we'll say that $a_1$ is "R-smaller" than $a_0$. $R$ is called well founded when there is no infinite "R-decreasing" sequence:
 
@@ -1170,7 +1174,9 @@ is a formula of set theory that means that "x is empty."
 
 ## Homework Problems
 
-Problem 7.30. (a) Explain how to write a formula, $\operatorname{Subset}_n(x, y_1, y_2, \ldots, y_n)$, of set theory$^8$ that means $x \subseteq \{y_1, y_2, \ldots, y_n\}$.
+### Problem 7.30.
+
+(a) Explain how to write a formula, $\operatorname{Subset}_n(x, y_1, y_2, \ldots, y_n)$, of set theory$^8$ that means $x \subseteq \{y_1, y_2, \ldots, y_n\}$.
 
 (b) Now use the formula $\operatorname{Subset}_n$ to write a formula, $\operatorname{Atmost}_n(x)$, of set theory that means that $x$ has at most $n$ elements.
 
@@ -1182,7 +1188,9 @@ Hint: Use $\operatorname{Subset}_n$ and $\operatorname{Exactly}_n$.
 
 ## Exam Problems
 
-Problem 7.31. (a) Explain how to write a formula $\operatorname{Members}(p, a, b)$ of set theory$^9$ that means $p = \{a, b\}$.
+### Problem 7.31.
+
+(a) Explain how to write a formula $\operatorname{Members}(p, a, b)$ of set theory$^9$ that means $p = \{a, b\}$.
 
 Hint: Say that everything in $p$ is either $a$ or $b$. It's OK to use subformulas of the form “$x = y$,” since we can regard “$x = y$” as an abbreviation for a genuine set theory formula.
 
@@ -1211,7 +1219,7 @@ Hint: Now it's OK to use subformulas of the form "Members$(p,a,b)$."
 
 ### Homework Problems
 
-#### Problem 7.32.
+### Problem 7.32.
 
 For any set $x$, define $\operatorname{next}(x)$ to be the set consisting of all the elements of $x$, along with $x$ itself:
 

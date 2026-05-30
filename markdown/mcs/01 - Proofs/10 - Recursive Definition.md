@@ -681,7 +681,7 @@ If $f, g$ are F18's, then so are
 
 (b) Prove by Structural Induction on this definition that the Elementary 18.01 Functions are closed under taking derivatives. That is, show that if $f(x)$ is an F18, then so is $f' ::= df/dx$. (Just work out 2 or 3 of the most interesting constructor cases; you may skip the less interesting ones.)
 
-Problem 6.4.
+### Problem 6.4.
 
 Here is a simple recursive definition of the set, $E$, of even integers:
 
@@ -713,7 +713,7 @@ $$
 
 (f) See if you can give an unambiguous recursive definition of $L$.
 
-Problem 6.5.
+### Problem 6.5.
 
 Definition. The recursive data type, binary-2PTG, of binary trees with leaf labels, $L$, is defined recursively as follows:
 
@@ -814,7 +814,7 @@ $$
 ![img-1.jpeg](10 - Recursive Definition_images/img-1.jpeg)
 Figure 6.2 Constructing the Koch Snowflake.
 
-# Problem 6.8.
+### Problem 6.8.
 
 Fractals are an example of mathematical objects that can be defined recursively. In this problem, we consider the Koch snowflake. Any Koch snowflake can be constructed by the following recursive definition.
 
@@ -825,7 +825,7 @@ The resulting figure is also a Koch snowflake.
 
 Prove by structural induction that the area inside any Koch snowflake is of the form  $q\sqrt{3}$ , where  $q$  is a rational number.
 
-# Problem 6.9.
+### Problem 6.9.
 
 Let  $L$  be some convenient set whose elements will be called labels. The labeled binary trees, LBT's, are defined recursively as follows:
 
@@ -915,7 +915,7 @@ $$
 
 ### Practice Problems
 
-#### Problem 6.12.
+### Problem 6.12.
 
 Define the sets $F_1$ and $F_2$ recursively:
 
@@ -935,7 +935,9 @@ Define the sets $F_1$ and $F_2$ recursively:
 
 (c) A way to prove that $F_{1} = F_{2}$, is to show first that $F_{1} \subseteq F_{2}$ and second that $F_{2} \subseteq F_{1}$. One of these containments follows easily by structural induction. Which one? What would be the induction hypothesis? (You do not need to complete a proof.)
 
-Problem 6.13. (a) To prove that the set RecMatch, of matched strings of Definition 6.2.1 equals the set AmbRecMatch of ambiguous matched strings of Definition 6.2.2, you could first prove that
+### Problem 6.13.
+
+(a) To prove that the set RecMatch, of matched strings of Definition 6.2.1 equals the set AmbRecMatch of ambiguous matched strings of Definition 6.2.2, you could first prove that
 
 $$
 \forall r \in \operatorname{RecMatch}. r \in \operatorname{AmbRecMatch},
@@ -962,7 +964,7 @@ Of these two statements, circle the one that would be simpler to prove by struct
 
 ## Class Problems
 
-## Problem 6.14.
+### Problem 6.14.
 
 Let $p$ be the string [ ]. A string of brackets is said to be erasable iff it can be reduced to the empty string by repeatedly erasing occurrences of $p$. For example, here's how to erase the string [ [ ] [ ] ] ] :
 
@@ -1031,7 +1033,9 @@ $$
 \text{Erasable} = \text{RecMatch}.
 $$
 
-Problem 6.15. (a) Prove that the set RecMatch, of matched strings of Definition 6.2.1 is closed under string concatenation. Namely, if $s, t \in \text{RecMatch}$, then $s \cdot t \in \text{RecMatch}$.
+### Problem 6.15.
+
+(a) Prove that the set RecMatch, of matched strings of Definition 6.2.1 is closed under string concatenation. Namely, if $s, t \in \text{RecMatch}$, then $s \cdot t \in \text{RecMatch}$.
 
 (b) Prove AmbRecMatch $\subseteq$ RecMatch, where AmbRecMatch is the set of ambiguous matched strings of Definition 6.2.2.
 
@@ -1042,7 +1046,7 @@ Problem 6.15. (a) Prove that the set RecMatch, of matched strings of Definition 
 
 # Homework Problems
 
-## Problem 6.16.
+### Problem 6.16.
 
 One way to determine if a string has matching brackets, that is, if it is in the set, RecMatch, of Definition 6.2.1 is to start with 0 and read the string from left to right, adding 1 to the count for each left bracket and subtracting 1 from the count for each right bracket. For example, here are the counts for two sample strings:
 
@@ -1071,7 +1075,7 @@ Hint: By induction on the length of strings in GoodCount. Consider when the runn
 
 ## Homework Problems
 
-## Problem 6.17.
+### Problem 6.17.
 
 One version of the Ackermann function, $A: \mathbb{N}^2 \to \mathbb{N}$, is defined recursively by the following rules:
 
