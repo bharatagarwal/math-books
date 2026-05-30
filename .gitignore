@@ -17,3 +17,11 @@ __pycache__/
 
 # ── Build output (regenerable) ─────────────────────────────────────
 public/
+
+.bg/
+
+# ── Large media / local-only (keep subtitles, not the video) ───────
+lecture-videos/*.webm
+
+# ── Tool caches ────────────────────────────────────────────────────
+.wrangler/
