@@ -1,0 +1,411 @@
+1
+00:00:13,775 --> 00:00:15,855
+Hey folks. I've got a relatively quick video
+
+2
+00:00:15,855 --> 00:00:17,695
+for you today, just sort of a footnote
+
+3
+00:00:17,695 --> 00:00:18,815
+between chapters.
+
+4
+00:00:18,975 --> 00:00:20,495
+In the last two videos, I talked about
+
+5
+00:00:20,495 --> 00:00:22,735
+linear transformations and matrices,
+
+6
+00:00:22,735 --> 00:00:24,335
+but I only showed the specific case of
+
+7
+00:00:24,335 --> 00:00:27,295
+transformations that take two dimensional vectors to other
+
+8
+00:00:27,295 --> 00:00:28,415
+two dimensional vectors.
+
+9
+00:00:28,930 --> 00:00:31,170
+In general throughout the series, we'll work mainly
+
+10
+00:00:31,170 --> 00:00:32,210
+in two dimensions,
+
+11
+00:00:32,450 --> 00:00:34,530
+mostly because it's easier to actually see on
+
+12
+00:00:34,530 --> 00:00:36,610
+the screen and wrap your mind around. But
+
+13
+00:00:36,610 --> 00:00:38,530
+more importantly than that, once you get all
+
+14
+00:00:38,530 --> 00:00:40,690
+the core ideas in two dimensions, they carry
+
+15
+00:00:40,690 --> 00:00:42,770
+over pretty seamlessly to higher dimensions.
+
+16
+00:00:43,645 --> 00:00:45,645
+Nevertheless, it's good to peek our heads outside
+
+17
+00:00:45,645 --> 00:00:47,325
+of flat land now and then to, you
+
+18
+00:00:47,325 --> 00:00:48,845
+know, see what it means to apply these
+
+19
+00:00:48,845 --> 00:00:51,325
+ideas in more than just those two dimensions.
+
+20
+00:00:52,285 --> 00:00:54,925
+For example, consider a linear transformation
+
+21
+00:00:54,925 --> 00:00:58,285
+with three-dimensional vectors as inputs and three-dimensional vectors
+
+22
+00:00:58,285 --> 00:00:58,925
+as outputs.
+
+23
+00:01:00,310 --> 00:01:03,270
+We can visualize this by smooshing around all
+
+24
+00:01:03,270 --> 00:01:06,230
+the points in three-dimensional space as represented by
+
+25
+00:01:06,230 --> 00:01:08,150
+a grid in such a way that keeps
+
+26
+00:01:08,150 --> 00:01:10,950
+the grid lines parallel and evenly spaced and
+
+27
+00:01:10,950 --> 00:01:12,470
+which fixes the origin in place.
+
+28
+00:01:13,305 --> 00:01:15,625
+And just as with two dimensions, every point
+
+29
+00:01:15,625 --> 00:01:17,785
+of space that we see moving around is
+
+30
+00:01:17,785 --> 00:01:19,865
+really just a proxy for a vector who
+
+31
+00:01:19,865 --> 00:01:21,945
+has its tip at that point. And what
+
+32
+00:01:21,945 --> 00:01:24,905
+we're really doing is thinking about input vectors
+
+33
+00:01:24,985 --> 00:01:27,225
+moving over to their corresponding outputs.
+
+34
+00:01:27,740 --> 00:01:29,340
+And just as with two dimensions,
+
+35
+00:01:29,500 --> 00:01:32,220
+one of these transformations is completely described by
+
+36
+00:01:32,220 --> 00:01:33,900
+where the basis vectors go.
+
+37
+00:01:34,140 --> 00:01:36,700
+But now, there are three standard basis vectors
+
+38
+00:01:36,700 --> 00:01:38,860
+that we typically use. The unit vector in
+
+39
+00:01:38,860 --> 00:01:41,195
+the x direction, I hat, the unit vector
+
+40
+00:01:41,195 --> 00:01:43,435
+in the y direction, j hat, and a
+
+41
+00:01:43,435 --> 00:01:45,115
+new guy, the unit vector in the z
+
+42
+00:01:45,115 --> 00:01:46,955
+direction called k hat.
+
+43
+00:01:47,195 --> 00:01:49,035
+In fact, I think it's easier to think
+
+44
+00:01:49,035 --> 00:01:51,835
+about these transformations by only following those basis
+
+45
+00:01:51,835 --> 00:01:54,475
+vectors since the full three d grid representing
+
+46
+00:01:54,475 --> 00:01:56,075
+all points can get kinda messy.
+
+47
+00:01:56,850 --> 00:01:58,850
+By leaving a copy of the original axes
+
+48
+00:01:58,850 --> 00:02:00,770
+in the background, we can think about the
+
+49
+00:02:00,770 --> 00:02:03,170
+coordinates of where each of these three basis
+
+50
+00:02:03,170 --> 00:02:04,290
+vectors lands.
+
+51
+00:02:05,810 --> 00:02:08,290
+Record the coordinates of these three vectors as
+
+52
+00:02:08,290 --> 00:02:10,530
+the columns of a three by three matrix.
+
+53
+00:02:11,285 --> 00:02:13,845
+This gives a matrix that completely describes the
+
+54
+00:02:13,845 --> 00:02:14,725
+transformation
+
+55
+00:02:14,725 --> 00:02:16,485
+using only nine numbers.
+
+56
+00:02:17,605 --> 00:02:20,485
+As a simple example, consider the transformation that
+
+57
+00:02:20,485 --> 00:02:24,005
+rotates space 90 degrees around the y axis.
+
+58
+00:02:24,670 --> 00:02:26,190
+So that would mean that it takes I
+
+59
+00:02:26,190 --> 00:02:29,150
+hat to the coordinates zero zero negative one
+
+60
+00:02:29,150 --> 00:02:30,510
+on the z axis.
+
+61
+00:02:30,910 --> 00:02:32,670
+It doesn't move j hat, so it stays
+
+62
+00:02:32,670 --> 00:02:35,150
+at the coordinates zero one zero, and then
+
+63
+00:02:35,150 --> 00:02:37,310
+k hat moves over to the x axis
+
+64
+00:02:37,310 --> 00:02:38,750
+at one zero zero.
+
+65
+00:02:40,985 --> 00:02:43,625
+Those three sets of coordinates become the columns
+
+66
+00:02:43,625 --> 00:02:47,065
+of a matrix that describes that rotation transformation.
+
+67
+00:02:49,945 --> 00:02:52,025
+To see where a vector with coordinates x
+
+68
+00:02:52,025 --> 00:02:54,890
+y z lands, the reasoning is almost identical
+
+69
+00:02:54,890 --> 00:02:56,650
+to what it was for two dimensions.
+
+70
+00:02:56,890 --> 00:02:58,570
+Each of those coordinates can be thought of
+
+71
+00:02:58,570 --> 00:02:59,690
+as instructions
+
+72
+00:02:59,690 --> 00:03:02,250
+for how to scale each basis vector so
+
+73
+00:03:02,250 --> 00:03:04,090
+that they add together to get your vector.
+
+74
+00:03:06,185 --> 00:03:08,025
+And the important part, just like the two
+
+75
+00:03:08,025 --> 00:03:10,345
+d case, is that this scaling and adding
+
+76
+00:03:10,345 --> 00:03:14,265
+process works both before and after the transformation.
+
+77
+00:03:16,185 --> 00:03:18,370
+So to see where your vector lands, you
+
+78
+00:03:18,370 --> 00:03:21,890
+multiply those coordinates by the corresponding columns of
+
+79
+00:03:21,890 --> 00:03:24,130
+the matrix, and then you add together the
+
+80
+00:03:24,130 --> 00:03:25,090
+three results.
+
+81
+00:03:29,490 --> 00:03:32,545
+Multiplying two matrices is also similar. Whenever you
+
+82
+00:03:32,545 --> 00:03:35,265
+see two three by three matrices getting multiplied
+
+83
+00:03:35,265 --> 00:03:38,465
+together, you should imagine first applying the transformation
+
+84
+00:03:38,465 --> 00:03:40,145
+encoded by the right one,
+
+85
+00:03:40,385 --> 00:03:42,945
+then applying the transformation encoded by the left
+
+86
+00:03:42,945 --> 00:03:43,185
+one.
+
+87
+00:03:44,000 --> 00:03:46,240
+It turns out that three d matrix multiplication
+
+88
+00:03:46,240 --> 00:03:48,640
+is actually pretty important for fields like computer
+
+89
+00:03:48,640 --> 00:03:51,520
+graphics and robotics since things like rotations and
+
+90
+00:03:51,520 --> 00:03:54,240
+three dimensions can be pretty hard to describe,
+
+91
+00:03:54,400 --> 00:03:56,160
+but they're easier to wrap your mind around
+
+92
+00:03:56,160 --> 00:03:57,920
+if you can break them down as the
+
+93
+00:03:57,920 --> 00:04:01,445
+composition of separate easier to think about rotations.
+
+94
+00:04:04,485 --> 00:04:08,165
+Performing this matrix multiplication numerically is once again
+
+95
+00:04:08,165 --> 00:04:10,245
+pretty similar to the two dimensional case.
+
+96
+00:04:10,485 --> 00:04:12,005
+In fact, a good way to test your
+
+97
+00:04:12,005 --> 00:04:14,390
+understanding of the last video would be to
+
+98
+00:04:14,390 --> 00:04:16,950
+try to reason through what specifically this matrix
+
+99
+00:04:16,950 --> 00:04:19,750
+multiplication should look like, thinking closely about how
+
+100
+00:04:19,750 --> 00:04:21,910
+it relates to the idea of applying two
+
+101
+00:04:21,910 --> 00:04:23,830
+successive transformations in space.
+
+102
+00:04:32,335 --> 00:04:34,255
+In the next video, I'll start getting into
+
+103
+00:04:34,255 --> 00:04:35,215
+the determinant.

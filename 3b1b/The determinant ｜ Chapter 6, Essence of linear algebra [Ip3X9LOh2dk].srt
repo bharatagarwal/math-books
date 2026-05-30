@@ -1,0 +1,1043 @@
+1
+00:00:12,095 --> 00:00:14,735
+Hello hello again. So moving forward I'll be
+
+2
+00:00:14,735 --> 00:00:16,735
+assuming that you have a visual understanding of
+
+3
+00:00:16,735 --> 00:00:19,855
+linear transformations and how they're represented with matrices,
+
+4
+00:00:19,855 --> 00:00:21,055
+the way that I've been talking about in
+
+5
+00:00:21,055 --> 00:00:22,175
+the last few videos.
+
+6
+00:00:22,655 --> 00:00:24,095
+If you think about a couple of these
+
+7
+00:00:24,095 --> 00:00:25,135
+linear transformations
+
+8
+00:00:25,380 --> 00:00:27,220
+you might notice how some of them seem
+
+9
+00:00:27,220 --> 00:00:29,940
+to stretch space out while others squish it
+
+10
+00:00:29,940 --> 00:00:30,740
+on in.
+
+11
+00:00:31,140 --> 00:00:32,740
+One thing that turns out to be pretty
+
+12
+00:00:32,740 --> 00:00:35,300
+useful for understanding one of these transformations is
+
+13
+00:00:35,300 --> 00:00:38,180
+to measure exactly how much it stretches or
+
+14
+00:00:38,180 --> 00:00:38,900
+squishes things.
+
+15
+00:00:39,475 --> 00:00:40,515
+More specifically,
+
+16
+00:00:40,755 --> 00:00:42,915
+to measure the factor by which the area
+
+17
+00:00:42,915 --> 00:00:44,995
+of a given region increases
+
+18
+00:00:44,995 --> 00:00:46,195
+or decreases.
+
+19
+00:00:47,155 --> 00:00:49,235
+For example, look at the matrix with columns
+
+20
+00:00:49,235 --> 00:00:52,400
+three zero and zero two. It scales I
+
+21
+00:00:52,400 --> 00:00:54,640
+hat by a factor of three and scales
+
+22
+00:00:54,640 --> 00:00:56,480
+j hat by a factor of two.
+
+23
+00:00:56,960 --> 00:00:58,960
+Now, if we focus our attention on the
+
+24
+00:00:58,960 --> 00:01:01,280
+one by one square whose bottom sits on
+
+25
+00:01:01,280 --> 00:01:03,040
+I hat and whose left side sits on
+
+26
+00:01:03,040 --> 00:01:06,205
+j hat, after the transformation this turns into
+
+27
+00:01:06,205 --> 00:01:07,965
+a two by three rectangle.
+
+28
+00:01:08,285 --> 00:01:10,365
+Since this region started out with area one
+
+29
+00:01:10,365 --> 00:01:12,285
+and ended up with area six,
+
+30
+00:01:12,445 --> 00:01:14,205
+we can say the linear transformation
+
+31
+00:01:14,205 --> 00:01:16,925
+has scaled its area by a factor of
+
+32
+00:01:16,925 --> 00:01:17,245
+six.
+
+33
+00:01:18,090 --> 00:01:20,330
+Compare that to a shear whose matrix has
+
+34
+00:01:20,330 --> 00:01:22,970
+columns one zero and one one, meaning I
+
+35
+00:01:22,970 --> 00:01:25,130
+hat stays in place and j hat moves
+
+36
+00:01:25,130 --> 00:01:26,410
+over to one one.
+
+37
+00:01:26,970 --> 00:01:28,970
+That same unit square determined by I hat
+
+38
+00:01:28,970 --> 00:01:31,655
+and j hat gets slanted and turned into
+
+39
+00:01:31,655 --> 00:01:32,775
+a parallelogram,
+
+40
+00:01:32,855 --> 00:01:34,935
+but the area of that parallelogram is still
+
+41
+00:01:34,935 --> 00:01:37,255
+one since its base and height each continue
+
+42
+00:01:37,255 --> 00:01:38,695
+to have length one.
+
+43
+00:01:39,175 --> 00:01:41,975
+So even though this transformation smooshes things about,
+
+44
+00:01:41,975 --> 00:01:44,100
+it seems to leave areas unchanged, at least
+
+45
+00:01:44,100 --> 00:01:46,020
+in the case of that one unit square.
+
+46
+00:01:46,900 --> 00:01:49,060
+Actually, though, if you know how much the
+
+47
+00:01:49,060 --> 00:01:51,780
+area of that one single unit square changes,
+
+48
+00:01:51,780 --> 00:01:53,380
+it can tell you how the area of
+
+49
+00:01:53,380 --> 00:01:55,540
+any possible region in space changes.
+
+50
+00:01:56,165 --> 00:01:59,045
+For starters, notice that whatever happens to one
+
+51
+00:01:59,045 --> 00:02:01,045
+square in the grid has to happen to
+
+52
+00:02:01,045 --> 00:02:03,045
+any other square in the grid no matter
+
+53
+00:02:03,045 --> 00:02:03,845
+the size.
+
+54
+00:02:04,485 --> 00:02:06,165
+This follows from the fact that grid lines
+
+55
+00:02:06,165 --> 00:02:08,005
+remain parallel and evenly spaced.
+
+56
+00:02:09,060 --> 00:02:11,540
+Then any shape that's not a grid square
+
+57
+00:02:11,540 --> 00:02:13,780
+can be approximated by grid squares pretty well
+
+58
+00:02:13,780 --> 00:02:16,740
+with arbitrarily good approximations if you use small
+
+59
+00:02:16,740 --> 00:02:17,860
+enough grid squares.
+
+60
+00:02:18,100 --> 00:02:20,340
+So since the areas of all those tiny
+
+61
+00:02:20,340 --> 00:02:22,660
+grid squares are being scaled by some single
+
+62
+00:02:22,660 --> 00:02:24,935
+amount, the area of the blob as a
+
+63
+00:02:24,935 --> 00:02:27,095
+whole will also be scaled by that same
+
+64
+00:02:27,095 --> 00:02:28,135
+single amount.
+
+65
+00:02:28,775 --> 00:02:31,495
+This very special scaling factor, the factor by
+
+66
+00:02:31,495 --> 00:02:34,215
+which a linear transformation changes any area,
+
+67
+00:02:34,375 --> 00:02:37,095
+is called the determinant of that transformation.
+
+68
+00:02:39,020 --> 00:02:40,860
+I'll show how to compute the determinant of
+
+69
+00:02:40,860 --> 00:02:43,180
+a transformation using its matrix later on in
+
+70
+00:02:43,180 --> 00:02:46,060
+this video, but understanding what it represents is,
+
+71
+00:02:46,060 --> 00:02:48,780
+trust me, much more important than the computation.
+
+72
+00:02:49,500 --> 00:02:51,980
+For example, the determinant of a transformation would
+
+73
+00:02:51,980 --> 00:02:53,995
+be three if that transformation
+
+74
+00:02:53,995 --> 00:02:56,395
+increases the area of a region by a
+
+75
+00:02:56,395 --> 00:02:57,435
+factor of three.
+
+76
+00:02:58,235 --> 00:03:00,715
+The determinant of a transformation would be half
+
+77
+00:03:00,715 --> 00:03:03,435
+if it squishes down all areas by a
+
+78
+00:03:03,435 --> 00:03:04,315
+factor of half.
+
+79
+00:03:06,110 --> 00:03:08,350
+And the determinant of a two d transformation
+
+80
+00:03:08,350 --> 00:03:10,990
+is zero if it squishes all of space
+
+81
+00:03:10,990 --> 00:03:13,230
+onto a line or even onto a single
+
+82
+00:03:13,230 --> 00:03:15,950
+point since then the area of any region
+
+83
+00:03:15,950 --> 00:03:16,830
+would become zero.
+
+84
+00:03:17,475 --> 00:03:19,315
+That last example will prove to be pretty
+
+85
+00:03:19,315 --> 00:03:21,715
+important. It means that checking if the determinant
+
+86
+00:03:21,715 --> 00:03:23,795
+of a given matrix is zero will give
+
+87
+00:03:23,795 --> 00:03:25,555
+a way of computing whether or not the
+
+88
+00:03:25,555 --> 00:03:28,915
+transformation associated with that matrix squishes everything into
+
+89
+00:03:28,915 --> 00:03:29,715
+a smaller dimension.
+
+90
+00:03:30,320 --> 00:03:32,400
+You'll see in the next few videos why
+
+91
+00:03:32,400 --> 00:03:33,920
+this is even a useful thing to think
+
+92
+00:03:33,920 --> 00:03:35,600
+about, but for now I just wanna lay
+
+93
+00:03:35,600 --> 00:03:37,520
+down all of the visual intuition,
+
+94
+00:03:37,600 --> 00:03:39,280
+which in and of itself is a beautiful
+
+95
+00:03:39,280 --> 00:03:40,320
+thing to think about.
+
+96
+00:03:42,240 --> 00:03:44,080
+Okay. I need to confess that what I've
+
+97
+00:03:44,080 --> 00:03:45,995
+said so far is not quite right. The
+
+98
+00:03:45,995 --> 00:03:48,795
+full concept of the determinant allows for negative
+
+99
+00:03:48,795 --> 00:03:49,595
+values.
+
+100
+00:03:49,755 --> 00:03:51,515
+But what would the idea of scaling an
+
+101
+00:03:51,515 --> 00:03:53,835
+area by a negative amount even mean?
+
+102
+00:03:54,875 --> 00:03:56,315
+This has to do with the idea of
+
+103
+00:03:56,315 --> 00:03:57,275
+orientation.
+
+104
+00:03:57,755 --> 00:04:00,635
+For example, notice how this transformation
+
+105
+00:04:00,330 --> 00:04:02,970
+gives the sensation of flipping space over.
+
+106
+00:04:03,210 --> 00:04:04,570
+If you were thinking of two d space
+
+107
+00:04:04,570 --> 00:04:06,730
+as a sheet of paper, a transformation like
+
+108
+00:04:06,730 --> 00:04:08,810
+that one seems to turn over that sheet
+
+109
+00:04:08,810 --> 00:04:10,090
+onto the other side.
+
+110
+00:04:10,730 --> 00:04:13,130
+Any transformations that do this are said to
+
+111
+00:04:13,130 --> 00:04:14,970
+invert the orientation of space.
+
+112
+00:04:15,585 --> 00:04:17,185
+Another way to think about it is in
+
+113
+00:04:17,185 --> 00:04:19,345
+terms of I hat and j hat. Notice
+
+114
+00:04:19,345 --> 00:04:21,665
+that in their starting positions j hat is
+
+115
+00:04:21,665 --> 00:04:23,345
+to the left of I hat.
+
+116
+00:04:23,665 --> 00:04:26,225
+If after a transformation j hat is now
+
+117
+00:04:26,225 --> 00:04:28,785
+on the right of I hat, the orientation
+
+118
+00:04:28,785 --> 00:04:30,225
+of space has been inverted.
+
+119
+00:04:32,080 --> 00:04:34,400
+Whenever this happens, whenever the orientation of space
+
+120
+00:04:34,400 --> 00:04:36,880
+is inverted, the determinant will be negative.
+
+121
+00:04:37,760 --> 00:04:40,080
+The absolute value of the determinant though still
+
+122
+00:04:40,080 --> 00:04:41,920
+tells you the factor by which areas have
+
+123
+00:04:41,920 --> 00:04:42,720
+been scaled.
+
+124
+00:04:42,880 --> 00:04:45,565
+For example, the matrix with columns one one
+
+125
+00:04:45,565 --> 00:04:48,285
+and two negative one encodes a transformation that
+
+126
+00:04:48,285 --> 00:04:51,005
+has determinant, I'll just tell you negative three.
+
+127
+00:04:51,405 --> 00:04:53,165
+And what this means is that space gets
+
+128
+00:04:53,165 --> 00:04:55,645
+flipped over and areas are scaled by a
+
+129
+00:04:55,645 --> 00:04:56,285
+factor of three.
+
+130
+00:04:57,710 --> 00:04:59,950
+So why would this idea of a negative
+
+131
+00:04:59,950 --> 00:05:02,430
+area scaling factor be a natural way to
+
+132
+00:05:02,430 --> 00:05:04,110
+describe orientation flipping?
+
+133
+00:05:04,510 --> 00:05:06,750
+Think about the series of transformations you get
+
+134
+00:05:06,750 --> 00:05:09,230
+by slowly letting I hat get closer and
+
+135
+00:05:09,230 --> 00:05:11,595
+closer to j hat. As I hat gets
+
+136
+00:05:11,595 --> 00:05:13,755
+closer, all of the areas in space are
+
+137
+00:05:13,755 --> 00:05:16,315
+getting squished more and more, meaning the determinant
+
+138
+00:05:16,315 --> 00:05:17,435
+approaches zero.
+
+139
+00:05:17,755 --> 00:05:19,755
+Once I hat lines up perfectly with j
+
+140
+00:05:19,755 --> 00:05:21,915
+hat, the determinant is zero.
+
+141
+00:05:22,475 --> 00:05:24,395
+Then if I hat continues the way that
+
+142
+00:05:24,395 --> 00:05:26,010
+it was going, doesn't it kind of feel
+
+143
+00:05:26,010 --> 00:05:28,490
+natural for the determinant to keep decreasing into
+
+144
+00:05:28,490 --> 00:05:29,610
+the negative numbers?
+
+145
+00:05:30,890 --> 00:05:33,130
+So that's the understanding of determinants in two
+
+146
+00:05:33,130 --> 00:05:33,930
+dimensions.
+
+147
+00:05:34,010 --> 00:05:35,290
+What do you think it should mean for
+
+148
+00:05:35,290 --> 00:05:36,330
+three dimensions?
+
+149
+00:05:36,970 --> 00:05:39,050
+It also tells you how much a transformation
+
+150
+00:05:39,050 --> 00:05:41,485
+scales things, but this time it tells you
+
+151
+00:05:41,485 --> 00:05:43,405
+how much volumes get scaled.
+
+152
+00:05:45,405 --> 00:05:47,325
+Just as in two dimensions where this is
+
+153
+00:05:47,325 --> 00:05:49,245
+easiest to think about by focusing on one
+
+154
+00:05:49,245 --> 00:05:51,885
+particular square with an area one and watching
+
+155
+00:05:51,885 --> 00:05:54,700
+only what happens to it, In three dimensions,
+
+156
+00:05:54,780 --> 00:05:56,860
+it helps to focus your attention on the
+
+157
+00:05:56,860 --> 00:05:59,580
+specific one by one by one cube whose
+
+158
+00:05:59,580 --> 00:06:02,060
+edges are resting on the basis vectors I
+
+159
+00:06:02,060 --> 00:06:03,820
+hat, j hat, and k hat.
+
+160
+00:06:04,540 --> 00:06:05,580
+After the transformation,
+
+161
+00:06:06,005 --> 00:06:08,085
+that cube might get warped into some kind
+
+162
+00:06:08,085 --> 00:06:09,685
+of slanty slanty cube.
+
+163
+00:06:10,245 --> 00:06:11,765
+This shape, by the way, has the best
+
+164
+00:06:11,765 --> 00:06:13,765
+name ever, parallelepiped,
+
+165
+00:06:13,845 --> 00:06:15,685
+a name that's made even more delightful when
+
+166
+00:06:15,685 --> 00:06:17,445
+your professor has a nice thick Russian accent.
+
+167
+00:06:18,420 --> 00:06:20,420
+Since this cube starts out with a volume
+
+168
+00:06:20,420 --> 00:06:22,580
+of one and the determinant gives the factor
+
+169
+00:06:22,580 --> 00:06:24,900
+by which any volume is scaled, you can
+
+170
+00:06:24,900 --> 00:06:27,140
+think of the determinant simply as being the
+
+171
+00:06:27,140 --> 00:06:29,300
+volume of that parallelepiped
+
+172
+00:06:29,300 --> 00:06:30,580
+that the cube turns into.
+
+173
+00:06:32,505 --> 00:06:34,745
+A determinant of zero would mean that all
+
+174
+00:06:34,745 --> 00:06:36,745
+of space is squished onto something with zero
+
+175
+00:06:36,745 --> 00:06:37,465
+volume,
+
+176
+00:06:37,625 --> 00:06:39,945
+meaning either a flat plane, a line, or
+
+177
+00:06:39,945 --> 00:06:42,185
+in the most extreme case, onto a single
+
+178
+00:06:42,185 --> 00:06:42,425
+point.
+
+179
+00:06:43,560 --> 00:06:45,400
+Those of you who watch chapter two will
+
+180
+00:06:45,400 --> 00:06:47,240
+recognize this as meaning that the columns of
+
+181
+00:06:47,240 --> 00:06:49,640
+the matrix are linearly dependent.
+
+182
+00:06:49,640 --> 00:06:50,760
+Can you see why?
+
+183
+00:06:55,080 --> 00:06:57,400
+What about negative determinants? What should that mean
+
+184
+00:06:57,400 --> 00:06:58,200
+for three dimensions?
+
+185
+00:06:58,985 --> 00:07:01,225
+One way to describe orientation in three d
+
+186
+00:07:01,225 --> 00:07:02,985
+is with the right hand rule.
+
+187
+00:07:03,225 --> 00:07:05,385
+Point the forefinger of your right hand in
+
+188
+00:07:05,385 --> 00:07:07,545
+the direction of I hat, stick out your
+
+189
+00:07:07,545 --> 00:07:09,545
+middle finger in the direction of j hat,
+
+190
+00:07:09,545 --> 00:07:11,145
+and notice how when you point your thumb
+
+191
+00:07:11,145 --> 00:07:12,825
+up it's in the direction of k hat.
+
+192
+00:07:15,120 --> 00:07:16,960
+If you can still do that after the
+
+193
+00:07:16,960 --> 00:07:17,840
+transformation
+
+194
+00:07:17,840 --> 00:07:20,560
+orientation has not changed and the determinant is
+
+195
+00:07:20,560 --> 00:07:21,280
+positive.
+
+196
+00:07:21,600 --> 00:07:22,320
+Otherwise,
+
+197
+00:07:22,400 --> 00:07:24,560
+if after the transformation it only makes sense
+
+198
+00:07:24,560 --> 00:07:26,995
+to do that with your left hand orientation
+
+199
+00:07:26,995 --> 00:07:29,715
+has been flipped and the determinant is negative.
+
+200
+00:07:32,035 --> 00:07:33,955
+So if you haven't seen it before, you're
+
+201
+00:07:33,955 --> 00:07:35,955
+probably wondering by now how do you actually
+
+202
+00:07:35,955 --> 00:07:37,315
+compute the determinant?
+
+203
+00:07:37,475 --> 00:07:39,235
+For a two by two matrix with entries
+
+204
+00:07:39,235 --> 00:07:42,210
+a, b, c, d, the formula is a
+
+205
+00:07:42,210 --> 00:07:44,770
+times d minus b times c.
+
+206
+00:07:45,730 --> 00:07:47,650
+Here's part of an intuition for where this
+
+207
+00:07:47,650 --> 00:07:49,730
+formula comes from. Let's say that the terms
+
+208
+00:07:49,730 --> 00:07:52,130
+b and c both happened to be zero.
+
+209
+00:07:52,530 --> 00:07:54,690
+Then the term a tells you how much
+
+210
+00:07:54,690 --> 00:07:57,005
+I hat is stretched in the x direction
+
+211
+00:07:57,085 --> 00:07:59,165
+and the term d tells you how much
+
+212
+00:07:59,165 --> 00:08:01,485
+j hat is stretched in the y direction.
+
+213
+00:08:02,685 --> 00:08:05,005
+So since those other terms are zero, it
+
+214
+00:08:05,005 --> 00:08:07,245
+should make sense that a times d gives
+
+215
+00:08:07,245 --> 00:08:09,165
+the area of the rectangle that our favorite
+
+216
+00:08:09,165 --> 00:08:12,400
+unit square turns into, kinda like the 3,002
+
+217
+00:08:12,400 --> 00:08:13,680
+example from earlier.
+
+218
+00:08:15,440 --> 00:08:17,040
+Even if only one of b or c
+
+219
+00:08:17,040 --> 00:08:19,200
+are zero, you'll have a parallelogram
+
+220
+00:08:19,200 --> 00:08:22,000
+with a base a and a height d,
+
+221
+00:08:22,000 --> 00:08:24,080
+so the area should still be a times
+
+222
+00:08:24,080 --> 00:08:24,400
+d.
+
+223
+00:08:25,295 --> 00:08:27,855
+Loosely speaking, if both b and c are
+
+224
+00:08:27,855 --> 00:08:28,815
+nonzero,
+
+225
+00:08:28,895 --> 00:08:30,975
+then that b times c term tells you
+
+226
+00:08:30,975 --> 00:08:32,655
+how much this parallelogram
+
+227
+00:08:32,655 --> 00:08:35,775
+is stretched or squished in the diagonal direction.
+
+228
+00:08:36,495 --> 00:08:38,095
+For those of you hungry for a more
+
+229
+00:08:38,095 --> 00:08:40,175
+precise description of this b times c term,
+
+230
+00:08:40,320 --> 00:08:42,160
+here's a helpful diagram if you'd like to
+
+231
+00:08:42,160 --> 00:08:43,280
+pause and ponder.
+
+232
+00:08:44,000 --> 00:08:46,000
+Now if you feel like computing determinants by
+
+233
+00:08:46,000 --> 00:08:47,920
+hand is something that you need to know,
+
+234
+00:08:48,320 --> 00:08:49,760
+the only way to get it down is
+
+235
+00:08:49,760 --> 00:08:51,920
+to just practice it with a few. There's
+
+236
+00:08:51,920 --> 00:08:53,440
+really not that much I can say or
+
+237
+00:08:53,440 --> 00:08:55,200
+animate that's gonna drill in the computation.
+
+238
+00:08:55,985 --> 00:08:59,025
+This is all triply true for three-dimensional determinants.
+
+239
+00:08:59,105 --> 00:09:00,705
+There is a formula and if you feel
+
+240
+00:09:00,705 --> 00:09:02,305
+like that's something you need to know, you
+
+241
+00:09:02,305 --> 00:09:04,545
+should practice with a few matrices or, you
+
+242
+00:09:04,545 --> 00:09:06,225
+know, go watch Sal Khan work through a
+
+243
+00:09:06,225 --> 00:09:06,705
+few.
+
+244
+00:09:07,265 --> 00:09:09,600
+Honestly though, I don't think that those computations
+
+245
+00:09:09,600 --> 00:09:12,160
+fall within the essence of linear algebra, but
+
+246
+00:09:12,160 --> 00:09:14,560
+I definitely think that understanding what the determinant
+
+247
+00:09:14,560 --> 00:09:16,720
+represents falls within that essence.
+
+248
+00:09:18,080 --> 00:09:19,600
+Here's kind of a fun question to think
+
+249
+00:09:19,600 --> 00:09:22,065
+about before the next video. If you multiply
+
+250
+00:09:22,065 --> 00:09:23,665
+two matrices together,
+
+251
+00:09:23,985 --> 00:09:26,545
+the determinant of the resulting matrix is the
+
+252
+00:09:26,545 --> 00:09:28,785
+same as the product of the determinants of
+
+253
+00:09:28,785 --> 00:09:30,545
+the original two matrices.
+
+254
+00:09:31,025 --> 00:09:32,945
+If you tried to justify this with numbers,
+
+255
+00:09:32,945 --> 00:09:34,730
+it would take a really long time, but
+
+256
+00:09:34,730 --> 00:09:36,330
+see if you can explain why this makes
+
+257
+00:09:36,330 --> 00:09:38,170
+sense in just one sentence.
+
+258
+00:09:42,170 --> 00:09:44,170
+Next up, I'll be relating the idea of
+
+259
+00:09:44,170 --> 00:09:46,890
+linear transformations covered so far to one of
+
+260
+00:09:46,890 --> 00:09:49,050
+the areas where linear algebra is most useful:
+
+261
+00:09:49,575 --> 00:09:51,815
+linear systems of equations. See you then!

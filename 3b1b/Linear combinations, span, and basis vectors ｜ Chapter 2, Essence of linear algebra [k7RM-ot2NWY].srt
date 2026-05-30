@@ -1,0 +1,963 @@
+1
+00:00:12,095 --> 00:00:13,935
+In the last video, along with the ideas
+
+2
+00:00:13,935 --> 00:00:16,175
+of vector addition and scalar multiplication,
+
+3
+00:00:16,175 --> 00:00:18,095
+I described vector coordinates,
+
+4
+00:00:18,095 --> 00:00:20,095
+where there's this back and forth between, for
+
+5
+00:00:20,095 --> 00:00:23,135
+example, pairs of numbers and two dimensional vectors.
+
+6
+00:00:23,695 --> 00:00:26,015
+Now, I imagine the vector coordinates were already
+
+7
+00:00:26,015 --> 00:00:27,880
+familiar to a lot of you, but there's
+
+8
+00:00:27,880 --> 00:00:29,640
+another kind of interesting way to think about
+
+9
+00:00:29,640 --> 00:00:31,720
+these coordinates, which is pretty central to linear
+
+10
+00:00:31,720 --> 00:00:32,440
+algebra.
+
+11
+00:00:32,760 --> 00:00:34,280
+When you have a pair of numbers that's
+
+12
+00:00:34,280 --> 00:00:36,680
+meant to describe a vector, like three, negative
+
+13
+00:00:36,680 --> 00:00:38,920
+two, I want you to think about each
+
+14
+00:00:38,920 --> 00:00:42,035
+coordinate as a scalar, meaning think about how
+
+15
+00:00:42,035 --> 00:00:44,595
+each one stretches or squishes vectors.
+
+16
+00:00:45,075 --> 00:00:47,235
+In the x y coordinate system, there are
+
+17
+00:00:47,235 --> 00:00:48,835
+two very special vectors.
+
+18
+00:00:48,915 --> 00:00:50,595
+The one pointing to the right with length
+
+19
+00:00:50,595 --> 00:00:53,475
+one, commonly called I hat or the unit
+
+20
+00:00:53,475 --> 00:00:55,630
+vector in the x direction, and the one
+
+21
+00:00:55,630 --> 00:00:58,350
+pointing straight up with length one, commonly called
+
+22
+00:00:58,350 --> 00:01:00,590
+j hat or the unit vector in the
+
+23
+00:01:00,590 --> 00:01:01,470
+y direction.
+
+24
+00:01:02,270 --> 00:01:04,190
+Now think of the x coordinate of our
+
+25
+00:01:04,190 --> 00:01:06,990
+vector as a scalar that scales I hat,
+
+26
+00:01:06,990 --> 00:01:09,095
+stretching it by a factor of three, and
+
+27
+00:01:09,095 --> 00:01:11,255
+the y coordinate as a scalar that scales
+
+28
+00:01:11,255 --> 00:01:13,495
+j hat, flipping it and stretching it by
+
+29
+00:01:13,495 --> 00:01:14,535
+a factor of two.
+
+30
+00:01:14,855 --> 00:01:17,335
+In this sense, the vector that these coordinates
+
+31
+00:01:17,335 --> 00:01:20,295
+describe is the sum of two scaled vectors.
+
+32
+00:01:20,880 --> 00:01:23,520
+That's a surprisingly important concept, this idea of
+
+33
+00:01:23,520 --> 00:01:25,840
+adding together two scaled vectors.
+
+34
+00:01:27,200 --> 00:01:29,200
+Those two vectors, I hat and j hat,
+
+35
+00:01:29,200 --> 00:01:31,440
+have a special name by the way. Together,
+
+36
+00:01:31,440 --> 00:01:33,600
+they're called the basis of a coordinate system.
+
+37
+00:01:34,105 --> 00:01:36,345
+What this means basically is that when you
+
+38
+00:01:36,345 --> 00:01:38,985
+think about coordinates as scalars, the basis vectors
+
+39
+00:01:38,985 --> 00:01:42,025
+are what those scalars actually, you know, scale.
+
+40
+00:01:42,345 --> 00:01:44,905
+There's also a more technical definition, but I'll
+
+41
+00:01:44,905 --> 00:01:45,625
+get to that later.
+
+42
+00:01:47,480 --> 00:01:49,640
+By framing our coordinate system in terms of
+
+43
+00:01:49,640 --> 00:01:51,640
+these two special basis vectors,
+
+44
+00:01:51,720 --> 00:01:54,200
+it raises a pretty interesting and subtle point.
+
+45
+00:01:54,440 --> 00:01:57,160
+We could have chosen different basis vectors and
+
+46
+00:01:57,160 --> 00:02:00,520
+gotten a completely reasonable new coordinate system.
+
+47
+00:02:01,025 --> 00:02:03,425
+For example, take some vector pointing up and
+
+48
+00:02:03,425 --> 00:02:05,265
+to the right along with some other vector
+
+49
+00:02:05,265 --> 00:02:06,785
+pointing down and to the right in some
+
+50
+00:02:06,785 --> 00:02:09,025
+way. Take a moment to think about all
+
+51
+00:02:09,025 --> 00:02:11,025
+the different vectors that you can get by
+
+52
+00:02:11,025 --> 00:02:12,625
+choosing two scalars,
+
+53
+00:02:13,025 --> 00:02:14,785
+using each one to scale one of the
+
+54
+00:02:14,785 --> 00:02:17,370
+vectors, then adding together what you get.
+
+55
+00:02:17,770 --> 00:02:19,850
+Which two dimensional vectors can you reach by
+
+56
+00:02:19,850 --> 00:02:21,850
+altering the choices of scalars?
+
+57
+00:02:24,570 --> 00:02:26,570
+The answer is that you can reach every
+
+58
+00:02:26,570 --> 00:02:29,050
+possible two dimensional vector and I think it's
+
+59
+00:02:29,050 --> 00:02:30,570
+a good puzzle to contemplate why.
+
+60
+00:02:32,255 --> 00:02:34,415
+A new pair of basis vectors like this
+
+61
+00:02:34,415 --> 00:02:36,175
+still gives us a valid way to go
+
+62
+00:02:36,175 --> 00:02:38,255
+back and forth between pairs of numbers and
+
+63
+00:02:38,255 --> 00:02:39,615
+two dimensional vectors,
+
+64
+00:02:39,855 --> 00:02:42,335
+but the association is definitely different from the
+
+65
+00:02:42,335 --> 00:02:44,175
+one that you get using the more standard
+
+66
+00:02:44,175 --> 00:02:46,730
+basis of I hat and j hat. This
+
+67
+00:02:46,730 --> 00:02:48,410
+is something I'll go into much more detail
+
+68
+00:02:48,410 --> 00:02:51,690
+on later, describing the exact relationship between different
+
+69
+00:02:51,690 --> 00:02:52,810
+coordinate systems.
+
+70
+00:02:52,890 --> 00:02:54,170
+But for right now, I just want you
+
+71
+00:02:54,170 --> 00:02:56,650
+to appreciate the fact that anytime we describe
+
+72
+00:02:56,650 --> 00:02:57,930
+vectors numerically,
+
+73
+00:02:58,010 --> 00:03:00,090
+it depends on an implicit choice of what
+
+74
+00:03:00,090 --> 00:03:01,290
+basis vectors we're using.
+
+75
+00:03:02,345 --> 00:03:04,665
+So anytime that you're scaling two vectors and
+
+76
+00:03:04,665 --> 00:03:06,825
+adding them like this, it's called a linear
+
+77
+00:03:06,825 --> 00:03:07,625
+combination
+
+78
+00:03:07,625 --> 00:03:09,065
+of those two vectors.
+
+79
+00:03:11,225 --> 00:03:12,985
+Where does this word linear come from? Why
+
+80
+00:03:12,985 --> 00:03:14,425
+does this have anything to do with lines?
+
+81
+00:03:14,770 --> 00:03:16,930
+Well, this isn't the etymology, but one way
+
+82
+00:03:16,930 --> 00:03:18,370
+I like to think about it is that
+
+83
+00:03:18,370 --> 00:03:20,210
+if you fix one of those scalars and
+
+84
+00:03:20,210 --> 00:03:22,290
+let the other one change its value freely,
+
+85
+00:03:22,450 --> 00:03:25,010
+the tip of the resulting vector draws a
+
+86
+00:03:25,010 --> 00:03:25,570
+straight line.
+
+87
+00:03:29,025 --> 00:03:31,345
+Now, if you let both scalars range freely
+
+88
+00:03:31,345 --> 00:03:33,745
+and consider every possible vector that you can
+
+89
+00:03:33,745 --> 00:03:35,825
+get, there are two things that can happen.
+
+90
+00:03:36,385 --> 00:03:38,225
+For most pairs of vectors, you'll be able
+
+91
+00:03:38,225 --> 00:03:40,145
+to reach every possible point in the plane.
+
+92
+00:03:40,510 --> 00:03:43,230
+Every two dimensional vector is within your grasp.
+
+93
+00:03:43,470 --> 00:03:45,390
+However, in the unlucky case where your two
+
+94
+00:03:45,390 --> 00:03:48,030
+original vectors happen to line up, the tip
+
+95
+00:03:48,030 --> 00:03:50,350
+of the resulting vector is limited to just
+
+96
+00:03:50,350 --> 00:03:52,350
+this single line passing through the origin.
+
+97
+00:03:53,895 --> 00:03:56,615
+Actually, technically there's a third possibility too. Both
+
+98
+00:03:56,615 --> 00:03:58,535
+your vectors could be zero, in which case
+
+99
+00:03:58,535 --> 00:04:00,535
+you'd just be stuck at the origin.
+
+100
+00:04:01,255 --> 00:04:02,775
+Here's some more terminology.
+
+101
+00:04:02,935 --> 00:04:04,935
+The set of all possible vectors that you
+
+102
+00:04:04,935 --> 00:04:07,095
+can reach with a linear combination of a
+
+103
+00:04:07,095 --> 00:04:09,630
+given pair of vectors is called the span
+
+104
+00:04:09,630 --> 00:04:11,150
+of those two vectors.
+
+105
+00:04:14,430 --> 00:04:16,350
+So restating what we just saw in this
+
+106
+00:04:16,350 --> 00:04:18,510
+lingo, the span of most pairs of two
+
+107
+00:04:18,510 --> 00:04:20,510
+d vectors is all vectors of two d
+
+108
+00:04:20,510 --> 00:04:22,830
+space. But when they line up, their span
+
+109
+00:04:22,830 --> 00:04:25,255
+is all vectors whose tip sit on a
+
+110
+00:04:25,255 --> 00:04:26,055
+certain line.
+
+111
+00:04:27,015 --> 00:04:29,495
+Remember how I said that linear algebra revolves
+
+112
+00:04:29,495 --> 00:04:31,815
+around vector addition and scalar multiplication?
+
+113
+00:04:32,215 --> 00:04:34,695
+Well, the span of two vectors is basically
+
+114
+00:04:34,695 --> 00:04:36,535
+a way of asking what are all the
+
+115
+00:04:36,535 --> 00:04:39,015
+possible vectors you can reach using only these
+
+116
+00:04:39,015 --> 00:04:40,375
+two fundamental operations,
+
+117
+00:04:40,670 --> 00:04:42,750
+vector addition and scalar multiplication.
+
+118
+00:04:43,470 --> 00:04:44,750
+This is a good time to talk about
+
+119
+00:04:44,750 --> 00:04:47,550
+how people commonly think about vectors as points.
+
+120
+00:04:47,870 --> 00:04:49,710
+It gets really crowded to think about a
+
+121
+00:04:49,710 --> 00:04:52,110
+whole collection of vectors sitting on a line
+
+122
+00:04:52,110 --> 00:04:53,870
+and more crowded still to think about all
+
+123
+00:04:53,870 --> 00:04:56,135
+two dimensional vectors all at once filling up
+
+124
+00:04:56,135 --> 00:04:56,855
+the plane.
+
+125
+00:04:57,175 --> 00:04:59,495
+So, when dealing with collections of vectors like
+
+126
+00:04:59,495 --> 00:05:01,975
+this, it's common to represent each one with
+
+127
+00:05:01,975 --> 00:05:03,575
+just a point in space.
+
+128
+00:05:03,815 --> 00:05:05,495
+The point at the tip of that vector
+
+129
+00:05:05,495 --> 00:05:07,655
+where, as usual, I want you thinking about
+
+130
+00:05:07,655 --> 00:05:09,655
+that vector with its tail on the origin.
+
+131
+00:05:10,580 --> 00:05:12,420
+That way, if you want to think about
+
+132
+00:05:12,420 --> 00:05:14,660
+every possible vector whose tip sits on a
+
+133
+00:05:14,660 --> 00:05:17,540
+certain line, just think about the line itself.
+
+134
+00:05:20,020 --> 00:05:22,660
+Likewise, to think about all possible two dimensional
+
+135
+00:05:22,660 --> 00:05:24,895
+vectors all at once, conceptualize
+
+136
+00:05:24,895 --> 00:05:27,055
+each one as the point where its tip
+
+137
+00:05:27,055 --> 00:05:29,615
+sits. So, effect, what you'll be thinking about
+
+138
+00:05:29,615 --> 00:05:32,015
+is the infinite flat sheet of two dimensional
+
+139
+00:05:32,015 --> 00:05:34,255
+space itself, leaving the arrows out of it.
+
+140
+00:05:36,110 --> 00:05:38,030
+In general, if you're thinking about a vector
+
+141
+00:05:38,030 --> 00:05:39,550
+on its own, think of it as an
+
+142
+00:05:39,550 --> 00:05:40,190
+arrow.
+
+143
+00:05:40,430 --> 00:05:41,950
+And if you're dealing with a collection of
+
+144
+00:05:41,950 --> 00:05:43,870
+vectors, it's convenient to think of them all
+
+145
+00:05:43,870 --> 00:05:44,750
+as points.
+
+146
+00:05:45,230 --> 00:05:47,470
+So, for our span example, the span of
+
+147
+00:05:47,470 --> 00:05:49,645
+most pairs of vectors ends up being the
+
+148
+00:05:49,645 --> 00:05:52,205
+entire infinite sheet of two dimensional space.
+
+149
+00:05:52,285 --> 00:05:54,205
+But, if they line up, their span is
+
+150
+00:05:54,205 --> 00:05:55,245
+just a line.
+
+151
+00:05:58,445 --> 00:05:59,965
+The idea of span gets a lot more
+
+152
+00:05:59,965 --> 00:06:02,205
+interesting if we start thinking about vectors in
+
+153
+00:06:02,205 --> 00:06:03,005
+three-dimensional
+
+154
+00:06:03,005 --> 00:06:03,245
+space.
+
+155
+00:06:03,920 --> 00:06:06,240
+For example, if you take two vectors in
+
+156
+00:06:06,240 --> 00:06:08,080
+three d space that are not pointing in
+
+157
+00:06:08,080 --> 00:06:08,960
+the same direction,
+
+158
+00:06:09,280 --> 00:06:11,120
+what does it mean to take their span?
+
+159
+00:06:13,280 --> 00:06:15,680
+Well, their span is the collection of all
+
+160
+00:06:15,680 --> 00:06:17,520
+possible linear combinations
+
+161
+00:06:17,520 --> 00:06:19,675
+of those two vectors. Meaning,
+
+162
+00:06:19,835 --> 00:06:22,395
+all possible vectors you get by scaling each
+
+163
+00:06:22,395 --> 00:06:23,755
+of the two of them in some way
+
+164
+00:06:23,755 --> 00:06:25,275
+and then adding them together.
+
+165
+00:06:25,915 --> 00:06:27,995
+You can kind of imagine turning two different
+
+166
+00:06:27,995 --> 00:06:30,715
+knobs to change the two scalars defining the
+
+167
+00:06:30,715 --> 00:06:33,620
+linear combination, adding the scaled vectors and following
+
+168
+00:06:33,620 --> 00:06:35,460
+the tip of the resulting vector.
+
+169
+00:06:36,020 --> 00:06:37,940
+That tip will trace out some kind of
+
+170
+00:06:37,940 --> 00:06:40,740
+flat sheet cutting through the origin of three-dimensional
+
+171
+00:06:40,740 --> 00:06:41,380
+space.
+
+172
+00:06:41,860 --> 00:06:43,940
+This flat sheet is the span of the
+
+173
+00:06:43,940 --> 00:06:44,580
+two vectors,
+
+174
+00:06:45,055 --> 00:06:47,455
+or more precisely, the set of all possible
+
+175
+00:06:47,455 --> 00:06:49,695
+vectors whose tips sit on that flat sheet
+
+176
+00:06:49,695 --> 00:06:51,535
+is the span of your two vectors.
+
+177
+00:06:51,775 --> 00:06:53,695
+Isn't that a beautiful mental image?
+
+178
+00:06:54,735 --> 00:06:56,575
+So, what happens if we add a third
+
+179
+00:06:56,575 --> 00:06:58,735
+vector and consider the span of all three
+
+180
+00:06:58,735 --> 00:06:59,295
+of those guys?
+
+181
+00:07:00,580 --> 00:07:03,140
+A linear combination of three vectors is defined
+
+182
+00:07:03,140 --> 00:07:04,660
+pretty much the same way as it is
+
+183
+00:07:04,660 --> 00:07:07,220
+for two. You'll choose three different scalars,
+
+184
+00:07:07,300 --> 00:07:09,620
+scale each of those vectors, and then add
+
+185
+00:07:09,620 --> 00:07:10,340
+them all together.
+
+186
+00:07:16,275 --> 00:07:18,675
+And again, the span of these vectors is
+
+187
+00:07:18,675 --> 00:07:20,915
+the set of all possible linear combinations.
+
+188
+00:07:24,530 --> 00:07:26,690
+Two different things could happen here. If your
+
+189
+00:07:26,690 --> 00:07:28,930
+third vector happens to be sitting on the
+
+190
+00:07:28,930 --> 00:07:30,290
+span of the first two,
+
+191
+00:07:30,530 --> 00:07:32,290
+then the span doesn't change. You're sort of
+
+192
+00:07:32,290 --> 00:07:34,850
+trapped on that same flat sheet. In other
+
+193
+00:07:34,850 --> 00:07:36,930
+words, adding a scaled version of that third
+
+194
+00:07:36,930 --> 00:07:38,850
+vector to the linear combination
+
+195
+00:07:38,845 --> 00:07:40,765
+doesn't really give you access to any new
+
+196
+00:07:40,765 --> 00:07:41,485
+vectors.
+
+197
+00:07:42,685 --> 00:07:44,445
+But if you just randomly choose a third
+
+198
+00:07:44,445 --> 00:07:47,005
+vector, it's almost certainly not sitting on the
+
+199
+00:07:47,005 --> 00:07:48,365
+span of those first two.
+
+200
+00:07:48,765 --> 00:07:51,005
+Then, since it's pointing in a separate direction,
+
+201
+00:07:51,165 --> 00:07:54,365
+it unlocks access to every possible three-dimensional vector.
+
+202
+00:07:55,400 --> 00:07:56,920
+One way I like to think about this
+
+203
+00:07:56,920 --> 00:07:59,000
+is that as you scale that new third
+
+204
+00:07:59,000 --> 00:08:02,120
+vector, it moves around that span sheet of
+
+205
+00:08:02,120 --> 00:08:04,200
+the first two, sweeping it through all of
+
+206
+00:08:04,200 --> 00:08:04,760
+space.
+
+207
+00:08:05,800 --> 00:08:07,240
+Another way to think about it is that
+
+208
+00:08:07,240 --> 00:08:09,480
+you're making full use of the three freely
+
+209
+00:08:09,480 --> 00:08:11,935
+changing scalars you have at your disposal to
+
+210
+00:08:11,935 --> 00:08:14,415
+access the full three dimensions of space.
+
+211
+00:08:16,895 --> 00:08:18,815
+Now, in the case where the third vector
+
+212
+00:08:18,815 --> 00:08:20,655
+was already sitting on the span of the
+
+213
+00:08:20,655 --> 00:08:22,495
+first two, or the case where two vectors
+
+214
+00:08:22,495 --> 00:08:24,660
+happen to line up, we want some terminology
+
+215
+00:08:24,660 --> 00:08:26,420
+to describe the fact that at least one
+
+216
+00:08:26,420 --> 00:08:29,060
+of these vectors is redundant, not adding anything
+
+217
+00:08:29,060 --> 00:08:30,020
+to our span.
+
+218
+00:08:30,740 --> 00:08:33,140
+Whenever this happens, where you have multiple vectors
+
+219
+00:08:33,140 --> 00:08:35,060
+and you could remove one without reducing the
+
+220
+00:08:35,060 --> 00:08:37,895
+span, the relevant terminology is to say that
+
+221
+00:08:37,895 --> 00:08:39,815
+they are linearly dependent.
+
+222
+00:08:40,295 --> 00:08:42,135
+Another way of phrasing that would be to
+
+223
+00:08:42,135 --> 00:08:43,895
+say that one of the vectors can be
+
+224
+00:08:43,895 --> 00:08:46,295
+expressed as a linear combination of the others
+
+225
+00:08:46,295 --> 00:08:48,295
+since it's already in the span of the
+
+226
+00:08:48,295 --> 00:08:48,615
+others.
+
+227
+00:08:52,850 --> 00:08:55,090
+On the other hand, if each vector really
+
+228
+00:08:55,090 --> 00:08:57,650
+does add another dimension to the span, they're
+
+229
+00:08:57,650 --> 00:08:59,650
+said to be linearly independent.
+
+230
+00:09:06,305 --> 00:09:08,465
+So, with all of that terminology, and hopefully
+
+231
+00:09:08,465 --> 00:09:10,065
+with some good mental images to go with
+
+232
+00:09:10,065 --> 00:09:11,585
+it, let me leave you with a puzzle
+
+233
+00:09:11,585 --> 00:09:14,385
+before we go. The technical definition of a
+
+234
+00:09:14,385 --> 00:09:16,770
+basis of a space is a set of
+
+235
+00:09:16,770 --> 00:09:20,450
+linearly independent vectors that span that space.
+
+236
+00:09:21,890 --> 00:09:24,370
+Now, given how I described a basis earlier,
+
+237
+00:09:24,770 --> 00:09:26,610
+and given your current understanding of the words
+
+238
+00:09:26,610 --> 00:09:28,450
+span and linearly independent,
+
+239
+00:09:29,015 --> 00:09:31,975
+think about why this definition would make sense.
+
+240
+00:09:33,975 --> 00:09:36,135
+In the next video, I'll get into matrices
+
+241
+00:09:36,135 --> 00:09:38,135
+in transforming space. See you then.
