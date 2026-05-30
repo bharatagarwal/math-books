@@ -1,0 +1,12 @@
+{
+  "source": "dm/08 - Integers divisors and primes.pdf",
+  "source_size": 191684,
+  "model": "mistral-ocr-latest",
+  "pages": 18,
+  "images": 7,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 18,
+    "doc_size_bytes": 191684
+  }
+}

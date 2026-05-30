@@ -1,0 +1,12 @@
+{
+  "source": "dm/10 - Trees.pdf",
+  "source_size": 129208,
+  "model": "mistral-ocr-latest",
+  "pages": 12,
+  "images": 7,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 12,
+    "doc_size_bytes": 129208
+  }
+}

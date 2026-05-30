@@ -1,0 +1,12 @@
+{
+  "source": "dm/06 - Fibonacci numbers.pdf",
+  "source_size": 98965,
+  "model": "mistral-ocr-latest",
+  "pages": 6,
+  "images": 2,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 6,
+    "doc_size_bytes": 98965
+  }
+}

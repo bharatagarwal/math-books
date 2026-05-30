@@ -1,0 +1,12 @@
+{
+  "source": "dm/13 - Graph coloring.pdf",
+  "source_size": 138305,
+  "model": "mistral-ocr-latest",
+  "pages": 4,
+  "images": 9,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 4,
+    "doc_size_bytes": 138305
+  }
+}

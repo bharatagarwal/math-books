@@ -1,0 +1,12 @@
+{
+  "source": "dm/14 - A Connecticut class in King Arthurs court.pdf",
+  "source_size": 52618,
+  "model": "mistral-ocr-latest",
+  "pages": 3,
+  "images": 4,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 3,
+    "doc_size_bytes": 52618
+  }
+}
