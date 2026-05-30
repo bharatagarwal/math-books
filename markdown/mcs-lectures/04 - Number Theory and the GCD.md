@@ -1,4 +1,4 @@
-# Lecture 5: Number Theory and the GCD
+# Lecture 4: Number Theory and the GCD
 
 Number theory — the study of the integers — is one of the oldest mathematical disciplines. For most of its history, it was pure and impractical: beautiful patterns in the integers, studied for their own sake. Only about 40 years ago did anyone realize these patterns had staggering practical applications, mainly in cryptography — the art of hiding information.
 
@@ -36,7 +36,7 @@ A key property we'll use repeatedly: if $m \mid a$ and $m \mid b$, then $m$ divi
 
 ## Modeling the Jug Problem
 
-To analyze the jug problem precisely, we model it as a state machine — the same tool we used for the 8-puzzle in Lecture 4. Suppose we have an $a$-gallon jug and a $b$-gallon jug, with $a \leq b$.
+To analyze the jug problem precisely, we model it as a state machine — the same tool we used for the 8-puzzle in Lecture 3. Suppose we have an $a$-gallon jug and a $b$-gallon jug, with $a \leq b$.
 
 **States:** Pairs $(x, y)$ where $x$ is the gallons in the $a$-jug and $y$ is the gallons in the $b$-jug.
 

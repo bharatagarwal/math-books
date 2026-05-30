@@ -1,4 +1,4 @@
-# Lecture 3: Undecidability — The Halting Problem and Gödel
+# Appendix: Undecidability — The Halting Problem and Gödel
 
 In Lecture 1 we asked "what is a proof?" and arrived at axioms. The natural follow-up: can we build a system that proves *every* true mathematical statement? Can we automate mathematical reasoning?
 

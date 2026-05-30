@@ -1,4 +1,4 @@
-# Lecture 4: Invariants and Strong Induction
+# Lecture 3: Invariants and Strong Induction
 
 Lectures 1 and 2 gave us three proof techniques: direct proof, proof by contradiction, and ordinary induction. Today we add two more — invariants and strong induction — and together they'll handle a wide class of problems in discrete math and computer science.
 
