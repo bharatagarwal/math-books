@@ -38,27 +38,41 @@ Instead of checking forty cases by hand, we could ask a computer to search for a
 <!-- include: code/mcs-lectures/01 - What is a Proof/01_python.py -->
 ```
 
-Z3 is an SMT solver—it searches for values that satisfy constraints. We asked: "Find an $n \geq 0$ where $n^2 + n + 41$ has a divisor." Z3 found $n = 40$ instantly. The Greek notation $\forall n \in \mathbb{N}$ just means "for all integers $n \geq 0$"—and negating it means "find one where it fails."
+Z3 is an SMT solver—it searches for values that satisfy constraints. We asked: "Find an $n \geq 0$ where $n^2 + n + 41$ has a divisor." Z3 finds a counterexample instantly—not necessarily the smallest one ($n = 40$), but a concrete witness that the claim is false. The Greek notation $\forall n \in \mathbb{N}$ just means "for all integers $n \geq 0$"—and negating it means "find one where it fails."
+
+### Why BitVec? Decidability and SAT
+
+The code uses `BitVec('n', 32)` instead of `Int('n')`. This matters more than it looks.
+
+Z3 supports multiple *theories*—different mathematical domains with different solving strategies. `Int` puts you in **nonlinear integer arithmetic (NIA)**: the integers $\mathbb{Z}$ with addition, multiplication, and divisibility. The constraint `quadratic % divisor == 0` involves two symbolic variables on each side of the modulo—that's multiplication under the hood. And here's the problem: NIA is *undecidable*. No algorithm can solve every NIA formula in finite time. Z3 tries heuristics, but for our problem it loops forever.
+
+`BitVec(32)` puts you in **bit-vector arithmetic**: fixed-width 32-bit integers with wraparound. This theory is *decidable*—Z3 can always find an answer or prove none exists. How? It reduces the problem to **SAT** (Boolean satisfiability).
+
+**SAT** is the question: given a formula of AND/OR/NOT over boolean variables, is there an assignment that makes it true? It's the canonical NP-complete problem—worst-case exponential, but modern SAT solvers handle millions of clauses efficiently in practice.
+
+When Z3 sees `BitVec(32)`, it decomposes each 32-bit variable into 32 individual boolean variables and rewrites arithmetic (addition, multiplication, modulo) as logic circuits over those booleans. The modulo operation $a \bmod b = 0$ that stumped the NIA solver becomes a divider circuit—a bunch of AND/OR gates—that the SAT solver chews through in milliseconds.
+
+The tradeoff: `Int` reasons *symbolically* about infinite integers (elegant, but undecidable for nonlinear problems). `BitVec` reasons *concretely* about finite bits (less elegant, but always terminates). For our problem—finding any counterexample—`BitVec` is the right tool. We don't need the smallest $n$; we just need one concrete witness that breaks the pattern. Z3 searches the full 32-bit range without needing us to impose artificial bounds.
+
+This is also why the code uses `UGT` and `ULT` (unsigned greater-than, unsigned less-than) instead of `>` and `<`. Bit-vectors don't know about negative numbers by default—the same bit pattern can be interpreted as signed or unsigned. `UGT`/`ULT` force unsigned comparison, which is what we want since $n$ and divisor are both non-negative.
 
 This is the central tension that makes mathematics different from empirical science. No amount of examples can prove a universal statement. You can check a billion cases, a trillion cases, and still be wrong. Proof requires something more.
 
 **Hypothesis** — a property-based testing library — automates the search for counterexamples. Instead of checking cases by hand, you declare what should be true, and the tool generates random test inputs. When it finds a failure, it *shrinks* the input to the smallest counterexample:
 
 ```python
-# uv run --with hypothesis pytest test_prime_formula.py
-from hypothesis import given, strategies as st
-
-@given(st.integers(min_value=0, max_value=200))
-def test_prime_formula(n):
-    """Claim: n² + n + 41 is always prime."""
-    val = n**2 + n + 41
-    if val < 2:
-        assert False
-    for d in range(2, int(val**0.5) + 1):
-        assert val % d != 0, f"n={n}: {val} is divisible by {d}"
+<!-- include: code/mcs-lectures/01 - What is a Proof/test_prime_formula.py -->
 ```
 
-The `@given` decorator says "test this for random integers in 0–200." Hypothesis tries random values, hits the failure, then automatically shrinks to the smallest $n$ that breaks the property: `n = 40`. The `strategies` module (`st`) controls what kind of values to generate — integers, text, lists, tuples, or custom composite types.
+```
+$ uv run --with hypothesis python test_prime_formula.py
+AssertionError: n=121: 14803 is divisible by 113
+Falsifying example: test_prime_formula(
+    n=121,
+)
+```
+
+The `@given` decorator says "test this for any non-negative integer." Hypothesis generates random values, hits a failure, then automatically *shrinks* to find a small counterexample: $n = 121$, where $121^2 + 121 + 41 = 14803 = 113 \times 131$. The `strategies` module controls what kind of values to generate — integers, text, lists, tuples, or custom composite types.
 
 But here's the crucial point: if Hypothesis *doesn't* find a counterexample, that's not proof. It means a few hundred random attempts didn't break it. Passing tests are evidence, not proof — which is exactly why we need the techniques in this course. Z3 (the SMT solver above) goes further: it searches *all* values satisfying the constraints, not just random samples. When Z3 says `sat`, it has found a concrete counterexample. When it says `unsat`, no counterexample exists — that's a proof.
 
@@ -68,7 +82,7 @@ The pattern repeats throughout mathematical history. In 1769, Leonhard Euler—o
 
 $$a^4 + b^4 + c^4 = d^4$$
 
-has no positive integer solutions. This seemed like a natural extension of Fermat's Last Theorem to fourth powers. Mathematicians worked on it for over two centuries, testing countless values, finding no counterexamples.
+has no positive integer solutions. **Fermat's Last Theorem** (proved by Andrew Wiles in 1995 after 358 years) says $a^n + b^n = c^n$ has no positive integer solutions for $n \geq 3$. Euler's conjecture seemed like a natural extension to sums of more terms: Mathematicians worked on it for over two centuries, testing countless values, finding no counterexamples.
 
 Then in 1988, Noam Elkies at Harvard found one:
 
@@ -92,9 +106,13 @@ RSA works like this: Take two large prime numbers $p$ and $q$ and multiply them 
 
 ![The factoring asymmetry](images/factoring_asymmetry.png)
 
+We can see this asymmetry directly. Sympy's `nextprime` generates large primes and `factorint` tries to recover them from their product:
+
 ```python
 <!-- include: code/mcs-lectures/01 - What is a Proof/03_python.py -->
 ```
+
+With 20-digit primes, multiplying is instant but factoring takes ~0.3 seconds — a 300,000x ratio. At 25 digits, factoring already exceeds 30 seconds. RSA uses 300+ digit primes, where the ratio becomes astronomical.
 
 In 1977, the inventors of RSA issued a challenge in *Scientific American*: factor this 129-digit number. They estimated it would take 40 quadrillion years with contemporary technology.
 
