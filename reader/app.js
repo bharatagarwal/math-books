@@ -395,6 +395,39 @@ function renderBook() {
   loadChapter(0);
 }
 
+// Zen mode + mobile chrome (auto-hiding top bar, floating toggle)
+let zenMode = false;
+let mobileChromeHidden = false;
+let lastPaneScrollTop = 0;
+
+function isMobileViewport() {
+  return window.matchMedia('(max-width: 900px)').matches;
+}
+
+function updateMobileZenToggle() {
+  const button = document.getElementById('mobileZenToggle');
+  if (!button) return;
+  button.textContent = zenMode ? 'Nav' : 'Zen';
+  button.setAttribute('aria-label', zenMode ? 'Exit zen mode' : 'Enter zen mode');
+}
+
+function setMobileChromeHidden(next) {
+  mobileChromeHidden = next;
+  document.body.classList.toggle('mobile-chrome-hidden', mobileChromeHidden);
+}
+
+function setZenMode(next) {
+  zenMode = next;
+  document.body.classList.toggle('zen', zenMode);
+  // Leaving zen on mobile should reveal the chrome, not keep it tucked away.
+  if (zenMode) setMobileChromeHidden(false);
+  updateMobileZenToggle();
+}
+
+function toggleZenMode() {
+  setZenMode(!zenMode);
+}
+
 // Keyboard shortcuts
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
@@ -403,7 +436,7 @@ document.addEventListener('keydown', e => {
 
   if (e.key === 'z' || e.key === 'Z') {
     e.preventDefault();
-    document.body.classList.toggle('zen');
+    toggleZenMode();
     return;
   }
 
@@ -428,8 +461,33 @@ document.addEventListener('keydown', e => {
   }
 });
 
+// Mobile zen toggle button
+document.getElementById('mobileZenToggle').addEventListener('click', toggleZenMode);
+
+// On mobile, tuck the top bar away as you scroll down, reveal it scrolling up.
+document.getElementById('pane').addEventListener('scroll', () => {
+  const pane = document.getElementById('pane');
+  const top = pane.scrollTop;
+  if (isMobileViewport() && !zenMode) {
+    if (top <= 24) {
+      setMobileChromeHidden(false);
+    } else {
+      const delta = top - lastPaneScrollTop;
+      if (delta > 10) setMobileChromeHidden(true);
+      else if (delta < -10) setMobileChromeHidden(false);
+    }
+  }
+  lastPaneScrollTop = top;
+});
+
+// Reaching the desktop breakpoint should always restore the chrome.
+window.addEventListener('resize', () => {
+  if (!isMobileViewport()) setMobileChromeHidden(false);
+});
+
 // Init
 const sel = document.getElementById('bookSelect');
 sel.innerHTML = BOOKS.map((b, i) => '<option value="' + i + '">' + b.title + '</option>').join('');
 sel.onchange = () => { currentBook = +sel.value; renderBook(); };
 renderBook();
+updateMobileZenToggle();

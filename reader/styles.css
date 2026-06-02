@@ -130,10 +130,63 @@ kbd {
   background: #fff; box-shadow: 0 1px 0 #d1d9e0;
 }
 
+/* Floating zen toggle — mobile only (shown via the media query below) */
+.mobile-zen-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(209, 217, 224, 0.95);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #57606a;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 24px rgba(31, 35, 40, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease,
+    background 0.18s ease, border-color 0.18s ease;
+}
+.mobile-zen-toggle:active { transform: translateY(1px) scale(0.98); }
+body.zen .mobile-zen-toggle {
+  background: rgba(221, 244, 255, 0.95);
+  border-color: rgba(9, 105, 218, 0.2);
+  color: #0969da;
+}
+
 @media (max-width: 900px) {
   .outline { display: none; }
   .sidebar { width: 220px; min-width: 220px; }
-  .pane { padding: 24px 20px 60px; }
+  .pane { padding: 24px 20px 96px; }
   .keyhint { display: none; }
-  body.zen .pane { padding: 24px 20px; }
+  .mobile-zen-toggle { display: inline-flex; }
+  body.zen .pane { padding: 24px 20px 96px; }
+
+  /* Smooth-collapse the top bar; zen fully removes it (rule above). */
+  .top-bar {
+    overflow: hidden;
+    transition: height 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
+  }
+  /* On scroll-down (not in zen) tuck the chrome away to free reading space. */
+  body.mobile-chrome-hidden:not(.zen) .top-bar {
+    opacity: 0;
+    transform: translateY(-10px);
+    height: 0;
+    border-bottom-color: transparent;
+    pointer-events: none;
+  }
+  body.mobile-chrome-hidden:not(.zen) .wrap { height: 100vh; }
+  body.mobile-chrome-hidden:not(.zen) .mobile-zen-toggle {
+    opacity: 0.55;
+    transform: translateY(8px);
+  }
 }
