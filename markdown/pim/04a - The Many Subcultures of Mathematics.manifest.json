@@ -1,0 +1,12 @@
+{
+  "source": "pim/04a - The Many Subcultures of Mathematics.pdf",
+  "source_size": 68811,
+  "model": "mistral-ocr-latest",
+  "pages": 6,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 6,
+    "doc_size_bytes": 68811
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "source": "pim/08a - The Argument for Big-O Notation.pdf",
+  "source_size": 136469,
+  "model": "mistral-ocr-latest",
+  "pages": 10,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 10,
+    "doc_size_bytes": 136469
+  }
+}

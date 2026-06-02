@@ -1,0 +1,12 @@
+{
+  "source": "pim/07a - Rigor and Formality.pdf",
+  "source_size": 75064,
+  "model": "mistral-ocr-latest",
+  "pages": 6,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 6,
+    "doc_size_bytes": 75064
+  }
+}
