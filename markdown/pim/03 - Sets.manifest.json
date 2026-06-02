@@ -1,0 +1,12 @@
+{
+  "source": "pim/03 - Sets.pdf",
+  "source_size": 565285,
+  "model": "mistral-ocr-latest",
+  "pages": 24,
+  "images": 4,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 24,
+    "doc_size_bytes": 565285
+  }
+}

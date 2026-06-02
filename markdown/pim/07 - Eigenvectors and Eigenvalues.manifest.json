@@ -1,0 +1,12 @@
+{
+  "source": "pim/07 - Eigenvectors and Eigenvalues.pdf",
+  "source_size": 597177,
+  "model": "mistral-ocr-latest",
+  "pages": 42,
+  "images": 11,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 42,
+    "doc_size_bytes": 597177
+  }
+}

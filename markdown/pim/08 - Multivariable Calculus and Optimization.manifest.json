@@ -1,0 +1,12 @@
+{
+  "source": "pim/08 - Multivariable Calculus and Optimization.pdf",
+  "source_size": 11765511,
+  "model": "mistral-ocr-latest",
+  "pages": 52,
+  "images": 17,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 52,
+    "doc_size_bytes": 11765511
+  }
+}

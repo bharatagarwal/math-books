@@ -1,0 +1,12 @@
+{
+  "source": "pim/09 - Groups.pdf",
+  "source_size": 19499681,
+  "model": "mistral-ocr-latest",
+  "pages": 52,
+  "images": 36,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 52,
+    "doc_size_bytes": 19499681
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "source": "pim/05 - Calculus with One Variable.pdf",
+  "source_size": 577026,
+  "model": "mistral-ocr-latest",
+  "pages": 34,
+  "images": 14,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 34,
+    "doc_size_bytes": 577026
+  }
+}

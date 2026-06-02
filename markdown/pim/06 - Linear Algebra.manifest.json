@@ -1,0 +1,12 @@
+{
+  "source": "pim/06 - Linear Algebra.pdf",
+  "source_size": 705989,
+  "model": "mistral-ocr-latest",
+  "pages": 50,
+  "images": 10,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 50,
+    "doc_size_bytes": 705989
+  }
+}

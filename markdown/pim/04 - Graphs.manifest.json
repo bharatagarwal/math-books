@@ -1,0 +1,12 @@
+{
+  "source": "pim/04 - Graphs.pdf",
+  "source_size": 245280,
+  "model": "mistral-ocr-latest",
+  "pages": 20,
+  "images": 11,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 20,
+    "doc_size_bytes": 245280
+  }
+}
