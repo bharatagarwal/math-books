@@ -64,6 +64,13 @@ const BOOKS = [
     chapters: [
       { file: '01 - Like Programming Mathematics has a Culture.md', title: '1. Math has a Culture' },
       { file: '02 - Polynomials.md', title: '2. Polynomials' },
+      { file: '03 - Sets.md', title: '4. Sets' },
+      { file: '04 - Graphs.md', title: '6. Graphs' },
+      { file: '05 - Calculus with One Variable.md', title: '8. Calculus with One Variable' },
+      { file: '06 - Linear Algebra.md', title: '10. Linear Algebra' },
+      { file: '07 - Eigenvectors and Eigenvalues.md', title: '12. Eigenvectors & Eigenvalues' },
+      { file: '08 - Multivariable Calculus and Optimization.md', title: '14. Multivariable Calculus' },
+      { file: '09 - Groups.md', title: '16. Groups' },
     ]
   },
   {
