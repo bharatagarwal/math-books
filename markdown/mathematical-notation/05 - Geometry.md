@@ -1,8 +1,6 @@
-<!-- page 1 -->
+# Geometry
 
-Chapter 5 Geometry
-
-### 1. Fundamentals
+## 1. Fundamentals
 
 The most basic geometric object is a point and points are often denoted with upper case letters, $A$, $B$, $C$, etc. However, points in the plane can be represented as 2-tuples $(x,y)$ or as vectors $[\,{}^{s}_{y}\,$]; as such, they may be named like vectors with lower case bold letters, $\mathbf{x}$, $\mathbf{y}$, and so on. The entire Euclidean plane may be written as $\mathbb{R}^{2}$, but for those who prefer to think of the plane in a coordinate-free, synthetic way, we may write $E^{2}$ or $\mathbb{E}^{2}$. More generally, $n$-dimensional Euclidean space is $\mathbb{R}^{n}$, $E^{n}$, or $\mathbb{E}^{n}$.
 
@@ -20,12 +18,6 @@ Here $c$ is the length of the segment $AB$ and $\cos C$ is the cosine of the (me
 
 There are some standard relation symbols for geometric objects. The most basic is equality, denoted with an equals sign $=$, which means the two things are exactly the same. More generally, two geometric figures are congruent if there
 
----
-
-<!-- page 2 -->
-
-\S 5.2
-- Coordinates
 
 ![img-0.jpeg](05 - Geometry_images/img-0.jpeg)
 FIGURE 5.1. Standard labeling of a triangle.
@@ -34,7 +26,7 @@ is an isometry of space that equates one with the other. Congruence of figures i
 
 Lines, rays, and segments may be parallel; this is denoted  $\overleftrightarrow{AB} \parallel \overleftrightarrow{XY}$ . They may also be perpendicular:  $\overleftrightarrow{AB} \perp \overleftrightarrow{CD}$ .
 
-# 2. Coordinates
+## 2. Coordinates
 
 In analytic geometry, points are specified by a list of numbers. The most common system for doing this is known as Cartesian coordinates (also called rectangular coordinates). Points are specified by  $d$ -tuples (i.e., lists of  $d$  numbers) either written horizontally  $(x,y)$  or vertically  $[x^y]$ . It is traditional to use the letters  $x$  and  $y$  for Cartesian coordinates in two dimensions and  $x, y,$  and  $z$  in three dimensions. In higher dimensions, it is easiest to use subscripts, e.g.,  $(x_1, x_2, x_3, x_4)$ .
 
@@ -56,11 +48,6 @@ $$
 x = r \cos \theta \sin \phi , \quad y = r \sin \theta \sin \phi , \quad \text {and} \quad z = r \cos \phi .
 $$
 
----
-
-<!-- page 3 -->
-
-Geometry
 
 - Cylindrical coordinates. This is another extension of polar coordinates. Points in space are first located in the $x,y$-plane by polar coordinates $(r,\theta)$ and then a height above that plane by $z$. Thus the full specification is the triple $(r,\theta,z)$.
 
@@ -68,7 +55,7 @@ The conversion to Cartesian coordinates is
 
 $x=r\cos\theta,\quad y=r\sin\theta,\quad\text{and}\quad z=z.$
 
-## 3 Differential geometry
+## 3. Differential geometry
 
 Curves. A curve is (the image of) a continuous function $\alpha:[a,b]\to\mathbb{R}^{k}$. This parameterization is unit speed if $\|\alpha^{\prime}(s)\|=1$ for all $s\in[a,b]$.
 
@@ -94,14 +81,6 @@ The Euler characteristic of a surface $M$ is denoted $\chi(M)$. If a connected g
 The Gaussian curvature at a point $p$ on a surface is denoted $K(p)$. The Gaussian curvature of a compact, boundaryless surface $M$ is related to the Euler characteristic by the Gauss-Bonnet formula
 
 $\int_{M}K\,dA=2\pi\chi(M)$
-
----
-
-<!-- page 4 -->
-
-\S 5.3
-\bullet
-Differential geometry
 
 where  $dA$  is an element of surface area.
 

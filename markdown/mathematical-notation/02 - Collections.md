@@ -1,8 +1,4 @@
-<!-- page 1 -->
-
-CHAPTER 2
-
-Collections
+# Collections
 
 ## 1. Sets
 
@@ -26,11 +22,6 @@ $^1$The symbol $\ni$ (or $\ni$) is sometimes used as an abbreviation for the wor
 
 $^2$The symbol $\mathbb{Z}$ stands for the set of all integers; see §4.2 on page 15.
 
----
-
-<!-- page 2 -->
-
-§2.1 • Sets
 
 Sometimes the colon is replaced by a vertical bar $|$ as in $\{u \in \mathbb{Z} \mid u \geq 100\}$. This, of course, is the set $\{100, 101, 102, \ldots\}$.
 
@@ -74,11 +65,6 @@ $$
 \{1, 2, 3\} \cap \{2, 4, 6\} = \{2\}.
 $$
 
----
-
-<!-- page 3 -->
-
-Collections
 
 - Difference. If $A$ and $B$ are sets, then $A - B$ is the set of all elements of $A$ that are not elements of $B$. For example,
 
@@ -132,9 +118,6 @@ See page 25 for an explanation of the notation $f \colon A \to B$.
 
 The rationale for this notation is as follows. If $A$ and $B$ are finite sets with $|A| = a$ and $|B| = b$, then there are $b^a$ functions from $A$ to $B$. In symbols: $|B^A| = |B|^{|A|}$.
 
----
-
-<!-- page 4 -->
 
 - Maximum and minimum. If $A$ is a set of real numbers, then $\max A$ stands for the largest element in $A$ and $\min A$ stands for the smallest element in $A$. The wedge and vee symbols are also used in this context:
 
@@ -142,7 +125,7 @@ $x\vee y=\max\{x,y\}\qquad\text{and}\qquad x\wedge y=\min\{x,y\}.$
 
 Not all sets of numbers necessarily contain a maximum or minimum element. A related pair of notions are the *supremum* and *infimum* denoted $\sup A$ and $\inf A$. The supremum is also called the *least upper bound* and the infimum is called the *greatest lower bound*; these are sometimes abbreviated lub and glb.
 
-## 2 Lists
+## 2. Lists
 
 In mathematics, a list is an ordered collection of objects in which repetition is permitted. A list is usually enclosed in round parentheses (although sometimes square brackets are used). For example, $(1,2,2,3)$ is a list. The lists $(1,2,2,3)$, $(1,2,3)$, and $(2,1,2,3)$ are all different as order matters and elements may be repeated.
 
@@ -150,7 +133,7 @@ A list of $n$ elements is sometimes called an *$n$-tuple*.
 
 When a list is named by a letter (e.g., $a$), the elements of that list are typically named $a_{1}$, $a_{2}$, etc.
 
-## 3 Big sums, products, and so on
+## 3. Big sums, products, and so on
 
 The symbols $\sum$ and $\prod$ are used to represent the sum and product of a collection of numbers. A typical use of the sum notation has the following form:
 
@@ -168,9 +151,6 @@ The $\prod$ notation is exactly analogous to the $\sum$ notation, but signifies 
 
 $\prod_{j=0}^{5}(2j+1)=1\times 3\times 5\times 7\times 9\times 11.$
 
----
-
-<!-- page 5 -->
 
 In these examples the sum/product index (dummy variable) traverses a contiguous stretch of integers. However, sometimes we may wish to sum over other kinds of indices.
 
@@ -206,12 +186,6 @@ $\bigcup_{i=1}^{\infty}A_{i}$
 
 which means, of course, $A_{1}\cup A_{2}\cup A_{3}\cup\cdots$. Likewise $\bigcap_{i=1}^{\infty}A_{i}$ is their intersection.
 
----
-
-<!-- page 6 -->
-
-10
-§2.3 • Big sums, products, and so on
 
 In general, most operation symbols may be written large with a dummy variable index. For example, if $p_1, p_2, \ldots, p_n$ are Boolean (true/false) values (see Chapter 3), then
 

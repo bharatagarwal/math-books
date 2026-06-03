@@ -1,5 +1,3 @@
-<!-- page 1 -->
-
 # Preface
 
 Mathematics is the language of science and engineering. Like all languages, it has its own special vocabulary. When confronted with an unfamiliar word from its lexicon, we can search for that term in our textbooks or on the web using tools such as Google or Mathworld [13]. But what do we do when confounded by some strange arrow or squiggle? Just how would one type $\mapsto$ or $\ni$ into a search engine?
@@ -15,15 +13,11 @@ Our aim is twofold. First, we provide a tool for readers to look up notation the
 - If the notation is some other sort of symbol (a decoration on a letter, an operation symbol, an arrow, and so on), then consult the Chart (page 69). The Chart also provides $\mathrm{LATEX}$ code² for typesetting the notation.
 - If you know the general area of mathematics from which the notation arises, then you can proceed directly to the relevant chapter for that discipline. Alternatively, you can consult the Topic Index (page 79).
 
----
 
 ¹We do not claim to cover all notation used by mathematicians; see [11] to understand why that task would be overwhelming. We focus on notation one is likely to see in university-level courses.
 
 ²This is useful only for readers with some familiarity with $\mathrm{LATEX}$. We strongly encourage the use of $\mathrm{LATEX}$ for technical writing. For good introductions see [2], [5], or [6]. For advanced information, refer to [3].
 
----
-
-<!-- page 2 -->
 
 Second, we provide guidance on how to use notation. For example, what symbol should you use for a vector of all 1s? (Answer on page 39.) When there is more than one choice (e.g., $f^{\prime}(x)$, $dy/dx$, or $\dot{y}$ for derivative) we show the various forms, and sometimes express a preference for one notation versus another.
 

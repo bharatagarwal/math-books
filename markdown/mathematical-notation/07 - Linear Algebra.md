@@ -1,10 +1,6 @@
-<!-- page 1 -->
+# Linear Algebra
 
-CHAPTER 7
-
-Linear Algebra
-
-1. Vectors
+## 1. Vectors
 
 A (real) vector is an $n$-long column$^{1}$ of real numbers:
 
@@ -32,14 +28,6 @@ Standard vector operations:
 
 $^{1}$Some people write vectors as row vectors. This is convenient because the notation is more compact. It is also traditional in some application areas.
 
-39
-
----
-
-<!-- page 2 -->
-
-\S 7.1
-• Vectors
 
 - Sum. The sum of vectors $\mathbf{x}$ and $\mathbf{y}$ is simply $\mathbf{x} + \mathbf{y}$.
 - Scalar multiple. The scalar multiplication is usually written with the scalar $s$ on the left and the vector $\mathbf{x}$ on the right: $s\mathbf{x}$.
@@ -99,11 +87,6 @@ $$
 
 - Orthogonality. Two vectors are orthogonal provided their dot product is zero, in which case we write $\mathbf{x} \perp \mathbf{y}$.
 
----
-
-<!-- page 3 -->
-
-Linear Algebra
 
 The $\perp$ symbol is also used to define subspaces of $\mathbb{R}^n$. If $\mathcal{V}$ is a subspace of $\mathbb{R}^n$, then $\mathcal{V}^{\perp}$ is the set of vectors that are orthogonal to all vectors in $\mathcal{V}$:
 
@@ -145,11 +128,6 @@ $$
 
 - **Identity matrix and Kronecker's delta.** The identity matrix is an $n \times n$-matrix whose off-diagonal entries are all 0 and whose main
 
----
-
-<!-- page 4 -->
-
-§7.2 • Matrices
 
 diagonal entries are all 1. An identity matrix is denoted $I$; the notation $I_n$ is used to denote an $n \times n$-identity matrix.
 
@@ -193,12 +171,6 @@ A matrix that satisfies $A = A^*$ (equivalently $A = A^H$) is called Hermitian o
 
 Note: The adjoint of $A$ should not be confused with the adjugate of $A$, denoted $\mathrm{adj}(A)$, which is the transpose of the matrix of cofactors of $A$.
 
----
-
-<!-- page 5 -->
-
-Linear Algebra
-43
 
 - Trace. The trace of a matrix is the sum of its diagonal elements. If $A$ is an $m \times n$-matrix then
 
@@ -236,11 +208,7 @@ $$
 \operatorname{perm} A = \sum_{\pi \in S_n} a_{1,\pi(1)} a_{2,\pi(2)} \cdots a_{n,\pi(n)}.
 $$
 
----
 
-<!-- page 6 -->
-
-\S 7.2
 -Matrices
 
 - Matrix powers. Let  $A$  be a square matrix. For an integer  $n$ ,
@@ -281,11 +249,6 @@ where the 0's represent blocks of zeros of the appropriate size.
 
 Note that  $\oplus$  is also stands for the Kronecker sum (see the previous entry).
 
----
-
-<!-- page 7 -->
-
-Linear Algebra
 
 - Inequalities. If $A$ and $B$ are the same shape, then $A \geq B$ means that each term in $A$ is greater than or equal to the corresponding term in $B$, i.e., $a_{i,j} \geq b_{i,j}$. Likewise $A &gt; B$, $A &lt; B$, and $A \leq B$ have similar meanings. However, $A \neq B$ simply means that the two matrices are not identical.
 
@@ -315,12 +278,6 @@ $$
 
 Sometimes the subscript 2 is omitted.
 
----
-
-<!-- page 8 -->
-
-46
-§7.2 • Matrices
 
 - Maximum absolute column sum norm. This is denoted $\|A\|_1$ and is defined to be
 
@@ -368,14 +325,8 @@ The notation $\mathrm{O}(n, \mathbb{C})$ is the set of all complex $n \times n$-
 
 - Special orthogonal group. $\mathrm{SO}(n)$ is the subgroup of $\mathrm{O}(n)$ with the added condition that $\det U = 1$. Likewise for $\mathrm{SO}(n, \mathbb{C})$.
 
----
 
-<!-- page 9 -->
-
-Linear Algebra
-47
-
-# 3. Tensors
+## 3. Tensors
 
 In its simplest form, a tensor is a multidimensional array of numbers. As such, an entry of, say, an order-3 tensor $T$ is $T_{i,j,k}$ or $T_{ijk}$. (Some authors use the word rank instead of order.) Thus scalars are order-0 tensors, vectors are order-1, and matrices are order-2. Higher order tensors are typically written with capital letters in either italics $T$ or boldface $\mathbf{T}$.
 
@@ -404,9 +355,3 @@ Einstein notation is often used with tensors. Typically, the repeated index is a
 $$
 T_k^{ij} v^k := \sum_k T_k^{ij} v^k.
 $$
-
----
-
-<!-- page 10 -->
-
-.

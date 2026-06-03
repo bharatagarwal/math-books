@@ -1,10 +1,6 @@
-<!-- page 1 -->
+# Probability and Statistics
 
-CHAPTER 9
-
-Probability and Statistics
-
-1. Probability
+## 1. Probability
 
 Events. In probability theory, one begins with a set of fundamental outcomes, often denoted $\Omega$ or $S$. An event is a subset of $\Omega$.
 
@@ -36,12 +32,6 @@ In some disciplines, the notation $\langle X \rangle$ is used to denote the expe
 
 $^1$More formally and abstractly, a probability space is a triple $(\Omega, \mathcal{F}, P)$ where $\Omega$ is a set, $\mathcal{F}$ is a $\sigma$-algebra of events, and $P$ is the probability function. In case $\Omega$ is finite or countably infinite, the probability space is called discrete and $\mathcal{F}$ can be ignored (as it can be taken to be $2^{\Omega}$).
 
----
-
-<!-- page 2 -->
-
-\S 9.1
-- Probability
 
 - Conditional expectation.  $E(X \mid Y)$  denotes the conditional expected value of  $X$  given  $Y$ . This is also written  $\mu_{X|Y}$ .
 - Variance. For a random variable  $X$ ,  $\operatorname{Var}(X)$  denotes the variance of  $X$  defined by  $\operatorname{Var}(X) = E\left[(X - \mu)^2\right] = E(X^2) - E(X)^2$ . Often  $\sigma^2$  denotes the variance. This may be subscripted with the name of the random variable:  $\sigma_X^2$ .
@@ -82,11 +72,6 @@ Extensions of this notation include the joint entropy  $H(X,Y)$  and the conditi
 
 Distributions. Random variables are often best described by their distribution. Distributions, in turn, can be described in one of three principal ways, each with its own acronym.
 
----
-
-<!-- page 3 -->
-
-Probability and Statistics
 
 - PMF: Discrete random variables can be specified by their *probability mass function*, or PMF, which specifies the probability associated with each possible value of the random variable: $F(x)=P(X=x)$.
 - CDF: Real-valued, continuous random variables can be specified by their *cumulative distribution function*, or CDF: $F(x)=P(X\leq x)$. Most authors denoted cumulative distribution functions with uppercase letters.
@@ -121,14 +106,7 @@ The use of $\lambda$ for the parameter (and hence the mean) of the Poisson distr
 \mathbb{R}
 or an interval in
 \mathbb{R}
-.
 
----
-
-<!-- page 4 -->
-
-\S 9.1
-- Probability
 
 - Exponential distribution. For a positive real number $\alpha$, the exponential distribution is denoted $\operatorname{Exp}(\alpha)$. The CDF for a random variable with this distribution is $F(t) = 1 - \exp\{-\alpha t\}$ (where $t \geq 0$).
 - Normal/Gaussian. A standard normal or Gaussian random variable $X$ has a probability density function typically denoted $\phi(x)$ where
@@ -168,11 +146,6 @@ where $X_1, X_2$ are independent $\chi^2$-random variables with $\nu_1, \nu_2$ d
 
 Convergence of random variables. Let $X$ and $X_1, X_2, \ldots$ be random variables. There are various notions of the sequence $X_i$ converging to $X$, each with its own notation.
 
----
-
-<!-- page 5 -->
-
-Probability and Statistics
 
 - Convergence in distribution (in law). This is denoted in various ways including these:
 
@@ -245,11 +218,6 @@ $$
 X _ {(1)} \leq X _ {(2)} \leq \dots \leq X _ {(n)}.
 $$
 
----
-
-<!-- page 6 -->
-
-§9.2 • Statistics
 
 In hypothesis testing, the null hypothesis is typically denoted $H_0$ and the alternative hypothesis by $H_A$ or $H_1$. Incorrectly rejecting $H_0$ when, in fact, it is true is known as a type I error and the probability of committing such a mistake is typically denoted by $\alpha$. Accepting the null hypothesis when, in fact, it is false is known as a type II error and the probability of making this mistake is typically denoted $\beta$.
 

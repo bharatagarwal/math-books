@@ -1,5 +1,3 @@
-<!-- page 1 -->
-
 # Bibliography
 
 [1] Florian Cajori. *A History of Mathematical Notations: Two Volumes Bound As One*. Dover, 1993. Originally published in separate volumes by The Open Court Publishing Company in 1928 and 1929.
@@ -29,11 +27,3 @@
 [13] Eric Weisstein. *Wolfram Mathworld*. http://mathworld.wolfram.com/.
 
 [14] Wikipedia. Table of mathematical symbols. http://en.wikipedia.org/wiki/Table_of_mathematical_symbols.
-
-67
-
----
-
-<!-- page 2 -->
-
-.

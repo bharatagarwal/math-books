@@ -1,8 +1,4 @@
-<!-- page 1 -->
-
-CHAPTER 8
-
-Calculus
+# Calculus
 
 ## 1. Limits
 
@@ -56,14 +52,6 @@ Given a function $f$, we have two standard notations for the derivative of $f$: 
 
 Higher order derivatives in Newton's notation are expressed by using additional prime marks. The second derivative is $f''$, the third is $f'''$, and so forth. Sometimes lower case roman numerals replace multiple prime marks, e.g. $f^{(\mathrm{iv})}$. For a positive integer $n$, the $n^{\mathrm{th}}$ derivative may be written $f^{(n)}$.
 
-49
-
----
-
-<!-- page 2 -->
-
-50
-§8.3 • Derivatives (multiple independent variables, scalar-valued)
 
 Higher order derivatives in Leibeniz's notation are expressed using exponents like this:
 
@@ -117,11 +105,6 @@ $$
 \frac {\partial^ {2} f}{\partial x _ {i} \partial x _ {j}}
 $$
 
----
-
-<!-- page 3 -->
-
-Calculus
 
 which means to first take the partial derivative of $f$ with respect to $x_{j}$ and then the partial derivative of that result with respect to $x_{i}$. In symbols:
 
@@ -165,14 +148,8 @@ $$
 H f = \left[ \begin{array}{c c c c} \frac {\partial^ {2} f}{\partial x _ {1} \partial x _ {1}} &amp; \frac {\partial^ {2} f}{\partial x _ {2} \partial x _ {2}} &amp; \dots &amp; \frac {\partial^ {2} f}{\partial x _ {1} \partial x _ {n}} \\ \frac {\partial^ {2} f}{\partial x _ {2} \partial x _ {1}} &amp; \frac {\partial^ {2} f}{\partial x _ {2} \partial x _ {2}} &amp; \dots &amp; \frac {\partial^ {2} f}{\partial x _ {2} \partial x _ {n}} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \frac {\partial^ {2} f}{\partial x _ {n} \partial x _ {1}} &amp; \frac {\partial^ {2} f}{\partial x _ {n} \partial x _ {2}} &amp; \dots &amp; \frac {\partial^ {2} f}{\partial x _ {n} \partial x _ {n}} \end{array} \right].
 $$
 
----
 
-<!-- page 4 -->
-
-52
-§8.4 • Derivatives (multiple independent variables, vector-valued)
-
-# 4. Derivatives (multiple independent variables, vector-valued)
+## 4. Derivatives (multiple independent variables, vector-valued)
 
 In this section we consider derivatives of functions  $\mathbf{f}:\mathbb{R}^m\to \mathbb{R}^n$ . We denote vector-valued functions with bold letters (though this is not mandatory).
 
@@ -224,11 +201,6 @@ $$
 D \mathbf {f} = \left[ \begin{array}{c c c c} \frac {\partial f _ {1}}{\partial x _ {1}} &amp; \frac {\partial f _ {1}}{\partial x _ {2}} &amp; \dots &amp; \frac {\partial f _ {1}}{\partial x _ {m}} \\ \frac {\partial f _ {2}}{\partial x _ {1}} &amp; \frac {\partial f _ {2}}{\partial x _ {2}} &amp; \dots &amp; \frac {\partial f _ {2}}{\partial x _ {m}} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \frac {\partial f _ {n}}{\partial x _ {1}} &amp; \frac {\partial f _ {n}}{\partial x _ {2}} &amp; \dots &amp; \frac {\partial f _ {n}}{\partial x _ {m}} \end{array} \right] = \left[ \begin{array}{c c c c} f _ {1, 1} &amp; f _ {1, 2} &amp; \dots &amp; f _ {1, m} \\ f _ {2, 1} &amp; f _ {2, 2} &amp; \dots &amp; f _ {2, m} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ f _ {n, 1} &amp; f _ {n, 2} &amp; \dots &amp; f _ {n, m} \end{array} \right].
 $$
 
----
-
-<!-- page 5 -->
-
-Calculus
 
 If $\mathbf{f}:\mathbb{R}^n\to \mathbb{R}^n$, then $D\mathbf{f}$ is a square matrix; its determinant is, unfortunately, also called the Jacobian of $\mathbf{f}$.
 
@@ -278,13 +250,8 @@ $$
 
 which is the Laplacian of $f$. Thus $\nabla \cdot (\nabla f) = \nabla^2 f$.
 
----
 
-<!-- page 6 -->
-
-§8.5 • Integration
-
-# 5. Integration
+## 5. Integration
 
 Let $f: \mathbb{R} \to \mathbb{R}$. The notation $\int f(x) \, dx$ is the indefinite integral of $f$; it is a function $F$ whose derivative is $f$. The function $F$ is called an antiderivative or a primitive of $f$. The notation
 
@@ -344,9 +311,6 @@ $$
 
 denotes the line integral of $f$ along the curve $\gamma$.
 
----
-
-<!-- page 7 -->
 
 If the curve is closed (i.e., it begins and ends at the same point) then we write
 
@@ -358,7 +322,7 @@ $\int_{\partial D}f\,ds\quad\text{or}\quad\oint_{\partial D}f\,ds$
 
 where $\partial D$ indicates the boundary of $D$.
 
-## 6 Convolution and transforms
+## 6. Convolution and transforms
 
 If $f$ and $g$ are functions from $\mathbb{R}$ to $\mathbb{R}$, we define their convolution $f*g$ as a new function with
 
@@ -382,13 +346,6 @@ Similarly, in number theory, the convolution of two functions $f,g:\mathbb{Z}^{+
 
 $(f*g)(n)=\sum_{d|n}f(d)g(n/d).$
 
-##
-
----
-
-<!-- page 8 -->
-
-§8.6 • Convolution and transforms
 
 Let $f: \mathbb{R}_+ \to \mathbb{R}$. The Laplace transform of $f$ is denoted $\mathcal{L}f$. It is a new function defined on the nonnegative real numbers by
 

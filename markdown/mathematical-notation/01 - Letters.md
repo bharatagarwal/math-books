@@ -1,8 +1,6 @@
-<!-- page 1 -->
+# Letters
 
-Chapter 1 Letters
-
-### 1. The Latin alphabet
+## 1. The Latin alphabet
 
 In mathematics we use letters to name mathematical objects. These objects are often numbers, but they may also be functions, vectors, matrices, sets, and so forth.
 
@@ -18,14 +16,8 @@ Another way in which bold letters are written by hand (and also in print) is to 
 
 The use of different styles of letters is especially useful to distinguish different sorts of mathematical objects. For example, in linear algebra it is helpful to use italic lower case letters to denote numbers (scalars), bold lower case letters to denote vectors, and upper case letters to denote matrices.
 
----
 
-<!-- page 2 -->
-
-\S 1.3
-- Decorations
-
-# 2. The Greek alphabet
+## 2. The Greek alphabet
 
 Somehow the 52 upper and lower case Latin letters, in various font styles (italic, bold, script) are just not sufficient, and for this reason letters from other alphabets are brought into service. The most common choice after the Latin alphabet is the Greek alphabet. The letters of the Greek alphabet are presented in Figure 1.1.
 
@@ -62,13 +54,10 @@ Some Greek letters look exactly the same as their Latin counterparts (e.g., uppe
 
 Letters from other alphabets (such as German  $\mathfrak{G}$  or Hebrew  $\aleph$ ) are used in mathematics, but these are not often seen in science and engineering settings.
 
-# 3. Decorations
+## 3. Decorations
 
 The repertoire provided by the dozens of letters available from the Latin and Greek alphabets (in their various cases and type styles) is often expanded
 
----
-
-<!-- page 3 -->
 
 by various decorations attached to these letters. As we noted earlier, one often places a small arrow above a letter to denote a vector: $\vec{v}$.
 
@@ -84,12 +73,6 @@ Drawing a wavy underline beneath a letter is a copy editor’s convention for in
 
 Other decorations are attached to letters to create additional names. Some that appear often are the hat ($\hat{x}$), the bar ($\bar{x}$), the dot ($\dot{x}$), and multiple dots ($\bar{x}$).
 
-## 4 Traditional uses
+## 4. Traditional uses
 
 In principle, any letter can be used to stand for any mathematical object. However, in certain disciplines there are strong traditions to reserve certain letters for specific purposes. For example, in much of science and engineering the Greek letter $\pi$ stands for the familiar ratio of a circle’s circumference to its diameter, approximately 3.14159. However, in other branches of mathematics, the symbol $\pi$ can have other meanings. In general, of course, it is best to use symbols in a discipline’s conventional manner.
-
----
-
-<!-- page 4 -->
-
-.

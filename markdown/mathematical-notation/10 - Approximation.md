@@ -1,8 +1,6 @@
-<!-- page 1 -->
+# Approximation
 
-Chapter 10 Approximation
-
-### 1. Approximate equality of numbers
+## 1. Approximate equality of numbers
 
 There are many notations used to capture the concept of being approximately equal. The simplest, and in our opinion the best, is $\approx$. For example, $\pi\approx 3.14$. People use a variety of other symbols for approximate equality including $\doteq$, $\cong$, $\sim$, and $\simeq$.
 
@@ -10,7 +8,7 @@ A more precise way to express approximate equality is to write $\pi=3.14\pm 0.00
 
 $3.14-0.002\leq\pi\leq 3.14+0.002.$
 
-### 2. Asymptotic relations
+## 2. Asymptotic relations
 
 A variety of notations exist to show the approximate equality of algebraic expressions (functions), to abbreviate “unimportant” terms, and to measure the quality of the approximation.
 
@@ -27,11 +25,7 @@ $\lim_{x\to\infty}\frac{f(x)}{g(x)}=1.$
 
 The expression $f(x)\propto g(x)$ indicates that the two functions are proportional to each other. Strictly speaking, this means there is a positive number $k$ such that $f(x)=kg(x)$. However, $\propto$ can also be used in the approximate sense in which lower order terms are neglected, e.g., $\binom{n}{3}\propto n^{3}$. In this case $f(x)\propto g(x)$ means that $f(x)/g(x)$ tends to a finite, nonzero limit as $x\to\infty$.
 
----
 
-<!-- page 2 -->
-
-\S 10.3
 \cdot
 Big-oh notation and its relatives
 
@@ -77,11 +71,6 @@ One rarely (if ever) sees the big oh on the left side of an equation.
 
 An equation of the form $\binom{n}{3} = O(n^3)$ is mildly illogical. The equal sign ought to mean that the two surrounding expressions are the same, and in this case they are not really the same thing. It is more proper to write $\binom{n}{3} \in O(n^3)$
 
----
-
-<!-- page 3 -->
-
-Approximation
 
 and understand $O(n^3)$ as the set of all functions that are asymptotically bounded by $n^3$. In practice, most people use the equal sign and tacitly understand not to interpret the equal sign in a strict sense.
 
@@ -131,11 +120,7 @@ A $o(1)$ term in an expression stands for a quantity that tends to 0.
 
 1When $x$ is sufficiently large or small, depending on context.
 
----
 
-<!-- page 4 -->
-
-\S 10.3
 \cdot
 Big-oh notation and its relatives
 

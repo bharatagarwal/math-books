@@ -1,10 +1,8 @@
-<!-- page 1 -->
+# Numbers
 
-Chapter 4 Numbers
+## 1. Real numbers
 
-### 4.1 Real numbers
-
-#### Writing numbers.
+### Writing numbers
 
 The set of all real numbers is denoted $\mathbb{R}$. Real numbers are typically written in decimal notation starting with a sign (optional if positive, mandatory if negative), a finite list of digits, a decimal point, and then either finitely many or infinitely many more digits.
 
@@ -33,12 +31,6 @@ $4.56\times 10^{-4}\quad 4.56E-04$
 
 Engineering notation is a variant form of scientific notation in which the exponent on 10 must be a multiple of three, like this:
 
----
-
-<!-- page 2 -->
-
-\S 4.1\bullet
-Real numbers
 
 Scientific notation:  $6.022 \times 10^{23}$
 
@@ -71,11 +63,6 @@ The plus-minus notation  $\pm$  is used to indicate two different values. Thus, 
 
 Using the symbol  $\pm$  twice in a single expression can be ambiguous. Consider  $\pm 1 \pm \sqrt{5}$ . This might either mean the two values  $1 + \sqrt{5}$  and  $-1 - \sqrt{5}$ , or it might also include the additional values  $1 - \sqrt{5}$  and  $-1 + \sqrt{5}$ . The meaning needs to be derived from context.
 
----
-
-<!-- page 3 -->
-
-Numbers
 
 The minus-plus symbol $\mp$ means the same thing as $\pm$. It is typically used in conjunction with $\pm$ and has the opposite sign. Thus $\pm 3 \mp \sqrt{7}$ means the two values $3 - \sqrt{7}$ and $-3 + \sqrt{7}$.
 
@@ -113,14 +100,6 @@ Appending a star superscript to these may have various meanings:
 
 $^1$The 1993 ANSI/IEEE standard [8] excludes 0 from $\mathbb{N}$ whereas the ISO standard [9] includes 0. The ISO recommends $\mathbb{N}^*$ for the set of positive integers.
 
----
-
-<!-- page 4 -->
-
-\S 4.3
-\bullet
-"Famous" real numbers
-
 - $\mathbb{Z}^*$ is used by [13] to denote the nonnegative integers, $\{0, 1, 2, \ldots\}$ (but we prefer $\mathbb{N}$).
 - Finally, ${}^{*}\mathbb{R}$ denotes the nonstandard reals (see page 19).
 
@@ -154,7 +133,7 @@ $$
 
 Although one could write $(-\infty, \infty)$, this would indicate all real numbers and it's clearer simply to write $\mathbb{R}$.
 
-# 3. "Famous" real numbers
+## 3. "Famous" real numbers
 
 Some real numbers have their own special notation. Here are a few that you may encounter.
 
@@ -172,11 +151,8 @@ Its approximate value is 0.5772.
 
 Note that various scientific disciplines reserve certain letters for physical constants (such as $c$ for the speed of light).
 
----
 
-<!-- page 5 -->
-
-4 Complex numbers
+## 4. Complex numbers
 
 The complex numbers are created by appending a new object, $i$, to the real numbers and following the natural consequence of algebraic steps. Here, $i$ stands for a number with the property $i^{2}=-1$. The result is a collection of numbers of the form $a+bi$ where $a,b\in\mathbb{R}$. The set of complex numbers is denoted $\mathbb{C}$. Some people prefer to write the imaginary unit before its coefficient, like this: $a+ib$.
 
@@ -210,17 +186,11 @@ The value $e^{i\theta}$ is sometimes written $\cos\theta$. The notation $\cos$ i
 
 $\cos\theta=\cos\theta+i\sin\theta.$
 
----
-
-<!-- page 6 -->
-
-\S 4.6
-• Other number systems
 
 ![img-1.jpeg](04 - Numbers_images/img-1.jpeg)
 FIGURE 4.1. Rectangular and polar representation of a complex number  $a + bi = re^{i\theta}$ .
 
-# 5. Basic operations
+## 5. Basic operations
 
 For two numbers  $a$  and  $b$  their sum is written  $a + b$  and their difference is  $a - b$ .
 
@@ -232,18 +202,13 @@ Exponentiation is expressed using superscripts:  $a^b$ . However, a wedge  $\wed
 
 See the discussion of  $\sum$  and  $\prod$  notation on page 8.
 
-# 6. Other number systems
+## 6. Other number systems
 
 There are other number systems used by mathematicians that are useful in engineering and science applications. We list here some of the more common ones.
 
 - Modular numbers. For an integer  $n \geq 2$ , we write  $\mathbb{Z}_n$  to stand for the set  $\{0,1,\ldots,n-1\}$  with operations mod  $n$ . The notations  $\mathbb{Z}/n\mathbb{Z}$  and  $\mathbb{Z}/(n)$  are also used.
 - Finite fields. A finite field $^2$  with  $n$  elements may be written either  $\mathrm{GF}(n)$  or  $\mathbb{F}_n$ . It is known that the size of a finite field must be a power of a prime, so it is likely that this notation will be seen like this:  $\mathrm{GF}(p^a)$  or  $\mathbb{F}_{p^a}$ .
 
----
-
-<!-- page 7 -->
-
-Numbers
 
 - Gaussian integers. The Gaussian integers are numbers of the form  $a + bi$  where  $a$  and  $b$  are integers. The set of Gaussian integers is denoted  $\mathbb{Z}[i]$ .
 - Quaternions. Hamilton's quaternions are numbers of the form  $a + bi + cj + dk$  where  $a, b, c, d \in \mathbb{R}$  and  $i, j, k$  have the following properties:
@@ -264,7 +229,7 @@ For a field  $F$ , the notation  $F(\alpha)$  is the extension of  $F$  created 
 
 See page 35 for the notation  $R[[x]]$ , the set of formal power series with coefficients from  $R$  in the variable  $x$ .
 
-# 7. To infinity and beyond
+## 7. To infinity and beyond
 
 It is often useful to append the concept of infinity to the real or complex number systems.
 
@@ -273,14 +238,6 @@ In the realm of real numbers,  $\overline{\mathbb{R}}$  denotes the set of exten
 For complex numbers,  $\hat{\mathbb{C}}$  [or  $\overline{\mathbb{C}}$ ] denotes the extended complex numbers (also called the Riemann sphere) which includes the single additional value  $\infty$ . This system is sometimes expressed simply as  $\mathbb{C} \cup \{\infty\}$ . Some authors write  $\mathbb{C}^*$ , but this is also (and preferably) used to denote the set  $\mathbb{C} - \{0\}$ .
 
 An exotic extensions of the real numbers is  ${}^*\mathbb{R}$ , the nonstandard reals which includes infinitesimals and hyperintegers.
-
----
-
-<!-- page 8 -->
-
-\S 4.7
-\bullet
-To infinity and beyond
 
 As discussed on page 7, given a set $A$, the notation $|A|$ gives the cardinality (size) of the set $A$. This is an integer for finite sets. There is, however, special notation for infinite sets.
 

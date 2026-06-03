@@ -1,8 +1,6 @@
-<!-- page 1 -->
+# Functions
 
-Chapter 6 Functions
-
-### 1. Fundamentals
+## 1. Fundamentals
 
 Basic notation. Many of the functions encountered in science and engineering take real numbers as input and return real numbers as output. The notation $f\colon\mathbb{R}\to\mathbb{R}$ means that $f$ is a function, that any real number may be the input to $f$, and that the output of $f$ lies in the set of real numbers.
 
@@ -22,14 +20,6 @@ The notation $y=f(x)$ is sometimes abbreviated to $x\mapsto y$; this is pronounc
 
 A function whose inputs and outputs are themselves functions is often called an *operator* or a *transform*. It is useful to typographically distinguish operators from functions of numbers; for example, one may capitalize the operator’s name. The application of an operator to a function might omit the parentheses: $Lf$ denotes the evaluation of the operator $L$ on the function $f$.
 
-###
-
----
-
-<!-- page 2 -->
-
-\S 6.1\bullet
-Fundamentals
 
 The notation $f(\cdot)$ is sometimes used to emphasize that $f$ is a function with the dot showing that an argument is expected. This notation is handy when referring to a function specified by non-letter symbols. For example, when discussing the absolute value function, one may write $|\cdot|$; this may be preferable to putting in a dummy variable between the bars or leaving a blank space.
 
@@ -70,11 +60,8 @@ $$
 
 The notation $f^2(x)$ sometimes means $[f(x)]^2$; this notation is used especially with trigonometric functions, e.g., $\sin^2\theta$. Thus we have an inconsistency because $f^{-1}(x)$ does not mean $1/f(x)$. (See the discussion of trigonometric functions later in this chapter.) However, in some contexts $f^2(x)$ means $(f \circ f)(x) = f[f(x)]$ in which case this notation is consistent with the meaning of $f^{-1}$.
 
----
 
-<!-- page 3 -->
-
-## 2 Standard functions
+## 2. Standard functions
 
 ### Functions of real numbers
 
@@ -107,12 +94,6 @@ In mathematics, the arguments to trigonometric functions are usually expressed i
 
 Greek letters, especially $\theta$, often appear as the argument to trigonometric functions, but this is a custom, not a requirement.
 
----
-
-<!-- page 4 -->
-
-28
-§6.2 • Standard functions
 
 The notation $\sin^2 x$ means $(\sin x)^2$; however, the notation $\sin^{-1} x$ does not mean $1 / \sin x$. Rather, $\sin^{-1} x$ is the inverse sine (or arc sine) function. This may also be written $\arcsin x$ (although the $\sin^{-1} x$ notation is more common). Likewise we have $\arccos$, $\arctan$, and so forth.
 
@@ -166,11 +147,6 @@ $$
 
 and is equal to $\Gamma(a)\Gamma(b) / \Gamma(a + b)$. It is closely related to binomial coefficients.
 
----
-
-<!-- page 5 -->
-
-Functions
 
 - Bessel functions. The following notations are used for Bessel functions:
 
@@ -223,12 +199,6 @@ $$
 
 and is defined for arbitrary complex $z$ by analytic extension.
 
----
-
-<!-- page 6 -->
-
-\S 6.2
-Standard functions
 
 - Dirac delta "function". The final entry for this section is given with some trepidation because it is not a function; however, since the word function is traditionally (albeit erroneously) used with its name, we recall here the Dirac  $\delta$ -function. Dirac's  $\delta$  can be imagined as a function that takes the value zero for all nonzero arguments, but  $\delta(0)$  is infinite. Nevertheless, the integral of  $\delta$  (the area under its "curve") is 1. The  $\delta$  function often appears inside an integral; given a function  $f: \mathbb{R} \to \mathbb{R}$  we have
 
@@ -272,12 +242,6 @@ FIGURE 6.1. The formula for the Taylor series of a function as it appears in [4]
 
 The notation  $n!!$  is the double factorial; here the factors descend by two. For example,  $7!! = 7 \times 5 \times 3 \times 1$ .
 
----
-
-<!-- page 7 -->
-
-Functions
-
 For a real number $x$ and a nonnegative integer $k$, the notations $x^{(k)}$ and $x_{(k)}$ are known respectively as the rising and falling factorial functions and are given by the formulas:
 
 $$
@@ -320,12 +284,6 @@ $$
 
 - **Multichoose.** The notation $\left(\binom{n}{k}\right)$ stands for the number of $k$-element multisets that can be formed with elements drawn from
 
----
-
-<!-- page 8 -->
-
-\S 6.2
-Standard functions
 
 an $n$-element set. The multichoose notation is related to the ordinary binomial coefficient by the following formula:
 
@@ -368,11 +326,6 @@ to mean $a - b$ is divisible by $n$ (i.e., $n|a - b$). When the modulus, $n$, is
 
 The notation $\operatorname{lcm}(n, m)$ is the least (positive) common multiple of $n$ and $m$.
 
----
-
-<!-- page 9 -->
-
-Functions
 
 - Euler's totient. For a positive integer $n$, $\varphi(n)$ is the number of integers in $[n] = \{1, 2, \ldots, n\}$ that are relatively prime to $n$. This function is known as Euler's totient and the symbol $\varphi$ is a stylized Greek phi, $\phi$. Some people use the ordinary $\phi$ for this function.
 - Legendre/Jacobi symbol. If $p$ is an odd prime and $a$ is an integer, the notation $\left(\frac{a}{p}\right)$ is known as the Legendre symbol defined by
@@ -389,7 +342,7 @@ $$
 \left(\frac {a}{n}\right) = \left(\frac {a}{p _ {1}}\right) ^ {e _ {1}} \left(\frac {a}{p _ {2}}\right) ^ {e _ {2}} \dots \left(\frac {a}{p _ {t}}\right) ^ {e _ {t}}.
 $$
 
-## Other standard functions.
+### Other standard functions
 
 - Identity function. For a set $A$, the notation $\mathrm{Id}_A$ is the identity function on $A$, i.e., $\mathrm{Id}_A: A \to A$ by $\mathrm{Id}_A(a) = a$ for all $a \in A$.
 - Characteristic function. Given a set $A$, often a subset of the real numbers, $\chi_A$ denotes the characteristic function of $A$ given by
@@ -418,12 +371,6 @@ $$
 \int_ {- \infty} ^ {\infty} | f (x) | ^ {p} d x &lt;   \infty .
 $$
 
----
-
-<!-- page 10 -->
-
-\S 6.4
-• Polynomials, power series, and rational functions
 
 This notation may be restricted to an interval: $L^p([a, b])$ stands for those functions for which
 
@@ -469,11 +416,6 @@ Certain families of polynomials have their own notation. These include the follo
 
 $^2$See footnote on page 19.
 
----
-
-<!-- page 11 -->
-
-Functions
 
 - Hermite polynomials. The degree-$n$ Hermite polynomial is denoted $H_{n}(x)$. There are two variations on how these are defined (for the probability community and the physics community).
 - Laguerre Polynomials. The degree-$n$ Laguerre polynomial is denoted $L_{n}(x)$.
@@ -495,7 +437,7 @@ $$
 
 The set of all rational functions with real coefficients is denoted $\mathbb{R}(x)$. In general, if $F$ is any field$^3$, $F(x)$ is the set of rational functions in the variable $x$ with coefficients drawn from $F$.
 
-# 5. Miscellany
+## 5. Miscellany
 
 Here are a few additional notations concerning functions one might encounter.
 
@@ -517,12 +459,6 @@ where the hooked arrow means "one-to-one" and the double-headed arrow means "ont
 
 $^3$See footnote on page 18.
 
----
-
-<!-- page 12 -->
-
-\S 6.5
-- Miscellany
 
 Incidentally, a one-to-one function is called an injection and an onto function is called a surjection. While these terms have waning popularity, the term bijection—a function that is both an injection and a surjection—is commonly used.
 
@@ -560,13 +496,7 @@ $$
 
 4Strictly speaking, the leftmost set in this sequence should be written
 \{0\}
-.
 
----
-
-<!-- page 13 -->
-
-Functions
 
 is exact. The image of the unnamed first function must be the 0-element of $A$ and so the exactness property requires that $\ker f = \{0\}$ which, in turn, implies that $f$ is one-to-one.
 
@@ -577,9 +507,3 @@ A \xrightarrow {f} B \xrightarrow {} 0
 $$
 
 is an exact sequence. This means that the entire space $B$ is mapped to 0 by the unnamed function on the right, and so $\operatorname{Im} f = B$; that is, $f$ must be onto.
-
----
-
-<!-- page 14 -->
-
-.

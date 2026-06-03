@@ -1,7 +1,3 @@
-<!-- page 1 -->
-
-79
-
 # Topic Index
 
 Use this index to find specific topics. To find notation based on Latin letters, use the Alphabetical Notation Index (page 73). To find notation based on Greek letters, use the Greek Index (page 77). To find other notation, use the Chart (page 69).
@@ -71,9 +67,6 @@ convolution •, 55
 coordinates, 22~23
 Cartesian, 22
 
----
-
-<!-- page 2 -->
 
 Topic Index
 
@@ -281,9 +274,6 @@ Gauss-Bonnet formula, 24
 
 Gaussian curvature, 24
 
----
-
-<!-- page 3 -->
 
 Topic Index
 
@@ -487,9 +477,6 @@ direct sum, 44
 
 eigenvalue, 45
 
----
-
-<!-- page 4 -->
 
 Topic Index
 
@@ -695,9 +682,6 @@ random variable, 57–61
 
 convergence, 60
 
----
-
-<!-- page 5 -->
 
 Topic Index
 
@@ -903,9 +887,6 @@ sum, 40
 
 unit, 39
 
----
-
-<!-- page 6 -->
 
 Topic Index
 

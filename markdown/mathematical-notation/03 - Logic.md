@@ -1,8 +1,6 @@
-<!-- page 1 -->
+# Logic
 
-Chapter 3 Logic
-
-### 1. Boolean operations and proof symbols
+## 1. Boolean operations and proof symbols
 
 The mathematical words and, or, not, implies, and so on are often abbreviated with special symbols.
 
@@ -21,11 +19,6 @@ Note that many math relation symbols may be “slashed” to mean that the relat
 - Contradiction. The notation $\Rightarrow\Leftarrow$ indicates a contradiction has been reached in a proof. It is an abbreviation for: “We have reached a contradiction. Therefore the supposition is false.”
 - End of proof. A square $\sqsupset$ (or a filled square $\blacksquare$) is often used to show the end of a mathematical proof. The letters QED are also used; they
 
----
-
-<!-- page 2 -->
-
-§3.2 • Quantifiers
 
 stand for *Quod Erat Demonstrandum* [thus it has been demonstrated]. In class, I use this symbol: $\odot$.
 

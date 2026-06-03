@@ -1,5 +1,3 @@
-<!-- page 1 -->
-
 # Alphabetical Notation Index
 
 Use this index to find notation that is based on a Latin letter (e.g., $\mathcal{L}$ or $\mathbb{R}^n$) or a word formed by Latin letters (e.g., det). Use the Greek index (page 77) to find notation based on Greek letters and use the Chart (page 69) to find other notation. Finally, use the Topic Index (page 79) to find concepts by keyword.
@@ -62,11 +60,7 @@ GL_n, 46
 glb, 8
 grad, 51, 53
 
----
 
-<!-- page 2 -->
-
-74
 Alphabetical Notation Index
 
 H, 30, 51
@@ -167,12 +161,8 @@ tanh, 28
 tr, 43
 Uₙ(x), 34
 
----
-
-<!-- page 3 -->
 
 Alphabetical Notation Index
-75
 
 Var, 58
 
@@ -186,17 +176,8 @@ $\mathbb{Z}[i]$, 19
 
 $\mathbb{Z}_n$, $\mathbb{Z}/n\mathbb{Z}$, $\mathbb{Z}/(n)$, 18
 
----
 
-<!-- page 4 -->
-
-.
-
----
-
-<!-- page 5 -->
-
-# Greek Notation Index
+## Greek Notation Index
 
 Use this index to find notation that is based on Greek letters. See also Figure 1.1 (on page 2) for a table of the Greek alphabet in its entirety.
 
@@ -247,11 +228,3 @@ $\Sigma ,8,58$
 $\tau ,23$
 
 $\phi ,22,33,60$
-
-77
-
----
-
-<!-- page 6 -->
-
-.

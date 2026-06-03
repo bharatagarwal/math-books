@@ -1,5 +1,3 @@
-<!-- page 1 -->
-
 # Chart
 
 The following table is an index of all the notation we have considered. We give both the page numbers on which the symbols are discussed and the LATEX commands² for producing those symbols.
@@ -35,9 +33,6 @@ The following table is an index of all the notation we have considered. We give 
 3Requires the undertilde package.
 4Requires the harpoon package.
 
----
-
-<!-- page 2 -->
 
 Chart
 
@@ -85,9 +80,6 @@ Chart
 | \ | 7 | \setminus |
 | ∧,∨ | 8, 11, 18 | \wedge, \vee |
 
----
-
-<!-- page 3 -->
 
 Chart
 
@@ -124,9 +116,6 @@ Chart
 |  P | 61 | \buildrel{P}\over{\longrightarrow}  |
 |  a.s. | 61 | \buildrel{\text{a.s.}}\over{\longrightarrow}  |
 
----
-
-<!-- page 4 -->
 
 Chart
 
