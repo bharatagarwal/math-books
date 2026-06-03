@@ -6,6 +6,8 @@
 
 There are two topics I want to discuss in this chapter that don't fit elsewhere in the progression of the book. First, on how the organizational structure of a proof can guide the reader's attention. Second, on equivalence relations and quotients, the standard abstraction for building and representing complicated mathematical spaces. Both are new ways to reduce reader's cognitive burden by hiding technicalities. The latter will also prepare us for the use of equivalence relations through the rest of the book.
 
+## Tail Call Optimization for Proofs
+
 In Chapter 8 we worked entirely with functions whose type signature was $\mathbb{R}\to\mathbb{R}$. Although we only intuitively understood the formal notion of 'continuity'—the fact that the graphs of these functions formed contiguous curves when plotted—we concentrated intently on the interplay between the algebra (computing limits, derivatives, and using Taylor series) and geometry (the intrinsic qualitative shapes of curves). There is much more to be said for single-variable calculus. One of the most common uses of calculus is to tune parameters of some process. For example, a car manufacturer tunes how many of each car model to manufacture based on their costs and sales figures. Another example is an algorithm that fails with some measurable probability—or whose output quality degrades—depending on a tunable parameter.
 
 The recipe for doing this is taught in most undergraduate calculus courses. It reduces the optimal parameter choice from a continuum of options to a discrete set to check by hand. Define $f:\mathbb{R}\to\mathbb{R}$ whose input is the parameter of interest, and whose output you'd like to minimize (maximizing is analogous).
@@ -18,6 +20,8 @@ The analysis of an algorithm using the above recipe is so routine that authors s
 
 The core of the proof is the primary focus. It requires all your working memory. Optimizing a parameter using standard tools is easy once you've done it enough times. Leaving it to the end compartmentalizes the two jobs. Big picture comprehension first, and rote computation last. Indeed, the ability to maximize an elementary function rarely depends on memory of how you created that function, so why not shed a few mental stack frames while you do the real work?
 
+## Guiding Attention with Theorem Structure
+
 This is also a justification for why one might write the statement of a theorem like we did in the last chapter.
 
 ###### Theorem (Convergence of Netwon's Method).
@@ -27,6 +31,8 @@ For every $k\in\mathbb{N}$, the error $e_{k+1}\leq Ce_{k}^{2}$, where $C$ is a c
 $$C=\max_{c\leq z,y\leq d}\frac{|f^{\prime\prime}(z)|}{2|f^{\prime}(y)|}$$
 
 The value of $C$, while it needs to be defined somewhere, is not crucially important to the first-glance understanding of the statement of the theorem. The big picture is that the error vanishes quadratically as opposed to linearly. The coefficient itself can be defined afterwards to emphasize the separation of concerns between the quadratic error rate and the exact data guiding the error. In Chapter 5, we emphasized how overloading notation with context can help reduce cognitive overload. Here the organizational structure of the formula contributes. It guides the reader's focus by placing the interesting part first.
+
+## Equivalence Relations and Quotients
 
 Now let's move on to discuss two technical tools for making complicated types (realized as sets): equivalence relations and quotients.
 
@@ -42,7 +48,11 @@ In your mind you can replace $f(a,b)=1$ with "$a$ and $b$ are equivalent." A mor
 
 To define an equivalence relation is to say, "Here are the terms by which I want to think of different things as the same." We are essentially overloading equality with a specific implementation. As long as the equivalence relation satisfies these three properties, you rest assured it has the most important properties of the equality operator.
 
+### Equivalence Classes and Partitions
+
 Let's do a simple example with $\mathbb{R}$. Let $a\sim b$ if $a-b\in\mathbb{Z}$, and $a\not\sim b$ otherwise. Check that this indeed satisfies the three properties of an equivalence relation. This equivalence relation declares that $-1/2,1/2,3/2,5/2$ are all equivalent, as are $-2,-1,0,1,2$. But $1/2$ is not equivalent to $1$. We call the set of all things equivalent to one object an *equivalence class*. So in this case $\mathbb{Z}$ is an equivalence class, as is the set of half-fractions $\{\ldots,-3/2,-1/2,1/2,3/2,\ldots\}$. An exercise to the reader: show that given a set $X$ and an equivalence relation $\sim$, the equivalence classes partition $X$ into disjoint subsets—i.e., every $x\in X$ is in exactly one equivalence class. No two classes may overlap. For this reason, an equivalence relation is also called a *partition*.
+
+## Quotients: Enforcing Equivalence as Equality
 
 An equivalence relation allows us to do math in a world (on a set) in which an equivalence relation is enforced as equality. This world is the quotient.
 
@@ -60,6 +70,8 @@ $$
 
 Curious plants spring from fertile soil. In this world $[1+1]=[0]$, and a sequence which diverges in $\mathbb{R}$ converges here: $x_{n}=\left[\frac{2n+1}{2}+\frac{1}{n}\right]$.
 
+## The Circle as a Quotient of the Reals
+
 $\mathbb{R}/\sim$ inherits operations from $\mathbb{R}$, as if $\mathbb{R}/\sim$ were a wrapper class encapsulating $\mathbb{R}$. Define $[x]+[y]$ to be $[x+y]$ for any representatives $x,y$. We must prove this definition is well-defined, i.e., that any chosen representatives result in the same operation. We need to show that if $x\sim x'$ and $y\sim y'$, then $x+y\sim x'+y'$. Indeed, $(x+y)-(x'+y')$ is an integer because $(x-x')$ and $(y-y')$ both are. Note you cannot say the same of multiplication (find a counterexample!).
 
 We can also think of $\mathbb{R}/\sim$ geometrically. Imagine standing at 0 on $\mathbb{R}$ and walking in the positive direction, say, following a sequence $x_{n}=0.001n$. On $\mathbb{R}$ you increase unboundedly. When we pass to the quotient, you cycle every thousand steps. This is an animated way to see that $\mathbb{R}/\sim$ is geometrically a circle. In fact, we can design a nice bijection that makes this formal. Call $C=\{(\cos(\theta),\sin(\theta)):0\leq\theta<2\pi\}$. Define $f:\mathbb{R}/\sim\to C$ by $f([t])=(\cos(2\pi t),\sin(2\pi t))$. Prove that $f$ is well-defined (doesn't depend on the choice of which member of $[t]$ you choose), and a bijection.
@@ -68,6 +80,8 @@ This example generalizes nicely. Given a surjective function $f:X\to Y$, define 
 
 Nevertheless, equivalence relations will be meaningful even in less technical settings, such as vector spaces (Chapter 10) and groups (Chapter 16). There the structure of the function defining the relevant equivalence relations are *algebraic* in nature. This is all to explain the primary tool mathematicians use to assert that they want to consider two different things to be the same in a principled manner. You override equality, show it meets standards of decency, and then introduce it to your friends.
 
+## Associativity of Products and Modular Arithmetic
+
 We can now make the "ignoring" of nested pairs in the set product rigorous. Define the sets
 
 1. $L=(A\times B)\times C=\left\{\left((a,b),c\right):a\in A,b\in B,c\in C\right\}$ (left grouping)
@@ -75,6 +89,8 @@ We can now make the "ignoring" of nested pairs in the set product rigorous. Defi
 3. $Z=\left\{\left(a,b,c\right):a\in A,b\in B,c\in C\right\}$ (no grouping)
 
 Now define an equivalence relation on $L\cup R$ so that $(a,(b,c))\sim\left((a^{\prime},b^{\prime}),c^{\prime}\right)$ if and only if $a=a^{\prime},b=b^{\prime},c=c^{\prime}$. The resulting quotient $(L\cup R)/\sim$ is in bijective correspondence with $Z$.
+
+### Modular Arithmetic as a Quotient
 
 Another useful example is when working with modular arithmetic. Working in $\mathbb{Z}$, define $a\sim_{n}b$ if, to use programming syntax, `a % n == b % n`. Equivalently, $a\sim_{n}b$ if and only if $a-b$ is a multiple of $n$. The quotient space for this equivalence relation is called $\mathbb{Z}/n\mathbb{Z}$ (where $n\mathbb{Z}$ is a shorthand for multiples of $n$; we'll revisit this in Chapter 16). The equivalence relation $\equiv$ for modular arithmetic is usually denoted with an operator paired with "mod $n$," as in $a\equiv b\mod n$.
 

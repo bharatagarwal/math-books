@@ -8,11 +8,15 @@
 >
 > – Alfréd Rényi
 
+## How You Eat Corn Reveals Your Mathematical Soul
+
 There is a fascinating bit of folk lore, which as far as I know originated with a 2010 blog post of Ben Tilly, that you can tell what type of mathematician you are by how you eat corn on the cob. It turns out there are multiple ways to eat corn, and they are roughly grouped as "eat in rows like a typewriter, left to right," and "eat in a spiral, teeth scraping the corn into your mouth."
 
 The corresponding two types of mathematicians are roughly grouped as algebraists and analysts. An algebraist, as we'll see in Chapters 10, 12, and 16, supposedly prefers orderliness and working with the inherent structure of the corn cob. Analysis, the topic of Chapters 8, 14, and 15, alternatively prioritizes efficiency, approximation, and getting the job done. One's underlying preference apparently explains both the choice of a mathematical domain of study, and the less conscious choice of how to eat corn.
 
 According to Tilly, who surveyed 40-ish mathematicians and received countless more self-selected responses via the internet, corn eating predicts mathematical preference with surprising accuracy. Since his post, this observation has become a bit of folk lore that reinforces the idea that mathematics has many subcultures organized around preference and character.
+
+## Problem Solving Versus Theory Building
 
 One of the more prominent distinctions is the concept described by mathematician Tim Gowers and others, between mathematicians who prioritize *problem solving* versus those who prioritize *theory building*. As the quotes at the beginning of the chapter emphasize, these are very different styles of doing mathematics. Gowers defines them via example in a 2000 essay:
 
@@ -22,6 +26,8 @@ One of the more prominent distinctions is the concept described by mathematician
 > 2. The point of understanding mathematics is to become better able to solve problems.
 >
 > Most mathematicians would say that there is truth in both (1) and (2). Not all problems are equally interesting, and one way of distinguishing the more interesting ones is to demonstrate that they improve our understanding of mathematics as a whole. Equally, if somebody spends many years struggling to understand a difficult area of mathematics, but does not actually do anything with this understanding, then why should anybody else care?
+
+## Erdos: Another Roof, Another Proof
 
 The Hungarian mathematician Paul Erdős was a pillar of the problem solving camp. Though this short essay could not possibly do justice to his outlandish life story, I will try to summarize. Erdős is the most prolific mathematician in history, by count of papers published (over 1500). He was able to do this because he renounced every aspect of life beyond mathematics. He had no home, and lived out of a suitcase while traveling from university to university. At each stop, he would show up, knock on the department chair's office door, and be provided housing and food by an attendant professor. In the subsequent weeks, Erdős and his host would work on problems and usually publish a paper or two, until such time as Erdős decided to move on to his next host. As Erdős said, "Another roof, another proof." He never married and had no children.
 
@@ -37,6 +43,8 @@ Indeed, as Tim Gowers writes, graph theory tends not to benefit from extensive t
 
 > At the other end of the spectrum is, for example, graph theory, where the basic object, a graph, can be immediately comprehended. One will not get anywhere in graph theory by sitting in an armchair and trying to understand graphs better. Neither is it particularly necessary to read much of the literature before tackling a problem: it is of course helpful to be aware of some of the most important techniques, but the interesting problems tend to be open precisely because the established techniques cannot easily be applied.
 
+## Atiyah and the Primacy of Ideas Over Proofs
+
 Michael Atiyah is Gowers's example of a theory builder. Theory builders focus on the conceptual unity of mathematics, and on connecting disparate subjects and identifying their commonalities. Atiyah even argues against my claims in this book, that proof is not necessarily central to mathematics. From Atiyah's essay, "Advice to a Young Mathematician."
 
 > It is a mistake to identify research in mathematics with the process of producing proofs. In fact, one could say that all the really creative aspects of mathematical research precede the proof stage. To take the metaphor of the "stage" further, you have to start with the idea, develop the plot, write the dialogue, and provide the theatrical instructions. The actual production can be viewed as the "proof": the implementation of an idea.
@@ -48,6 +56,8 @@ Michael Atiyah is Gowers's example of a theory builder. Theory builders focus on
 > Proof is the end product of a long interaction between creative imagination and critical reasoning.
 
 I interpret this in more of a metaphysical sense than a literal sense; one needs to know what questions are worth asking before one can provide a proof answering them. For whatever reason, Atiyah doesn't consider the validations or refutations of these initial ideas as "proofs" in the formal sense.
+
+## Grothendieck: Rewriting the Foundations Until Theorems Become Trivial
 
 One person who might be said to be the stylistic antithesis to Paul Erdős is the French mathematician Alexander Grothendieck. He also lived a curiously eccentric lifestyle involving radical anti-military politics and an eventual self-exile to a small village in Southern France. Grothendieck declined various prizes for his life's work, and decried the mathematical establishment as being obsessed by status to the point of intellectual bankruptcy. Toward the end of his life he also turned to mysticism and spiritualism, almost starving himself to death via unusual diets and fasting.
 
@@ -61,11 +71,15 @@ Mathematicians David Mumford and John Tate wrote about Grothendieck,
 
 Grothendieck's ideas were to find out what theorems are important, and then rewrite the basic definitions of mathematics until those theorems become completely trivial. In his mind, a theory is powerful only insofar as what it makes obvious. A radical conviction indeed!
 
+## Intuition and Logic Within a Single Field
+
 Subcultures and styles go beyond theory-building/problem-solving and algebra/analysis. Even within a single subfield such as geometry, mathematicians can have entirely different styles. Henri Poincaré remarks in his essay, "Intuition and Logic in Mathematics,"
 
 > Among the German geometers of this century, two names above all are illustrious, those of the two scientists who have founded the general theory of functions, Weierstrass and Riemann. Weierstrass leads everything back to the consideration of series and their analytic transformations; to express it better, he reduces analysis to a sort of prolongation of arithmetic; you may turn through all his books without finding a figure. Riemann, on the contrary, at once calls geometry to his aid; each of his conceptions is an image that no one can forget, once he has caught its meaning.
 
 We'll see the two sides of this analytic/geometric coin in the forthcoming chapters: the view that geometric ideas should be studied using series is how we will approach Calculus in Chapter 8 (and to a lesser extent Chapter 14), while the geometric view is the heart of the study of hyperbolic geometry in Chapter 16. These could have easily been swapped, with geometric ideas founding calculus and analytic ideas underlying hyperbolic geometry.
+
+## A Spectrum, Not a Binary
 
 As with most "classifications" of things, the problem-solving and theory-building groups, along with the algebra/analysis divide, are neither wholly distinct nor discrete. Styles fall along a spectrum, depending on the occasion and whether one has had a full breakfast. Whether Poincaré, Mumford, Atiyah, or Tilly, the mathematical universe is as varied in attitudes and preferences as any other community, and mathematics reaps the benefits of diversity.
 

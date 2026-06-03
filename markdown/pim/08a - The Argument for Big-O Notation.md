@@ -4,6 +4,8 @@
 >
 > – Donald Knuth
 
+## The Interview Question and the Real Job
+
 Big-O notation is a common plight of programmers seeking a job at a top-tier software company. It can feel extremely unfair to be rejected from a job for not being able to rattle off the big-O runtime of an algorithm, despite being able to implement that algorithm on the spot on a whiteboard. It's a loathsome feeling conspicuously detached from the job.
 
 As we've discussed, the bulk of software is bookkeeping, moving and reshaping data to adhere to APIs of various specifications, and doing this in a way that's easy to extend and maintain. The ever-present specter of software is the fickle user who thinks they know what they want, only to change their mind when you finish implementing it. Big-O analysis doesn't seem to play a part in that struggle.
@@ -12,9 +14,13 @@ One should try to see the other side of the coin as well. Often an interviewer d
 
 Among the simplest things one could possibly ask is what part of the algorithm you just wrote is the bottleneck at scale. To do that, you have to walk a fine line between being precise and vague. Define the quantities of interest—whether they're joins in a database query or sending data across a network—and the simplifying assumptions that make it possible to discuss in principle. You also have to sweep an immense amount of complexity under the rug. Maybe you'll ignore problems that could occur due to multithreading, or the overhead of stack frame management incurred by splitting code into functions in just such a way, or even ignore the *benefits* of helpful compiler optimizations and memory locality, when the application doesn't depend on it.
 
+## The Precision-Vagueness Tradeoff
+
 In dealing with this, we weigh the consequences of a double-edged sword. Be too precise and you drown in a sea of details. It becomes impossible to have a discussion with principled arguments and reasonable conclusions. On the other hand, be too vague and you risk invalid conclusions, leading to wasted work and worse software. Like we did with waves on a string in Chapter 12, even if we know we're ignoring certain details, we want to understand the dominant behavior of the system—the aspects we care about—while ignoring the complexities that prevent us from gaining a deeper understanding.
 
 Few tools in computer science help one balance on the tightrope. We have experimental measurements, tests against historical data, and monitoring on live data. But these are tools designed for incrementalism. For most big decisions, such as designing a new database, data structure, operating system, or a truly novel product—as companies like Google, Amazon, Facebook, and Microsoft have done many times—the investment required for a redesign requires strong and principled justification. No users exist yet, nor does any usage data.
+
+## Big-O as a Language for Tradeoffs
 
 Mathematics provides an abstraction that helps one, as Knuth says, be sloppy in a precisely controlled way. The abstraction is big-O notation, along with its cousins little-o, big-$\Omega$ and little-$\omega$, and big-$\Theta$.[^omega] Together they are called *asymptotic notation*. Big-O notation is a language in which to phrase tradeoffs, compare critical resource usage, and measure things that scale.
 
@@ -26,7 +32,9 @@ Of course, like any tool big-O is not a panacea. Often one needs to peek behind 
 
 So in this short chapter I'll introduce big-O notation, describe some of its history, show how it simplifies some of the calculations in this book, and then describe some of my favorite places where big-O takes center stage.
 
-### History and Definition
+## History and Definition
+
+### Origins and the Taylor Series Connection
 
 The original use of big-O notation was by Landau and Bachmann in the 1890's for approximating the accuracy of function approximations at a point. The $O$ notation was chosen because $O$ stands for "Order" (more precisely, the German *Ordnung*). Big-O notation is meant to replace an expression with its order of magnitude. It was a particularly popular notation in number theory. It was not until mid-century 1900's that big-O found its way to computer science, in part because computer science had to be invented. Donald Knuth opens a 1976 essay with, "Most of us have gotten accustomed to [big-O notation]," and goes on to formalize it and introduce lower-bound analogues.
 
@@ -40,6 +48,8 @@ $$\sin(x)=x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}-\frac{x^{7}}{7!}+\frac{x^{9}}{9!}-
 
 Big-O says the $x^{3}$ terms and smaller are dominated by the $x$ term. What's unspoken here is what "dominates" means. In the analysis of algorithms, "dominates" usually means an upper bound as the size of the input grows larger. But here nothing is growing! Instead, here the big-O notation implies a limit $x\to 0$. I.e., when $x$ shrinks, $x^{3}$ vanishes much faster than $x$. The formal definition is as a limit.
 
+### The Formal Definition
+
 **Definition 15.1.** Let $a\in\mathbb{R}$ and let $f,g:\mathbb{R}\to\mathbb{R}$ be two functions with $g(x)\neq 0$ on some interval around $a$. We say $f(x)=O(g(x))$ as $x\to a$ if the limit of their ratios does not diverge.
 
 $$\lim_{x\to a}\left|\frac{f(x)}{g(x)}\right|<\infty$$
@@ -52,6 +62,8 @@ $$\lim_{x\to a}\left|\frac{f(x)}{g(x)}\right|=C,$$
 
 and so there is some interval around $a$ so that $|f(x)|\leq(C+1)|g(x)|$. Indeed, $|f(x)|\leq D|g(x)|$ for some constant $D$, so long as $x$ is near the point of interest.
 
+### Algebraic Properties and the Meaning of "="
+
 This notation satisfies some straightforward properties that allows one to do algebra with big-O quantities. Their proofs are straightforward from Definition 15.1 and standard properties of limits. In each of these, assume that the expressions inside the big-O are nonzero on some interval around $a$.
 
 1. $f=O(f)$ for any $f$.
@@ -60,6 +72,8 @@ This notation satisfies some straightforward properties that allows one to do al
 4. $f+f=O(f)$, and moreover $Cf=O(f)$ for any constant $C$.
 
 Take care, because when we say $f=O(g)$, the symbol $=$ doesn't mean equals in the usual sense. For example, it's not symmetric or transitive; $x^{3}=O(x)$ and $x^{2}=O(x)$ as $x\to 0$, but $x^{3}\neq x^{2}$. When someone uses big-O notation like $f=O(g)$, it's best to read $=$ as "is," and then the sentence makes sense: "$f$ is (at most) order of $g$." Moreover, when we include $O(g(x))$ in the context of some larger expression, like $\sin(x)=x+O(x^{3})$, what we mean is that $\sin(x)=x+f(x)$ for some $f(x)=O(x^{3})$. Fluent use of big-O involves "native support" for this implicit association in your head, which can take to get used to.
+
+## Simplifying a Product of Series
 
 Continuing with the example of $\sin(x)$, say we wanted an estimate of $\sin(x)\sqrt{1+x^{2}}$. Recall from the "Application: Waves" section that the Taylor series for $\sqrt{1+x^{2}}$ is
 
@@ -80,6 +94,8 @@ $$\begin{aligned}
 
 In particular, this makes rigorous the idea that "($x+$ something small), multiplied by ($1+$ something small), is still ($x+$ something small)." It's the kind of reasoning that one sees in physics books all the time, but instead of using the mathematically valid big-O, they say "we'll ignore this term" or "assume this term is zero." Being sloppy in this uncontrolled way can result in unforeseeable errors. Missing error terms can get combined in ways that the combination of the error is of the same order of magnitude as the term you care about. With big-O, error terms are still present, but they're present in a way that doesn't complicate calculations too much more. When two terms get combined, you're forced to ask if the combined error is too big. The interface helps prevent careless mistakes. Following one of the major themes of this book, it reduces both the cognitive load of doing algebra, and the cognitive load of keeping track of error terms.
 
+## Extending to Infinite Limits
+
 We can extend this notation to infinite limits:
 
 **Definition 15.2.** Let $f,g:\mathbb{R}\to\mathbb{R}$ be two functions with $g(x)\neq 0$ for all sufficiently large $x$. We say $f(x)=O(g(x))$ as $x\to\infty$ if the limit of their ratios does not diverge.
@@ -90,7 +106,7 @@ With the infinite limit, we're saying $|f(x)|\leq D|g(x)|$ for all sufficiently 
 
 Definitions 15.1 and 15.2 have the same name because they satisfy the same properties. However, the hypotheses of these properties are different. For example, $x^{2}=O_{x\to 0}(x)$ and $x^{3}=O_{x\to 0}(x)$, implying $x^{2}+x^{3}=O_{x\to 0}(x)$. But for infinite limits, $x^{2}\neq O_{x\to\infty}(x)$ and $x^{3}\neq O_{x\to\infty}(x)$. Instead, $x^{2}=O_{x\to\infty}(x^{3})$, $x^{3}=O_{x\to\infty}(x^{3})$, and so $x^{2}+x^{3}=O_{x\to\infty}(x^{3})$.
 
-### Little-o, Omega, and Theta
+## Little-o, Omega, and Theta
 
 There is one other important asymptotic notation known as little-o notation. If big-O is phrased as "less than or equal to," then little-o is "much less than." Formally, instead of the defining limit being finite, for little-o the defining limit is zero.
 
@@ -109,6 +125,8 @@ The rest of the asymptotic notation family is defined by relation to big-O and l
 - Define $f=\Omega(g)$ if $g=O(f)$. This is a big-O "lower bound."
 - Define $f=\omega(g)$ if $g=o(f)$. This is a little-o "lower bound."
 - Define $f=\Theta(g)$ if $f=O(g)$ and $g=O(f)$. This is an asymptotic "equality."
+
+## Derivatives via Big-O
 
 Little-o in particular has some nice uses simplifying calculus. In particular, we can define the derivative entirely in terms of $O$ notation. Donald Knuth is a champion of this approach.
 
@@ -142,9 +160,11 @@ Note that $f'(g(x))$ and $g'(x)$ are constants relative to the little-o, so the 
 
 Half of the work in this book is finding computationally friendly representations of interesting conceptual ideas. In this case big-O allowed us to turn *proofs* into easy computation!
 
-### Algorithm Analysis
+## Algorithm Analysis
 
 Infinite limit big-O notation is a hallmark of algorithm runtime and space analysis. One cares about the runtime of an algorithm as the input size scales. The prototypical example is sorting. If an input list has $n$ fixed-length integers, then BubbleSort has $O(n^{2})$ worst-case runtime, while MergeSort has $O(n\log n)$ worst-case runtime. For this essay we ignore the worst-case/best-case/average-case distinction.
+
+### Independence from Implementation and System Details
 
 To say anything meaningful about which algorithm is better, we want big-O for two reasons. First, just as the interface for a software system shouldn't depend on the implementation, our analysis of the quality of an algorithm shouldn't depend on the fine-grained details of the implementation. If one decides to structure the algorithm as three functions instead of four, the raw runtime will change; extra steps are taken to push stack frames and handle return values! Of course, many engineers spend a lot of important and valuable time studying the fine-grained runtime of time-critical algorithms. There are experts in loop-unrolling, after all. But big-O isn't meant for those situations; rather, it's meant for the life of the system that comes before fine-tuning. Big-O is a first responder to the scene. By the time you're fine-tuning, big-O's job is done.
 
@@ -152,7 +172,11 @@ Second, and closely related, the analysis of the quality of the algorithm should
 
 And so we package those details up into a "constant factor" of overhead, which we accept as the penalty for having principle to guide our decisions. As such, given two algorithms with different big-O runtime, the order of magnitude change inside the big-O is our main focus. When we ask, "can this algorithm be solved any faster?" we don't mean can the constant be improved. Rather, we mean can it be solved an *order of magnitude* faster, ignoring constants and runtime for small inputs.
 
+### The "Just a Constant Factor" Defense
+
 I often hear the complaint, "But what if the constant factor is a billion! Then it's completely useless to use big-O!" Computer scientists are well aware of the possibility that the hidden constant might be absurd. A witty meme, whose origin I can't recall and failed to hunt down, involves the Black Knight of Monty Python and the Holy Grail. This character famously loses his limbs in a sword fight, but refuses to surrender, exclaiming, "It's just a flesh wound!" On this image, the meme superimposes the quote, "It's just a constant factor!" Joking aside, more often than not the constant factors are mere flesh wounds. Constants dominating runtime—i.e., when big-O misleads—is the exception to the rule, and usually a sign of recent, or purely theoretical research. A famous example is the linear-time algorithm for polygon triangulation. This algorithm has a large constant factor, and is so tricky to implement that it has been called "hopeless" by Steve Skiena, the author of "The Algorithm Design Manual."
+
+## Beyond Runtime: Other Constrained Resources
 
 We've established that big-O can be used to measure things beyond algorithm runtime and space usage, like the quality of an approximation. Indeed, big-O can be used to discuss the usage of *any* constrained resource. For Taylor series the resource is "deviation from the truth," but in computer science there are a whole host of other things that big-O is used to analyze.
 

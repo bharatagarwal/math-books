@@ -12,6 +12,8 @@ As the application for this chapter, we'll write a neural network from scratch. 
 
 ## Generalizing the Derivative
 
+### Why the Naive Extension Fails
+
 Let's start with our fond memories of single-variable calculus. Recall Definition 8.6 of the derivative of a single-variable function.
 
 **Definition 14.1.** Let $f:\mathbb{R}\rightarrow\mathbb{R}$ be a function. Let $c\in\mathbb{R}$. The derivative of $f$ at $c$, if it exists, is the limit
@@ -34,6 +36,8 @@ This is exactly the sort of claim worth confirming numerically before trusting i
 
 We are right to be suspicious. With multiple variables, the underlying idea of "steepness" now inherently depends on direction. This is something one intuitively understands from the natural world; a hiker traverses switchbacks to avoid walking straight up a hill, and a skier skis in an S shape to slow down their descent. In fact, for $f(x_{1},x_{2})=-x_{2}^{2}$, and standing at the point $(1,1)$, every direction provides a slightly different slope.
 
+### The Directional Derivative
+
 This suggests one intuitive way to generalize the one-dimensional definition of the derivative: parameterize by the direction of approach.
 
 **Definition 14.2.** The directional derivative of a function $f:\mathbb{R}^{n}\to\mathbb{R}$ at a point $c\in\mathbb{R}^{n}$ in the direction of a unit vector $v\in\mathbb{R}^{n}$ is the limit
@@ -53,6 +57,8 @@ On this surface at $(0,0)$, the directional derivative exists in every direction
 As we'll see soon, a stronger derivative definition avoids these issues. It will provide a linear map representing the whole function, and applying linear algebra produces the directional derivative in any direction. Being linear algebra, we may choose a beneficial basis, though I haven't yet made it clear what the vector space in question is. That will come as we refine what the right definition of "the" derivative should be.
 
 ## Linear Approximations
+
+### From Derivative to Linear Map in One Dimension
 
 For dimension 1, the derivative of $f$ had the distinction of providing the most accurate line approximating $f$ at a point. The line through $(c,f(c))$ with slope $f'(c)$ is closer to the graph of $f$ near $c$ than any other line. We proved this in detail in Theorem 8.11.
 
@@ -83,6 +89,8 @@ $$\lim_{x \rightarrow c} \frac{f(x) - f(c)}{x - c} - \lim_{x \rightarrow c} \fra
 
 $\blacksquare$
 
+### The Total Derivative for Multivariable Functions
+
 I spell this out in such detail because the existence of a linear approximator (an affine linear function satisfying 14.4) becomes a definition for functions $\mathbb{R}^n\to \mathbb{R}$.
 
 **Definition 14.5.** Let $f: \mathbb{R}^n \to \mathbb{R}$ be a function. We say $f$ has a total derivative at a point $c \in \mathbb{R}^n$ if a linear map $A: \mathbb{R}^n \to \mathbb{R}$ exists such that the affine linear function defined by $L_c(x) = A(x - c) + f(c)$ (which depends on $A$) satisfies
@@ -101,6 +109,8 @@ Geometrically in two dimensions, the linear approximation defines a plane touchi
 
 The computational centerpiece of Definition 14.5 is the linear map $A$. It helps conceptually to isolate $A$ and ignore the shifting by $c$ and $f(c)$ in a principled manner. Let's do this now. We want to make the linear map $A$ the focus of our analysis, and here's how we'll do that. For every point $c \in \mathbb{R}^n$, we "attach" a copy of the vector space denoted $T_f(c) = \mathbb{R}^n$ to $(c, f(c))$, and we call it the tangent space of $f$ at $c$. The tangent space is the set of inputs to $A$. Because we view $T_f(c)$ as "attached" to $f$ at $(c, f(c))$, as in Figure 14.4, we declare the tangent space's origin to be $(c, f(c))$. From that perspective, the linear approximation of $f$ at $c$ is just a linear map $T_f(c) \to \mathbb{R}$, without the shifting by $c$ and $f(c)$.
 
+### Concrete Examples and the Tangent Space
+
 It's worthwhile to do some concrete examples. First in one dimension, then in three. For single-variable functions $f:\mathbb{R}\to\mathbb{R}$, at every point $c$ the tangent space is a one-dimensional vector space. The vectors in the vector space represent left/right deviations of the input of $f$ from $c$, and the linear map $A$ describes the approximate change in $f$ due to this deviation. As an example, let $f(x)=2+\sqrt{x+2}$ and consider the point $(c,f(c))=(2,4)$. The derivative of $f$ is $1/(2\sqrt{x+2})$, which evaluates to $1/4$ at $c=2$. Thus, the tangent space $T_{f}(2)$ is a copy of $\mathbb{R}$, and the total derivative at $c=2$ is $A(x)=\frac{1}{4}x$. The affine linear map is $L(x)=\frac{1}{4}(x-2)+4$.
 
 In three dimensions, let $f(x,y,z)=x^{2}+(y-1)^{3}+(z-2)^{4}$ and let $c=(3,2,1)$. The tangent space $T_{f}(c)=\mathbb{R}^{3}$, and so the total derivative $A:\mathbb{R}^{3}\to\mathbb{R}$ has three-dimensional inputs. We won't learn how to compute this map from the definition of $f$ until the "Computing the Total Derivative" section, so for now we give the answer magically; it's the following $1\times 3$ matrix:
@@ -112,6 +122,8 @@ And as a result
 $$\begin{aligned}L(x,y,z)&=A(x-3,y-2,z-1)+f(3,2,1)\\&=6(x-3)+3(y-2)-4(z-1)+11.\end{aligned}$$
 
 Many elementary calculus books have students compute this ("the equation of the plane tangent to the surface of $f$") as something of an afterthought, ignoring that it is the conceptual centerpiece of the derivative. Next we turn to some questions of consistency of the definition of the total derivative.
+
+### Uniqueness of the Total Derivative
 
 **Proposition 14.6.** The total derivative is unique.
 
@@ -172,6 +184,8 @@ The chain rule is an extremely useful tool, and despite being abstract, it lands
 
 ## Computing the Total Derivative
 
+### The Total Derivative as a Row of Directional Derivatives
+
 Back to single-output functions, recall the total derivative at a point $c$ is a linear map $A: \mathbb{R}^n \to \mathbb{R}$, where the domain represents deviations from $c$. If we want to compute a matrix representation, a natural goal is to find a basis for which $A$ is easy to compute. We'll do this, and arrive at a matrix representation for $A$ (depending on $c$), by computing a small number of directional derivatives. First we'll show that the total derivative is closely related to directional derivatives.
 
 **Theorem 14.10.** Let $f: \mathbb{R}^n \to \mathbb{R}$ be a function with a total derivative at a point $c \in \mathbb{R}^n$. Let $\{v_1, \ldots, v_n\}$ be an orthonormal basis for $\mathbb{R}^n$, and recall that $\operatorname{Dir}(f, c, v)$ is the directional derivative of $f$ at $c$ in the direction of $v$. The matrix representation of the total derivative of $f$ with respect to the basis $\{v_1, \ldots, v_n\}$ is the $1 \times n$ matrix
@@ -199,6 +213,8 @@ Theorem 14.10 provides two pieces of insight. The first is that the directional 
 
 See the exercises for a deeper dive.
 
+### Partial Derivatives and the Standard Basis
+
 The second insight is that we can compute *any* directional derivative easily by first computing a small number of directional derivatives—one for each basis vector—and then simply projecting onto the direction of our choice. This projection is precisely the inner product with the vector of directional derivatives, or, for multiple output variables, the corresponding matrix multiplication. Projection works because it coincides with the way to express a vector in terms of an orthonormal basis (Proposition 12.15).
 
 Speaking in terms of general bases is fine, and on occasion you'll find derivatives are easier to compute with a clever change of coordinates. However, it's usually easiest to use the same, simple basis: each basis vector is the standard basis vector for $\mathbb{R}^{n}$, and is denoted $dx_{i}$. This vector represents a change in a single input variable while leaving all others constant. If you have names for your variables, like $f(x,y,z)=x^{2}y+\cos(z)$, then you would use $dx$, $dy$, and $dz$. When we do examples, we'll stick to using $x_{i}$ and $dx_{i}$.
@@ -206,6 +222,8 @@ Speaking in terms of general bases is fine, and on occasion you'll find derivati
 The standard basis is so useful because it allows one to define an easy computational rule of thumb. For a directional derivative for basis vector $dx_{2}$, you may consider all variables except $x_{2}$ to be constants, and then apply the same rules for single-variable derivatives to the function considered just as a function of $x_{2}$. If it helps, you can imagine a "curried" function $f(x_{1},x_{2},x_{3})=f(x_{1},x_{3})(x_{2})$, the former part of which closes over the fixed choices of values for $x_{1},x_{3}$. The values of $x_{1},x_{3}$ are fixed, but unknown at the time of derivative computation, and what's left is a single-variable function of $x_{2}$. As an example with $f(x_{1},x_{2},x_{3})=x_{1}^{2}x_{2}+\cos(x_{3})$, we have $\mathrm{Dir}(f,c,dx_{1})=2c_{1}c_{2}$. You will prove the mathematical validity of this rule in the exercises, but I suspect most readers have seen it and used it before.
 
 The directional derivative along a standard basis vector—i.e., with respect to a single variable—has a special name: the *partial derivative* with respect to that variable. This is denoted using the $\partial$ sign (which I have always spoken "partial," or just "d") as $\partial f/\partial x_{2}$, which is read, "the partial derivative of $f$ with respect to $x_{2}$." In the same way that single variable derivatives $f'$ are typically written in the same variables as $f$ (i.e., using $x$ instead of $c$), the example above can be written as $\partial f/\partial x_{1}=2x_{1}x_{2}$. One refers to the *operation* of taking a partial derivative with respect to $x$ by the function named $\frac{\partial}{\partial x}$, with the juxtaposition of the $f$ in the numerator taking place of the standard parenthetical function application. Mathematicians have built up a hodgepodge of notations throughout history for this. In part, it's because parentheses are slow to write on a chalkboard—though they are easy for computers to parse, every new Lisp (or Scheme, or Racket) programmer discovers they're hard for humans to read unless formatted just so. In part, it's because mathematicians don't always want to think of derivatives as functions. Sometimes they want to highlight a different aspect, such as the vector structure. A mess of Lisp-y parentheses would not fit nicely in an inner product or summation. Syntactic sugar is a strong incentive.
+
+### The Gradient and Directional Derivatives via Inner Products
 
 When your chosen basis is the standard basis for each variable, the resulting total derivative matrix $Df$ is called the *gradient* of $f$, denoted $\nabla f$. The symbol $\nabla$ is often spoken "grad," and officially called a "nabla." We'll discuss the gradient in more detail below, because the gradient has a useful geometric property.
 
@@ -237,6 +255,8 @@ This notation has the advantage that you can use it while still hating linear al
 
 ## The Geometry of the Gradient
 
+### Projections and the Cauchy-Schwarz Inequality
+
 Next we study the geometry of the gradient. Henceforth, when we say "differentiable function" we mean a function with a total derivative, we'll assume all functions are differentiable, and we'll seamlessly swap between total derivatives, directional derivatives, linear maps, and matrices.
 
 Take the gradient $\nabla f$ of a differentiable function $f: \mathbb{R}^n \to \mathbb{R}$, and evaluate it at a concrete point $x \in \mathbb{R}^n$, as we did at the end of the "Computing the Total Derivative" section. The result is an $n \times 1$ matrix whose entries are all concrete numbers, but since we're working with 1-dimensional outputs, the total derivative is also a vector. This vector represents the linear map $\mathbb{R}^n \to \mathbb{R}$ whose input is a "direction to look in" and whose output is how steep the derivative is in that direction. Since $\nabla f$ is derived from $f$, it's natural to ask how the geometry of $\nabla f$ relates to the shape of $f$.
@@ -267,11 +287,15 @@ One is tempted to think this theorem is amazing (it is), but in light of our lin
 <!-- include: code/pim/08 - Multivariable Calculus and Optimization/03_steepest_ascent.py -->
 ```
 
+### Level Curves and the Path to Optimization
+
 We can exploit this further. A level curve of $f$ at $c$ is the set of constant-height inputs $\{(x,f(x)):f(x)=f(c)\}$, like the topographic altitude lines on a map. For a differentiable function, the gradient at $c$ is perpendicular to the vector pointing along the level curve at $c$. If $v$ is a direction on the level curve, then the value of $f$ doesn't change in that direction, so $0=\operatorname{Dir}(f,c,v)=\langle\nabla f,v\rangle$. Such inner products occur when two vectors are perpendicular. This allows us to easily compute level curves.
 
 Since many things in life and science can be modeled using functions $\mathbb{R}^{n}\to\mathbb{R}$, a common desire is to find an input $x\in\mathbb{R}^{n}$ which maximizes or minimizes such a function. For the sake of discussion, let's suppose we're looking for a minimum. Even when a mathematical model $f$ exists for a phenomenon, minimizing it might be algebraically intractable for a variety of reasons. For example, it might involve functions that are difficult to separate, such as trigonometric functions and threshold functions. Alternatively, it might simply be so large as to avoid any human analysis whatsoever, as is often the case with a neural network that has millions of parameters related to labeled data. The rest of this chapter is devoted to understanding how to tackle such situations, and the core idea is to "follow" the direction indicated by the gradient.
 
 ## Optimizing Multivariable Functions
+
+### Critical Points and the Difficulty of Enumerating Zeros
 
 Now we'll use the geometry of the gradient to derive a popular technique for optimizing functions $\mathbb{R}^{n}\to\mathbb{R}$. First, we review the situation for single-variable functions. In Chapter 9 we outlined the steps to solve a one-dimensional minimization problem, which I'll repeat here:
 
@@ -406,6 +430,8 @@ See the exercises for a deeper investigation when $n = 2$.
 
 ## Gradient Descent: an Optimization Hammer
 
+### The Algorithm
+
 As we mentioned, the Hessian provides a sufficient condition to determine if a point is a local min: the gradient is zero and all the eigenvalues of the Hessian are positive. There are two caveats to this. First, the Hessian is expensive to compute. Its size is the square of the size of the gradient. Second, a provable optimum is something of a luxury. Most optimization problems benefit well enough from progressively improving an approximate optimum. Gradient descent does precisely this, and allows you to easily trade off solution quality for runtime.
 
 Informally, gradient descent is the process: "go slowly in the opposite direction of the gradient until the gradient is zero." More formally, choose a stopping threshold $\varepsilon > 0$ and a learning rate $\eta > 0$, and loop as follows.
@@ -421,6 +447,8 @@ This is small enough to write and watch converge. On a tilted 2D bowl whose mini
 <!-- include: code/pim/08 - Multivariable Calculus and Optimization/04_gradient_descent_bowl.py -->
 ```
 
+### Convergence and Practical Limitations
+
 This algorithm can be fast or slow depending on the choice of the starting point and the smoothness of $f$. If $x$ lands in a bowl, it will quickly find the bottom. If $x$ starts on a plateau of $f$, it will never improve. For this reason, one might run multiple copies of this loop, and output the most optimal run. If the inputs are chosen randomly, there's a good chance one avoids the avoidable plateaus.
 
 The bottleneck of gradient descent is computing the gradient. When $f$ is complicated, such as in a neural network, efficient use of the chain rule is the primary tool for making gradient computations manageable. The rest of this chapter is dedicated to doing exactly that.
@@ -428,6 +456,8 @@ The bottleneck of gradient descent is computing the gradient. When $f$ is compli
 One might wonder, if the Hessian gives more information about the curvature of $f$, why not use the Hessian in determining the next step to take? You can! But unfortunately, since the Hessian is often an order of magnitude more difficult to compute than the gradient—and the gradient *already* requires mountains of engineering to get right—it's simply not feasible to do so. And, as you'll get to explore in the exercises, there are alternative techniques that allow one to "accelerate" gradient descent in a principled fashion without the Hessian.
 
 ## Gradients of Computation Graphs
+
+### Decomposing Functions into Simple Pieces
 
 The primary practical use of the chain rule is to allow us to compute complicated derivatives mechanically. In particular, one decomposes a function into a large composition of simple pieces, where the derivative of each piece is known, and applies the chain rule to build up the full derivative from the pieces.
 
@@ -449,6 +479,8 @@ $$\frac{\partial f}{\partial x} = \frac{\partial f}{\partial g} \frac{\partial g
 
 This allows one to use caching to avoid recomputing derivatives over and over again. That's especially useful when there are many dependency branches. In fact, as we'll realize concretely when we build a neural network, the concept of derivatives with branching dependencies is core to training neural networks. To prepare for that, we'll describe the abstract idea of a computation graph and reiterate how the chain rule is computed recursively through such a network.
 
+### Defining Computation Graphs
+
 **Definition 14.20.** Let $G: \mathbb{R}^n \to \mathbb{R}$ be a function. A *computation graph* for $G$ is a directed, acyclic graph[^6] $(V, E)$ with the following properties.
 
 1. There is a set of $n$ vertices identified as *input vertices*.
@@ -465,6 +497,8 @@ If there's an edge $(v, w)$, we say that $v$ is an argument to $w$ and that $w$ 
 A computation graph represents the computation of $G$ by first picking operations at each vertex, then specifying the dependencies of those operations, and adding vertices for the input. "Evaluating" a computation graph at a particular input is the obvious computational process of setting "values" for the input vertices, and following the operations of the graph to produce an output. Such a graph is a circuit in which each "gate" corresponds to the function of your choice.
 
 For us, the operations $f_{v}$ at each vertex will always be differentiable (with one caveat), and hence $G$ will be differentiable, though the definition of a computation graph doesn't require differentiability.
+
+### Reverse-Mode Automatic Differentiation
 
 Now we'll reiterate the chain rule for an arbitrary computation graph. Say we have a programmatic representation of a computation graph for $G$, and somewhere deep in the graph is a vertex with operation $f(a_{1},\ldots ,a_{n})$. We want to compute a partial derivative of $G$ with respect to an input variable that may be even deeper than $f$. Using the chain rule, we'll describe the algorithm for computing the derivative generically at any vertex and then apply induction/recursion. More specifically, at vertex $f$ we'll compute $\partial G / \partial f$ and multiply it by $\partial f / \partial a_{i}$ to get $\partial G / \partial a_{i}$.
 
@@ -998,6 +1032,8 @@ So there we have it! A functioning neural network, built as a computational grap
 
 ## Exercises
 
+### Continuity, Derivatives, and the Total Derivative
+
 **14.1.** A function $f: \mathbb{R}^n \to \mathbb{R}$ is called continuous at a point $c \in \mathbb{R}^n$ if for every $\varepsilon > 0$ there exists a $\delta > 0$ such that whenever $\| x - c \| < \delta$ it holds that $|f(x) - f(c)| < \varepsilon$. Using this definition, show that $f(x, y, z) = x^2 + y^2 + z^2$ is continuous at $(0, 0, 0)$, but that $g(x, y, z) = \frac{xyz}{x^3 + y^3 + z^3}$ (defining $g(0, 0, 0) = 0$) is not continuous at $(0, 0, 0)$. Hint: look at different directions one could approach $(0, 0, 0)$.
 
 **14.2.** Prove the first part of the Cauchy-Schwarz inequality for real vectors, that $|\langle v, w \rangle| \leq (\sum_{i} v_{i})(\sum_{i} w_{i})$, using elementary algebra.
@@ -1016,17 +1052,23 @@ Hint: the same proof works, but the construction of the single-variable function
 
 **14.7.** Prove that the rule for computing partial derivatives by assuming other variables are constant is valid.
 
+### The Hessian and Geometry
+
 **14.8.** Make sense of the Hessian as a linear map.
 
 **14.9.** The gradient of a function $\mathbb{R}^{n}\to\mathbb{R}$ is a vector which points in the direction of steepest ascent of the function, which we investigated via projections. What can be said about the direction of steepest ascent of a multi-output function $\mathbb{R}^{n}\to\mathbb{R}^{m}$ by inspecting its total derivative matrix?
 
 **14.10.** Find and understand a statement of Taylor's theorem for two-variable functions (with an arbitrary number of approximation terms).
 
+### Machine Learning Theory and Practice
+
 **14.11.** Perhaps the most famous theoretical machine learning model is called the *Probably Approximately Correct* model (abbreviated PAC). This model formalizes much of modern machine learning. Given a finite set $X$ (the universe of possible inputs), the PAC model involves a probability distribution $D$ over $X$ used both for generating data and evaluating the quality of a hypothesis. A machine learning algorithm gets as input the ability to sample as much data as it wants from $D$, and its output hypothesis $h$ must have high accuracy on $D$ (hence the name "approximately" in PAC). Since the sampled data is random, the learning algorithm may fail to produce an accurate classifier with small probability. However—and this is the most stringent qualification—in order for a learning algorithm to be considered successful in the PAC model, it must provably succeed *for any* distribution on the data. If the distribution is uniformly random or focused on just a small set of screwy points, a valid "PAC learner" must be able to adapt. Look up the formal definition of the PAC model, find a simple example of a problem that can be PAC-learned, and read a proof that a successful algorithm does the trick.
 
 **14.12.** Another important learning model involves an algorithm that, rather than passively analyzing data that's given to it (as in the PAC model of the previous exercise), is allowed to formulate queries of a certain type, an "oracle" (a human) answers those queries, and then eventually the algorithm produces a hypothesis. Such a model is often called an "active learning" model. Perhaps the most famous example is *exact learning with membership and equivalence queries*. Look up a formal definition of this model, and learn about its main results and variations.
 
 **14.13.** Write a program that uses gradient descent to learn linear threshold functions. In particular: write a function that samples data uniformly from the set $[0,1]^{5}\subset\mathbb{R}^{5}$, and labels them (unbeknownst to the learning algorithm) according to their value under a fixed linear threshold function $L_{w,b}$. Design a learning algorithm to learn $w$ and $b$ from the data. That is, determine what the appropriate loss function should be, determine a formula for the gradient, and enshrine it in code. How much data is needed to successfully and consistently learn? How does this change as the exponent $5$ grows?
+
+### Gradient Descent Improvements and Neural Network Extensions
 
 **14.14.** In this chapter, our gradient descent used a fixed $\varepsilon$ as the step size. However, it can often make sense to adjust the rate of descent as the optimization progresses. At the beginning of the descent, larger steps can provide quicker gains toward an optimum. Later, smaller steps help refine a close-to-optimal solution. A popular technique due to Yurii Nesterov involves keeping track of a so-called *momentum* term, and adding both the normal gradient descent step plus the momentum term. Research Nesterov's method (Under what conditions does it work? Do these reasonably apply to neural networks?) and adapt the program in this chapter to use it. Measure the improvement in training time.
 

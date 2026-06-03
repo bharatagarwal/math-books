@@ -4,6 +4,8 @@
 >
 > – Paolo Aluffi
 
+### The Definition
+
 If you polled mathematicians on what the "most interesting" topic in linear algebra was, they'd probably agree on eigenvalues. The definition of an eigenvalue is so simple that I can state it now without further ado.
 
 **Definition 12.1.** Let $V$ be a vector space and let $f:V\to V$ be a linear map. A scalar $\lambda$ is called an *eigenvalue* for $f$ if there is a nonzero vector $v\in V$ such that $f(v)=\lambda v$. The associated vector $v$ is called an *eigenvector* of $f$ with the corresponding eigenvalue $\lambda$.
@@ -15,6 +17,8 @@ The question of why eigenvalues are so central to linear algebra and its applica
 The application for this chapter is a deep dive into how eigenvectors and eigenvalues explain the dynamics of a particular physical system describing one-dimensional waves. In no uncertain terms, eigenvalues are the scientific theory that reveals the inner nature of the system. As a bonus, the clarification provided by eigenvectors gives naturally efficient algorithms to determine the state of the dynamical system at any future time. In Chapter 14 we'll see how eigenvalues encode information about smooth surfaces in a way that enables optimization. And the singular values we saw in Chapter 10 are closely related to eigenvectors and eigenvalues in a way we didn't have the language to explain in that chapter (see the exercises for more on that).
 
 I could spend all day giving examples of how eigenvectors are used in practice. But to get to the heart of what makes them useful is another task entirely. The word eigenvalue itself doesn't have any intrinsic meaning that might hint at an answer. Eigenvalue comes from the German word *eigen*, simply meaning "own," in the sense of the phrase, "I have my own principles to uphold and refuse to use emacs." In that sense, eigenvalue simply means a value that is intrinsic to the linear map. The importance of the study of eigenvalues and eigenvectors is analogous to the importance of the roots of a polynomial to the study of polynomials. Knowing the roots of a polynomial allows you to write the polynomial in a simpler form, and "read off" information about the polynomial from the simpler representation. So it is with eigenvalues and eigenvectors. The eigenvalues of a linear map are even the roots of a special polynomial (see Exercise 12.11).
+
+### Eigenvalues Are Basis-Invariant
 
 We'll start by proving intrinsic-ness; the eigenvalues of a matrix are independent of the choice of basis. Let $A$ be the matrix representation of a linear map $f:\mathbb{R}^{n}\to\mathbb{R}^{n}$, written with respect to the standard basis. Let $U$ be a change of basis matrix. That is, the columns of $U$ are the new basis vectors, and if we were to write $f$ with respect to the new basis, its matrix would be $B=UAU^{-1}$. Recall, in words, this matrix converts the input to the standard basis via $U^{-1}$ (the inverse of $U$), then applies $A$, then converts the output back to the new basis using $U$. Now we can state the theorem.
 
@@ -38,6 +42,8 @@ We can watch this invariance happen numerically. Conjugating a matrix $A$ by any
 <!-- include: code/pim/07 - Eigenvectors and Eigenvalues/02_invariance.py -->
 ```
 
+### Eigenvectors as Maximally Invariant Directions
+
 An eigenvector $v$ of $A$ has another sort of "invariance" under the operation of left-multiplication by $A$. That is, if you ignore scaling—or rescale $v$ to a unit vector before and after left multiplying by $A$—then $A$ sends $v$ to itself. This is why we say that the eigenvectors span the "best axes" in which to view $A$, because $A$ sends any vector on the axis to another vector within the same line. They exhibit maximal invariance when the linear map is applied to them. And for the limited scope of this chapter, the set of all eigenvalues and eigenvectors of a linear map allows one to represent the entire map in terms of these invariant, independent pieces.
 
 This is the best high-level intuition I can give without getting too deep in the math. Before we do, let's see a compelling example of why eigenvalues are so interesting and complex for specific matrices called *adjacency matrices*. In the next section we won't prove any of the theorems we state.
@@ -57,6 +63,8 @@ In the exercises, you will write down a description of this matrix as a linear m
 
 Bipartite graphs are common in applications, because they naturally encode networks in which there are two classes of things, where things within a class don't relate to each other. For example: students and teachers, with edges being class membership; wholesale factories and distributors, with edges being shipments; or files and users, with edges being access logs. Problems that can be intractable on general graphs can be easy to solve on bipartite graphs, which is a compelling reason to study them.
 
+### Detecting Bipartiteness from the Spectrum
+
 Now here is a fantastic theorem that we won't prove. Let $A(G)$ be the adjacency matrix of a (not-necessarily bipartite) graph $G$. Let $\lambda_1$ be the largest eigenvalue, $\lambda_2$ the second largest, etc., so that $\lambda_n$ is the smallest. Note that these eigenvalues may be negative. Also note that adjacency matrices have $n$ eigenvalues, though to see why we'll need the theory built up in this chapter (Propositions 12.11 and 12.14).
 
 **Theorem 12.4.** Let $G$ be a connected graph. Then $G$ is bipartite if and only if $\lambda_1 = -\lambda_n$.
@@ -68,6 +76,8 @@ We can put this to an immediate test. Building Kun's Figure 12.1 graph and askin
 ```
 
 This is just one of the many ways that the eigenvalues of the adjacency matrix of $G$ encode information about $G$. In hindsight, it's obvious that some relationship should exist: there is a systematic way to get from the graph $G$ to the eigenvalues. What's surprising is that they encode such natural and useful information about $G$, which might otherwise require designing an algorithm to discover.
+
+### Finding Planted Cliques via Eigenvectors
 
 Here is another theorem, which I will paraphrase slightly to hide the nitty-gritty details. It says that the eigenvector for the second-largest eigenvalue of the adjacency matrix encodes information about tightly-knit clusters of vertices in a graph. In fact, it encodes this information better than simple statistics in the following concrete setting.
 
@@ -100,6 +110,8 @@ Luckily, there is a nice way to avoid dealing with these problems while still se
 
 **Theorem 12.6.** Let $f:\mathbb{R}^{n}\to\mathbb{R}^{n}$ be a linear map and let $A$ be its associated matrix. If $A$ is *symmetric*, meaning $A[i,j]=A[j,i]$ for every $i,j$, then $A$ has $n$ real eigenvalues (not necessarily distinct) and eigenvectors.
 
+### Symmetry and the Transpose
+
 A useful notation when working with symmetric matrices is that of the *transpose*. Define by $A^{T}$ the matrix whose $i,j$ entry is $A[j,i]$. That is, you take $A$, and flip it along the top-left-to-bottom-right diagonal, and you get $A^{T}$. With this notation, saying $A$ is symmetric is saying that $A=A^{T}$. Here's an example of a symmetric matrix.
 
 $$\begin{pmatrix}1&2&3&4\\2&5&6&7\\3&6&8&9\\4&7&9&-1\end{pmatrix}$$
@@ -123,6 +135,8 @@ And we can do the same thing with $A$ on the other side, by assumption:
 $$\langle e_{i},Ae_{j}\rangle=\langle e_{i},a_{j}\rangle=A[i,j]$$
 
 Since $\langle Ae_{i},e_{j}\rangle=\langle e_{i},Ae_{j}\rangle$, we get $A[i,j]=A[j,i]$, implying $A$ is symmetric. $\blacksquare$
+
+### Every Symmetric Matrix Has a Real Eigenvalue
 
 We will use symmetry to prove that every symmetric matrix with real-valued entries has a real eigenvalue. This is the central lemma needed to prove Theorem 12.6. Funnily, we've spent so long preaching the virtues of eigenvalues, we haven't even considered the basic question of their existence!
 
@@ -261,6 +275,8 @@ However, with an orthonormal basis all you need to do is compute $n$ inner produ
 
 But beyond that, in a space like $L^{2}$ where there's no natural starting basis, this gives us a feasible way to compute basis representations: just compute the inner product! In $L^{2}$ you simply integrate.
 
+### Orthonormal Change of Basis Matrices
+
 Going back to finite dimensions, the next important property of an orthonormal basis is that the change of basis matrix (the matrix with the basis vectors as columns) is easy to invert.
 
 **Proposition 12.16.** Let $\{v_{1},\ldots,v_{n}\}$ be an orthonormal basis for $V$, with the $v_{i}$ written in terms of some other basis $\{e_{1},\ldots,e_{n}\}$. Let $B$ be the corresponding change of basis matrix, with the $v_{i}$ as columns. Then $B^{T}=B^{-1}$.
@@ -276,6 +292,8 @@ This has an almost startling consequence:
 *Proof.* Let $B=A^{T}$. Then $B$ satisfies $B^{T}B=I_{n}$, which as we saw above encodes all the pairwise inner products of columns of $B$, i.e., rows of $A$. Since orthogonal vectors are linearly independent (Proposition 12.14), the columns of $B$ form a basis. $\blacksquare$
 
 If we wanted to prove this without set theory hijinks, we could have done so by proving $(A^{T})^{-1}=(A^{-1})^{T}$. You will do this in the exercises.
+
+### The Gram-Schmidt Process
 
 Our next task is to compute orthonormal bases. For finite dimensional inner product spaces there's an algorithmic method called the *Gram-Schmidt process*. It falls short of an algorithm by not defining how to do one important step. First, a definition:
 
@@ -303,6 +321,8 @@ As a side note, this algorithm is generally not considered "production ready," b
 Our ultimate goal is to come up with an orthonormal basis of eigenvectors. This will combine the computational ease of orthogonality with the deep secrets revealed by eigenvalues. To appreciate Theorem 12.22, we should investigate why finding a basis of eigenvectors might be hard.
 
 For instance, we established existence of at least one eigenvalue-eigenvector pair, but can we say anything about uniqueness? Given a linear map $A$ with eigenvector $v$ and corresponding eigenvalue $\lambda$, it is obvious that every nonzero vector in $\text{span}(v)$ is also an eigenvector for $\lambda$. But is it possible that some independent vector is also an eigenvector for $\lambda$? A simple example says yes: take the map $f:\mathbb{R}^{3}\to\mathbb{R}^{3}$ sending $(a,b,c)\mapsto(a,b,0)$, a projection onto the degree-two subspace spanned by $(1,0,0)$ and $(0,1,0)$. Both $(1,0,0)$ and $(0,1,0)$ are eigenvectors for the eigenvalue $\lambda=1$, and so are all nonzero linear combinations. The story of an eigenvalue stretches beyond finding a single eigenvector. Due to this, we have a name for the subspace of a vector space $V$ spanned by the eigenvectors of a single eigenvalue $\lambda$ of a map $f:V\to V$, the *eigenspace* for $\lambda$ and $f$.
+
+### Kernels, Eigenspaces, and Geometric Multiplicity
 
 Another reason why the analysis of eigenvalues is hard is that zero can be an eigenvalue. The eigenvectors with eigenvalue zero span the preimage of the zero vector.
 
@@ -344,6 +364,8 @@ For the matrix $A$ above, the eigenvalue $1$ has geometric multiplicity $2$, but
 
 There is a second kind of multiplicity, related to the geometric multiplicity, which allows one to build a complete characterization of a linear map. We will leave this for the Chapter Notes while we plow on to the main theorem and application.
 
+### Power Iteration
+
 Before we get there, it's worth pausing on the single most-used eigenvalue algorithm in the wild: *power iteration*. It is nothing more than the "left-multiplication invariance" of an eigenvector turned into a loop. Start with a generic vector, apply $A$, normalize, and repeat; the dominant eigenvector swallows everything else and you converge to it. The Rayleigh quotient $v^{T}Av$ then reads off the eigenvalue.
 
 ```python
@@ -371,6 +393,8 @@ Before finishing the harder direction, let's see the whole theorem in one numeri
 ```python
 <!-- include: code/pim/07 - Eigenvectors and Eigenvalues/04_spectral_theorem.py -->
 ```
+
+### Proof by Induction on Dimension
 
 The strategy for the other half of the proof will be by induction on the dimension of the vector space. That is, given the fact that every $(n-1)\times(n-1)$ symmetric matrix has an orthonormal basis of eigenvectors, we'll show that every $n\times n$ symmetric matrix does as well.
 
@@ -698,6 +722,8 @@ So there you have it. Eigenvectors have revealed the secrets of waves on a strin
 
 ## Exercises
 
+### Matrix and Inner Product Fundamentals
+
 **12.1.** For two matrices $A,B$ of compatible dimensions, prove that $(AB)^{T}=B^{T}A^{T}$.
 
 **12.2.** Let $V$ be an $n$-dimensional inner product space, whose norm $\|x\|^{2}=\langle x,x\rangle$ is given by the inner product. Prove the following.
@@ -715,6 +741,8 @@ So there you have it. Eigenvectors have revealed the secrets of waves on a strin
 1. Fix a vector $y$ and let $f_{y}(x)=\langle x,y\rangle$. Prove that if $x$ is restricted to be a unit vector, then $f_{y}(x)$ is maximized when $x=y/\|y\|$.
 2. Let $V,W$ be two $n$-dimensional inner product spaces with inner products $\langle-,-\rangle_{V}$ and $\langle-,-\rangle_{W}$. Define a bijective linear map $f:V\to W$ that is an isomorphism of vector spaces and also satisfies $\langle x,y\rangle_{V}=\langle f(x),f(y)\rangle_{W}$ for all $x,y\in V$. Such a map is called an *isometry*. Hint: start by using Gram-Schmidt to choose an orthonormal basis of each vector space.
 3. Fix the inner product space $\mathbb{R}^{n}$ with the standard inner product. Let $A:\mathbb{R}^{n}\to\mathbb{R}^{n}$ be a change of basis matrix. Find an example of $A$ for which $\langle x,y\rangle\neq\langle Ax,Ay\rangle$. In other words, an arbitrary change of basis does not preserve the formula for the standard inner product. As we saw in the chapter, only an orthonormal change of basis does this. Determine a formula (that depends on the data of $A$) that shows how to convert inner product calculations in one basis to inner product calculations in another.
+
+### Differential Equations, Graphs, and Eigenvalues
 
 **12.6.** Look up a proof of Theorem 12.28, on the uniqueness of the sine function, that uses Taylor series. The analytical tool required to understand the standard proof is the concept of *absolute convergence*. The central difficulty is that if you're defining a function by an infinite series, you have to make sure that series converges with the properties needed to make it a valid Taylor series. Repeat the proof for $\sin(ax)$.
 
@@ -735,6 +763,8 @@ A_{p} = \begin{pmatrix} 0 & 1 & 0 & \dots & 0 & 0 \\ 0 & 0 & 1 & \dots & 0 & 0 \
 $$
 
 Notice that this matrix is not symmetric. Because the roots of a polynomial might be complex numbers, this implies the eigenvalues of a matrix (when viewed as a linear map on a vector space of complex numbers) might also be complex. Walk away from this exercise with a new appreciation for the convenience of symmetric matrices, and the inherent difficulty of writing a generic eigenvalue solver.
+
+### Algorithms and Applications
 
 **12.13.** Implement the Gram-Schmidt algorithm using the following method for finding vectors not in the span of a partial basis: choose a vector with random entries between zero and one, repeating until you find one that works. How often does it happen that you have to repeat? Can you give an explanation for this?
 

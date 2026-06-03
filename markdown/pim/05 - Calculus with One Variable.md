@@ -20,6 +20,8 @@ Besides calculus, in this chapter we'll dive into more detail about the process 
 
 ## Lines and Curves
 
+### Slope of a Line
+
 Let's start with something we know well. If you give me a line in the plane, with tick marks forming integer coordinates like in Figure 8.1, then I can tell you how "steep" the line is. That is, I can assign a number to the line, and larger numbers correspond to steeper lines while smaller numbers correspond to more gradual lines. Also recall that the picture with coordinate axes is just one representation of the line. Another might be as a set of points $\{(x,y)\in\mathbb{R}^{2}:2y-x=2\}$. How we choose to draw the line isn't as important as the set-with-equation definition, but a good drawing swiftly reveals qualitative facts about the line (such as whether its "steepness" goes up or down).
 
 Assigning a steepness number is easy, something most students do when they're 11 or 12 years old. Just pick two different points on the line, *any two*, call them $(x_{1},y_{1}),(x_{2},y_{2})$, and then call the *slope* of the line
@@ -37,6 +39,8 @@ the formula for the slope can be written as
 $$\operatorname{slope}(f) = \frac{f(x_{2}) - f(x_{1})}{x_{2} - x_{1}}.$$
 
 In this way, the concept of slope requires an orientation of the line and the coordinate system it is represented in. The input coordinate is defined as "horizontal" while the output coordinate is "vertical." This is the mathematician's choice, though calling $x$ the "horizontal" coordinate is standard.
+
+### From Lines to Curves
 
 Now let's try to translate the concepts to the curved function $f(x)$ in Figure 8.2. It has a complicated formula we won't write down. The curve is steeper at some places (e.g., $A$) and less steep at others ($B$). Despite the self-evident fact that the line is steep at $A$ and gradual at $B$, if we were pressed to say numerically and consistently how the two steepnesses compare, we'd be at a loss. The picture gives only qualitative information. We must leave the picture behind to get useful quantitative data.
 
@@ -56,6 +60,8 @@ We also use the $\approx$ symbol as a stand-in for the phrase "is approximately.
 
 My choice of $x'$ isn't that close to $x$, but I chose it to illustrate a point. While imperfect, the approximation is good enough to distinguish it from a similarly bad approximation of the steepness of $f$ at $B$, as shown by Figure 8.4. Concrete numbers for the slopes of these two lines suggest that $f$ is twice as steep at $A$ as at $B$. Our brains itch to be more precise. Otherwise, how could we be certain we aren't fooling ourselves with inadequate picture-drawing skills? To that effort, let's improve our estimate.
 
+### Iterating Toward the True Steepness
+
 Once blessed with the idea of approximating the steepness of $f$ at $A$ by drawing a line from $(x, f(x))$ to some other $(x', f(x'))$, we neurotically yearn to move $x'$ closer to $x$. We could move $x'$ halfway closer to $x$, call this new point $x_1$, and update our slope approximation, as in Figure 8.5.
 
 $$\text{steepness}_A \approx \frac{f(x_{1}) - f(x)}{x_{1} - x}$$
@@ -69,6 +75,8 @@ How do we reason about the "end" of this process? We get a number at every step.
 That is exactly what limits do. A limit is computational machinery that allows one to say "this sequence of increasingly good approximations would, if followed forever, end up at a specific value." The limit of this particular line-approximation-scheme is called the derivative. We'll return to derivatives in a bit. Note in particular that whether this "limiting process" works shouldn't depend on how we move $x'$ closer to $x$. A good definition should work so long as $x'$ approaches $x$ somehow.
 
 ## Limits
+
+### Why Definitions Are Hard
 
 In the last section we saw a strong motivation for inventing limits, and an intuitive understanding for what a limit should look like. It's the "end result" of iteratively improving an approximation forever. You have some quantity $a_{n}$ indexed by a positive integer $n$, and as $n$ grows, $a_{n}$ eventually gets closer and closer to some target. For example, if $a_{n} = 1 - 1/n$, the numbers in the sequence $0, \frac{1}{2}, \frac{2}{3}, \frac{3}{4}, \frac{4}{5}, \ldots$ seem to approach 1.
 
@@ -86,6 +94,8 @@ Indeed, much like a program, once a mathematical definition is written down it m
 
 An unfortunate consequence of all this is that math books start with the final definition—the end result of this arduous design process—followed by many pages of theorems and proofs explaining why it doesn't succumb to edge cases. Calculus is no different, and in fact most of how Isaac Newton and Gottfried Leibniz originally did calculus was in an informal, intuitive setting, without much rigor at all. It was a less famous mathematician, Karl Weierstrass, who is considered to have finally "set calculus straight" (though it was really a team effort over decades). Modern calculus textbooks are a strange mix. They want to capture the informality of Leibniz, feel obliged to Weierstrass's rigor, but can't commit to either approach fully. Going full Leibniz would be error-prone. On the other hand, the cult of Weierstrass requires detailed proof-reading skills. Alas, mathematicians are usually the only ones who enjoy the elaborate tour of blunders and false starts that historically sculpted a modern definition. One could hardly cajole the average student to care, or even the brightest student, until after those blunders come to bear on their own work.
 
+### A Pathological Example
+
 To my delight, you're still reading. My goal for the rest of the chapter is to whet your appetite for definition crafting. Let's continue with the "steepness of a function" as our prototypical example of a limit. Here's one of those pathological examples that makes limits hard. I'm going to define a non-curve and not-even-connected function $f:\mathbb{R}\to\mathbb{R}$ as follows: if $x$ is $1/k$ for some integer $k$, then $f(x)=2x$, otherwise $f(x)=x$. Figure 8.6 sketches $f$.
 
 Now we can ask: what's the steepness of $f$ at $x=0$? We pick some starting $x_{1}$, compute the slope, pick an $x_{2}$, compute the slope, and keep going until we see convergence. But I dastardly chose $f$ in such a way that the limit changes depending on how you pick the sequence $x_{1},x_{2},\dots$. In fact, if you pick $x_{k}=1/k$, every slope in the sequence is $2$, implying the limit is $2$. There isn't even an approximation because the values in the sequence are constant. But if you choose $x_{k}=\frac{1}{k+0.5}$, the slopes are always $1$. So should
@@ -95,6 +105,8 @@ Now we can ask: what's the steepness of $f$ at $x=0$? We pick some starting $x_{
 the limit be 1 or 2? Neither?
 
 This will be the last pathological example I inflict upon you, but it emphasizes an important point. However we choose to define derivatives, it should not depend on the arbitrary choice of which points you use to do the approximation. It should be a definition like "no matter how your $x$ values approach the target, the slope limit is the same." The generic mathematical term for this is that the derivative should be well-defined. Two of the definitions we scrutinize in this chapter—the limit of a function (Definition 8.4) and the derivative (Definition 8.6)—will encounter the issues above. The quality of Definition 8.1, which defines the limit of a sequence of numbers, and its subsequent analysis provide a foundation that ensures well-definition.
+
+### The Limit of a Sequence
 
 With that thought, let's start with the limit of a sequence of numbers, which will be used to define limits for functions. Since sequences of numbers can have repetition, we won't use set notation (though some authors do). Instead we'll use a comma notation $x_{1}, x_{2}, \ldots$ which the strongly-typed programmer can think of as the output of an iterator which never terminates, or a tuple/array of infinite length $(x_{1}, x_{2}, \ldots)$. The $\varepsilon$ character is a lower-case Greek epsilon, contextually used across mathematics as a small positive real number.
 
@@ -110,6 +122,8 @@ int sequence_index_from_threshold(float epsilon) {
 ```
 
 The special property of $k$ is that all the sequence elements after $k$ are close to $L$. They're at least as close as specified by $\varepsilon$.
+
+### Proving a Sequence Converges
 
 As a simple non-pathological example, let's take the sequence $x_{n}=1-\frac{1}{n}$. This is the sequence $0,\frac{1}{2},\frac{2}{3},\frac{3}{4},\frac{4}{5},\dots$. Our intuition tells us that the limit should be $L=1$, so let's prove it strictly by the letter of the definition.
 
@@ -143,6 +157,8 @@ We can play the contender's game in code. For each threshold the contender throw
 <!-- include: code/pim/05 - Calculus with One Variable/01_limit_sequence_game.py -->
 ```
 
+### Quantifier Notation
+
 As a notational side note, the phrase "for every $x$ there is a $y$" can be long and annoying to write all the time. It also makes it difficult to study the *syntactic* structure of statements like this, since dependence among variables may be unclear. Mathematicians designed an unambiguous notation for this situation called *quantifiers*. We briefly introduced quantifiers in Chapter 4, and promised we wouldn't use them in this book. However, standard textbook definitions often use the symbols heavily, so this digression helps put what you might see elsewhere in context.
 
 The first quantifier is the symbol $\forall$, which means "for all" (the upside-down A stands for All). The second is $\exists$, which stands for "there exists" (the backwards E in "Exists"). Quantifiers may appear in any order. If I claim
@@ -157,6 +173,8 @@ $$x_{n}\text{ converges to }L\text{ if: }\forall\varepsilon>0,\exists k>0,\foral
 
 We've just packed the math like sardines in a tin box. That being said (and now we're really digressing), some situations benefit from writing logical statements in this form. Particularly in the realm of formal logic, it turns out that as you add more "alternating" quantifiers ($\forall x\exists y\forall z$), you get progressively more expressive power. In theoretical computer science this is formalized by the so-called *polynomial hierarchy*, which conjecturally asserts that the computational cost of deciding the truth of generic logical statements increases dramatically with the number of alternating quantifiers. That's why one might believe factoring integers ($\exists a,\exists b,ab=n$) is easier than deciding if one can force a win in a two player game like chess (there exists a move for me, such that for every move for my opponent, there exists a move for me, such that (…), such that I have a winning move).
 
+### Convergence and Divergence
+
 Back to limits. The definition of a limit allows a sequence to have no limit, like the sequence $0,1,0,1,0,\dots$, which isn't pathological at all. For this sequence you can't even satisfy the limit definition with $\varepsilon=1/3$ (no matter what you think the limit $L$ might be!).
 
 ![Figure 8.7: Starting in the top left corner, we want to deduce the top right corner. We do this by taking the longer route down and around.](05 - Calculus with One Variable_images/img-6.jpeg)
@@ -166,6 +184,8 @@ This fits with our intuition that an alternating $(0,1,0,1,\ldots)$ sequence doe
 **Definition 8.3.** Let $x_{n}$ be a sequence of real numbers. If there is an $L$ satisfying the definition of the limit for $x_{n}$, we say that $x_{n}$ converges. Otherwise, we say it does not converge.
 
 Sometimes we abbreviate the claim that $x_{n}$ converges to $L$ by the notation $\lim_{n\to \infty}x_n = L$, and sometimes even more compactly as $x_{n}\rightarrow L$. In this setting, the symbol $\infty$ doesn't have any concrete mathematical meaning by itself, it's just notation to remind us that we're talking about $n$'s that get arbitrarily large.
+
+### The Limit of a Function
 
 Now we're ready to define the limit of a function.
 
@@ -203,11 +223,15 @@ $$|f(x_{n})-3|=|x_{n}^{2}-4|=|(x_{n}+2)(x_{n}-2)|<5|x_{n}-2|<5\varepsilon^{\prim
 
 which proves that $f(x_{n})\to 3$. $\blacksquare$
 
+### Analysis and Approximation Style
+
 All of this was a formal way of saying that to compute $\lim_{x\to 2}x^{2}-1$, you may "plug in" $2$ to the expression $x^{2}-1$. Indeed, in almost all cases where the expression inside the limit is defined (and continuous) at the limiting input (in this case $x=2$), you can do that. But there are non-pathological functions with useful limits (not just the derivative) for which you can't simply "plug the value in." See the exercises for a famous example. To reiterate from earlier, all of this hefty calculus machinery was invented to deal with those difficult functions.
 
 This proof embraces a style of mathematics called analysis. The term "analysis" can refer to specific subfields of study, such as real analysis or complex analysis which are the formalizations of calculus for real and complex numbers. More broadly, an area of math called "analysis" stresses proof techniques that deal with bounds and approximations. The error in these approximations can be controlled to achieve the necessary goals: loosely when attempting to simplify complexity that is irrelevant to the goal, or tightly when that complexity needs to be understood to achieve the goal. As Weierstrass practiced in formalizing calculus, analysis aims to reduce problems to parts that can be independently understood with number sense. This is why, as we recalled in Chapter 7, Henri Poincaré calls the analytical approach a "prolongation of arithmetic." This also motivates the Taylor series that we'll see later in this chapter. They further prolong our arithmetic abilities to express things that finite sums cannot, giving us further tools to control the quality of an approximation.
 
 As we saw with our pathological "two lines" example from Figure 8.6, not every function has a limit at every point. For the "two lines" $f(x)$, we computed the slope as $\frac{f(x_{n})-f(0)}{x_{n}-0}$ where $x_{n}$ was part of a sequence tending to zero. I.e., we informally computed the limit $\lim_{x\to 0}\frac{f(x)-f(0)}{x-0}$. But then we found two sequences $a_{n},b_{n}$ that both converge to zero, but their slope-sequences $\frac{f(a_{n})-f(0)}{a_{n}-0}$, $\frac{f(b_{n})-f(0)}{b_{n}-0}$ gave different values. As a consequence, the limit cannot be equal to either value. So we've seen that this definition of the limit passes a litmus test: good functions have limits, and bad functions do not.
+
+### Arithmetic Rules for Limits
 
 Before continuing, here are a few basic propositions for working with limits that will come in handy in the rest of the chapter and in the exercises. Most calculus or real analysis textbooks will contain a detailed proof. Basically, they say that most arithmetic operations are compatible with limits, provided the limits involved exist. These formalize the general rule that, absent of any strange function behavior, you can "plug in" the sequence limit to get a function limit, i.e., that $f(a)=\lim_{x\to a}f(x)$.
 
@@ -217,6 +241,8 @@ Before continuing, here are a few basic propositions for working with limits tha
 - $\lim_{x\to a}g(f(x))=g(f(a))$, provided that $\lim_{x\to a}f(x)=L$ exists and $g$ is continuous at $L$.
 
 ## The Derivative
+
+### Definition and a First Computation
 
 Now we define the derivative, which formalizes the steepness of a function $f(x)$ at a given input $x=c$.
 
@@ -253,6 +279,8 @@ The derivative is the *limit* of the difference quotient, so we can watch that l
 ```python
 <!-- include: code/pim/05 - Calculus with One Variable/02_derivative_difference_quotient.py -->
 ```
+
+### The Derivative as a Function
 
 This was a nice exercise, but it's tedious to compute derivatives over and over again for every input. It would be much more efficient to instead compute a compact representation of the derivative at all possible points. That is, we want a process which, when given a differentiable function $f:\mathbb{R}\to\mathbb{R}$ as input, produces another function $g:\mathbb{R}\to\mathbb{R}$ as output, such that $g(c)=f^{\prime}(c)$ for every $c$. While computing the limit may be tedious, our representation of $g$ should make subsequent derivative calculations as computationally easy as evaluating $f$.
 
@@ -308,6 +336,8 @@ The whole power rule is hiding inside that factoring identity, so it is worth se
 ```python
 <!-- include: code/pim/05 - Calculus with One Variable/03_power_rule_ugly_sum.py -->
 ```
+
+### Linearity, the Chain Rule, and Notation
 
 At this point in a standard calculus course, a student would spend a few weeks (or months) learning:
 
@@ -504,6 +534,8 @@ In this case, if $x$ is within $0.1$ of $a$, then the error of the Taylor polyno
 
 ## Application: Finding Roots
 
+### The Problem and Binary Search
+
 Let's say you have a function $f(x)$ and you want to find its zeros,[^2] that is, an input $r$ producing $f(r) = 0$. Let's also say that you can compute both $f(x)$ and $f'(x)$ at any given input. An example of such a function is $x^5 - x - 1$. Try to algebraically solve for $f(x) = 0$, if you dare. On the other hand, $f'(x) = 5x^4 - 1$ is simple enough to compute.
 
 [^2]: Some authors say "roots" instead of "zeros." We use them interchangeably.
@@ -522,6 +554,8 @@ One initial thought is obvious: perform a binary search. That is, pick two guess
 Binary search does produce a sequence approaching a root of $f$, but it turns out to be much slower than the forthcoming Newton's method. In Newton's method you choose your next guess $x_{n+1}$ depending on the derivative of $f$ at $x_n$. To convince you that this could be faster than binary search, suppose you chose bad bounds for binary search as in Figure 8.12.
 
 The tangent line at the point $(d,f(d))$ intersects the $x$-axis quite close to the root, whereas the midpoint between $c$ and $d$ is rather far away. A binary search would slowly approach the root from the left, whereas the tangent line guides us close to the root in the first step.
+
+### Deriving the Newton Update
 
 If this isn't convincing enough, we can provide something much better: a proof. But first, we have to make the algorithm explicit. Phrased geometrically, start from some intermediary $x$-value guess, calling it $x_{n}$ for the $n$-th step in the algorithm. Draw the tangent line at $x_{n}$, which is $y=f(x_{n})+f^{\prime}(x_{n})(x-x_{n})$, and let $x_{n+1}$ be the intersection of this line with the $x$-axis. This is illustrated in Figure 8.13. To find the intersection point, set $y=0$ in the equation for the tangent line, and solve for $x$:
 
@@ -546,6 +580,8 @@ def newton_sequence(f, f_derivative, starting_x):
 Obviously, if $f^{\prime}(x_{n})=0$ then we're dividing by zero which is highly embarrassing. So let's assume $f^{\prime}(x_{n})\neq 0$, i.e., that the tangent line to $f$ is never horizontal, and we'll make this formal in a moment.
 
 When Taylor's theorem is your hammer, the world is full of nails. It takes no inspiration to come up with this algorithm. As we'll see in the proof below, literally all you do is rearrange the degree 1 Taylor polynomial and squint at the remainder. Still, without going through the proof it's not entirely clear that Newton's method should outperform binary search, other than the fuzzy reasoning that an algorithm that *somehow* uses the derivative should do better than one that does not.
+
+### Quadratic Convergence
 
 Indeed, we'll wield a Taylor polynomial like a paring knife to prove Newton's method works. The theorem says that not only does $x_{n}$ converge to a root $r$ of $f$, but that if $x_{1}$ starts close enough, then in every step the number of correct digits roughly *doubles*. That is, the error in step $n+1$, which is $|x_{n+1}-r|$, is roughly the square of the error in step $n$, i.e. $|x_{n}-r|^{2}$. Binary search, on the other hand, improves by only a constant number of digits in each step.
 
@@ -591,11 +627,15 @@ The fraction $\frac{|f''(z)|}{2 |f'(x_k)|}$ is at most $C$, as defined in the st
 
 Despite all the algebraic brouhaha in the proof above, all we did was take some value $x=x_{k}$ (though calling it $x_{k}$ was only relevant in hindsight), write down the degree 1 Taylor polynomial that approximates $f$ at $x$, and use that approximation to guess at the value of the unknown root $r$. We needed the notation and formalism to ensure that we weren't being tricked by our intuition, and to clearly outline the guarantees, and where those guarantees break down.
 
+### When Newton's Method Fails
+
 Speak of the devil! The proof allows us to identify the requirements of a "nice enough" function:
 
 - $f^{\prime}(x)$ can never be zero between $c$ and $d$, except possibly at the root $r$ itself, in which case you can check to see if $f(x)=0$ at each step to avoid the edge case of hitting $r$ exactly. Otherwise we risk dividing by zero, or worse, getting stuck in a loop (as we'll see in the example below).
 - $f$ has to have first and second derivatives everywhere between $c$ and $d$. Otherwise the claims in the proof that use those values are false.
 - $f^{\prime}(x)$ should never be very close to zero, and $f^{\prime\prime}(x)$ should never be very far from zero, or else $C$ will be impractically large.
+
+### Newton's Method in Practice
 
 Using our `newton_sequence` generator from before, we can implement Newton's method for $f(x)=x^{5}-x-1$.
 
@@ -644,6 +684,8 @@ The headline claim of Theorem 8.15 is that the error roughly *squares* each step
 <!-- include: code/pim/05 - Calculus with One Variable/05_newton_quadratic.py -->
 ```
 
+### A Bad Starting Point
+
 ![Figure 8.14: An example where the starting point of Newton's method fails to converge due to an unexpected loop.](05 - Calculus with One Variable_images/img-13.jpeg)
 
 Let's see the same experiment with the `starting_x` changed to 0 instead of 1. This is an input which, as you can see from Figure 8.14, drives Newton's method in the wrong direction! By the end of a hundred iterations, Newton's method cycles between three points:
@@ -661,6 +703,8 @@ The demo below runs both starts side by side: from $x_1=1$ it converges to the r
 ```python
 <!-- include: code/pim/05 - Calculus with One Variable/06_newton_failure_loop.py -->
 ```
+
+### Beyond Newton: Higher-Degree Generalizations
 
 Newton's method stirs up a mathematical hankering: why stop at the degree 1 Taylor polynomial? Why not degree 2 or higher? All we did to "derive" Newton's method was take a random point, write down the degree 1 Taylor polynomial $p(x)$, and solve $p(x)=0$. By rearranging to isolate the error terms, we got the formula for $x_{k+1}$ for free. For degree 2, why not simply use the degree 2 Taylor polynomial instead?
 
@@ -680,6 +724,8 @@ Nevertheless, there is a technique called Householder's method that generalizes 
 - The Taylor polynomial is a mathematical hammer, and math is full of nails.
 
 ## Exercises
+
+### Limits and Continuity
 
 **8.1.** Write down examples for the following definitions.
 
@@ -703,6 +749,8 @@ provided both of the limits on the right hand side exist.
 **8.3.** Prove that the numeric value for the slope of a line doesn't depend on the choice of points.
 
 **8.4.** Prove that the limit of a sequence, if it exists, is unique. In other words, the limit $L$ does not change depending on the choices of $\varepsilon$ and $k$ used to satisfy the definition. This justifies us calling it "the" limit of a sequence. Hint: Suppose you had an $L$ and an $L^{\prime}$ that both worked, and prove that $L=L^{\prime}$.
+
+### Taylor Series and Approximation
 
 **8.5.** Compute the Taylor series for $f(x)=1/x$ at $x=1$.
 
@@ -729,6 +777,8 @@ This function has derivatives of all orders at $x=0$, and despite the fact that 
 **8.12.** There are two definitions of the number $e$. One is the number used as an exponent base in the exponential function $e^{x}$, for which the derivative of $e^{x}$ is $e^{x}$. The other is $e=\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^{n}$. First, prove the somewhat surprising fact that this limit is not equal to 1. Second, understand why these two definitions result in the same quantity.
 
 **8.13.** Find the maximum of $f(x)=x^{1/x}$ for $x\geq 0$. One method: use an approximation given by the early terms of the Taylor series of $e^{x}$. Another: maximize the logarithm of $f$, which has the same maximizing input.
+
+### Derivatives and Root-Finding
 
 **8.14.** Look up a proof of the chain rule on the internet, and try to understand it. Note that there are many proofs, so if you can't understand one try to find another. Come up with a good geometric interpretation.
 

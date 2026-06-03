@@ -22,6 +22,8 @@ The definition of a graph is best done by picture, as in Figure 6.1. Take some "
 
 ![Figure 6.2: A graph with labeled vertices and edges.](04 - Graphs_images/img-1.jpeg)
 
+### Vertices, Edges, and the Formal Definition
+
 Let's lay out the definitions, using sets as the modeling language. The "things" are called *vertices* (or often *nodes*) and the "connections" are called *edges* (or *links*). For shorthand in the definition, I'll reuse a definition from Chapter 4 for the set of all ways to choose two things from a set.
 
 $$\binom{V}{2} = \{\{v_{1}, v_{2}\} : v_{1} \in V, v_{2} \in V, v_{1} \neq v_{2}\}.$$
@@ -32,11 +34,15 @@ This is like $V \times V$, but the order of the pair does not matter.
 
 Alternatively, one can think of $E$ as just any set, and require a function $f : E \to \binom{V}{2}$ to describe which edges connect which pairs of vertices. This view is used when one wants to define a graph in a context where the vertices are complicated. We will briefly see one from compiler design later in this chapter. Despite the definition of an edge $e \in E$ as a set of size two like $\{u, v\}$, mathematicians will sloppily write it as an ordered pair $e = (u, v)$.
 
+### Adjacency, Degree, and Neighborhoods
+
 Here's some notation and terminology used for graphs. We always call $n = |V|$ the number of vertices and $m = |E|$ the number of edges, and for us these values will always be finite. When two vertices $u, v \in V$ are connected by an edge $e = (u, v)$ we call the two vertices *adjacent*, and we say that $e$ is *incident* to $u$ and $v$. We call $v$ a *neighbor* of $u$ and we define the *neighborhood* of a vertex $N(u)$ to be the set of all neighbors; i.e.,
 
 $$N(u) = \{v \in V : (u, v) \in E\}.$$
 
 The size of a neighborhood (and the number of incident edges) is called the *degree* of a vertex, and the function taking a vertex $v$ to its degree is called $\deg : V \to \mathbb{Z}$. To practice the new terms, see Figure 6.2, labeling the graph from Figure 6.1. Vertices have label '$v$' and edges have label '$e$'. Vertices $v_{1}, v_{3}$ are adjacent, $e_{2}$ is incident to $v_{1}$, $\deg(v_{2}) = 3$, and all of the neighbors of $v_{2}$ are also neighbors of $v_{3}$.
+
+### Paths, Subgraphs, and Connectivity
 
 Another concept we'll need in this chapter is the concept of a connected graph. First, a *path* in a graph is a sequence of alternating vertices and edges $(v_{1}, e_{1}, v_{2}, e_{2}, \ldots, v_{t})$ so that each $e_{i} = (v_{i}, v_{i+1})$ connects the two vertices next to it in the list. Visually, a path is just a way to traverse through the vertices of $G$ by following edges from vertex to vertex. In Figure 6.2, there are many different paths from $v_{4}$ to $v_{6}$, four of which do not repeat any vertices. Many authors enforce that paths do not repeat vertices by definition, and give the name "trail" or "walk" to a path which does repeat vertices. For us, the difference won't matter. A *cycle* is a path that starts and ends at the same vertex.
 
@@ -49,6 +55,8 @@ A graph is called *connected* if there is a path from each vertex to each other 
 The main object of study in this chapter is called a *coloring* of a graph $G = (V, E)$, which is an assignment of "colors" (really, numbers from $\{1, 2, \ldots, k\}$) to the vertices of $G$ satisfying some property. We realize this officially as a function.
 
 **Definition 6.2.** A $k$-*coloring* of a graph $G = (V, E)$ is a function $\varphi : V \to \{1, 2, \ldots, k\}$. We call an edge $e = (u, v)$ *properly colored* by a $k$-coloring $\varphi$ if $\varphi(u) \neq \varphi(v)$, and otherwise we call that edge *improperly colored*. We call $\varphi$ *proper* if it properly colors every edge. If a graph $G$ has a proper $k$-coloring, we call it $k$-*colorable*.
+
+### The Petersen Graph and Chromatic Number
 
 By now you should know to write down examples for small $n$ and $k$ before moving on. Because this is a crucial definition, here is a more complicated example. The Petersen graph is shown in Figure 6.3. The Petersen graph has a distinguished status in graph theory as a sort of smallest serious unit test. Conjectures that are false tend to fail on the Petersen graph.[^3] The Petersen graph is 3-colorable (find a 3-coloring!) but not 2-colorable.
 
@@ -68,6 +76,8 @@ We can, however, *compute* $\chi(G)$ for a small graph by brute force—try ever
 
 If you believe that the Petersen graph is not 2-colorable—or you do the exercise that proves this—then we know the Petersen graph has chromatic number 3. Here is a simple fact about the chromatic number.
 
+### Greedy Coloring and the Degree Bound
+
 **Proposition 6.4.** If $G = (V, E)$ is a graph and $d$ is the largest degree of a vertex $v \in V$, then $\chi(G) \leq d + 1$.
 
 *Proof.* We define a greedy algorithm for coloring a graph. Pick an arbitrary ordering $v_{1}, \ldots, v_{n}$ of the vertices of $G$, and then for each $v_{i}$ pick the first color $j$ which is unused by any of the neighbors of $v_{i}$. In the worst case, a vertex $v$ of degree $d$ will have all of its neighbors using different colors, and so it will use color $d + 1$. Otherwise $v$ could reuse one of the first $d$ colors not used by any neighbor. So the worst-case number of colors is at most the largest degree in the graph plus one, as claimed. $\square$
@@ -84,6 +94,8 @@ The proof *is* the algorithm. Here is the greedy coloring written out literally�
 
 A simple graph meets this bound and has $\chi(G) = \max_{v \in V} \deg(v) + 1$. See if you can find it. On the other hand, this bound can be quite loose. Here "loose" means that there are graphs which meet the conditions of the proposition, but the true $\chi(G)$ is much smaller than the proposition enforces. Consider the "star" graph which has $n$ vertices and only one vertex of degree $n - 1$, pictured in Figure 6.4. Clearly the star graph is 2-colorable, but the max degree is $n - 1$. The guarantee of the proposition is effectively useless.
 
+### The Partition Perspective
+
 One other perspective on graph coloring I want to describe is the partition perspective. Specifically, if $G = (V, E)$ is a graph and $\varphi$ is a proper $k$-coloring, then we can look at $\varphi^{-1}(j)$, the set of all vertices that have color $j$. Since $\varphi$ is proper, there are no edges among these vertices. Moreover, since $\varphi$ is a function, the set $\{\varphi^{-1}(j) : j = 1, \ldots, k\}$ partitions[^4] $V$ into "color classes," and all the edges of $G$ go between the color classes. Figure 6.5 shows a picture for the Petersen graph.
 
 [^4]: A *partition* of $X$ is a set of non-overlapping (disjoint) subsets $A_{i} \subset X$, the union of all of them being $\cup_{i} A_{i} = X$.
@@ -97,6 +109,8 @@ The wishy-washy way to motivate graph coloring is to claim that many problems ca
 A more interesting and satisfying application is *register allocation*. That is, suppose you're writing a compiler for a programming language. Logically the programmer has no bound on the number of variables used in a program, but on the physical machine there is a constant number of CPU registers in which to store those variables. The register allocation algorithm must decide (at compile time) which registers will store which logical variables as the computation progresses, and which logical variables must be stored in memory. The less often you need to shuffle data back and forth between memory and CPU registers, the faster the program will run.
 
 The connection to graph coloring is beginning to reveal itself: the vertices are the logical variables and the colors are physical registers, but I haven't yet said how to connect two vertices by an edge. Intuitively, it depends on whether the logical variables "overlap" in the scope of their use. The structure of scope overlap is destined to be studied with graph theory.
+
+### Liveness Analysis and Interference Graphs
 
 To simplify things, we'll do what a compiler designer might reasonably do, and compile a program down to *almost* assembly code, where the only difference is that we allow infinitely many "virtual" registers, which we'll just call variables. So for a particular program $P$, there is an $n_{P} \in \mathbb{N}$ that is the number of distinct variable names used in the program. Each of these integers is a vertex in $G$.
 
@@ -123,6 +137,8 @@ We can turn this directly into code. The demo below does the backward liveness p
 <!-- include: code/pim/04 - Graphs/04_register_allocation.py -->
 ```
 
+### NP-Hardness and Inapproximability
+
 Unfortunately, in general you should not hope to compute the chromatic number of an arbitrary graph. This problem is what's called "NP-hard," which roughly means there is no known provably correct (in the worst case) and provably efficient algorithm for computing it. Moreover, if there were, the same algorithm could be adapted to solve a whole class of problems that are also believed to be intrinsically hard to solve. The notion of efficiency here is—as usual for algorithm analysis—in terms of the runtime compared to the size of the input as the input grows. This is called "asymptotic analysis" or "big-O." See Chapter 15 for a longer discussion.
 
 Moreover, it is even NP-hard to get any reasonable approximation of the chromatic number of a general graph. To be more specific, we can't hope to find an efficient and provably correct algorithm for the following problem. Fix any $c$ such that $0 < c < 1$. Given any graph $G$ as input, if $G$ has $n$ vertices, output a number $Z$ with the property that $\frac{Z}{\chi(G)} < n^{c}$.
@@ -141,7 +157,11 @@ Here's a little exercise: come up with an example of a graph which is not planar
 
 Now that you've tried the exercise: Figure 6.7 depicts two important graphs that are not planar. The left one is called the *complete graph* on 5 vertices, denoted $K_{5}$. The word "complete" here just means that all possible edges between vertices are present. The second graph is called the *complete bipartite graph* $K_{3,3}$. "Bipartite" means "two parts," and the completeness refers to all possible edges going between the two parts. The subscript of $K_{a,b}$ for $a, b \in \mathbb{N}$ means there are $a$ vertices in one part and $b$ in the other.
 
+### Embeddings and the Rigorous View
+
 We defined planar graphs informally in terms of drawings in the plane, which doesn't use sets, functions, or anything you've come to expect. Indeed, the hand-wavy definition is the one that belongs in your head, but the official definition of a planar graph is one which has an *embedding* into $\mathbb{R}^{2}$. The problem is that defining an embedding requires opening a big can of worms, because it applies to spaces more general than a graph. We'll give you a taste in the chapter notes.
+
+### Faces and the Euler Formula
 
 One feature about planar graphs is that when you draw a planar graph in such a way that no edges cross, you get a division of $\mathbb{R}^{2}$ into distinct regions called "faces." Figure 6.8 shows a graph with four faces, noting that by convention I'm calling the "outside" of the drawing also a face. If we call $f$ the number of faces, and remember $n$ is the number of vertices and $m$ is the number of edges, then we can notice a nice little pattern: $n - m + f = 2$.
 
@@ -188,6 +208,8 @@ This was proved by Kenneth Appel and Wolfgang Haken in 1976 after being open for
 
 If you're like me and frequently make off-by-one errors, then the five color theorem is just as good as the four color theorem. In order to prove it we need three short lemmas.
 
+### The Handshake Lemma
+
 **Lemma 6.8.** If $G$ is a graph with $m$ edges, then $2m = \sum_{v \in V} \deg(v)$.
 
 *Proof.* The important observation is that the degree of a vertex is just the number of edges incident to it, and every edge is incident to exactly two vertices.
@@ -200,6 +222,8 @@ This "handshake lemma" is the easiest one to confirm on real graphs: sum the deg
 <!-- include: code/pim/04 - Graphs/01_handshake.py -->
 ```
 
+### Bounding Faces by Edges
+
 **Lemma 6.9.** If a planar graph $G$ has $m \geq 2$ edges and $f$ faces, then $2m \geq 3f$, i.e., $f \leq (2/3)m$.
 
 *Proof.* Pick your favorite embedding (drawing) of $G$ in the plane. We'll use a similar counting argument as in Lemma 6.8: for any planar drawing, every face is enclosed by at least three edges, and every edge touches at most two faces.[^8] In other words, each face is "counted" by each edge it touches, and each face has at least three edges counting it. Hence $3f$ counts each edge at most twice, while $2m$ counts each face at least three times. $\square$
@@ -211,6 +235,8 @@ The requirement that $m \geq 2$ is necessary, since if there is only one edge (o
 Despite having just read a proof, this may be surprising: can't we keep adding face-creating edges to make the lower bound of $3f$ exceed the upper bound of $2m$? It's instructive to take a moment and play with examples. You'll eventually get to a situation in which all interior faces are triangles, and the inequality is either an equality or very close. Then the creation of new faces requires a sufficient number of non-face-creating edges to be made first, which loosens the inequality. The proof above explains how this loosening and tightening of the inequality corresponds to the geometry of a graph drawn in the plane. It translates the geometry to algebra. When the algebra seems to misbehave, we can call back to the geometry to understand.
 
 You should do what I did for Lemma 6.8 and think about how to express this as an injection from one set to another. The last lemma is the key to the five color theorem.
+
+### Every Planar Graph Has a Low-Degree Vertex
 
 **Lemma 6.10.** Every planar graph has a vertex of degree 5 or less.
 
@@ -232,6 +258,8 @@ The inequality $|E| \leq 3|V| - 6$ is the engine behind both Lemma 6.10 and the 
 <!-- include: code/pim/04 - Graphs/06_planarity_bound.py -->
 ```
 
+### Proof of the Five Color Theorem
+
 Now we can prove the five color theorem.
 
 *Proof.* By induction on $|V|$. For the base case, every graph which has 5 or fewer vertices is 5-colorable by using a different color for each vertex.
@@ -249,6 +277,8 @@ So why is $G'$ planar? To argue this, we can show that for any planar drawing of
 The key is that $G$ is planar and that $v$ has all of the $w$'s as neighbors. If we want to merge $w_{i}$ to $w_{j}$, we can use the curve already traced by the edges from $w_{i}$ to $v$ and from $v$ to $w_{j}$. By planarity this is guaranteed not to cross any of the other edges of $G$, and hence of $G'$. To say it a different way, if we took the drawing above and continued drawing $G'$, and the result required an edge to cross one of the edges above, then it would have crossed through one of the edges going from $v$ to $w_{i}$ or $v$ to $w_{j}$!
 
 This proves $G'$ is planar, which completes the proof. $\square$
+
+### Implementing the Algorithm in Code
 
 That proof neatly translates into a recursive algorithm for 5-coloring a planar graph. We'll finish this section with Python code implementing it. Kun's book uses a library called igraph to avoid writing custom graph data structures. As a very quick introduction, one can create graphs in igraph as follows.
 
@@ -363,6 +393,8 @@ The whole algorithm, including the two-coloring subroutine for $N(v)$, fits in o
 <!-- include: code/pim/04 - Graphs/08_approx_coloring.py -->
 ```
 
+### Open Problems and Better Bounds
+
 One might naturally ask whether we can improve $\sqrt{n}$ to something like $\log(n)$, or even some very large constant. This is actually an open question. Recent breakthroughs using a technique called *semidefinite programming* got the number of colors down to roughly $n^{0.2}$. For reference, a thousand-node 3-colorable graph would have $n^{0.2} \approx 4$. That's quite an improvement over 127 colors given by the $4\sqrt{n}$ bound.
 
 I should make a clarification here: the open problem is on the existence of an algorithm which is guaranteed to achieve some number of colors (depending on the size of the graph) *no matter what the graph is*. As a programmer you are probably somewhat familiar with this idea that one often measures an algorithm by its worst-case guarantees, but the point is important enough to emphasize. So when I say a problem is "possible" or "impossible" to solve, I mean that there exists (or does not exist, respectively) an efficient algorithm that achieves the desired worst-case guarantee on all inputs. In particular, there is no evidence for either claim that it is possible or impossible to color a 3-colorable graph with $\log(n)$ colors (or anything close to that order of magnitude, like $(\log(n))^{10}$). A ripe problem indeed.
@@ -383,6 +415,8 @@ I should make a clarification here: the open problem is on the existence of an a
 
 **6.4.** Here's a simple way to make examples of planar graphs: draw some non-overlapping circles of various sizes on a piece of paper, call the circles vertices, and put an edge between any two circles that touch each other. Clearly the result is going to be a planar graph, but an interesting question is whether every planar graph can be made with this method. Amazingly the answer is yes! This is called Koebe's theorem. It is a relatively difficult theorem to prove for the intended reader of this book, but as a consequence it implies Fáry's theorem. Fáry's theorem states that every planar graph can be drawn so that the edges are all straight lines. Look up a proof of Fáry's theorem that uses Koebe's theorem as a starting point, and rewrite it in your own words.
 
+### Coloring and Polynomials
+
 **6.5.** Given a graph $G$, the *chromatic polynomial* of $G$, denoted $P_{G}(x)$, is the unique polynomial which, when evaluated at an integer $k \geq 0$, computes the number of proper colorings of $G$ with $k$ colors. Compute the chromatic polynomial for a path on $n$ vertices, a cycle on $n$ vertices, and the complete graph on $n$ vertices. Look up the chromatic polynomial for the Petersen graph.
 
 **6.6.** Look up a recursive definition of the chromatic polynomial of a graph in terms of edge contractions, and write a program that computes the chromatic polynomial (for small graphs). Think about a heuristic that can be used to speed up the algorithm by cleverly choosing an edge to contract.
@@ -392,6 +426,8 @@ I should make a clarification here: the open problem is on the existence of an a
 **6.8.** Find a simple property that distinguishes 2-colorable graphs from graphs that are not 2-colorable. Write a program which, when given a graph as input, determines if it is 2-colorable and outputs a coloring if it is.
 
 **6.9.** Implement the algorithm presented in the chapter to $(4\sqrt{n})$-color a 3-colorable graph. Use the 2-coloring algorithm from the previous problem as a subroutine.
+
+### Directed Graphs, DAGs, and Flows
 
 **6.10.** A *directed graph* is a graph in which edges are oriented (i.e., they're ordered pairs instead of unordered pairs). The endpoints of an edge $e = (u, v)$ are distinguished as the *source* $u$ and the *target* $v$. A directed graph gives rise to natural *directed paths*, which are like normal paths, but you can only follow edges from source to target. A graph is called *strongly connected* if every pair of vertices is connected by a directed path. Write a program that determines if a given directed graph is strongly connected.
 
@@ -407,6 +443,8 @@ I should make a clarification here: the open problem is on the existence of an a
 
 The reason a planar graph is so hard to define rigorously is because the right definition of what it means to "draw" one thing inside another is deep and deserves to be defined in general. And such a definition requires some amount of *topology*, the subfield of mathematics that deals with the intrinsic shape of space without necessarily having the ability to measure distances or angles.
 
+### A Calculus-Based Definition of Embedding
+
 If you really pressed me to define a planar graph without appealing to topology I could do it with a tiny bit of calculus. Here it goes.
 
 **Definition 6.12.** An *embedding* of a graph $G = (V, E)$ in the plane is a set of continuous functions $f_{e} : [0, 1] \to \mathbb{R}^{2}$ for each edge $e \in E$ mapping the unit interval to the plane with the following properties:
@@ -418,6 +456,8 @@ If you really pressed me to define a planar graph without appealing to topology 
 Disgusting! Why did you make me do that?
 
 The problem is that the definition is full of a bunch of "except" and special cases (like that the endpoint could either be zero or one). This makes for ugly mathematics, and the mathematical perspective is to spend a little bit more time understanding exactly what we want from this definition. We are humans, after all, who are inventing this mathematics so that we can explain our ideas easily to others and appreciate the beautiful proofs and algorithms. Keeping track of edge cases is dreary.
+
+### Toward Abstract Spaces and Topology
 
 We really want to define an embedding as a single function $f$ whose codomain is $\mathbb{R}^{2}$. And because we said we don't want any of the edges to cross each other in the plane, we probably want $f$ to be injective. Finally, because the drawing has to be a sensible drawing, we need $f$ to be continuous. Recall from calculus that a continuous function intuitively maps points that are "close together" in the domain to points that remain close together in the codomain. Without continuity, a "drawing" could break edges into disjoint pieces and there would be chaos.
 

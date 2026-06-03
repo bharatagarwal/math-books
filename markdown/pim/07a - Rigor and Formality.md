@@ -4,9 +4,13 @@
 >
 > —William Thurston, “On Proof and Progress in Mathematics”
 
+## Software Rigor versus Mathematical Rigor
+
 Programmers who brave mathematical topics often come away wondering why mathematics isn’t more like programming. We’ve discussed some of the issues surrounding this question already in this book, like why mathematicians tend to use brief variable names, and how conventions will differ from source to source. Beneath these relatively superficial concerns is a question about rigor.
 
 Thurston’s observations above were as true in the mid 90’s as they are over twenty years later. Software is far more rigorous than mathematics, and most of the work in software is about interface and data compatibility—“bookkeeping,” as Thurston calls it. This is the kind of work required by the rigor of software. You need to care whether your strings are in ASCII or Unicode, that data is sanitized, that dependent systems are synchronized, because ignoring this will make everything fall apart.
+
+## The Real Cost of Missing a Hyphen
 
 I once took a course on compiler design. The lectures were taught in the architecture building on campus. One day, the architecture students were having a project fair in the building, marveling over their structures and designs. In a lightly mocking tone, my compilers professor observed that software architecture was much more impressive than building architecture. Their buildings wouldn’t fall over if they forgot a few nails or slightly changed the materials. But a few misplaced characters in software has caused destruction, financial disaster, and death.
 
@@ -14,9 +18,13 @@ My professor had a point. Regular mayhem is caused by software security lapses, 
 
 These sorts of bugs cause internal debacles at every company with alarming regularity. One consequence is a general feeling among many engineers that “all software is shit.” More optimistically, the best engineers work very hard to design interfaces and abstractions that, to the best of software’s ability, prevent mistakes. Those who design aircraft control systems do this quite well. Once you’ve made enough mistakes of your own, you learn a certain air of humility. No matter how smart, even the best engineers get tired, grumpy, overworked, or forgetful—each of which is liable to make them forget a hyphen. Good tools make forgetting the hyphen impossible.
 
+## Lamport, Structured Proofs, and TLA+
+
 In the subfield of computer science dealing with distributed systems, these issues are exacerbated by the extreme difficulty of even telling whether a system satisfies the guarantees you need it to. A titan of this area is mathematician turned computer scientist Leslie Lamport. Through his work, Lamport essentially defined distributed computing as a field of study. Many of the concepts you have heard of in this area—synchronized clocks, Paxos consensus, mutexes—were invented by Lamport.
 
 Lamport has no particular love of mathematical discourse. In his 1994 essay, “How to Write a Proof,” he admits, “Mathematical notation has improved over the past few centuries,” but goes on to claim that the style of mathematical proof employed by most of mathematics (including in this book)—mixing prose and formulas in a web of propositions, lemmas, and theorems—is wholly inadequate.
+
+### Structured Proofs and the Discovery of Errors
 
 Much of Lamport’s seminal work in the last few decades grew out of his frustration with errors in distributed systems papers. As he attests, some researcher would propose (say) a consensus algorithm. It might seem correct at first glance, but inevitably it would contain mistakes—if not be wrong outright. Lamport concludes that guarantees about the behavior of distributed systems are particularly hard to establish with the rigor that is needed for practical considerations. If you’re going to design a new distributed database, you want a much stronger assurance than the assent of some overworked journal referees. Lamport writes,
 
@@ -26,13 +34,19 @@ This is coming from a Turing Award winner, a man considered a luminary of comput
 
 Consequently, Lamport designed a proof assistant called TLA+, which he has used to check the correctness of various claims about distributed systems. TLA+ is supposed to prevent you from shooting your own mathematical foot. TLA+ falls in step with a body of work related to automated proof systems. Some systems you may have heard include Coq and Isabelle. Some of these systems claim the ability to prove your theorems for you, but I’ll instead focus just on the correctness checking aspects.
 
+## Why Mathematicians Don't Use Proof Assistants
+
 So computer scientists like Lamport and software engineers are perturbed by the lack of rigor in mathematics. Each remembers the fresh wounds of catastrophes due to avoidable mistakes. Meanwhile, Lamport and others provide systems like TLA+ that would allow mathematician to achieve much higher certainty in their own results. This raises the question, why don’t all mathematicians use automated proof assistants like TLA+? This is a detailed and complex question. I will not be able to answer it justly, but I can provide some perspective.
 
 We have argued that the elegance of a proof is important. Mathematicians work hard to be able to summarize the core idea of a proof in a few words or a representative picture. Full rigor as the standard for all proofs would arguably strip many proofs of their elegance, increasing the burden of transmitting intuition and insight between humans. The work you put into making an argument automatable is work you could have spent on making math accessible to humans (via additional papers, talks, and working with students). These extra activities already serve as correctness checks, so is there significant added benefit to a formal specification? Lamport’s counter is that making it accessible to humans is counterproductive when the result is incorrect. He would also argue that a structured proof *is* easier to understand. One underlying issue Lamport’s riposte ignores is that mathematics is a social activity, and formal proof specifications are decidedly antisocial. Good for those who want to ensure planes don’t crash, bad for those who want to do mathematics.
 
+### Theory Builders, Problem Solvers, and the Abstraction Gap
+
 Another aspect concerns the priorities and preferences of the subcultures of mathematics. Theory builders might argue that if your proof is too complicated to keep track of—which is why you would want TLA+—it’s because your theory has not been built well enough to make the proof trivial. Conversely, problem solvers might complain that proof assistants limit their ability to employ clever constructions. Being able to invoke a result from a disconnected area of math requires you to re-implement that entire field in your new context. Dependency management would turn few-page arguments into thousand-line software libraries.
 
 Both of these attitudes reconverge on Thurston’s observation, that the kind of effort that goes into math is categorically different from software. Mathematicians don’t *want* to nitpick type errors and missing parentheses. They want to think about ideas at a higher level. Mathematicians have built up so many abstractions over the years specifically to avoid the mundane details that can muddle an idea. One explanation for why TLA+ work so well for distributed systems theorems is that those theorems have relatively few layers of indirection. A handful of bits might represent consensus. On the other hand, in geometry you might think the thought, “this space is very flat, and that should have such-and-such effect.” An automated proof assistant will be of no use there, nor will it help you refine the degree to which your hypothesized effect is present. You must lay everything out perfectly formally, even if your definitions haven’t been finalized. Then too often you resort to writing and rewriting, and before long you’ve stopped doing math entirely. If you believe Michael Atiyah that the proof is the very last step of mathematical inquiry, a proof assistant is useless for the majority of your work.
+
+## Rigor as a Tradeoff
 
 As most engineers can understand, the degree of rigor to require is a tradeoff with tangible benefits on both sides. Mathematicians opt to let some errors slip through. Over time these errors will eventually be found and reverted or fixed. Since technology rarely goes straight from mathematical publication to space probe control software, the world has enough slack to accommodate it.
 

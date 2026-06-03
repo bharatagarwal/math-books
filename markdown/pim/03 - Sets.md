@@ -12,6 +12,8 @@ At the end of the chapter we'll see the full modeling process for an application
 
 ## Sets, Functions, and Their -Jections
 
+### Describing Sets and Set-Builder Notation
+
 A set is a collection of unique objects. You've certainly seen sets before in software. In Python they are simply called "sets." In Java they go by HashSet, and in C++ by unordered_set. Functionally they are all equivalent: a collection of objects without repetition. While set implementations often have a menagerie of details—such as immutability of items, collision avoidance techniques, complexity of storing/lookup—mathematical sets "just work." In other words, we don't care how items enter and leave sets, and mutability is not a concern because we aren't hashing anything to look it up. Efficiency is irrelevant.
 
 To start, we need to know how to describe sets. The simplest way is with words. For example, I can describe the set of integers divisible by seven, or the set of primes, or the set of all syntactically correct Java programs. Often the goal of analyzing a mathematical object is to come up with a concrete description of a set, but implicit definitions are a great starting point.
@@ -32,6 +34,8 @@ Lists made with list comprehensions need not have unique elements, while mathema
 
 $$\{(x, 2x + 1) : 0 \leq x < 10\}$$
 
+### Cardinality, Subsets, and Set Operations
+
 Now we turn to some definitions you may already be familiar with. If not, remember it's your job to write down examples. In either case, mathematical texts typically define something once and only once. I will occasionally repeat definitions that are used across chapters, but generally authors will not. You're expected to have understood a definition to an appropriate degree of comfort before continuing.
 
 **Definition 4.1.** The *cardinality* or *size* of a set $A$, denoted $|A|$, is the number of elements in $A$ when that number is finite, and otherwise we say $A$ has *infinite cardinality*. A set with no elements is called the *empty set*, and it has cardinality zero.
@@ -41,6 +45,8 @@ Now we turn to some definitions you may already be familiar with. If not, rememb
 Proving one set is a subset of another is usually easy, but not always. The standard technique is to fix $b$ to be an arbitrary element of $B$, and use whatever characteristic defines $B$ to show that $b \in A$ as well. Here's a brief example: the set of integers divisible by $57$ is a subset of the set of integers divisible by $3$, because any number $b$ divisible by $57$ has the form $b = 57 \cdot k = 3 \cdot (19 \cdot k)$, which means it's also divisible by $3$. No alarms and no surprises.
 
 If I have a binary boolean-valued operator like $\in$, then putting a slash through it like $\notin$ denotes the negation of that claim or query. Other slashed operators include $\neq, \not\subset, \not\sim$.
+
+### Complement, Union, and Intersection
 
 **Definition 4.3.** Given two sets $A$ and $B$, the *complement* of $B$ in $A$ is the set $\{a \in A : a \notin B\}$. The complement is denoted either by $A \setminus B$ or $A - B$, and sometimes $B^{\mathsf{C}}$ when $B \subset A$ and $A$ is clear from context.
 
@@ -55,6 +61,8 @@ Mathematicians are divided on whether $A \subset B$ allows $A$ to be equal to $B
 Hence the name of my blog, Math $\cap$ Programming.
 
 If you want some practice working with basic set definitions, prove that for any two sets $A, B$, the following containments hold: $A \cap B \subset A$ and $A \subset A \cup B$.
+
+### Products of Sets
 
 **Definition 4.5.** The *product* of two sets $A, B$, denoted $A \times B$, is the set of all ordered pairs of elements in $A$ and elements in $B$. In set-builder notation it is:
 
@@ -80,6 +88,8 @@ $$\mathbb{R}^n = \underbrace{\mathbb{R} \times \cdots \times \mathbb{R}}_{n \tex
 
 This notation can be used for any set. Next we define functions as special subsets of a product.
 
+### Functions as Sets of Pairs
+
 **Definition 4.6.** Let $A, B$ be sets, and let $F$ be a subset of $A \times B$. We say that $F$ is a *function* if it satisfies the following property: for each $a \in A$, there is a unique pair $(a, b) \in F$ (an input must have exactly one output). The set $A$ is called the *domain* of $F$ and $B$ is called the *codomain* of $F$. To denote this, we use the arrow notation $F : A \to B$.
 
 You should be writing down examples, but this one needs some help. We think of functions computationally as mappings from inputs to outputs. So much so that the nouns function and map are synonyms. But this definition of a function is a set. I'm going to convince you that the distinction is merely a matter of notation. It exists to fill the role of a "bare metal" implementation of a function in the modeling language of sets.
@@ -92,6 +102,8 @@ It's a subset of $\mathbb{N} \times \mathbb{N}$. Now we can add a bit of notatio
 
 Reiterating a note from Chapter 2, the codomain $B$ is not strictly encoded in the data of a function $F : A \to B$. The codomain is the set of allowed outputs.
 
+### Why Define Functions as Sets?
+
 So why go through all the trouble of defining functions in terms of sets? Part of the answer is historical. The concept of sets as a modeling tool has probably existed for as long as mathematics, but it was primarily used in its language form ("I declare, considereth only those heavenly numbers whose factorisation into prymes containeth nary a repeated factor!"). The notation $y = f(x)$ was invented in the 1700's by Leonhard Euler, and in those times most functions were only defined in terms of formulas that were easy to write down. It was not until the late 19th century that mathematicians formally studied sets, and proposed them as a logical foundation for all of mathematics. To do so requires restating all existing concepts in terms of sets. Definition 4.6 does this for functions. Similar definitions exist defining integers and ordered tuples in terms of sets. How tedious.
 
 In this light, our initial definition of a set was completely imprecise. There is a more precise definition, but it is the sort that only a logician would love, called Zermelo-Fraenkel set theory. In brief, its base concepts are the empty set, set membership, a notion of infinity, and a restricted choice of ways to build sets from other sets. Using this one can define numbers, functions—even all of calculus—from "first principles." To instill this idea in future mathematicians, many introductory proof textbooks define everything in terms of sets, and do formal proofs to a degree of precision most mathematicians avoid in their day to day work.
@@ -99,6 +111,8 @@ In this light, our initial definition of a set was completely imprecise. There i
 In theory, mathematicians like the idea that everything can be reduced to sets. Actually doing it in practice will drive you mad. It's like writing all your programs in pure binary. Few do it, but we all take comfort in the idea that we could peel back the layers to reveal the raw assembly instructions. In reality, abstractions keep us productive. Likewise, defining the entirety of mathematics in sets is like "bare metal" programming, but without any of the speed benefits of the finished program. Someone ironed out set theory once, and we have a record of their work. Now we can get back to doing mathematics.
 
 The special notation for functions highlights our conceptual emphasis. We think of functions differently than regular sets, with a semantic input-output dependence that set notation doesn't natively convey.
+
+### Image and Preimage
 
 Now we turn to a few useful definitions about subsets of inputs and outputs of a function. A seasoned programmer is less likely to be familiar with the remainder of the definitions in this chapter, but we will rely on them throughout the book.
 
@@ -118,6 +132,8 @@ We won't rely heavily on the $\exists$ notation, but it is quite common. Now we 
 
 For $F(x) = x^2$ as a mapping $\mathbb{R} \to \mathbb{R}$, the preimage of $4$ is $F^{-1}(4) = \{-2, 2\}$. The superscript $-1$ is intended to invoke the concept of an inverse function. The preimage generalizes an inverse to operate on any element or subset of the codomain. The preimage always exists, though it may be the empty set.
 
+### Injections, Surjections, and Bijections
+
 The next three definitions are quite special.
 
 **Definition 4.9.** A function $f : A \to B$ is called an *injection* (adjectivally, is *injective*) if whenever $a, a' \in A$ are different elements of $A$, then $f(a), f(a')$ are different elements of $B$.
@@ -136,6 +152,8 @@ The three "-jection" properties are easiest to feel by classifying functions as 
 ![Figure 4.3: An example of a bijection, which is both an injection and a surjection.](03 - Sets_images/img-2.jpeg)
 <!-- endcarousel -->
 
+### Surjections, Bijections, and Quantifier Notation
+
 **Definition 4.10.** A function $f : A \to B$ is called a *surjection* (adjectivally, is *surjective*) if for every $b \in B$, there is some $a \in A$ with $f(a) = b$. In other words, $f$ is surjective if $\operatorname{im} f = B$.
 
 Surjections "hit everything" in $B$ by things mapped from $A$. So our squaring function on integers $F(x) = x^2$ is not a surjection, because $2$ has no integer square root. However, if we redefined it for positive *real* numbers it would be: every positive real number has a positive square root. To phrase it in terms of preimages, a surjection $f : A \to B$ has the property that every $b \in B$ has a nonempty preimage $f^{-1}(b)$.
@@ -150,6 +168,8 @@ I will shy away from such dense notation in this book, though it will come in ha
 
 Finally, $f : A \to B$ is called a *bijection* if it is both a surjection and an injection. Adjectivally $f$ is called *bijective*. A bijection is also called a one-to-one correspondence. Bijections are nice because they can be used to say that two sets have the same cardinality (size), and it makes sense for infinite sets. If there is a bijection $A \to B$ then $|A| = |B|$. Likewise, if there is an injection $A \to B$ then $|A| \leq |B|$, and the opposite works for surjections. See the exercises for more on this. Figure 4.3 shows the typical picture for a bijection.
 
+### Inverses and Uniqueness
+
 Being a bijection $f : A \to B$ means every $b \in B$ has a preimage of size exactly $1$. In this case, the idea of an "inverse" to $f$ makes sense: to invert $f$, map $b \in B$ to the unique element $a$ with $f(a) = b$. One denotes this function $f^{-1} : B \to A$. A more precise definition goes as follows.
 
 **Definition 4.11.** An *inverse* of a function $f : A \to B$ is a function $g : B \to A$ satisfying both $g(f(a)) = a$ for every $a \in A$ and $f(g(b)) = b$ for every $b \in B$. If such a $g$ exists, we say $f$ is *invertible*.
@@ -157,6 +177,8 @@ Being a bijection $f : A \to B$ means every $b \in B$ has a preimage of size exa
 All bijections are invertible, and vice versa invertible functions must be bijections. Computing the inverse function given only a description of a function can be notoriously difficult. Indeed, most of cryptography rests on the assumption that some functions are computationally infeasible to invert. On the other hand, in linear algebra it is feasible, though often expensive, to compute the inverse of a matrix. As such, it is worthwhile to study the notion of an inverse in generality. This can grease the wheels of a complicated proof in an advanced setting, but more importantly it separates the mere set-theoretic aspects of a function from application-specific properties.
 
 Here are two such propositions we'll use much later in our study of linear algebra concerning the existence and structure of inverses. If you feel emotionally drained by all the definitions in this chapter so far, feel free to skip these and come back when we refer to them in Chapter 12.
+
+### Uniqueness of Inverses and Left-Inverse Promotion
 
 **Proposition 4.12.** *Inverses are unique.*
 
@@ -168,19 +190,27 @@ The next proposition says that a "left-sided" inverse—satisfying just one of t
 
 *Proof.* It's crucial here that $f$ is surjective (otherwise the theorem is not true!). Given $b \in B$, we need to show that $f(g(b)) = b$. Start by choosing an $a \in A$ for which $f(a) = b$. Then $g(b) = g(f(a)) = a$. Apply $f$ to both sides to get $f(g(b)) = f(a) = b$, as desired. $\blacksquare$
 
+### Bijections as Implicit Type Casts
+
 Before we move on let me explain an earlier comment. I said we call $(\mathbb{R} \times \mathbb{R}) \times \mathbb{R} = \mathbb{R} \times (\mathbb{R} \times \mathbb{R})$ by "brushing aside" the differences between the two. There is a rigorous way to do this, but I'll only explain half of the rigor right now. The essential reason is because there is a bijection $(\mathbb{R} \times \mathbb{R}) \times \mathbb{R} \to \mathbb{R} \times (\mathbb{R} \times \mathbb{R})$ that maps $((a, b), c)$ to $(a, (b, c))$. Often when mathematicians want to "call" two things the same, they'll come up with such a bijection, and say the two things on either side of such a bijection should be considered the same. It's like an implicit typecast, always reversible in this case. The formal idea is called a "quotient," which we'll see in Chapter 9.
 
 ## Clever Bijections and Counting
 
+### Counting Games in a Tournament
+
 Now that we have the basic language of sets to model our problems, on to some problems. Say you want to count the size of a set. Since sets can be defined implicitly, it may not be obvious how. A useful tool used all over math is the trick of coming up with a clever bijection. This can transform a seemingly difficult counting problem into an elegantly trivial one.
 
 Our first problem concerns a tournament of tennis players. The tournament is single-elimination, meaning when two players finish a match the winner stays in the tournament and the loser is out. As the tournament host, you want to know how many games will be played in total. That is, given a set of games (each game is a set of two players) generated by this elimination process, we want to count its size.
+
+### The Naive Count versus the Elegant Answer
 
 Say you start with a thousand players. Let's entertain a naive computation. In the first round of the tournament, each player is paired up with another and 500 games are played. In the second round there are 500 remaining players, and they again pair off to play 250 games. In the third, 125 games. In the fourth round you hit an edge case, because there are an odd number of players and one must sit out. Fine, you keep going, diligently tracking the players who sit out, and eventually you get to a number. You should try this yourself, and verify that the answer is 999 games. Isn't that a weird coincidence? We got 1 less than the total number of players. Does this pattern hold for other tournament sizes?
 
 The answer is yes. To prove it, we apply the technique of finding a clever bijection. It will make you feel like our computation was a complete waste of time, but if you did the exercise you'll appreciate the elegance of this method that much more.
 
 The primary observation is that every loser loses exactly one game. So if we want to count the number of games, we can instead count the number of losers. But there is only one player who is not a loser: the winner. Hence 999 games.
+
+### The Loser Bijection in Set Language
 
 Let's rephrase that elegant argument in the language of sets. Let $X$ be the set of games and $Y$ the set of players. Define a function $f : X \to Y$ by calling $f(x)$ the loser of game $x$. This function is not a surjection. Rather, the image $f(X)$ is the subset $L \subset Y$ of losers. However, $f$ is an injection (different games have different losers), and $f$ defines a bijection between $X$ and $L$. This means that $X$ and $L$ have the same size, and the fact that there is only one winner of the entire tournament means that $|L| = |Y| - 1$. So if there are $n$ players then there will always be $n - 1$ games.
 
@@ -190,9 +220,13 @@ The naive simulation and the bijection ought to agree, so let's make them. The d
 <!-- include: code/pim/03 - Sets/03_tournament.py -->
 ```
 
+### Double-Elimination and Approximate Covers
+
 To make sure you understand this argument, extend it to the case of a double-elimination tournament. In double-elimination, you are ousted from the tournament once you've lost two games, and a player who loses one game might still ultimately win the tournament. In this case you won't have an injection, but a so-called "double-cover" of the set of players. What I mean by double-cover is that every $y \in Y$ has a preimage $f^{-1}(y) = \{x \in X : f(x) = y\}$ of size (almost) exactly $2$. "Almost," because the winner may have lost zero games or one game. This also means you can't count the number of games exactly, but will be forced to provide bounds.
 
 This general strategy for counting has applications any time you need to count or estimate the size of a set. Imagine you want to estimate the number of homeless people in a city, a problem the US Census Bureau faces regularly. You might implicitly count them by observing the residual effects of their actions. This is precisely looking for functions between sets that are close to bijections, or double- or triple-covers of the set you want to count.
+
+### Counting Pairs with a Triangular Bijection
 
 Here is another magnificent example of finding a clever bijection. Given a set $X$ let's define the quantity $\binom{X}{2}$, read "$X$ choose two," to be the set of all unordered pairs of distinct elements of $X$. I.e.,
 
@@ -216,11 +250,15 @@ We can put the bijection's two sides on the table side by side. The demo below e
 <!-- include: code/pim/03 - Sets/04_choose_two.py -->
 ```
 
+### When Pictures Substitute for Proofs
+
 You may wonder: how can we use a picture as the central part of our proof? Didn't we only prove that this bijection works for $n = 7$? Technically you're right: no mathematician would consider a picture as a rigorous proof in and of itself. However, when the goal is to communicate the central nugget of wisdom in a proof, a small example with all the essential features of a general proof is often good enough. Consider one alternative. You could represent the balls as points inside $\mathbb{R}^2$. You'd need a generic way to construct coordinates for them, and a generic way to describe the diagonals. That's a huge pain in the ass for something so simple! Every mathematician would agree it could be done but it would be a colossal waste of time to actually do it.
 
 This is a common feature of more advanced mathematics. Mathematicians are constantly reading papers, and there is rarely enough time to verify all the details of every argument. If you're not an official reviewer of the paper before it's been published, it is usually enough to be convinced that something should be true, especially if the details are messy but clear, while focusing on the high level picture. An example with all the essential features of a general solution is an effective substitute. And this doubles for readers of mathematics too: finding a simple example with the essential features of a general solution, and testing claims on the example, is one of the best ways to read a proof!
 
 ## Proof by Induction and Contradiction
+
+### Induction as Recursion for Proofs
 
 Next we're going to see two rigorous methods of proof that are used in all areas of math. The first is induction, but you're likely familiar with it by a different name: recursion.
 
@@ -236,6 +274,8 @@ Likewise, induction is a proof technique that allows you to prove a statement by
 2. Second, do the *inductive step*, where one uses the assumption that $P(n)$ is true to prove that $P(n + 1)$ is true. Equivalently, one can use $P(n - 1)$ to prove $P(n)$.
 
 Just like with recursion, you get a chain of proofs: $P(6)$ implies $P(7)$ implies … implies $P(n)$ for any $n$ you like. One bit of terminology: one often invokes the *inductive hypothesis*, which is the assumption that $P(n)$ is true. It's helpful when $P(n)$ is cumbersome to restate.
+
+### An Inductive Proof of n-Choose-2
 
 Let's use induction for a second proof that $\binom{n}{2} = 1 + 2 + \cdots + n - 1$.
 
@@ -275,6 +315,8 @@ Is the proof still a bit murky? Go back and set $n = 4$, $X = \{1, 2, 3, 4, 5\}$
 
 Interestingly, proof by induction has a bad reputation in mathematics. The reason is that proofs by induction often convey little insight to the reader. As the mathematician Gian-Carlo Rota once said, "If we have no idea why a statement is true, we can still prove it by induction." Be that as it may, induction is a central tool for proving theorems.
 
+### Proof by Contradiction: The Party Problem
+
 The second proof technique is called "proof by contradiction." There's a simple puzzle I often use to illustrate the technique.
 
 You're at a party. You're chatting with your friend, and out of curiosity you ask how many friends he has at the party. He counts them up, there are five, and you realize that you also have five friends at the party. What a coincidence! Putting on your mathematician hat, you poll everyone at the party and you're shocked to find that a few other people also have five friends at the party. The puzzle is: is this true of every party? Maybe not five exactly, but will there always be at least two people with the same number of friends who are at the party?
@@ -293,6 +335,8 @@ This is the "pigeonhole" argument in disguise: $n$ people, but only $n - 1$ achi
 <!-- include: code/pim/03 - Sets/07_party.py -->
 ```
 
+### The General Shape of a Contradiction Proof
+
 This is how every proof by contradiction goes, but they're usually a bit more concise. They always start with, "Suppose to the contrary" to signal the method. And there is no warning when the contradiction will come. A proof writer usually just states the contradiction and follows it with "which is a contradiction," ending the proof.
 
 The point of a proof by contradiction is to get an object with a property that you can work with. If you're trying to prove that no object with some special property exists, a proof by contradiction gives you an instance of such an object, and you can use its special property to go forward in the proof. In this case the object was a special friendship count among partygoers, and in the next section we'll apply the same logic to "marriages."
@@ -301,9 +345,13 @@ For those readers who are interested in a bit more details about what makes a ma
 
 ## Application: Stable Marriages
 
+### The Matching Problem and Stability
+
 Now we're ready to apply the tools in this chapter to implement a Nobel Prize-winning algorithm for the stable marriage problem. The problem is set up as follows. Say you have $n$ men and $n$ women. Your end goal is to choose who should marry whom. Same-sex marriages are excluded, not for political or religious reasons but because it's a more difficult problem. So if we call $M$ the men and $W$ the women, our output will be a bijection $M \to W$ describing the marriages (or equivalently $W \to M$). I will freely switch between "bijection" and "marriage" in this section.
 
 Of course, we don't just want any bijection. This is where the "stable" part comes in. We want to choose the marriage so that everyone is happy in some sense. Let's make this precise. Say that each man has a ranking of the women, mathematically a bijection $W \to \{1, 2, \ldots, n\}$, with $1$ being the most preferred and $n$ being the least. In other words, if we call the bijection $p$ then $p(w) < p(x)$ means that this particular man prefers woman $w$ over woman $x$. Likewise, each woman has a ranking of the men $M \to \{1, 2, \ldots, n\}$. Now we obviously can't ensure that every woman gets her top choice and vice versa; the men could all prefer the same woman. So we need a subtler notion of happiness: that no (man, woman) pair mutually prefer each other over their assigned partners.
+
+### From Marriages to Medical Residency
 
 Marriages are a colorful, if somewhat silly, setting for this problem. Realistically, this algorithm applies to different sorts of 'marriage', such as the assignment of a student to an apprenticeship. A widely known example is medical residency, in which medical students work in a hospital before becoming a doctor. This is the perfect example of a market in which money should not play a part. As a society we want all our hospitals filled with talented apprentices. We don't want the students with the richest parents or best connections to get the most prestigious positions in the best cities, while poorer areas suffer. We want to spread the talent around. So we need a market with a protocol that respects student and hospital preferences in a way that no (student, hospital) pair is incentivized to make their own arrangements. This version of the problem is a natural extension of the marriage version. So we'll explore marriages in depth here, and dive into medical residency matching in the exercises.
 
@@ -319,6 +367,8 @@ What I mean by "no mutually desired cheating" is the following.
 2. The pair $m$ and $w$ mutually prefer each other over their assigned matches. I.e., both $\text{pref}_m(w) < \text{pref}_m(f(m))$ and $\text{pref}_w(m) < \text{pref}_w(f^{-1}(w))$.
 
 In other words, the bijection is called stable if there is no pair of people with mutual incentive to cheat on their assigned spouses. This is not to say cheating can't happen, but if it does one of the two involved will be "lowering their standards."
+
+### The Deferred Acceptance Algorithm
 
 The algorithmic question is, given lists of preferences as input, can we find a stable marriage? Can we even guarantee a stable marriage will exist for any set of preferences? The answer to both questions is yes, and it uses an algorithm called deferred acceptance.
 
@@ -397,6 +447,8 @@ def stable_marriage(suitors, suiteds):
     return dict([(suited.held, suited) for suited in suiteds])
 ```
 
+### Termination by Monotonicity
+
 The dictionary at the end is the type we use to represent a bijection. Now let's prove this algorithm always produces a stable marriage.
 
 We will argue that the algorithm terminates by *monotonicity*. Here's what I mean by that: say you have a sequence of integers $a_1, a_2, \dots$ which is *monotonically increasing*, meaning that $a_1 < a_2 < \cdots$. Say moreover that you know none of the $a_i$ are larger than $50$ ($a_i$ is *bounded* from above) but each $a_{i+1} \geq a_i + C$ for some constant $C > 0$. Then it's trivial to see that either the sequence stops before it hits $50$, or eventually it hits $50$.
@@ -409,6 +461,8 @@ To show an algorithm terminates, you can cleverly choose an integer $a_t$ for ea
 
 Moreover, in each round one of two things happens. Either no Suitor is rejected by a Suited and by definition the algorithm finishes, or someone is rejected and their `index_to_propose_to` variable increases by $1$, so $a_{t+1} \geq a_t + 1$. Now in the case where all the Suitors are at the end of their lists, that means that every Suited was proposed to by every Suitor. In other words, each of the Suiteds gets their top pick: they only reject when they see a better option, and they got to consider all proposals! Clearly the algorithm will stop in this case.
 
+### Proving Stability by Contradiction
+
 Now that we've shown the algorithm will stop, we need to show the bijection $f$ produced as output is stable. The definition of stability says there is no Suitor $m$ and Suited $w$ with mutual incentive to cheat, so for contradiction's sake we'll suppose that the $f$ output by the algorithm does have such a pair, i.e., for some $m, w$, $\operatorname{pref}_m(w) < \operatorname{pref}_m(f(m))$ and $\operatorname{pref}_w(m) < \operatorname{pref}_w(f^{-1}(w))$.
 
 What had to happen to $w$ during the algorithm? Well, $m$ ended up with $f(m)$ instead of $w$, and if $\operatorname{pref}_m(f(m)) > \operatorname{pref}_m(w)$, then $m$ must have proposed to $w$ at some earlier round. Likewise, the `held` pick of $w$ only increases in quality when $w$ rejects a Suitor, but $w$ ended up with some Suitor $f^{-1}(w)$ while $\operatorname{pref}_w(m) < \operatorname{pref}_w(f^{-1}(w))$. So at some point in between being proposed to by $m$ and choosing to hold on to $f^{-1}(w)$, $w$ had to go the wrong way in her preference list, contradicting the definition of the algorithm. $\blacksquare$
@@ -418,6 +472,8 @@ The proof claims two things we can check head-on: the output is stable, and it t
 ```python
 <!-- include: code/pim/03 - Sets/05_stable_marriage.py -->
 ```
+
+### An Example Run
 
 We close with an example run:
 
@@ -459,6 +515,8 @@ We close with an example run:
 
 ## Exercises
 
+### Counting and Combinatorics
+
 **4.1.** Write down examples for the following definitions. A set $A$ (finite or infinite) is called *countable* if it is empty, or if there is a surjection $\mathbb{N} \to A$. The *power set* of a set $A$, denoted $2^A$, is the set of all subsets of $A$. For two sets $A, B$, we denote by $B^A$ the set of all functions from $A$ to $B$. This makes sense with the previous notation $2^A$ if we think of "2" as the set of two elements $2 = \{0, 1\}$, and think of a function $f : A \to \{0, 1\}$ as describing a subset $C \subset A$ by sending elements of $C$ to $1$ and elements of $A - C$ to $0$. In other words, the subset defined by $f$ is $C = f^{-1}(1)$.
 
 This exercise gives us the cleanest verification in the chapter. The identity $|2^A| = 2^{|A|}$ is really the statement that subsets of $A$ correspond exactly to functions $A \to \{0, 1\}$. The demo below builds the power set explicitly from binary masks (one mask per subset), checks $|2^S| = 2^{|S|}$ for $|S| = 0, \dots, 7$, and spells out the subset-vs-indicator bijection from the exercise, recovering each subset as $f^{-1}(1)$.
@@ -479,6 +537,8 @@ The set identity and the boolean identity are the same statement seen through th
 
 **4.4.** Look up a statement of the pigeonhole principle, and research how it is used in proofs.
 
+### Countability and Cardinality
+
 **4.5.** Prove that $\mathbb{N} \times \mathbb{N}$ is countable, i.e., there is a surjection $\mathbb{N} \to \mathbb{N} \times \mathbb{N}$.
 
 **4.6.** For each $n \in \mathbb{N}$, let $A_n$ be a countably infinite set, such that all the $A_n$ have empty intersection. Prove that the union of all the $A_n$ is countable. Hint: use the previous problem.
@@ -488,6 +548,8 @@ The set identity and the boolean identity are the same statement seen through th
 **4.8.** I would be remiss to omit Georg Cantor from a chapter on set theory. Cantor's Theorem states that the set of real numbers $\mathbb{R}$ is not countable. The proof uses a famous technique called "diagonalization." There are many expositions of this proof on the internet ranging in difficulty. Find one that you can understand and read it. The magic of this theorem is that it means there is more than one kind of infinity, and some infinities are bigger than others.
 
 **4.9.** The principle of inclusion-exclusion is a technique used to aid in counting the size of a set. Look for a description of this principle (it is a family of theorems) and find ways it is used to help count.
+
+### Combinatorial Designs and Steiner Systems
 
 **4.10.** There is a large body of mathematics related to configurations of sets with highly symmetric properties. Let $n, k, t$ be integers. A *Steiner system* is a family $F$ of size-$k$ subsets of an $n$-element set $S$, say $\{1, \ldots, n\}$, such that every size-$t$ subset of $S$ is in exactly one member of $F$. For example, for $(n, k, t) = (7, 3, 2)$, the corresponding Steiner system is a choice of triples in $\{1, 2, 3, 4, 5, 6, 7\}$, such that every pair of numbers is in exactly one of the chosen triples. Find an explicit description of a $(7, 3, 2)$-system.
 
@@ -505,9 +567,13 @@ The $(7, 3, 2)$-system is the celebrated *Fano plane*. As a worked highlight, th
 
 **4.14.** A *Sperner family* is a family $F$ of subsets of $\{1, \ldots, n\}$ for which no member of $F$ is a subset of any other member of $F$. Sperner's theorem gives an upper bound on the maximum size of a Sperner family. Find a proof of this theorem. There are multiple proofs, though one of them has at its core an inequality called the Lubell–Yamamoto–Meshalkin inequality, which is proved using a double-counting argument (and Exercise 4.3).
 
+### Foundations and Extensions
+
 **4.15.** The formal mathematical foundations for set theory are called the Zermelo-Fraenkel axioms (also called ZF-set theory, or ZFC). Research these axioms and determine how numbers and pairs are represented in this "bare metal" mathematics. Look up Russell's paradox, and understand why ZF-set theory avoids it.
 
 **4.16.** A *fuzzy set* $S \subset X$ is a function $m_S : X \to [0, 1]$ that measures the (possibly partial) membership of an $x \in X$ in the set $S$. One can think of $m_S(x)$ as representing the "confidence," or "probability" that an $x$ is in $S$. Show that every set can be represented as a fuzzy set. Research fuzzy sets, and determine a sensible definition for the cardinality of a fuzzy set.
+
+### Stable Marriage Variants
 
 **4.17.** Write a program that extends the deferred acceptance algorithm to the setting of "marriages with capacity." That is, imagine now that instead of men and women we have medical students and hospitals. Each hospital may admit multiple students as residents, but each student attends a single hospital. Find the most natural definition for what a stable marriage is in this context, and modify the algorithm in this chapter to find stable marriages in this setting. Then implement it in code. See the chapter notes for historical notes on this algorithm.
 

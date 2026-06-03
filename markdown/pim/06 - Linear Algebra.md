@@ -4,6 +4,8 @@
 >
 > – Jean Dieudonné
 
+### From Sets to Functions
+
 For a long time mathematicians focused on studying interesting sets, like numbers and solutions to various equations. In Chapter 6 we saw graphs, which are interesting kinds of sets. In Chapter 8 we saw sets of numbers (sequences) and sets of pairs of numbers (functions $\mathbb{R}\to\mathbb{R}$). One could spend a lifetime studying interesting graphs or interesting sets of numbers. However, more recent trends in mathematics have shifted the main focus from studying sets with interesting structure to studying *functions* with interesting structure.
 
 To ease into it, let's first consider the familiar concept of a compiler. A compiler is a function mapping the set of programs in a source language to the set of programs in a target language, often assembly. A compiler preserves the semantic behavior of a valid input program in the target language when you run it. In that sense, it preserves the structure of the input by representing that structure appropriately in the codomain.
@@ -11,6 +13,8 @@ To ease into it, let's first consider the familiar concept of a compiler. A comp
 Moreover, a computer program written in a compiled language like C is truly only defined by the behavior of the compiler. This is never more visible than when dealing with language forms that have "undefined behavior." Different compilers run on the same source produce programs that behave differently. Languages like C, in which behavior can vary depending on the arbitrary contents of uninitialized memory, widen such pitfalls. This isn't how we *want* to work with programs. We want to consider programs in their most natural environment, the semantics defined by a language's documentation.
 
 In mathematics, when complexity and notational grime builds up we use essentially the same tool: abstraction. We add a layer of indirection that allows us to write arguments that say, "these two things are the same" in the context that matters for the task at hand, and we exhibit bijections and equivalence relations to formalize the connection (cf. Chapter 9). This allows us to identify and isolate structure in new settings, and mentally disregard impertinent information.
+
+### What This Chapter Covers
 
 The vector space, which encompasses mathematical objects with a linear structure, is a foundational example. It's the basic object of study in linear algebra. The main tool that we use to relate two vector spaces is the linear map. As we will see, linear maps have a useful computational representation called matrices (singular, matrix). Matrices are "compiled" representations of a linear map in a particular environment (looking ahead, the particular choice of a basis for the vector space). The magic appears when we deeply understand how the operations on matrices translate back and forth to operations on linear maps, and how it all relates to geometry.
 
@@ -20,6 +24,8 @@ We devote a fair chunk of this chapter's application to studying a specific line
 
 ## Linear Maps and Vector Spaces
 
+### The Intuition Behind Linearity
+
 The definition of a linear map requires a bit of groundwork to nail down precisely, but the crucial underlying intuition is simple. A function $f:A\rightarrow B$ is called linear if the following identity is always true, no matter what $x,y\in A$ are:
 
 $$f(x+y)=f(x)+f(y)$$
@@ -27,6 +33,8 @@ $$f(x+y)=f(x)+f(y)$$
 Simple, yet something is missing. Take a moment to identify what that is.
 
 The problem is that we don't know what "$+$" means in this context. Because I used the $+$ symbol you may have guessed that $A$ and $B$ are sets of numbers, but this need not be the case. Instead, we'll isolate the important properties of addition, and the result will be called a vector space. Any set can be a vector space, and we call the elements of a vector space vectors. One defines a $+$ operation and establishes that the isolated addition properties hold.
+
+### The Vector Space Axioms
 
 Now we can define a vector space. The gist is that vectors can be any type, scalars must be nicely-behaved numbers, and almost every arithmetic identity you expect to be true is true, so long as you formally prove the axioms according to this definition. The only missing thing is that vector spaces don't have multiplication or division of vectors by other vectors. Moreover, the concepts defined here, particularly the zero vector and additive inverses, can be proven to be unique from the definition. You will do this in the exercises, and it justifies the use of the notation post hoc.
 
@@ -52,6 +60,8 @@ Another word commonly used here is that $V$ is closed under this operation: appl
 
 This is a monumental definition, and it's not even the most general definition (see the Chapter Notes for more). But it's entirely contained in the implementation of the operations $+$ and $\cdot$. The miniature proofs that $+,\cdot$ have the needed properties constitute a proof that the chosen implementation is a vector space. This proof is rarely a challenge. In the examples that follow, I'll skip detailed proofs, but if you want more practice, fill in the details.
 
+### Examples of Vector Spaces
+
 The simplest natural vector space is $\mathbb{R}$, with $\mathbb{R}$ also being the scalars. In this case vectors are just numbers, $+$ is addition of real numbers, and $\cdot$ is multiplication of real numbers. The number zero is both the scalar identity and the zero vector. Nothing about this should be surprising.
 
 A more interesting example is one we're familiar with from Chapter 2, polynomials. Call $V$ the set of all polynomials of a single variable. If $t$ is our variable then $1+t\in V$ as well as $7$ (a degree-zero polynomial) and $\pi t+700t^{99}$. The operation $+$ is defined by adding coefficients term-wise, and $c\cdot p(t)$ by scaling each coefficient of $p$ by $c$. The zero polynomial is the zero vector. As an aside, the secret sharing application from Chapter 2 can also be understood and proved by appealing to polynomials as a vector space; the evaluation-at-a-point function $\operatorname{eval}_{a}(p)$ defined by $p\mapsto p(a)$ is a linear map. See the exercises for an exploration of this.
@@ -63,6 +73,8 @@ The final example is $\mathbb{R}^{n}=\mathbb{R}\times\mathbb{R}\times\cdots\time
 $$(a_{1},a_{2},\ldots,a_{n})+(b_{1},b_{2},\ldots,b_{n})=(a_{1}+b_{1},\ldots,a_{n}+b_{n}).$$
 
 Similarly, $c\cdot(a_{1},\ldots,a_{n})=(ca_{1},\ldots,ca_{n})$, where on the right hand side the multiplication happening in each coordinate is the usual product of real numbers. The zero vector is $(0,0,\ldots,0)$, and the inverse of $(a_{1},\ldots,a_{n})$ is $-1\cdot(a_{1},\ldots,a_{n})=(-a_{1},\ldots,-a_{n})$. All of the vector space axioms hold because they apply independently to each entry, and each entry is just arithmetic in $\mathbb{R}$.
+
+### Geometric Interpretation of Vectors
 
 With a few examples handy, let's turn to the geometric side of Definition 10.1. A vector space is designed to be the simplest way to define what addition means in a context that is useful for geometry (defining an "algebra" for geometric objects). Let's expand this. The first thing a geometry needs is a space of points. In a vector space, the points are the vectors themselves. In Figure 10.1, we draw some vectors in $\mathbb{R}^{2}$ for the ease of visualization. For a reason we'll explain shortly, we also draw these points as arrows from the zero vector (the zero vector is called the "origin," in graphical parlance).
 
@@ -95,6 +107,8 @@ In other words, if $u$ has a linear relationship with $v$—say, $u = a \cdot_X 
 
 This notation $+_{X}, \cdot_{X}$ burns my eyes, so we'll drop it and understand that when I say $f(v + w) = f(v) + f(w)$, I mean that the $+$ on the left hand side is happening in $X$ and the $+$ on the right hand side is happening in $Y$. Likewise for scaling, $f(cv) = cf(v)$. Any other interpretation would be a fatal type error. Moreover, as we go on I'll begin to drop the $\cdot$ in favor of "juxtaposition", so that if $a$ is a scalar and $v$ is a vector, it's understood that $av = a \cdot v$. I will use the dot only when disambiguation is needed.
 
+### Examples and Property Testing
+
 Here's a simple example of a linear map. Let $X$ be the vector space of polynomials, and $Y=\mathbb{R}$. Define the *evaluation at 7* function, which I'll denote by $\operatorname{eval}_{7}:X\to\mathbb{R}$, as $\operatorname{eval}_{7}(p)=p(7)$. Let's check the two conditions hold. If $p,q$ are two polynomials, then
 
 $$\operatorname{eval}_{7}(p)+\operatorname{eval}_{7}(q)=p(7)+q(7)=(p+q)(7).$$
@@ -118,6 +132,8 @@ eval_7 is linear: 10000 random (p, q, c) all passed
 (a,b,c) -> (-2a+3b, c) is linear: 10000 passed
 x -> x+1 fails linearity (g(0) = 1, not 0)
 ```
+
+### Linear Maps Preserve the Zero Vector
 
 For the rest of the chapter, linear maps are the only kind of function we care about for vector spaces. The reason, which we'll spend the rest of the chapter trying to understand, is that linear maps are the maps which preserve the structure of a vector space. Indeed, we *defined* them to preserve the two operations that define a vector space! But as we'll see this covers all the bases. For example, linear maps preserve the zero vector.
 
@@ -145,6 +161,8 @@ Though we defined a vector space as a set with two operations, you can't do much
 
 The simplest example of a basis is for $V=\mathbb{R}^{2}$. Let $e_{1}=(1,0)$ and $e_{2}=(0,1)$. Then any vector $(a,b)$ can be written as $a\cdot(1,0)+b\cdot(0,1)$. More generally, $\mathbb{R}^{n}$ has a basis of the $n$ vectors which have a 1 in a single coordinate and zeroes elsewhere. E.g., $e_{2}=(0,1,0,\ldots,0)$. This is often called the *standard basis* of $\mathbb{R}^{n}$ and denoted with $e$'s as $\{e_{1},\ldots,e_{n}\}$.
 
+### Non-uniqueness of Bases and Coordinate Systems
+
 Two things to note about the $\mathbb{R}^{2}$ example. First, this is far from the only basis. Almost any two vectors you can think of form a basis. Say, $\{(3,4),(-1,-5)\}$. One way to show this is a basis is to write a known basis like $(1,0)$ and $(0,1)$ in terms of these two vectors:
 
 $$(1,0)=\frac{5}{11}(3,4)+\frac{4}{11}(-1,-5).$$
@@ -168,6 +186,8 @@ This process of expressing a vector's coordinates with respect to a different ba
 
 ![Figure 10.6: Assembling the same point as a linear combination $v=-\frac{1}{3}v_1-\frac{5}{3}v_2$ of two new basis vectors $v_1=(2,-1)$, $v_2=(-1,-1)$.](06 - Linear Algebra_images/img-5.jpeg)
 
+### Linear Combinations and Span
+
 The brief and formal way to say a vector $v$ "can be written using sums and scales of other vectors" is the following definition.
 
 **Definition 10.4.** Let $v_{1}, v_{2}, \ldots, v_{n}$ be a set of vectors in a vector space $V$, and let $x$ be a vector in $V$. We say $x$ is a linear combination of $v_{1}, \ldots, v_{n}$ if there are scalars $a_{1}, \ldots, a_{n} \in \mathbb{R}$ with
@@ -188,6 +208,8 @@ This definition makes it clear why we don't say things like $\{(1,0),(2,0),(3,0)
 
 We will have a lot more to say about bases. Many insights and applications of linear algebra revolve around computing a clever basis. But first we need a few more tools. One of the most important definitions in elementary linear algebra is related to the existence and uniqueness of linear combinations.
 
+### Linear Independence
+
 **Definition 10.6.** Let $V$ be a vector space, and $v_{1},\ldots,v_{n}\in V$ be nonzero vectors. The set $\{v_{1},\ldots,v_{n}\}$ is said to be linearly independent if no $v_{i}$ is in the span of the other vectors $\{v_{j}:j\neq i\}$. Informally we will also say the list $v_{1},\ldots,v_{n}$ is linearly independent, though the ordering of the vectors has no consequence.
 
 Another, equivalent definition of linear independence, and one that's easier to work with in proofs, is that the only way to write the zero vector as a linear combination of $v_{1},\ldots,v_{n}$ is if all the coefficients $a_{i}$ are zero. In other words, there is no nontrivial way to write zero as a linear combination.
@@ -199,6 +221,8 @@ Another equivalent (but seemingly more restrictive) way to express linear indepe
 For example, in $\mathbb{R}^{2}$ the set $\{(1,0),(0,1)\}$ is linearly independent, as is the set $\{(3,4),(-1,-5)\}$. However, $\{(1,0),(3,4),(-1,-5)\}$ is linearly dependent (i.e., not linearly independent) because, as we saw, $(1,0)$ is a linear combination of the other two vectors.
 
 Linear independence provides a different perspective on the concept of a basis, which will lead us to Theorem 10.8 and allow us to have a coherent definition of a vector space's dimension.
+
+### Maximally Independent Sets Are Bases
 
 **Theorem 10.7.** Let $V$ be a vector space. Let $B=\{v_{1},\ldots,v_{n}\}$ be a set of linearly independent vectors in $V$, and suppose it's maximal in the sense that if you add any new vector to $B$, then the resulting set is linearly dependent. Then $B$ is a basis for $V$.
 
@@ -246,6 +270,8 @@ This means we can rearrange the above to solve for $w_{1}$ in terms of $u_{1}, w
 
 Theorem 10.8 provides well-definition for the notion of the dimension of a vector space. Dimension does not depend on which basis you choose. This reinforces our intuitive understanding of what dimension should be for $\mathbb{R}^n$, i.e., how many coordinates are needed to uniquely specify a point. $\mathbb{R}$ is one-dimensional, the plane $\mathbb{R}^2$ is two-dimensional, physical space at a fixed instant in time is 3-dimensional, etc. The dimension of the space doesn't (and shouldn't) depend on the perspective, and for linear algebra the perspective is the choice of a basis.
 
+### Subspaces
+
 We end this section with the notion of a subspace.
 
 **Definition 10.10.** Let $V$ be a vector space, and let $W \subset V$ be a subset. We call $W$ a *subspace* if the same operations from $V$ also make $W$ a vector space.
@@ -261,6 +287,8 @@ As these two examples suggest, subspaces can be formed easily by taking a basis 
 Now we can finally get to the heart of linear algebra.
 
 Linear maps seem relatively complicated at first glance, but they have a rigid structure uniquely determined once you fix a basis in the domain and codomain. Let's draw this out and discover what that structure is. In this section English letters $v$, $w$, $x$, and $y$ will always be vectors, while Greek letters $\alpha$, $\beta$, and $\gamma$ will be scalars.
+
+### Deriving the Matrix from a Linear Map
 
 Start with a linear map $f:\,V\to W$, maybe given by some formula. We want to compute $f$ on an input $x$. You choose a basis $\{v_{1},\ldots,v_{n}\}$ and a basis $\{w_{1},\ldots,w_{m}\}$ for $V$ and $W$, respectively. Now fix $x\in V$ to be arbitrary. Since the $v_{i}$ form a basis, there is some way to write $x$ as a linear combination of the $v_{i}$, say
 
@@ -323,6 +351,8 @@ The abstraction we're about to see (the matrix) has two virtues. First, it eases
 
 Both the visual representation and the algebra merge seamlessly with the functional description of linear maps. As we'll see, composition of functions corresponds to matrix multiplication. Natural operations on linear maps correspond to operations on the corresponding matrices, and conversely operations on matrices correspond to new, useful operations on functions. We will explore this in even more detail in Chapter 12.
 
+### The Matrix as a Table of Numbers
+
 So here's the abstraction that works for any linear map $f:V\to W$. Again, we fix a basis $\{v_{i}\}$ for $V$ and $\{w_{j}\}$ for $W$. Write the numbers from $\beta$ describing the linear map $f:V\to W$ in a table according to the following rule. The columns of the table correspond to the basis of $V$, and the rows correspond to basis vectors of $W$. We call this construction $M(f)$, and the mapping $f\mapsto M(f)$ will be a bijection from the set of linear maps (all using the same fixed basis) to the set of matrices. The entries of column $i$ are defined as the expansion of $f(v_{i})$ in terms of the $w_{j}$. That is, take the basis vector $v_{i}$ for that column, and expand $f(v_{i})$ in terms of the $w_{j}$, getting $f(v_{i})=\beta[i,1]w_{1}+\cdots+\beta[i,m]w_{m}$. The numbers $\beta[i,j]$ (where $j$ ranges from $1$ to $m$) form the $i$-th column of $M(f)$.
 
 $$
@@ -343,6 +373,8 @@ f(v_{1}) & \cdots & f(v_{n})\\
 \mid & & \mid
 \end{pmatrix}
 $$
+
+### Matrix-Vector Multiplication
 
 The computational process of mapping an input vector $x$ to $f(x)$ is called a matrix-vector product, and it works as follows. First, write $x$ in terms of the basis for $V$ as before, $x = \alpha_{1}v_{1} + \cdots + \alpha_{n}v_{n}$, this time writing the coefficients in a column:
 
@@ -389,6 +421,8 @@ rebuilt from columns: [29 23]
 M(g o f) = M(g) M(f): 1000 random vectors agree
 ```
 
+### Matrix Addition, Scaling, and the Bijection to Linear Maps
+
 We've defined a mechanical algebraic process for computing the output $f(x) \in W$ from the input $x \in V$, provided we have chosen a basis for $V$ and $W$ and provided we can express vectors in terms of a given basis. This is a new type of "multiplication" operator that has very nice properties. For example:
 
 **Definition 10.12.** Let $A, B$ be two $n \times m$ matrices and let $c \in \mathbb{R}$ be a scalar.
@@ -406,6 +440,8 @@ Beyond being linear, the mapping $f \mapsto M(f)$ is a bijection (again, for a f
 
 This bijection allows us to say that linear maps and matrices are "the same thing" without angry mathematicians throwing chalkboard erasers at us. The matrix representation of a linear map is unique, so we can freely switch back and forth between a linear map and its matrix, provided the bases do not change.
 
+### Matrix Multiplication and Function Composition
+
 Matrix-vector multiplication continues to surprise: given two matrices $A$ and $B$ whose dimensions line up appropriately, one can define the *product* of the two matrices by applying the matrix-vector product of $A$ to each column of $B$ separately.
 
 $$
@@ -421,6 +457,8 @@ $$M(g\circ f)=M(g)M(f),$$
 where $g\circ f$ denotes the function composition $x\mapsto g(f(x))$, and $M(g)M(f)$ denotes matrix multiplication.
 
 So the matrix representation of a linear map allows us to compute the composition of functions. If you reflect on this fact (before attempting a rigorous and index-intensive proof), it could not be any other way: the matrix-vector product using $M(g)$ details how to take a basis vector $v_{i}\in V$ and express $g(v_{i})$ in terms of the basis of $W$, while the columns of $M(f)$ express how to do the same with $f$ from $U$ to $V$.
+
+### The Algebra of Linear Maps
 
 This whole process we've undertaken, going from an abstractly defined theory of vector spaces and linear maps to the concrete world of matrices, is analogous to the process of building a computational model for a real-world phenomenon. It's like we're taking light, something which we observe obeys certain behaviors such as reflecting on various surfaces, and casting it to a type where we can quantitatively answer how much it reflects. We can say, without observation, what its different components are in our model, and how two types of light we've never observed interacting would interact. All of these things are possible because of the computational model.
 
@@ -438,6 +476,8 @@ $$4a-5b=0$$
 Here $v_{1}=(3,4)$ and $v_{2}=(-1,-5)$ were the two vectors acting as our basis, and we wanted to express the vector $x=(1,0)$ in terms of them. The variables $a,b$ are the unknown coefficients of $v_{1},v_{2}$ we solved for.
 
 One important thing to point out: even though we want to write $x=(1,0)$ in terms of $v_{1},v_{2}$, we actually had a representation of $x$ in terms of a basis already! To even write $x$ down in this coordinate-form, we implicitly used the standard basis for $\mathbb{R}^{2}$, $e_{1}=(1,0),e_{2}=(0,1)$. In the example above $x=1e_{1}+0e_{2}$. In order to express $x$ in terms of a given basis, you have to have already expressed it in terms of some (maybe easy) basis.
+
+### The General Change of Basis Equation
 
 This strategy generalizes. Let's say we have an $n$-dimensional vector space $V$ with two bases:
 
@@ -479,6 +519,8 @@ $$
 
 The matrix multiplication operation ensures that $I_{n}A=AI_{n}=A$ for any matrix $A$. Then the inverse $A^{-1}$, if it exists, is defined as the matrix $B$ for which $AB=BA=I_{n}$. As an exercise, prove that if a linear map is a bijection, then its inverse is also a linear map, and the linear-map-to-matrix correspondence preserves inverses.
 
+### Conjugation and Matrix Similarity
+
 More generally, a pattern used everywhere in mathematics is to change basis for a limited-scope operation. In other words, given a change of basis matrix $P$ which changes from basis $B$ to basis $E$, and some linear map $A$ expressed in terms of $E$, you can apply $A$ to a vector $w$ expressed in $B$-coordinates as
 
 $$P^{-1}APw.$$
@@ -500,6 +542,8 @@ trace(A)=trace(B)=2.000  det(A)=det(B)=1.000
 Same map, two perspectives -- not 'similar', identical.
 ```
 
+### Gaussian Elimination and Choosing a Good Basis
+
 To compute $P^{-1}x$ is a different pickle. From the perspective of a system of $n$ equations, the standard principle of solving the matrix-vector equation $Ab=x$ by isolating a single variable, substituting, and solving works, but it's extremely tedious. To help with the tedium, mathematicians came up with an algorithm called Gaussian elimination that uses the tabular format of the matrix equation to help organize. Gaussian elimination is important, but it's both inefficient and it computes a lot of extra information.
 
 Gaussian elimination is a general-purpose algorithm that works no matter what your basis is. A shrewder approach, which many applications of linear algebra utilize, is to think hard about the best basis for your intended application, and convert to that basis once at the beginning of a computation. See the exercises for further references and pointers to industry-standard techniques for changing bases, and Chapter 12 for an extended parable on the value of a good basis.
@@ -516,6 +560,8 @@ Let's restrict our attention back to finite-dimension. We'll argue why $\mathbb{
 
 An isomorphism $f$ preserves all structure in mapping elements from $V$ to $W$. As far as linear-algebraic structure is concerned, $V$ and $W$ are identical, and the vectors of $W$ can be thought of as a "relabeling" of the vectors of $V$.
 
+### Polynomials Are Isomorphic to Tuples
+
 **Proposition 10.16.** Let $P_{m}$ be the vector space of polynomials in one variable with degree at most $m$. Then $\mathbb{R}^{m+1}\cong P_{m}$.
 
 **Proof.** Let $\{1,t,t^{2},\dots,t^{m}\}$ be the usual basis for $P_{m}$, and fix the standard basis of $\mathbb{R}^{m+1}$, i.e., $\{e_{1},\dots,e_{m+1}\}$. Define $f:P_{m}\to\mathbb{R}^{m+1}$ as
@@ -525,6 +571,8 @@ $$f(a_{0}+a_{1}t+\dots+a_{m}t^{m})=(a_{0},a_{1},\dots,a_{m}).$$
 First, $f$ is a linear map: when you add polynomials you add their same-degree coefficients together, and scaling simply scales each coefficient. Second, $f$ is a bijection: if two polynomials are different, then they have at least one differing coefficient (injection); if $(b_{0},b_{1},\dots,b_{m})$ is a vector in $\mathbb{R}^{m+1}$, then it is the image of $p(t)=\sum_{k=0}^{m}b_{k}t^{k}$ under $f$. ∎
 
 This theorem isn't meant to conclude that polynomials are the same as lists in every respect. Quite the opposite, a polynomial comes with all kinds of extra interesting structure (as we saw in Chapter 2). Rather, to phrase polynomials as a vector space is to ignore that additional structure. It says: if all you consider about polynomials is their linearity, then they have the same linear structure as lists of numbers. At times it can be extremely helpful to "ignore" certain unneeded aspects of a problem. As you'll see in an exercise, the polynomial interpolation problem from Chapter 2 relies only on the linear structure of polynomials. Noticing this can inspire other (perhaps more efficient) techniques for doing secret sharing.
+
+### The Classification Theorem
 
 This exploration suggests that *all* data representations of finite-dimensional vector spaces can be thought of as lists of numbers. Those numbers are the coefficients of the basis vectors.
 
@@ -541,6 +589,8 @@ This plan has a wrinkle. We're about to define the inner product, which computes
 **Definition 10.18.** Let $v,w$ be vectors in $\mathbb{R}^{n}$, and let $\{e_{1},\ldots,e_{n}\}$ be the standard basis for $\mathbb{R}^{n}$, so that $v=\sum_{i=1}^{n}\alpha_{i}e_{i}$ and $w=\sum_{i=1}^{n}\beta_{i}e_{i}$. The *standard inner product* (or *dot product*) of $v$ and $w$, denoted $\langle v,w\rangle$, is a scalar given by the formula
 
 $$\langle v,w\rangle=\alpha_{1}\beta_{1}+\cdots+\alpha_{n}\beta_{n}=\sum_{i=1}^{n}\alpha_{i}\beta_{i}.$$
+
+### Norms, Angles, and the Law of Cosines
 
 This formula is special because it has a geometric interpretation. Indeed, it can even be defined geometrically without any appeal to the basis, which we'll do now. Note that to understand this proof requires some "elementary" geometry which we haven't covered in this book, namely the idea of a cosine and the law of cosines. If you're unfamiliar with these topics, look them up online.
 
@@ -584,6 +634,8 @@ $$\langle v,cv\rangle=c\langle v,v\rangle=c\|v\|^{2}=(c\|v\|)\|v\|=\pm\|w\|\|v\|
 
 where the sign matches up with $\cos(\theta)\in\{\pm 1\}$. ∎
 
+### Perpendicularity and Linear Independence
+
 The inner product is important because it allows us to describe perpendicularity of vectors in terms of algebra.
 
 **Theorem 10.21.** Two nonzero vectors $v,w\in\mathbb{R}^{n}$ are perpendicular if and only if $\langle v,w\rangle=0$.
@@ -617,6 +669,8 @@ $$0=\langle x,y\rangle=\langle x,-(a/b)x\rangle=-(a/b)\|x\|^{2},$$
 meaning that $\|x\|=0$, which implies $x$ is the zero vector, a contradiction. ∎
 
 A similar proof shows that if $x$ is a vector perpendicular to the plane spanned by two vectors $y,z$, then the set $\{x,y,z\}$ is a linearly independent set. In general, given a set of linearly independent vectors, adding a vector that's perpendicular to their span increases the dimension of the spanned subspace by one.
+
+### Projections and Distance to a Subspace
 
 Next we define the projection of one vector onto another.
 
@@ -1005,11 +1059,15 @@ This fascinates me philosophically. Because while I certainly unconsciously unde
 
 ## Exercises
 
+### Vector Spaces and Linear Maps
+
 1. Prove that $0$ (the zero vector) is unique; that is, if there are two vectors $v$, $w$ both having the properties of the zero vector, then they are equal.
 2. Prove that the composition of two linear maps is linear. I.e., the map $x\mapsto g(f(x))$ is linear if $g$ and $f$ are linear.
 3. Prove that if a linear map $f$ is a bijection, then the inverse $f^{-1}$ is also a linear map.
 4. Let $V,W$ be two vector spaces. Show that the direct product $V\times W$ is also a vector space by defining the two operations $+$ and $\cdot$. How does the dimension of $V\times W$ compare to the dimensions of $V$ and $W$?
 5. Prove that the image of a linear map $f:V\to W$ is a subspace of the codomain, $W$. Prove that the subset $\{v\in V:f(v)=0\}$ is a subspace of $V$.
+### Matrices and Geometric Transformations
+
 6. In $\mathbb{R}^{2}$ we have colorful names for special classes of linear maps that correspond to geometric transformations. Look up definitions and pictures to understand matrices that perform rotation, shearing, and reflection through a line.
 7. Research definitions and write down examples for the following concepts:
    1. The column space and row space of a matrix.
@@ -1019,16 +1077,22 @@ This fascinates me philosophically. Because while I certainly unconsciously unde
    5. The direct sum of two subspaces of a vector space.
 8. Prove that the standard inner product on $\mathbb{R}^{n}$ (Definition 10.18) is linear in the first input. I.e., if you fix $y\in\mathbb{R}^{n}$, then $\langle x,y\rangle:\mathbb{R}^{n}\to\mathbb{R}$ is a linear map. Argue by symmetry that the same is true of the second coordinate.
 9. Prove that for two matrices $A,B$, we have $(AB)^{T}=B^{T}A^{T}$.
+### Bases, Interpolation, and Polynomials
+
 10. Given two (possibly negative) integers $a,b\in\mathbb{Z}$, the Fibonacci-type sequence is a sequence $f_{a,b}(n)$ defined by
     $$f_{a,b}(0)=a,\quad f_{a,b}(1)=b,\quad f_{a,b}(n)=f_{a,b}(n-1)+f_{a,b}(n-2)\ \text{for }n>1.$$
     Prove that the set of all Fibonacci-type sequences form a vector space (under what operations?). Find a basis, and thus compute its dimension.
 11. In Chapter 2 we defined and derived an algorithm for polynomial interpolation. Reminder: given a set of $n+1$ points $(x_{0},y_{0}),\ldots,(x_{n},y_{n})$, with no two $x_{i}$ the same, there is a unique degree-at-most-$n$ polynomial passing through those points. Rephrase this problem as solving a matrix-vector multiplication problem $Ay=x$ for $y$. Hint: $A$ should be an $(n+1)\times(n+1)$ matrix.
 12. Again in Chapter 2, return to exercise 2.9 on Newton interpolation. Find a source that explains how Lagrange and Newton interpolation correspond to solving matrix inversion problems using different bases for a vector space of polynomials.
 13. The Bernstein basis is a basis of the vector space of polynomials of degree at most $n$. In an exercise from Chapter 2, you explored this basis in terms of Bézier curves. Like Taylor polynomials, Bernstein polynomials can be used to approximate functions $\mathbb{R}\to\mathbb{R}$ to arbitrary accuracy. Look up the definition of the Bernstein basis, and read a theorem that proves they can be used to approximate functions arbitrarily well.
+### Computational Linear Algebra
+
 14. Look up the process of Gaussian Elimination, and specifically pay attention to the so-called elementary row operations. Each of these operations corresponds to a change of basis, and is hence a matrix. Write down what these matrices are for $\mathbb{R}^{3}$, and realize that every change of basis matrix is a product of some number of these elementary matrices.
 15. The LU decomposition is a technique related to Gaussian Elimination which is much faster when doing batch processing. For example, suppose you want to compute the basis representation for a change of basis matrix $A$ and vectors $y_{1},\ldots,y_{m}$. One can compute the LU decomposition of $A$ once (computationally intensive) and use the output to solve $Ax=y_{i}$ many times quickly. Look up the LU decomposition, what it computes, read a proof that it works, and then implement it in code.
 16. A linear program is an optimization problem specified by minimizing a linear function of many variables, subject to linear inequality constraints. Linear programs are a workhorse of the supply chain industry. Research the formal specification of a linear program, and find some natural problems that can be cast as a linear program. If you struggle to find one, look up the Stigler Diet.
 17. Continuing the previous exercise, the classical algorithm for solving linear programs is called the simplex method. It was invented in the 1940's by George Dantzig. At its core, the algorithm builds up a vector space basis corresponding to the variables in the solution that have nonzero values. Then it iteratively uses the objective (and Gaussian-elimination-style elementary row operations) to guide how to improve the solution. Research this algorithm and implement it in its basic form.
+### Inner Products, Matroids, and SVD
+
 18. Look up the definition of an inner product space (a vector space equipped with an inner product), and the definition of an isometry between two inner product spaces. Find, or discover yourself, the aforementioned proof that all $n$-dimensional inner product spaces are isometric.
 19. Linear independence has applications and generalizations all over mathematics. One fruitful area is the concept of a matroid. Matroids have a special place in computer science, because they are the setting in which one studies greedy algorithms in general. That is, every problem that can be solved optimally with a greedy algorithm corresponds to some matroid, and every matroid can be optimized using the greedy algorithm. Look up an exposition on matroids and understand this correspondence. Apply this to the problem of finding a minimum spanning tree in a weighted graph. See Chapter 6, Exercise 6.12 for an introduction to weighted graphs.
 20. The $k$-means clustering algorithm is an algorithm for splitting a set of $n$ vectors $\{x_{1},\ldots,x_{n}\}\subset\mathbb{R}^{d}$ into $k<n$ sets. The algorithm works as follows: choose $k$ random input vectors that are considered as "centers" of their clusters. Then repeat the following: label each vector $x_{i}$ with its closest center ("assign" the vector to that cluster). Then compute a new center for each cluster as the center of all the vectors in the cluster (add up all the vectors and divide by the number of vectors added). Repeat this until there is a round in which the centers don't change, or you exceed a predetermined number of rounds. Look up this algorithm and read about what goal it's trying to achieve, and how it can fail.

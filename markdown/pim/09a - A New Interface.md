@@ -4,6 +4,8 @@
 >
 > –Bret Victor, "Kill Math"
 
+## Beyond Pencil and Paper
+
 This book has been quite a journey. We laughed. We cried. We computed with matrices like fury.
 
 Math is a human activity. It's messy and beautiful, complicated and elegant, useful and bull-headedly frustrating. But in reading this book, dear reader, my dream is that you have found the attitude, confidence, and enough prerequisite knowledge to continue to engage with mathematics beyond these pages. I hope that you will find the same joy that I have in the combination of math and programming.
@@ -11,6 +13,8 @@ Math is a human activity. It's messy and beautiful, complicated and elegant, use
 You may be wondering what's next. Each topic in this book was only covered lightly. There's a vast world of math out there, in the form of books, blog posts, video lectures, and the questions from your own curiosity. So much to explore! I included an annotated list of resources in Appendix C to whet your appetite.
 
 In these closing words, I'd like to explore a vision for how mathematics and software can grow together. Much of our effort in this book involved understanding notation, and using our imagination to picture arguments written on paper. In contrast, there's a growing movement that challenges mathematics to grow beyond its life on a chalkboard.
+
+### Bret Victor and the Principle of Immediacy
 
 One of the most visible proponents of this view is Bret Victor. If you haven't heard of him or seen his fantastic talks, please stop reading now and go watch his talk, "Inventing on Principle."[^1] It's worth every minute. Victor's central thesis is that creators must have an immediate connection to their work. As such, Victor finds it preposterous that programmers often have to write code, compile, run, debug, and repeat every time they make a change. Programmers shouldn't need to simulate a machine inside their head when designing a program—there's a machine sitting right there that can perform the logic perfectly!
 
@@ -26,6 +30,8 @@ It should not surprise you, then, that Victor despises mathematical notation. In
 
 One obvious reason for the ubiquity of mathematical notation is an accident of history's most efficient information distribution systems, the printing press and later the text-based internet. But given our fantastic new technology—virtual reality, precise sensors, machine learning algorithms, brain-computer interfaces—how is it that mathematics is left in the dust? Victor asks all these questions and more.
 
+### Notation as History's Greatest Interface Upgrades
+
 I have to tread carefully here, because mathematics is a large part of my identity. When I hear "kill math," my lizard brain shoots sparks of anger. For me, this is a religious issue deeper than my favorite text editor. Even as I try to remain objective and tactful, take what I say with a grain of salt.
 
 Overall, I agree with Victor's underlying sentiment. Lots of people struggle with math, and a better user interface for mathematics would immediately usher in a new age of enlightenment. This isn't an idle speculation. It has happened time and time again throughout history. The Persian mathematician Muhammad ibn Musa al-Khwarizmi invented algebra (though without the symbols for it) which revolutionized mathematics, elevating it above arithmetic and classical geometry, quickly scaling the globe. Make no mistake, the invention of algebra literally enabled average people to do contemporarily advanced mathematics.[^3] I'm surprised Victor does not reference algebra as a perfect example of a tool for thinking new thoughts, even if before arguing its time has passed.
@@ -34,11 +40,15 @@ Overall, I agree with Victor's underlying sentiment. Lots of people struggle wit
 
 And it only gets better, deeper, and more nuanced. Shortly after the printing press was invented French mathematicians invented modern symbolic notation for algebra, allowing mathematics to scale up in complexity. Symbolic algebra was a new user interface that birthed countless new thoughts. Without this, for example, mathematicians would never have discovered the connections between algebra and geometry that are so prevalent in modern mathematics and which lay the foundation of modern physics. Later came the invention of set theory, and shortly after category theory, which were each new and improved user interfaces that allowed mathematicians to express deeper, more unified, and more nuanced ideas than was previously possible.
 
+### Serendipity vs. Scaling in Complexity
+
 Meanwhile, many of Victor's examples of good use of his prototypes are "happy accidents." By randomly fiddling with parameters (and immediately observing the effect), Victor stumbles upon ideas that would never occur without the immediacy. To be sure, serendipity occurs in mathematics as well. Recall Andrew Wiles fumbling in his dark room looking for a light switch. Many creative aspects of mathematics involve luck, good fortune, and "eureka" moments, but there is nowhere near the same immediacy.
 
 Immediacy makes it dreadfully easy to explore examples, which is one of the most important techniques I hope you take away from this book! But what algebraic notation and its successors bring to the table beyond happenstance is to scale in complexity beyond the problem at hand. While algebra limits you in some ways—you can't see the solutions to the equations as you write them—it frees you in other ways. You need not know how to find the roots of a polynomial before you can study them. You need not have a complete description of a group before you start finding useful homomorphisms. As Sir Arthur Eddington said, group theory studies operations that are as unknown as the quantities that they operate on. We didn't need to understand precisely how matrices correspond to linear maps before studying them, as might be required to provide a useful interface meeting Victor's standards. Indeed, it was algebraic grouping and rearranging (with cognitive load reduced by passing it off to paper) that provided the derivation of matrices in the first place.
 
 Then there are the many "interfaces" that we've even seen in this book: geometry and the Cartesian plane, graphs with vertices and edges, pyramids of balls with arrows, drawings of arcs that we assert are hyperbolic curves, etc. Mathematical notation goes beyond "symbol manipulation," because any picture you draw to reason about a mathematical object is literally mathematical notation.
+
+### Desiderata for a Replacement
 
 I see a few ways Victor's work falls short of enabling new modes of thought, particularly insofar as it aims to replace mathematical notation. I'll outline the desiderata I think a new interface for mathematics must support if it hopes to replace notation.
 
@@ -99,6 +109,8 @@ This is mildly unfair, as the origins of hyperbolic geometry did, in fact, come 
 
 Most of my objections boil down to the need to create abstractions not explicitly programmed into the interface. Mathematics is a language, and it's expressiveness is a core feature. Like language, humans use it primarily to communicate to one another. Like writing, humans use it to record thoughts in times of inspiration, so that memory can be offset to paper and insights can be reproduced faithfully later. Paraphrasing Thurston, mathematics only exists in the social fabric of the people who do it. An interface purporting to replace mathematical notation must build on the shoulders of the existing mathematics community. As Isaac Newton said, "If I have seen further it is by standing on the shoulders of giants."
 
+### A Dream Interface: Escape of the Clones
+
 The value of Victor's vision lies in showing us what we struggle to see in our minds. Now let's imagine an interface that satisfies our desiderata, but also achieves immediacy with one's work. I can do little more than sketch a dream, but here it is.
 
 Let's explore a puzzle played on an infinite chessboard, which I first learned from mathematician Zvezdelina Stankova via the YouTube channel Numberphile.[^6] You start with an integer grid $\mathbb{N} \times \mathbb{N}$, and in each grid cell $(i,j)$ you can have a person or no person. The people are called "clones" because they are allowed to take the following action: if cells $(i+1,j)$ and $(i,j+1)$ are both empty, then the clone in cell $(i,j)$ can split into two clones, which now occupy spaces $(i+1,j)$, $(i,j+1)$, leaving space $(i,j)$ vacant. You start with three clones in "prison" cells $(1,1)$, $(1,2)$, $(2,1)$, and the goal is to determine if there is a finite sequence of moves, after which all clones are outside the prison. For this reason, Stankova calls the puzzle "Escape of the Clones."
@@ -118,9 +130,13 @@ If we were to follow in Stankova's footsteps, we'd employ two of the mathematici
 
 Then we can, with the aid of the interface, compute the weight-sum of any given configuration. The starting region's weight is $2$, and it remains $2$ after any sequence of operations. It dawns on us to try filling the entire visible region outside the prison with clones. We have assumed to the contrary that an escape sequence exists, in which the worst case is that it fills up vast regions of the plane. The interface informs us that our egregiously crowded region has weight $1.998283$. We then ask the interface to fill the *entire complement* of the prison with clones (even though that is illegal; the rules imply you must have a finite sequence of moves!). It informs us that weight is also $2$. We realize that if any cell is cloneless, as must be true after a finite number of moves, we will have violated the invariant. This is *counterfactual reasoning*.
 
+### Puzzles as a Test Bed
+
 Frankly, an interface that isn't explicitly programmed to explore this specific proof—yet enables an exploration that can reveal it in a more profound way than paper, pencil, and pondering could—sounds so intractable that I am tempted to scrap this entire essay in utter disbelief. How can an interface be so expressive without simply becoming a general-purpose programming language? What would prevent it from displaying the same problems that started this inquiry? What precisely is it about the nature of human conversation that makes it so difficult to explain the tweaks involved in exploring a concept to a machine?
 
 While we may never understand such deep questions, it's clear that abstract logic puzzles and their proofs provide an excellent test bed for proposals. Mathematical puzzles are limited, but rich enough to guide the design of a proposed interface. Games involve simple explanations for humans with complex analyses (flexible complexity), drastically different semantics for abstract objects like chessboards and clones (meaning assignment), there are many games which to this day still have limited understanding by experts (incrementalism), and the insights in many games involve reasoning about hypothetical solutions (counterfactual reasoning).
+
+### Hamming's Equivalent Product
 
 In his book "The Art of Doing Science and Engineering," the mathematician and computer scientist Richard Hamming put this difficulty into words quite nicely,
 
@@ -129,6 +145,8 @@ In his book "The Art of Doing Science and Engineering," the mathematician and co
 Hamming's attitude about an "equivalent product" summarizes the frustration of writing software. What customers want differs from what they say they want. Automating manual human processes requires arduously encoding the loose judgments made by humans—often inconsistent and based on folk lore and experience. Software almost always falls short of really solving your problem. Accommodating the shortcomings requires a whole extra layer of process.
 
 We write programs to manage our files, and in doing so we lose much of the spatial reasoning that helps people remember where things are. The equivalent product is that the files are stored and retrievable. On the other hand, for mathematics the equivalent product is human understanding. This should be no surprise by now, provided you've come to understand the point of view espoused throughout this book. In this it deviates from software. We don't want to retrieve the files, we want to understand the meaning behind their contents.
+
+### Understanding as the Goal
 
 My imagination may thus defeat itself by failing to give any ground. If a new interface is to replace pencil and paper mathematics, must I give up the ease of some routine mathematical tasks? Or remove them from my thinking style entirely? Presuming I can achieve the same sorts of understanding—though I couldn't say how—the method of arrival shouldn't matter. And yet, this attitude ignores my experience entirely. The manner of insight you gain when doing mathematics is deeply intertwined with the method of inquiry. That's precisely why Victor's prototypes allow him to think new thoughts!
 

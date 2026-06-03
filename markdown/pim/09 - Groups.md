@@ -10,11 +10,15 @@ Embodying part of this novelty are ideas like programs that transform other prog
 
 What's less obvious to a programmer is that studying the class of transformations of an object provides insight into that object. By analogy, if you study the way a refactoring tool changes the behavior of a program, that can help you understand how the program works. Even more, it can help you understand how to write clearer and more refactorable programs. Building up a theory based on transformations is like a slick development framework, which you later learn applies to programs you never anticipated writing. Group theory is a fantastic example of this.
 
+### Groups and the Abel-Ruffini Theorem
+
 Group theory is the mathematical study of symmetry. As we'll see in this chapter, symmetry has algebraic structure. We can work with symmetry in much the same way we do algebra with numbers or matrices. This is why group theory is part of a general area of mathematics called abstract algebra.
 
 The original insight of group theory, bringing us full circle to Chapter 2, is that the roots of a single-variable polynomial have symmetric structure. Such structure can be formulated as a group, and used to analyze the properties of a polynomial. Or, as the case may have it, to make general statements about all polynomials. Indeed, as we mentioned in Chapter 8, it can be hard to analytically find the roots of a polynomial of large degree. By "analytically" I mean in the sense of the quadratic formula: a single algebraic expression using elementary operations, involving the coefficients of the polynomial, which one could use to find all the roots. The difficulty of this motivated us to derive and implement Newton's method for numerically finding approximate roots.
 
 We have group theory in part to thank for not wasting our time on the analytical approach. Using group theory one can prove that it's not merely *difficult* to find an algebraic formula for the roots of a generic degree-$5$ polynomial. It's impossible. We foreshadowed this in Chapter 2 when we discussed existence and uniqueness. This theorem—known as the Abel-Ruffini theorem—is a crown jewel of mathematics. And though this book is too short to do the theorem justice, the modern proof relies heavily on the shift in thought from objects to transformations.
+
+### Groups as Interfaces and Hidden Algebraic Structure
 
 A second perspective on groups is understood easily, almost trivially, from programming. One beautiful aspect of group theory is how it allows one to cleanly compartmentalize the difference between a mathematical object and its representation. The definition of a group serves as an interface or a template class—in the sense of object-oriented programming—and concrete groups are semantically equivalent implementations of this interface in different contexts. True surprises occur when a family of objects that has been studied for a long time is discovered to implement the group interface. Such is the case with elliptic curves of cryptography fame. Any time a field of mathematics has the word "algebraic" prepended to it—such as algebraic geometry or algebraic topology—you automatically know the subject is about finding algebraic structures like groups hidden among seemingly non-algebraic company. When such miracles occur, you can leverage the power of algebra to compute in the cleaner, abstract setting of the algebraic structure.
 
@@ -27,6 +31,8 @@ Hermann Weyl echoed a similar idea seventy years earlier: "In these days the ang
 But you, dear programmer, would never patronize computation as mere contentedness. We know deep in our hearts that computation is beautiful. It deserves to be cherished as an equal to geometry, analysis, logic, and the rest. Algebra deserves our special attention in that, to the extent it destroys geometry, it enables computation.
 
 ![Figure 16.1: A square with each of its corners labeled.](09 - Groups_images/img-0.jpeg)
+
+### Chapter Overview
 
 The most common example of a group—and its raison d'être—is the set of symmetries of some object. That is to say, a group is nothing if it does not "act" on some set by transforming it in a composable, reversible way. You use groups to elucidate the symmetry in objects of interest. In this final chapter we'll see how the concept manifests itself in Euclidean and hyperbolic geometry, and in the exercises we'll explore groups as they show up in number theory, cryptography, polynomials, graphs, and others.
 
@@ -43,6 +49,8 @@ Q = [0, 1] \times [0, 1] = \{(x, y) \in \mathbb{R}^{2} : 0 \leq x, y \leq 1\},
 $$
 
 and call $f(x,y)$ one of the rigid motions described above. Then $f:Q\to Q$ has the property that for every pair of points $(x_{1},y_{1}),(x_{2},y_{2})$, the distance between $(x_{1},y_{1})$ and $(x_{2},y_{2})$ is equal to the distance between $f(x_{1},y_{1})$ and $f(x_{2},y_{2})$.
+
+### Metrics and Isometries
 
 **Definition 16.1.** Given a set $X$, a *metric* is a non-negative function $d: X \times X \to \mathbb{R}$ with the following three properties:
 
@@ -72,6 +80,8 @@ where we apply the operations in order from right to left. That is, the above op
 
 [^flip]: This flip is specific to the *initial* position of $A$ and $C$. As $A$ and $C$ move around, the flip operation is still top-left-corner to bottom-right-corner. Of course, you want the definition of an operation to be independent of what operations are applied before or after it, so this configuration-independent definition is best.
 
+### Enumerating Symmetries of the Square
+
 We often emphasize that we're talking about isometries that preserve the square—map points in the square to other points in the square—by calling these isometries *symmetries* of the square. Such a provocative name encourages the natural question: what are all of the different symmetries of the square? There are infinitely many ways to compose symmetries on paper, but two symmetries created via different methods can result in the same operation.
 
 <!-- carousel -->
@@ -93,6 +103,8 @@ A symmetry of the square is completely determined by how it acts on the corners.
 As an exercise, flesh out this proof sketch in more detail. However, be warned that not all possible labelings of the corners arise from symmetries of the square. Opposite corners of the square cannot be mapped by an isometry to neighboring corners.
 
 ![Figure 16.3: The position of a point is uniquely determined by its distance from the three corners.](09 - Groups_images/img-4.jpeg)
+
+### Algebraic Relations and Reduction
 
 With a handful of symmetries, such as our $\rho$ and $\sigma$ from earlier, we can write down compositions of those symmetries, and make equations of symmetries. The following three are some particularly simple ones:
 
@@ -158,6 +170,8 @@ Definition 16.3 reads like an interface, so let's implement it. The most honest 
 <!-- include: code/pim/09 - Groups/01_group_axioms.py -->
 ```
 
+### Uniqueness of Identity and Inverses
+
 A few basic propositions clear up the ambiguities in Definition 16.3. For instance, the uniqueness of the identity element follows from the other axioms of a group. Here's a proof: if there were two identity elements $e,e^{\prime}$, then by the following logic they must be equal:
 
 $$e=e\cdot e^{\prime}=e^{\prime}$$
@@ -165,6 +179,8 @@ $$e=e\cdot e^{\prime}=e^{\prime}$$
 The first equality holds because $e^{\prime}$ is an identity element, and the second because $e$ is. A similar proof shows that the inverse of an element is unique. These facts justify the following notation: we call *the* identity element $1$, and use subscripts $1_{G},1_{H}$ to distinguish between identity elements in different groups $G,H$. We also replace the explicit $\cdot$ operation with an invisible operation (juxtaposition). So that $xyz$ replaces $x\cdot y\cdot z$. Moreover, we emulate repeated applications of the operation by saying $x^{n}$ to mean $x\cdot x\cdot\cdots\cdot x$ multiplying $n$ copies of $x$.
 
 One more caveat to support "legacy" math. If we're talking about the integers $\mathbb{Z}$ under addition, the juxtaposition operation (which implies multiplication) feels unsanitary. It simply won't do. In this case, and whenever we have a group of numbers with a $+$ symbol as the operation, we'll use $+$. And instead of $x^{n}$ we'll use $nx$ to mean $x+x+\cdots+x$ adding $n$ copies. Here $n$ is not considered an element of $\mathbb{Z}$ as a group, but just the number of additions. Likewise, $-x$ is the inverse of $x$, while in a multiplicative group the inverse is $x^{-1}$. This is purely syntactic sugar.
+
+### Isomorphic Groups: Shear Matrices and Real Addition
 
 Now we demonstrate how two drastically different sets can have the same underlying group structure, which will inform our dive into structure-preserving mappings between groups. The first group we understand well: $\mathbb{R}$ under addition. For the second, consider the set of $2\times 2$ matrices of the following form, under the operation of matrix multiplication.
 
@@ -225,6 +241,8 @@ And likewise for $f(x^{-1}x)$. Taking the left- and rightmost ends, we've shown 
 
 $\blacksquare$
 
+### Kernels and Images
+
 The extent to which a homomorphism degrades the structure of the input group is tracked by what elements are mapped to the identity.
 
 **Definition 16.7.** Let $G,H$ be groups, and $f:G\to H$ a homomorphism. Then the kernel of $f$, denoted $\ker f$, is the set
@@ -261,6 +279,8 @@ Next we'll prove $\operatorname{im}f$ is a subgroup of $H$. Let $x,y\in\operator
 
 $\blacksquare$
 
+### Quotient Groups and the First Isomorphism Theorem
+
 As we discussed in Chapter 9, any set-function $f:G\to H$ defines a natural equivalence relation on the domain. When $f$ is a homomorphism, the corresponding set-quotient maintains the group structure of $G$. Appropriately, it's called the *quotient group*.
 
 Let $f:G\to H$ be a group homomorphism. Define an equivalence relation whereby two elements $a,b\in G$ are equivalent if and only if $ab^{-1}\in\ker f$. Or, in terms of additive groups, $a-b\in\ker f$. Note that this aligns with the equivalence relation defined in Chapter 9 using $f(a)=f(b)$, since then $f(ab^{-1})=f(a)f(b)^{-1}=1_{H}$, from which it follows that $ab^{-1}\in\ker f$ if and only if $f(a)=f(b)$. The quotient group is denoted $G/\ker f$, and if $\ker f$ is a known subgroup, the notation for that subgroup is often used instead.
@@ -287,6 +307,8 @@ If you're tasked with understanding a mysterious group $G$, perhaps encountered 
 
 The most common, as we've seen multiple times in this chapter, are the integers under addition, their subgroups, and their quotients, under addition and addition modulo $n$. These arise as the kernels and quotients of the maps $\mathbb{Z}\to\mathbb{Z}$ defined by $x\mapsto nx$. The kernels have the form $n\mathbb{Z}=\{nx:x\in\mathbb{Z}\}$ for some fixed $n$, and also the trivial subgroups $\{0\},\mathbb{Z}$. The quotients are denoted $\mathbb{Z}/n\mathbb{Z}$.
 
+### Cyclic Groups and Generators
+
 The groups $\mathbb{Z}$ and $\mathbb{Z}/n\mathbb{Z}$ both have the property that $1$, when repeatedly added to itself, produces the entire group. Because of this, $1$ is called a generator of the group. In general, an element $x\in G$ is called a generator if the subgroup $\{1,x,x^{2},x^{3},\dots\}$ is equal to $G$. Groups with such an element are called cyclic groups, and all cyclic groups are isomorphic to $\mathbb{Z}$ or $\mathbb{Z}/n\mathbb{Z}$ under addition. In general, a set $S\subset G$ is said to generate $G$ if every $x\in G$ is a product of elements in $S$. A generating set of a group is like a vector space basis, but a group $G$ may have generating sets of different sizes. Hence, any concept of "group dimension" must be more nuanced.[^dim]
 
 [^dim]: Even worse, the minimal generating set is not always unique, and for some groups there's no finite generating set at all.
@@ -300,6 +322,8 @@ One of the simplest ways to build a larger group from smaller pieces is the dire
 
 The set $\mathbb{Z}/n\mathbb{Z}$ forms a group under multiplication if we remove the numbers $k$ such that $\gcd(n, k) \neq 1$. This guarantees that inverses exist. In the special case that $n$ is prime, we need only remove zero. This group is denoted $(\mathbb{Z}/n\mathbb{Z})^{\times}$, and it's substantially more interesting than integers under addition. Up to isomorphism it is always possible to write $(\mathbb{Z}/n\mathbb{Z})^{\times}$ as a direct product of cyclic groups. However, there is no known generic method for finding generators of the cyclic pieces. This computational difficulty is exploited by RSA public-key cryptography, which we will explore in an exercise.
 
+### Dihedral Groups and Matrix Groups
+
 Next we have the symmetry groups of regular convex polygons in the plane, such as the square we started this chapter with. The group corresponding to the polygon with $n \geq 3$ sides is called the dihedral group and is denoted $D_{2n}$. It has $2n$ elements, corresponding to the $n$ rotations by an angle of $2\pi/n$ and the $n$ reflections across lines passing through the vertices and sides. These lines of symmetry depend on the parity of $n$, as is made clear by the lines of symmetry in the pentagon and the hexagon in Figure 16.4. Confusingly, the dihedral group for a polygon with $n$ sides is sometimes denoted $D_{n}$ instead of $D_{2n}$, which makes $D_{8}$ terribly ambiguous. We'll use $D_{2n}$.
 
 Dihedral groups are not cyclic. Each $D_{2n}$ is generated by $\rho$ and $\sigma$, where $\rho$ is a rotation by $2\pi/n$ and $\sigma$ is a reflection across some axis of symmetry. Because two elements generate the entire group, you might guess $D_{2n}$ to be isomorphic to a product of two cyclic groups, $\mathbb{Z}/2\mathbb{Z}\times\mathbb{Z}/n\mathbb{Z}$, with $\sigma$ generating the former and $\rho$ the latter. You might guess, and you'd be wrong. These are subgroups, but dihedral groups have extra structure because the interaction between $\rho$ and $\sigma$ is not independent. If it were, $\sigma\rho\sigma$ would equal $\sigma^{2}\rho=\rho$, but in fact $\sigma\rho\sigma=\rho^{-1}$. The extra structure is more precisely described by a *semi-direct product*, which you will see in the exercises.
@@ -309,6 +333,8 @@ Next we have matrix groups. Given any reasonably well-behaved number system that
 $$O_{n}(\mathbb{R})=\{A\in GL_{n}(\mathbb{R})\mid A^{T}A=I_{n}\}.$$
 
 This group is closely related to the symmetry group of Euclidean space we'll study in the "Geometry as the Study of Groups" section. Another interesting facet of groups of matrices is that they have enough structure that one can do calculus on them. In the formal jargon, the general linear group is a smooth manifold. This is far beyond the scope of this book, but at least explains why the general linear group gets such a special name.
+
+### The Symmetric Group and Cayley's Theorem
 
 The last example is called the *symmetric group*. Really, it should be called the *permutation group*, since it is the set of all bijections of a fixed set to itself. Let $A$ be a set, and define the *symmetric group* $S(A)$ to be the set of all bijections $A\to A$. It is easy to see that if $A,B$ are both finite sets of size $n$, then $S(A)\cong S(B)$. In that case, denote $S(A)$ by $S_{n}$. In the exercises you will study the structure of finite permutation groups, and a useful data representation for computation.
 
@@ -531,6 +557,8 @@ Taking a cue from Klein, let's study the symmetries of the Poincaré disk. We al
 
 We want to study the invariant quantities with respect to hyperbolic reflection. One such quantity is angle measure, but a more interesting one is called the cross ratio. We'll use the cross ratio to define distance, so that reflections across hyperbolic lines will be isometries by definition. First we define the cross ratio in general, and in Definition 16.20 we'll make it specific to hyperbolic lines.
 
+### The Cross Ratio
+
 **Definition 16.17.** Let $w,x,y,z$ be four distinct points (in a specific order). The cross ratio of $w,x,y,z$, denoted $[wx;yz]$ is defined as
 
 $$\frac{\|w-y\|}{\|w-z\|}\bigg/\frac{\|x-y\|}{\|x-z\|}=\frac{\|w-y\|\,\|x-z\|}{\|w-z\|\,\|x-y\|}.$$
@@ -552,6 +580,8 @@ $\square$
 ![Figure 16.9: The image of two points uniquely determines the circle of inversion (the easy case).](09 - Groups_images/img-12.jpeg)
 
 Lemma 16.18 fails in the case that the two points are exchanged by the inversion. It simplifies the pair of equations used in the proof to $(a - c)(b - c) = r^2$. If you arbitrarily choose a position for $c$ to the right of both $a$ and $b$ or to the left of both $a$ and $b$, then you can always find a radius $r = \sqrt{(a - c)(b - c)}$ that works. Hence, an extra condition is required for uniqueness, and the condition relevant to the upcoming Lemma 16.21 is that the inverting circle is orthogonal to the unit disk.
+
+### Invariance of the Cross Ratio Under Reflection
 
 Next, we show that the cross ratio is preserved by hyperbolic reflections. The proof is trivial for reflection in a diameter of the Poincaré disk, so we focus on the case of inversion in a circle.
 
@@ -589,6 +619,8 @@ $\square$
 
 Theorem 16.19 is precisely the invariance the demo above confirmed numerically: in `08_poincare_inversion.py` we sample four random points, invert all four in a random circle, and watch the cross ratio come out identical before and after. This is *why* inversion deserves to be called a hyperbolic isometry.
 
+### Hyperbolic Distance and the Poincaré Metric
+
 Though we leave out a coherent explanation of why this ultimately works as a distance function, the following construction provides the "correct" metric on the Poincaré disk.
 
 **Definition 16.20.** Let $p, q \in \mathbb{D}^2$ be two distinct points. Form the hyperbolic line through those points, and let $x, y$ be the intersection of the hyperbolic line with the boundary of $\mathbb{D}^2$, so that $x$ is closest to $p$ and $y$ to $q$. Define the distance between $p$ and $q$ to be:
@@ -602,6 +634,8 @@ Admittedly vaguely, the choice of these two special points used to compute the c
 The hyperbolic distance function satisfies the properties of a metric from Definition 16.1 (proof omitted). If a metric is defined on a geometric space that has unique shortest line segments between points, then we get an additional property: $d(x,y)=d(x,z)+d(z,y)$ if and only if $z$ lies on the shortest path between $x$ and $y$. We will use this in the proof of Lemma 16.21.
 
 Due to Theorem 16.19, we automatically know that hyperbolic distance is an invariant of a hyperbolic reflection. Moreover, a rotation $t_{\theta}$ of $\mathbb{D}^{2}$ by $\theta$ radians around the origin is also an isometry of the Poincaré disk: such rotations preserve the unit circle and are Euclidean isometries. These two facts together allow us to analyze the structure of all hyperbolic isometries.
+
+### Equidistant Loci and the Reflection Lemma
 
 First we prove an important lemma.
 
@@ -634,6 +668,8 @@ $$
 This implies $w$ is on the shortest path between $x$ and $z$. This contradicts the equality part of the triangle inequality: $x$ and $z$ are on the same side of $L$ while $w$ is on $L$.
 
 $\square$
+
+### Classification: Every Isometry Is a Product of Reflections
 
 And now the finale: all isometries of the Poincaré disk are a composition of reflections. This proof relies on a fact whose proof I have omitted for brevity: isometries of the hyperbolic plane map lines to lines, just like in the Euclidean setting.
 
@@ -680,6 +716,8 @@ To reiterate, a tessellation transforms a single base shape via a fixed group of
 ![Figure 16.18: Irregular pentagonal tilings of the Euclidean plane. Figure by David Eppstein.](09 - Groups_images/img-21.jpeg)
 <!-- endcarousel -->
 
+### No Euclidean Tiling by Convex Polygons with More Than Six Sides
+
 **Theorem 16.23.** *There is no tessellation of the Euclidean plane by a single $n$-sided convex polygon for any $n > 6$.*
 
 *Proof.* Suppose for contradiction that there is an $n$-sided convex polygon $P$, scaled to area 1, that tessellates the plane, and fix the set $T$ of all polygons in such a tessellation. Our proof will have two steps: first, we will fix a bounded piece of the tessellation of area $A$. Then we'll count the number of angles of polygons contained in that piece in two different ways, and arrive at an inequality of $A$ in terms of $A$. This inequality will be a contradiction for a sufficiently large $A$.
@@ -723,6 +761,8 @@ because as $A\to\infty,\;nO(A^{1/2})=O(A^{1/2})$.
 The right hand side is approximately $\frac{3}{2}nA$, and the left hand side is $nA$, hinting at the contradiction. More precisely, this inequality fails as $A\to\infty$ if and only if $1>\frac{n}{3(n/2-1)}$, which happens if and only if $n>6$.
 
 $\blacksquare$
+
+### Hyperbolic Tessellations and the Schläfli Symbol
 
 While this may disappoint hopeful weavers of the next great tapestry, one can tessellate the hyperbolic plane with a 7-gon. Not only that, but there are infinitely many ways to do it! Figure 16.20 shows two ways produced by the program in this section.
 
@@ -1055,9 +1095,13 @@ We close with some outputs for different configurations, shown in Figure 16.32.
 
 ## Exercises
 
+### Permutations and Parity
+
 **16.1.** Recall the symmetric group $S_{n}$ is the set of all bijections of a set of $n$ elements. Call the set being permuted $\{1,2,3,\ldots,n\}$, and consider the following helpful notation for a permutation: define a cycle notation whereby the tuple $(1\ 3\ 4\ 2)$ represents the permutation $\sigma$ mapping $1\mapsto 3$, $3\mapsto 4$, $4\mapsto 2$, and $2\mapsto 1$. All other values are fixed by $\sigma$. Define a product of cycles, such as (going right to left) $(2\ 4)(1\ 2)=(1\ 4\ 2)$ as the composition of the corresponding maps. A cycle of length $2$ is called a transposition. Prove that every permutation can be written as a product of disjoint cycles. Prove that the $n$-cycle $(1\ 2\ 3\ \cdots\ n)$ and a single transposition $(1\ 2)$ are a generating set for $S_{n}$.
 
 **16.2.** Using the previous exercise, define a permutation $x\in S_{n}$ to be *even* if it is a product of an even number of transpositions. Otherwise call it *odd*. Show that this definition is well defined: every permutation is either even or odd, but not both. Show a product of two even permutations is even, a product of two odd permutations is even, and a product of an even and an odd permutation is odd.
+
+### Cosets, Quotients, and Lagrange's Theorem
 
 **16.3.** Let $G$ be a group and $H$ a subgroup. A *coset* of $H$ by a fixed element $x\in G$ is the set $\{xh\mid h\in H\}$. This set is denoted $xH$. Prove the following:
 
@@ -1079,6 +1123,8 @@ We close with some outputs for different configurations, shown in Figure 16.32.
 
 **16.9.** Prove Theorem 16.12, assembling the pieces laid out in the chapter.
 
+### Cryptography and Semi-Direct Products
+
 **16.10.** Let $n\in\mathbb{N}$, and let $G=\left(\mathbb{Z}/n\mathbb{Z}\right)^{\times}$ be the multiplicative group of integers (those integers between $1$ and $n$ that have a greatest common divisor of $1$ with $n$). When $n$ is a product of two large primes, this group is called the RSA group. Research the RSA public-key cryptography protocol, and write a program that implements it for two hundred-digit primes. Hint: you will need to find a fast way to generate hundred-digit primes.
 
 **16.11.** Research and implement the ElGamal digital signature scheme using $\left(\mathbb{Z}/n\mathbb{Z}\right)^{\times}$.
@@ -1087,9 +1133,13 @@ We close with some outputs for different configurations, shown in Figure 16.32.
 
 **16.13.** If you're comfortable with complex numbers, find a source online that discusses the symmetry groups of the roots of polynomials with coefficients in $\mathbb{Q}$. At the risk of referring to an interactive essay that has disappeared from the internet after this book is published, see Fred Akalin's essay, "Why is the Quintic Unsolvable?"
 
+### Graph Symmetries and Isomorphism
+
 **16.14.** Recall an undirected graph $G=(V,E)$ is a set of vertices $V$ and a set of edges $E\subset\binom{V}{2}$ that link pairs of vertices. A symmetry of $G$ is a bijection $f:V\rightarrow V$ such that $(v,w)$ is an edge if and only if $(f(v),f(w))$ is an edge. In words, a symmetry permutes the vertices of $G$ in such a way that preserves adjacency and non-adjacency. Compute the symmetry group of the Petersen graph. Hint: the size of this group is $120$, so brute-force will be difficult.
 
 **16.15.** Two graphs are called isomorphic if there is a bijection between their vertex sets having the same property as a symmetry: all adjacencies and non-adjacencies are preserved. The problem of efficiently computing whether two graphs are isomorphic is one of the most famous open problems in computer science, called the graph isomorphism problem. Prove that the graph isomorphism problem reduces to the problem of computing a generating set of the symmetry group of a single graph.
+
+### Euclidean and Hyperbolic Geometry Exercises
 
 **16.16.** Prove that any Euclidean isometry in $E(n)$ can be written as the product of at most $n+1$ reflections.
 
@@ -1109,6 +1159,8 @@ For the first, consider a well-chosen larger circle containing $C$, and look at 
 **16.21.** We neglected to give a good intuition for why the hyperbolic distance function is intuitively a good choice. The reason is that the morally acceptable way to think about this function involves integral calculus, which we avoided in this book. To do this formally, one defines a metric tensor or line element that describes the length of a curve via an integral. Research these topics to understand how the hyperbolic metric is defined. Be warned that many sources jump straight into advanced terminology and concepts. You're looking for an "introduction to tensor calculus" or an "introduction to Riemannian geometry." Because of the close relation to physics and general relativity, there are also many sources explaining these concepts for physicists. Apply the usual caveats that come with physicists explaining mathematics.
 
 **16.22.** Extend the hyperbolic tessellation program in this chapter to one which, when given an input motif (an image that replaces the fundamental triangle) draws a hyperbolic polygon using that image and then tessellates the Poincaré disk.
+
+### Alternative Models of Hyperbolic Geometry
 
 **16.23.** A different model of hyperbolic geometry is the upper half-plane model. This model has as points the complex numbers $\{a+bi:b>0\}$, and as lines the half circles orthogonal to the horizontal axis $b=0$, along with vertical rays. The line $b=0$ forms the "boundary" analogous to the unit circle bounding the Poincaré disk. The isometries of this model are the so-called Möbius transformations. For these exercises it may help to read the section in the chapter notes about the complex matrix representation of hyperbolic isometries. Prove the following.
 
