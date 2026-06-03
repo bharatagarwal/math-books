@@ -142,6 +142,13 @@ renderer.code = function(token) {
 
 marked.setOptions({ gfm: true, breaks: false, renderer: renderer });
 
+// GFM footnotes ([^id] refs + [^id]: defs) via the marked-footnote extension.
+// It runs inside marked.parse, so the math-masking placeholders in footnote
+// definitions pass through untouched and KaTeX renders them afterward.
+if (typeof markedFootnote === 'function') {
+  marked.use(markedFootnote());
+}
+
 function getFullPath(book, file) {
   return book.basePath ? book.basePath + '/' + file : file;
 }
@@ -317,6 +324,30 @@ function styleExercises(root) {
   });
 }
 
+// Prev / next chapter footer, appended into the rendered content.
+function buildChapterNav(pane, idx) {
+  const chapters = BOOKS[currentBook].chapters;
+  const md = pane.querySelector('.md');
+  if (!md || chapters.length < 2) return;
+
+  const nav = document.createElement('nav');
+  nav.className = 'chapter-nav';
+
+  const link = (target, dir) => {
+    const a = document.createElement('a');
+    a.className = 'cn-link' + (dir === 'next' ? ' cn-next' : '');
+    a.innerHTML =
+      '<span class="cn-label">' + (dir === 'next' ? 'Next →' : '← Previous') +
+      '</span><span class="cn-title">' + chapters[target].title + '</span>';
+    a.onclick = () => loadChapter(target);
+    return a;
+  };
+
+  if (idx > 0) nav.appendChild(link(idx - 1, 'prev'));
+  if (idx < chapters.length - 1) nav.appendChild(link(idx + 1, 'next'));
+  if (nav.childElementCount) md.appendChild(nav);
+}
+
 
 async function loadChapter(idx) {
   currentChapter = idx;
@@ -368,6 +399,7 @@ async function loadChapter(idx) {
 
     buildCarousels(pane);
     styleExercises(pane);
+    buildChapterNav(pane, idx);
 
     const headings = Array.from(pane.querySelectorAll('h2, h3'));
     headings.forEach((h, i) => { h.id = 'h-' + i; });
