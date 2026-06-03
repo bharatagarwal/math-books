@@ -80,6 +80,9 @@ const BOOKS = [
       { file: '08a - The Argument for Big-O Notation.md', title: '15. The Argument for Big-O' },
       { file: '09 - Groups.md', title: '16. Groups' },
       { file: '09a - A New Interface.md', title: '17. A New Interface' },
+      { file: '10 - Appendix A - Notation.md', title: 'Appendix A. Notation' },
+      { file: '11 - Appendix B - A Summary of Proofs.md', title: 'Appendix B. A Summary of Proofs' },
+      { file: '12 - Appendix C - Annotated Resources.md', title: 'Appendix C. Annotated Resources' },
     ]
   },
   {

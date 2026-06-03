@@ -1,0 +1,12 @@
+{
+  "source": "pim/10 - Appendix A - Notation.pdf",
+  "source_size": 75350,
+  "model": "mistral-ocr-latest",
+  "pages": 2,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 2,
+    "doc_size_bytes": 75350
+  }
+}

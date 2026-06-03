@@ -1,0 +1,12 @@
+{
+  "source": "pim/12 - Appendix C - Annotated Resources.pdf",
+  "source_size": 82805,
+  "model": "mistral-ocr-latest",
+  "pages": 8,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 8,
+    "doc_size_bytes": 82805
+  }
+}
