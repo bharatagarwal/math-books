@@ -1,87 +1,165 @@
 # Geometry
 
+Around 300 BCE, Euclid sat down and wrote what may be the most influential textbook in history. His *Elements* started from five postulates and built the entire theory of plane geometry through rigorous proof -- no measurements, no approximations, just definitions and deductions. For two thousand years, "doing mathematics" essentially meant "doing geometry in the style of Euclid."
+
+Then in 1637, Descartes had an insight that changed everything: geometry and algebra are the same thing. A point is a pair of numbers. A line is an equation. A circle is $x^2 + y^2 = r^2$. This marriage -- analytic geometry -- is so natural to us now that we forget how revolutionary it was. Every time you plot a function or compute a distance in code, you're using Descartes' idea.
+
+The notation below is the language that makes geometric reasoning compact. If you've worked with coordinate tuples, distance functions, or vector math in code, most of it will feel familiar -- the symbols just formalize what you already do.
+
 ## 1. Fundamentals
 
-The most basic geometric object is a point and points are often denoted with upper case letters, $A$, $B$, $C$, etc. However, points in the plane can be represented as 2-tuples $(x,y)$ or as vectors $[\,{}^{s}_{y}\,$]; as such, they may be named like vectors with lower case bold letters, $\mathbf{x}$, $\mathbf{y}$, and so on. The entire Euclidean plane may be written as $\mathbb{R}^{2}$, but for those who prefer to think of the plane in a coordinate-free, synthetic way, we may write $E^{2}$ or $\mathbb{E}^{2}$. More generally, $n$-dimensional Euclidean space is $\mathbb{R}^{n}$, $E^{n}$, or $\mathbb{E}^{n}$.
+The most basic geometric object is a point, denoted with upper case letters: $A$, $B$, $C$. Points in the plane can also be represented as 2-tuples $(x,y)$ or as vectors $\begin{bmatrix} x \\ y \end{bmatrix}$; in that case they may be named with lower case bold letters, $\mathbf{x}$, $\mathbf{y}$, and so on.
 
-Two distinct points $A$ and $B$ determine a unique line which is typically denoted $\overleftrightarrow{AB}$. The ray emanating from $A$ and including $B$ is denoted $\overrightarrow{AB}$. The line segment joining $A$ and $B$ is denoted $\overrightarrow{AB}$, however, for simplicity’s sake, some people write $AB$ for the line segment. Line segments have length which can be denoted in various ways including the same notation as for the segment itself ($AB$ or $\overrightarrow{AB}$) or with absolute value bars, $|AB|$ or $|\overrightarrow{AB}|$.
+The entire Euclidean plane is written $\mathbb{R}^{2}$, or $E^{2}$ ($\mathbb{E}^{2}$) for those who prefer a coordinate-free, synthetic view. More generally, $n$-dimensional Euclidean space is $\mathbb{R}^{n}$, $E^{n}$, or $\mathbb{E}^{n}$.
 
-An angle is the union of two rays emanating from the same point. If the rays are $\overrightarrow{AB}$ and $\overrightarrow{AC}$, the angle can be denoted $\angle BAC$ or, if there is only one angle with vertex $A$ under consideration, $\angle A$. Sometimes angles in diagrams are marked with numbers or Greek letters, so one may see $\angle 1$ or $\angle\alpha$. The measure of an angle is written $m\angle BAC$, but some people omit the $m$ and use the same notation for an angle and its measure.
+### Lines, rays, and segments
 
-A triangle is the union of three line segments determined by three points and is denoted $\triangle ABC$.
+Two distinct points $A$ and $B$ determine a unique line, ray, or segment:
 
-In a triangle, the angles are named by their vertex points ($\angle A$, $\angle B$, $\angle C$) and the lengths of the sides are named by lower case letters corresponding to the opposite angle. That is, $a$ is the length of the segment opposite $\angle A$ (the length of the segment $\overrightarrow{BC}$). See Figure 5.1. A classic example of this is the law of cosines:
+| Object | Notation | Meaning |
+| --- | --- | --- |
+| Line | $\overleftrightarrow{AB}$ | extends infinitely in both directions |
+| Ray | $\overrightarrow{AB}$ | starts at $A$, passes through $B$, continues |
+| Segment | $\overline{AB}$ (or simply $AB$) | the finite piece from $A$ to $B$ |
+| Length | $\lvert AB \rvert$ or $\lvert \overline{AB} \rvert$ | the distance between $A$ and $B$ |
 
-$c^{2}=a^{2}+b^{2}-2ab\cos C.$
+The length of a segment in coordinates is the distance formula you already know:
 
-Here $c$ is the length of the segment $AB$ and $\cos C$ is the cosine of the (measure of) $\angle C$.
+$$
+\lvert AB \rvert = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}
+$$
 
-There are some standard relation symbols for geometric objects. The most basic is equality, denoted with an equals sign $=$, which means the two things are exactly the same. More generally, two geometric figures are congruent if there
+### Angles
 
+An angle is the union of two rays emanating from the same point. If the rays are $\overrightarrow{AB}$ and $\overrightarrow{AC}$, the angle is written $\angle BAC$ or, when unambiguous, $\angle A$. Angles in diagrams are sometimes labeled with numbers ($\angle 1$) or Greek letters ($\angle\alpha$). The measure of an angle is $m\angle BAC$, though many authors omit the $m$ and let context distinguish an angle from its measure.
 
-![img-0.jpeg](05 - Geometry_images/img-0.jpeg)
-FIGURE 5.1. Standard labeling of a triangle.
+### Triangles and standard labeling
 
-is an isometry of space that equates one with the other. Congruence of figures is denoted with the symbol  $\cong$ , e.g.,  $\angle A \cong \angle Y$ . More general still is similarity of figures which is denoted  $\sim$ , e.g.,  $\triangle ABC \sim \triangle DEF$ .
+A triangle is denoted $\triangle ABC$. By long convention, the sides are named by lower case letters corresponding to the **opposite** angle:
 
-Lines, rays, and segments may be parallel; this is denoted  $\overleftrightarrow{AB} \parallel \overleftrightarrow{XY}$ . They may also be perpendicular:  $\overleftrightarrow{AB} \perp \overleftrightarrow{CD}$ .
+- $a = \lvert BC \rvert$ (opposite $\angle A$)
+- $b = \lvert AC \rvert$ (opposite $\angle B$)
+- $c = \lvert AB \rvert$ (opposite $\angle C$)
+
+![Figure 5.1: Standard labeling of a triangle.](05 - Geometry_images/img-0.jpeg)
+
+This labeling makes the **law of cosines** compact:
+
+$$
+c^{2} = a^{2} + b^{2} - 2ab\cos C
+$$
+
+Here $c$ is the length of segment $AB$ and $\cos C$ is the cosine of the (measure of) $\angle C$.
+
+### Geometric relations
+
+| Symbol | Meaning | Example |
+| --- | --- | --- |
+| $=$ | equality (exactly the same object) | $A = B$ |
+| $\cong$ | congruence (same shape and size) | $\angle A \cong \angle Y$ |
+| $\sim$ | similarity (same shape, possibly different size) | $\triangle ABC \sim \triangle DEF$ |
+| $\parallel$ | parallel | $\overleftrightarrow{AB} \parallel \overleftrightarrow{XY}$ |
+| $\perp$ | perpendicular | $\overleftrightarrow{AB} \perp \overleftrightarrow{CD}$ |
+
+### Geometry in SymPy
+
+Every piece of notation above has a direct counterpart in SymPy's geometry module. Points become `Point` objects, distances are method calls, and relations like $\parallel$ and $\perp$ are boolean checks:
+
+<!-- include: code/mathematical-notation/05 - Geometry/01_python.py -->
+
+The mapping is almost one-to-one: $\lvert AB \rvert$ becomes `A.distance(B)`, $\triangle ABC$ becomes `Triangle(A, B, C)`, $\overleftrightarrow{AB} \perp \overleftrightarrow{CD}$ becomes `line_AB.is_perpendicular(line_CD)`. Notation is a compression of operations you can run.
 
 ## 2. Coordinates
 
-In analytic geometry, points are specified by a list of numbers. The most common system for doing this is known as Cartesian coordinates (also called rectangular coordinates). Points are specified by  $d$ -tuples (i.e., lists of  $d$  numbers) either written horizontally  $(x,y)$  or vertically  $[x^y]$ . It is traditional to use the letters  $x$  and  $y$  for Cartesian coordinates in two dimensions and  $x, y,$  and  $z$  in three dimensions. In higher dimensions, it is easiest to use subscripts, e.g.,  $(x_1, x_2, x_3, x_4)$ .
+In analytic geometry, points are specified by a list of numbers. The most common system is **Cartesian coordinates** (rectangular coordinates), named for Descartes. Points are written as $d$-tuples: $(x, y)$ in 2D, $(x, y, z)$ in 3D. In higher dimensions, subscripts are the natural choice: $(x_1, x_2, x_3, x_4)$.
 
-The Cartesian convention is not the only system of coordinates. Here are a few others for 2- and 3-dimensional space and their associated notation.
+The Cartesian convention is not the only coordinate system. Different geometries suggest different representations:
 
-- Polar coordinates. In the plane, points may be specified by a distance from a fixed origin and a rotation from a ray emanating from that origin (typically the positive  $x$ -axis). It is traditional to use the letters  $(r,\theta)$  where  $r$  is the distance and  $\theta$  is the rotation. The relation to Cartesian coordinates is
+### Polar coordinates
 
-$$
-x = r \cos \theta \quad \text {and} \quad y = r \sin \theta .
-$$
-
-- Spherical coordinates. Spherical coordinates, also known as spherical polar coordinates, are a natural extension of polar coordinates to three-dimensional space. Each point is specified by a distance  $r$  from the origin, a first rotation clockwise  $\theta$  from the  $+x$ -axis in the  $xy$ -plane, and a second rotation  $\phi$  out of the  $xy$ -plane.
-
-The point is written  $(r,\theta ,\phi)$  and  $\theta$  is called the azimuth and  $\phi$  is called the inclination or polar angle. However, some authors use a different order for the two angles in the triple.
-
-The conversion from spherical to Cartesian coordinates is given by these formulas:
+In the plane, a point can be specified by its distance from a fixed origin and a rotation from the positive $x$-axis. The notation uses $(r, \theta)$ where $r$ is the distance and $\theta$ is the rotation:
 
 $$
-x = r \cos \theta \sin \phi , \quad y = r \sin \theta \sin \phi , \quad \text {and} \quad z = r \cos \phi .
+x = r \cos \theta \quad \text{and} \quad y = r \sin \theta
 $$
 
+### Spherical coordinates
 
-- Cylindrical coordinates. This is another extension of polar coordinates. Points in space are first located in the $x,y$-plane by polar coordinates $(r,\theta)$ and then a height above that plane by $z$. Thus the full specification is the triple $(r,\theta,z)$.
+Spherical (or spherical polar) coordinates extend polar coordinates to 3D. Each point is specified by:
 
-The conversion to Cartesian coordinates is
+- $r$ -- distance from the origin
+- $\theta$ -- azimuth (rotation from the $+x$-axis in the $xy$-plane)
+- $\phi$ -- inclination (polar angle from the $z$-axis)
 
-$x=r\cos\theta,\quad y=r\sin\theta,\quad\text{and}\quad z=z.$
+The point is written $(r, \theta, \phi)$. (Beware: some authors swap the order of $\theta$ and $\phi$.)
+
+$$
+x = r \cos \theta \sin \phi, \quad y = r \sin \theta \sin \phi, \quad z = r \cos \phi
+$$
+
+### Cylindrical coordinates
+
+Cylindrical coordinates locate a point in the $xy$-plane by polar coordinates $(r, \theta)$, then add a height $z$. The full specification is $(r, \theta, z)$:
+
+$$
+x = r \cos \theta, \quad y = r \sin \theta, \quad z = z
+$$
+
+### Coordinate summary
+
+| System | Notation | Parameters | Use case |
+| --- | --- | --- | --- |
+| Cartesian | $(x, y)$ or $(x, y, z)$ | distances along axes | default; linear problems |
+| Polar | $(r, \theta)$ | distance, angle | radial symmetry in 2D |
+| Spherical | $(r, \theta, \phi)$ | distance, azimuth, inclination | radial symmetry in 3D |
+| Cylindrical | $(r, \theta, z)$ | distance, angle, height | axial symmetry (pipes, columns) |
 
 ## 3. Differential geometry
 
-Curves. A curve is (the image of) a continuous function $\alpha:[a,b]\to\mathbb{R}^{k}$. This parameterization is unit speed if $\|\alpha^{\prime}(s)\|=1$ for all $s\in[a,b]$.
+### Curves
+
+A curve is (the image of) a continuous function $\alpha : [a,b] \to \mathbb{R}^{k}$. The parameterization is **unit speed** if $\|\alpha'(s)\| = 1$ for all $s \in [a,b]$.
 
 Associated with curves are the following notations:
 
-- $\mathbf{T}(s)$ is the tangent vector at $\alpha(s)$. For a unit speed curve, we have $\mathbf{T}(s)=\alpha^{\prime}(s)$.
-- $\mathbf{N}(s)$ is the normal vector at $\alpha(s)$. For a unit speed curve, we have $\mathbf{N}(s)=T^{\prime}(s)/\|T^{\prime}(s)\|$.
-- $\mathbf{B}(s)$ is the binormal vector at $\alpha(s)$. For a curve in $\mathbb{R}^{3}$, we have $\mathbf{B}(s)=\mathbf{T}(s)\times\mathbf{N}(s)$.
-- $\kappa(s)$ is the curvature of the curve at $\alpha(s)$. For a unit speed curve, $\kappa(s)=\|T^{\prime}(s)\|$.
-- $\tau(s)$ is the torsion of the space curve at $\alpha(s)$. It is given by the formula $\tau(s)=-\mathbf{B}^{\prime}(s)\cdot\mathbf{N}(s)$.
+| Symbol | Name | Definition (unit speed) |
+| --- | --- | --- |
+| $\mathbf{T}(s)$ | tangent vector | $\mathbf{T}(s) = \alpha'(s)$ |
+| $\mathbf{N}(s)$ | normal vector | $\mathbf{N}(s) = \mathbf{T}'(s) / \|\mathbf{T}'(s)\|$ |
+| $\mathbf{B}(s)$ | binormal vector | $\mathbf{B}(s) = \mathbf{T}(s) \times \mathbf{N}(s)$ (in $\mathbb{R}^3$) |
+| $\kappa(s)$ | curvature | $\kappa(s) = \|\mathbf{T}'(s)\|$ |
+| $\tau(s)$ | torsion | $\tau(s) = -\mathbf{B}'(s) \cdot \mathbf{N}(s)$ |
 
-Surfaces. Various geometric surfaces have special notation used to describe them.
+The triple $\{\mathbf{T}, \mathbf{N}, \mathbf{B}\}$ is the **Frenet-Serret frame** -- an orthonormal basis that "rides along" the curve. Curvature $\kappa$ measures how fast the curve turns; torsion $\tau$ measures how fast it twists out of a plane.
 
-- Spheres. The sphere is $S^{2}$. In general $S^{k}$ is a $k$-dimensional sphere, so $S^{1}$ is a circle.
+### Surfaces
 
-A sphere is the boundary of a ball. The notation $B(\mathbf{x},r)$ is often used for the ball centered at $\mathbf{x}$ with radius $r$, i.e., $B(\mathbf{x},r)=\{\mathbf{y}:\|\mathbf{y}-\mathbf{x}\|\leq r\}$.
-- Torus. The following notations are used to denote a torus (the surface of a doughnut): $T^{2}$, $S^{1}\times S^{1}$, and $\mathbb{R}^{2}/\mathbb{Z}^{2}$.
-- Projective plane. The (real) projective plane is denote $\mathbb{RP}^{2}$.
-- Hyperbolic plane. The hyperbolic plane is denoted $\mathbb{H}^{2}$.
+Various geometric surfaces have their own notation:
 
-The Euler characteristic of a surface $M$ is denoted $\chi(M)$. If a connected graph is embedded on the surface of $M$ so that every face is homeomorphic to the interior of a disc, then $\chi(M)=\nu-e+f$ where $\nu$ is the number of vertices, $e$ is the number of edges, and $f$ is the number of faces.
+| Surface | Notation | Notes |
+| --- | --- | --- |
+| $k$-sphere | $S^k$ | $S^1$ = circle, $S^2$ = sphere |
+| Ball | $B(\mathbf{x}, r) = \{\mathbf{y} : \|\mathbf{y} - \mathbf{x}\| \leq r\}$ | closed ball centered at $\mathbf{x}$ |
+| Torus | $T^2$, $S^1 \times S^1$, $\mathbb{R}^2 / \mathbb{Z}^2$ | surface of a doughnut |
+| Projective plane | $\mathbb{RP}^2$ | real projective plane |
+| Hyperbolic plane | $\mathbb{H}^2$ | constant negative curvature |
 
-The Gaussian curvature at a point $p$ on a surface is denoted $K(p)$. The Gaussian curvature of a compact, boundaryless surface $M$ is related to the Euler characteristic by the Gauss-Bonnet formula
+### The Euler characteristic and Gauss-Bonnet
 
-$\int_{M}K\,dA=2\pi\chi(M)$
+The **Euler characteristic** of a surface $M$ is denoted $\chi(M)$. If a connected graph is embedded on $M$ so that every face is homeomorphic to a disc, then:
 
-where  $dA$  is an element of surface area.
+$$
+\chi(M) = \nu - e + f
+$$
 
-Gaussian curvature is related to the principal curvatures of the surface, which are denoted  $k_{1}$  and  $k_{2}$ , by the equation  $K = k_{1}k_{2}$ .
+where $\nu$ is the number of vertices, $e$ the number of edges, and $f$ the number of faces. (For a sphere: $\chi(S^2) = 2$. For a torus: $\chi(T^2) = 0$.)
+
+The **Gaussian curvature** at a point $p$ on a surface is $K(p)$. It is the product of the two principal curvatures: $K = k_1 k_2$.
+
+The **Gauss-Bonnet formula** connects curvature to topology:
+
+$$
+\int_{M} K \, dA = 2\pi \chi(M)
+$$
+
+This is one of the deepest results in geometry: the total curvature of a surface is determined entirely by its topology, not its specific shape. A sphere can be stretched, dented, or deformed in any way -- as long as you don't tear or glue it, the integral of $K$ over the whole surface is always $4\pi$.

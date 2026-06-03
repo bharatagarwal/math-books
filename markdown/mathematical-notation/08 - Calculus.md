@@ -1,5 +1,13 @@
 # Calculus
 
+In the 1660s, Isaac Newton and Gottfried Wilhelm Leibniz independently invented calculus — and then spent the rest of their lives fighting over who deserved the credit. The priority dispute was bitter, personal, and conducted through proxies in the Royal Society. But mathematically, the most lasting consequence wasn't about who was first. It was about *notation*.
+
+Newton wrote derivatives as dots over letters: $\dot{x}$, $\ddot{x}$. His notation was compact but limited — it tied differentiation to time and scaled poorly beyond two derivatives. Leibniz wrote $\frac{dx}{dt}$, $\frac{d^2x}{dt^2}$, treating derivatives as ratios of infinitesimal quantities. His notation was heavier on the page but far more flexible: it made the chain rule look like fraction cancellation ($\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}$), and it generalized naturally to partial derivatives, higher dimensions, and integrals.
+
+The remarkable outcome: *both notations survived*. Physicists still write $\dot{x}$ and $\ddot{x}$ for velocity and acceleration. Everyone else uses Leibniz's $dx/dt$. And Lagrange added a third — the prime notation $f'(x)$ — that splits the difference. You'll encounter all three, sometimes in the same textbook.
+
+This chapter catalogs the notation for limits, derivatives, integrals, and transforms — the four pillars of calculus — with the programming bridges that make each symbol executable.
+
 ## 1. Limits
 
 The principal notation for limits is
@@ -46,212 +54,275 @@ $$
 
 We may also write $\varlimsup$ for $\limsup$ and $\varliminf$ for $\liminf$.
 
-## 2. Derivatives (single independent variable, scalar- or vector-valued)
+## 2. Derivatives (single variable)
 
-Given a function $f$, we have two standard notations for the derivative of $f$: Newton's notation $f'$ and Leibniz's notation $\frac{df}{dx}$. Some authors use a roman (as opposed to italic) $d$ in this notation, like this: $\frac{dy}{dx}$.
+Given a function $f$, we have three standard notations for the derivative — each born from the priority dispute:
 
-Higher order derivatives in Newton's notation are expressed by using additional prime marks. The second derivative is $f''$, the third is $f'''$, and so forth. Sometimes lower case roman numerals replace multiple prime marks, e.g. $f^{(\mathrm{iv})}$. For a positive integer $n$, the $n^{\mathrm{th}}$ derivative may be written $f^{(n)}$.
+| Notation | Name | Origin | Best for |
+| --- | --- | --- | --- |
+| $f'(x)$ | Lagrange (prime) | Joseph-Louis Lagrange, 1797 | Quick shorthand, abstract arguments |
+| $\frac{df}{dx}$ | Leibniz | Gottfried Leibniz, 1684 | Chain rule, substitution, integrals |
+| $\dot{x}$ | Newton (fluxion) | Isaac Newton, 1690s | Time derivatives in physics |
+| $Df$ | Operator | Augustin-Louis Cauchy / Oliver Heaviside | Differential equations, functional analysis |
 
+### Lagrange (prime) notation
 
-Higher order derivatives in Leibeniz's notation are expressed using exponents like this:
+The derivative is $f'$, the second derivative is $f''$, the third is $f'''$. Sometimes lower case roman numerals replace multiple prime marks, e.g. $f^{(\mathrm{iv})}$. For a positive integer $n$, the $n^{\mathrm{th}}$ derivative may be written $f^{(n)}$.
 
-$$
-\frac {d f}{d x}, \frac {d ^ {2} f}{d x ^ {2}}, \frac {d ^ {3} f}{d x ^ {3}}, \dots
-$$
+The value at a specific point is simply $f'(a)$.
 
-The $n^{\mathrm{th}}$ derivative is written $\frac{d^n f}{dx^n}$.
+### Leibniz notation
 
-The value of a derivative at a specific value (say, at $x = a$) is written as $f'(a)$ in Newton's notation. The Leibniz notation is more cumbersome:
-
-$$
-\left. \frac {d f}{d x} \right| _ {x = a}
-$$
-
-The values of the second derivative are written $f''(a)$ and $\left.\frac{d^2f}{dx^2}\right|_{x = a}$ in the two notation styles, and so forth for higher order derivatives.
-
-Another style of notation for derivative involves placing dots over the function. Suppose $y$ is a function of $t$ (which often represents time). Then $\dot{y}$ denotes the derivative $dy/dt$. Likewise $\ddot{y}$ is the second derivative $d^2 y/dt^2$.
-
-The notation $\frac{d}{dx}$ means "the derivative of". It is also denoted with a simple capital $D$:
+Higher order derivatives in Leibniz's notation use exponents on the $d$:
 
 $$
-\frac {d}{d x} \left[ x ^ {2} - 3 x + 2 \right] = D \left[ x ^ {2} - 3 x + 2 \right] = 2 x - 3.
+\frac{df}{dx}, \quad \frac{d^{2}f}{dx^{2}}, \quad \frac{d^{3}f}{dx^{3}}, \quad \dots
+$$
+
+The $n^{\mathrm{th}}$ derivative is written $\frac{d^n f}{dx^n}$. Some authors use a roman $\mathrm{d}$ instead of italic $d$: $\frac{\mathrm{d}f}{\mathrm{d}x}$.
+
+The value at a specific point requires the evaluation bar:
+
+$$
+\left. \frac{df}{dx} \right|_{x = a}
+$$
+
+The genius of this notation is how it makes the chain rule look like fraction cancellation. If $y = f(u)$ and $u = g(x)$, then:
+
+$$
+\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}
+$$
+
+This isn't *really* fraction cancellation (these aren't fractions), but the notation makes the rule impossible to forget.
+
+### Newton (dot) notation
+
+Suppose $y$ is a function of $t$ (which often represents time). Then $\dot{y}$ denotes the derivative $dy/dt$. Likewise $\ddot{y}$ is the second derivative $d^2 y/dt^2$. You'll see this almost exclusively in physics and engineering — Newton's original context.
+
+### Operator notation
+
+The notation $\frac{d}{dx}$ means "the derivative of." It is also denoted with a simple capital $D$:
+
+$$
+\frac{d}{dx} \left[ x^{2} - 3x + 2 \right] = D \left[ x^{2} - 3x + 2 \right] = 2x - 3.
 $$
 
 Higher order derivatives are denoted as $\frac{d^n}{dx^n}$ or $D^n$.
 
+### Notation-to-code mapping
+
+Every notation variant maps to the same SymPy function — `diff`. The integral sign $\int$ maps to `integrate`. These two functions are the executable versions of Leibniz's notation:
+
+| Math notation | SymPy code | Result |
+| --- | --- | --- |
+| $\frac{d}{dx} x^3$ | `diff(x**3, x)` | $3x^2$ |
+| $\frac{d^2}{dx^2} x^3$ | `diff(x**3, x, 2)` | $6x$ |
+| $\int \sin x\, dx$ | `integrate(sin(x), x)` | $-\cos x$ |
+| $\int_0^\infty e^{-x}\, dx$ | `integrate(exp(-x), (x, 0, oo))` | $1$ |
+| $\frac{\partial f}{\partial x}$ | `diff(f, x)` | partial derivative |
+
+<!-- include: code/mathematical-notation/08 - Calculus/01_python.py -->
+
+### Vector-valued functions
+
 The notations for the derivative of a vector-valued function of a single variable are the same as for that of a single-valued function. Let $f\colon \mathbb{R}\to \mathbb{R}^n$. Then the derivative of $f$ is denoted either $f'$ or $df/dt$ (or $df/dx$). Higher order derivatives are, likewise, $f''$ and $d^2 f/dt^2$, and so forth.
 
-## 3. Derivatives (multiple independent variables, scalar-valued)
+## 3. Derivatives (multiple variables, scalar-valued)
 
-**Partial derivatives.** When a function depends on two or more variables, the notion of partial derivative comes into play. Suppose $f\colon \mathbb{R}^n\to \mathbb{R}$. Then the partial derivative of $f$ with respect to its $j^{\mathrm{th}}$ argument is
+When a function depends on two or more variables, the ordinary $d$ becomes the "curly $d$" — the partial derivative symbol $\partial$, introduced by Adrien-Marie Legendre in 1786.
+
+### Partial derivatives
+
+Suppose $f\colon \mathbb{R}^n\to \mathbb{R}$. Then the partial derivative of $f$ with respect to its $j^{\mathrm{th}}$ argument is
 
 $$
-\frac {\partial f}{\partial x _ {j}}.
+\frac{\partial f}{\partial x_{j}}.
 $$
 
 When $f$ is a function of (say) just two variables $x$ and $y$, then the partial derivatives can also be written as $f_{x} = \partial f / \partial x$ and $f_{y} = \partial f / \partial y$. Another notation is $\partial_x f$.
 
-The notation $D_{x}$ means to take the derivative in the $x$-direction. Thus
+All four notations for the same thing:
 
 $$
-D _ {x} f = \partial_ {x} f = f _ {x} = \frac {\partial f}{\partial x}.
+D_{x} f = \partial_{x} f = f_{x} = \frac{\partial f}{\partial x}.
 $$
 
 More generally, if $\mathbf{v}$ is a unit vector then $D_{\mathbf{v}}$ is the derivative of $f$ in the $\mathbf{v}$ direction; this is known as a directional derivative.
 
+### Higher order partial derivatives
+
 Higher order partial derivatives are denoted like this:
 
 $$
-\frac {\partial^ {2} f}{\partial x _ {i} \partial x _ {j}}
+\frac{\partial^{2} f}{\partial x_{i} \partial x_{j}}
 $$
-
 
 which means to first take the partial derivative of $f$ with respect to $x_{j}$ and then the partial derivative of that result with respect to $x_{i}$. In symbols:
 
 $$
-\frac {\partial^ {2} f}{\partial x _ {i} \partial x _ {j}} = \frac {\partial}{\partial x _ {i}} \left(\frac {\partial f}{\partial x _ {j}}\right).
+\frac{\partial^{2} f}{\partial x_{i} \partial x_{j}} = \frac{\partial}{\partial x_{i}} \left(\frac{\partial f}{\partial x_{j}}\right).
 $$
 
-For most functions likely to be encountered in science and engineering the order of differentiation does not matter.
+For most functions likely to be encountered in science and engineering the order of differentiation does not matter (Clairaut's theorem: if the mixed partials are continuous, $f_{xy} = f_{yx}$).
 
 For a function of (say) two variables $x$ and $y$, the higher order partials can be written like this: $f_{xx}, f_{xy}, f_{yx}, f_{yy}$.
 
-**Gradient.** The gradient of a function $f: \mathbb{R}^n \to \mathbb{R}$ is the vector of partial derivatives:
+### Gradient
+
+The gradient of a function $f: \mathbb{R}^n \to \mathbb{R}$ is the vector of partial derivatives:
 
 $$
-\left[ \begin{array}{c} \frac {\partial f}{\partial x _ {1}} \\ \frac {\partial f}{\partial x _ {2}} \\ \vdots \\ \frac {\partial f}{\partial x _ {n}} \end{array} \right].
+\nabla f = \left[ \begin{array}{c} \frac{\partial f}{\partial x_{1}} \\ \frac{\partial f}{\partial x_{2}} \\ \vdots \\ \frac{\partial f}{\partial x_{n}} \end{array} \right].
 $$
 
-It is denoted either $\operatorname{grad} f$ or $\nabla f$.
+It is denoted either $\operatorname{grad} f$ or $\nabla f$. The gradient points in the direction of steepest ascent — this is why gradient *descent* moves in the direction $-\nabla f$.
 
 For a function $f$ of three variables, the gradient can be expressed in $\mathbf{i}, \mathbf{j}, \mathbf{k}$-notation like this:
 
 $$
-\operatorname {g r a d} f = \nabla f = f _ {x} \mathbf {i} + f _ {y} \mathbf {j} + f _ {z} \mathbf {k}.
+\operatorname{grad} f = \nabla f = f_{x} \mathbf{i} + f_{y} \mathbf{j} + f_{z} \mathbf{k}.
 $$
 
-**Laplacian.** The Laplacian operator is denoted with a capital $\Delta$. For $f: \mathbb{R}^n \to \mathbb{R}$ we have
+### Gradient and Hessian in JAX
+
+JAX's `grad` function computes $\nabla f$ by automatic differentiation — it traces the computation graph and applies the chain rule mechanically. No symbolic algebra, just numerical derivatives at machine precision. `jax.hessian` computes the full matrix of second partials:
+
+<!-- include: code/mathematical-notation/08 - Calculus/02_python.py -->
+
+The SymPy demo above computed $\frac{\partial f}{\partial x} = 2xy$ as a symbolic expression. JAX computes the same derivative *numerically* at a specific point: at $(1, 2)$, $2 \cdot 1 \cdot 2 = 4$... wait, that's $\frac{\partial}{\partial x}[x^2 y + y^3]$. The JAX demo uses a different function ($x^3 + 2xy + y^2$), giving $\nabla f = [3x^2 + 2y,\; 2x + 2y] = [7, 6]$ at $(1, 2)$. Two tools, same notation, complementary strengths: SymPy gives you the formula, JAX gives you the number.
+
+### Laplacian
+
+The Laplacian operator is denoted with a capital $\Delta$ (or $\nabla^2$). For $f: \mathbb{R}^n \to \mathbb{R}$ we have
 
 $$
-\Delta f = \sum_ {i = 1} ^ {n} \frac {\partial^ {2} f}{\partial x _ {i} ^ {2}}
+\Delta f = \nabla^2 f = \sum_{i = 1}^{n} \frac{\partial^{2} f}{\partial x_{i}^{2}}
 $$
 
 or more simply for a function of three variables,
 
 $$
-\Delta f = \frac {\partial^ {2} f}{\partial x ^ {2}} + \frac {\partial^ {2} f}{\partial y ^ {2}} + \frac {\partial^ {2} f}{\partial z ^ {2}}.
+\Delta f = \frac{\partial^{2} f}{\partial x^{2}} + \frac{\partial^{2} f}{\partial y^{2}} + \frac{\partial^{2} f}{\partial z^{2}}.
 $$
 
-**Hessian.** For a function $f: \mathbb{R}^n \to \mathbb{R}$, we can form an $n \times n$-matrix of its partial second derivatives. This matrix is the Hessian matrix of $f$:
+The Laplacian measures how much a function at a point differs from its average in a neighborhood — it's the continuous analog of "the value at this node minus the average of its neighbors" in a graph.
+
+### Hessian
+
+For a function $f: \mathbb{R}^n \to \mathbb{R}$, we can form an $n \times n$-matrix of its partial second derivatives. This matrix is the Hessian matrix of $f$:
 
 $$
-H f = \left[ \begin{array}{c c c c} \frac {\partial^ {2} f}{\partial x _ {1} \partial x _ {1}} &amp; \frac {\partial^ {2} f}{\partial x _ {2} \partial x _ {2}} &amp; \dots &amp; \frac {\partial^ {2} f}{\partial x _ {1} \partial x _ {n}} \\ \frac {\partial^ {2} f}{\partial x _ {2} \partial x _ {1}} &amp; \frac {\partial^ {2} f}{\partial x _ {2} \partial x _ {2}} &amp; \dots &amp; \frac {\partial^ {2} f}{\partial x _ {2} \partial x _ {n}} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \frac {\partial^ {2} f}{\partial x _ {n} \partial x _ {1}} &amp; \frac {\partial^ {2} f}{\partial x _ {n} \partial x _ {2}} &amp; \dots &amp; \frac {\partial^ {2} f}{\partial x _ {n} \partial x _ {n}} \end{array} \right].
+H f = \left[ \begin{array}{cccc} \frac{\partial^{2} f}{\partial x_{1}^2} & \frac{\partial^{2} f}{\partial x_{1} \partial x_{2}} & \dots & \frac{\partial^{2} f}{\partial x_{1} \partial x_{n}} \\ \frac{\partial^{2} f}{\partial x_{2} \partial x_{1}} & \frac{\partial^{2} f}{\partial x_{2}^2} & \dots & \frac{\partial^{2} f}{\partial x_{2} \partial x_{n}} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial^{2} f}{\partial x_{n} \partial x_{1}} & \frac{\partial^{2} f}{\partial x_{n} \partial x_{2}} & \dots & \frac{\partial^{2} f}{\partial x_{n}^2} \end{array} \right].
 $$
 
+The Hessian tells you about curvature. If the Hessian is positive definite at a critical point ($\nabla f = 0$), you're at a local minimum — this is the second-derivative test generalized to $n$ dimensions. In machine learning, the Hessian of the loss function characterizes the local geometry of the optimization landscape.
 
-## 4. Derivatives (multiple independent variables, vector-valued)
+## 4. Derivatives (multiple variables, vector-valued)
 
-In this section we consider derivatives of functions  $\mathbf{f}:\mathbb{R}^m\to \mathbb{R}^n$ . We denote vector-valued functions with bold letters (though this is not mandatory).
+In this section we consider derivatives of functions $\mathbf{f}:\mathbb{R}^m\to \mathbb{R}^n$. We denote vector-valued functions with bold letters (though this is not mandatory).
 
-Such functions map a vector  $\mathbf{x} \in \mathbb{R}^m$  to a vector  $\mathbf{y} \in \mathbb{R}^n$ . This can be simply written  $\mathbf{y} = \mathbf{f}(\mathbf{x})$  or separated into components like this
-
-$$
-y _ {1} = f _ {1} (\mathbf {x})
-$$
+Such functions map a vector $\mathbf{x} \in \mathbb{R}^m$ to a vector $\mathbf{y} \in \mathbb{R}^n$. This can be simply written $\mathbf{y} = \mathbf{f}(\mathbf{x})$ or separated into components:
 
 $$
-y _ {2} = f _ {2} (\mathbf {x})
+\mathbf{f}(\mathbf{x}) = \left[ \begin{array}{c} f_{1}(\mathbf{x}) \\ f_{2}(\mathbf{x}) \\ \vdots \\ f_{n}(\mathbf{x}) \end{array} \right]
 $$
 
-$$
-\vdots
-$$
+where $f_{j}(\mathbf{x})$ denotes the $j^{\mathrm{th}}$ component of the vector $\mathbf{f}(\mathbf{x})$.
+
+### Partial derivatives
+
+Partial derivatives of $\mathbf{f}$ typically specify both the component function and the variable with respect to which the function is being differentiated:
 
 $$
-y _ {n} = f _ {n} (\mathbf {x})
+\frac{\partial f_{i}}{\partial x_{j}}.
 $$
 
-or like this
+Some people express this partial derivative as $f_{i,j}$.
+
+One can take the partial derivative of all components of $\mathbf{f}$ with respect to a single variable:
 
 $$
-\mathbf {f} (\mathbf {x}) = \left[ \begin{array}{c} f _ {1} (\mathbf {x}) \\ f _ {2} (\mathbf {x}) \\ \vdots \\ f _ {n} (\mathbf {x}) \end{array} \right]
+\frac{\partial \mathbf{f}}{\partial x_{j}} = \left[ \begin{array}{c} \frac{\partial f_{1}}{\partial x_{j}} \\ \frac{\partial f_{2}}{\partial x_{j}} \\ \vdots \\ \frac{\partial f_{n}}{\partial x_{j}} \end{array} \right]
 $$
 
-where, of course,  $f_{j}(\mathbf{x})$  denotes the  $j^{\mathrm{th}}$  component of the vector  $\mathbf{f}(\mathbf{x})$ .
+This vector of partial derivatives can be written $f_{,j}$. One needs to be careful with this notation as the comma may be difficult to notice.
 
-**Partial derivatives.** Partial derivatives of  $\mathbf{f}$  typically specify both the component function and the variable with respect to which the function is being differentiated:
+### Jacobian
 
-$$
-\frac {\partial f _ {i}}{\partial x _ {j}}.
-$$
-
-Some people express this partial derivative as  $f_{i,j}$ .
-
-One can take the partial derivative of all components of  $\mathbf{f}$  with respect to a single variable:
+The matrix of all partial derivatives is called the Jacobian matrix of $f$ and is simply denoted $D\mathbf{f}$:
 
 $$
-\frac {\partial \mathbf {f}}{\partial x _ {j}} = \left[ \begin{array}{c} \frac {\partial f _ {1}}{\partial x _ {j}} \\ \frac {\partial f _ {2}}{\partial x _ {j}} \\ \vdots \\ \frac {\partial f _ {n}}{\partial x _ {j}} \end{array} \right]
+D\mathbf{f} = \left[ \begin{array}{cccc} \frac{\partial f_{1}}{\partial x_{1}} & \frac{\partial f_{1}}{\partial x_{2}} & \dots & \frac{\partial f_{1}}{\partial x_{m}} \\ \frac{\partial f_{2}}{\partial x_{1}} & \frac{\partial f_{2}}{\partial x_{2}} & \dots & \frac{\partial f_{2}}{\partial x_{m}} \\ \vdots & \vdots & \ddots & \vdots \\ \frac{\partial f_{n}}{\partial x_{1}} & \frac{\partial f_{n}}{\partial x_{2}} & \dots & \frac{\partial f_{n}}{\partial x_{m}} \end{array} \right] = \left[ \begin{array}{cccc} f_{1,1} & f_{1,2} & \dots & f_{1,m} \\ f_{2,1} & f_{2,2} & \dots & f_{2,m} \\ \vdots & \vdots & \ddots & \vdots \\ f_{n,1} & f_{n,2} & \dots & f_{n,m} \end{array} \right].
 $$
 
-This vector of partial derivatives can be written  $f_{,j}$ . One needs to be careful with this notation as the comma may be difficult to notice.
-
-**Jacobian.** The matrix of all partial derivatives is called the Jacobian matrix of  $f$  and is simply denoted  $D\mathbf{f}$ :
-
-$$
-D \mathbf {f} = \left[ \begin{array}{c c c c} \frac {\partial f _ {1}}{\partial x _ {1}} &amp; \frac {\partial f _ {1}}{\partial x _ {2}} &amp; \dots &amp; \frac {\partial f _ {1}}{\partial x _ {m}} \\ \frac {\partial f _ {2}}{\partial x _ {1}} &amp; \frac {\partial f _ {2}}{\partial x _ {2}} &amp; \dots &amp; \frac {\partial f _ {2}}{\partial x _ {m}} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \frac {\partial f _ {n}}{\partial x _ {1}} &amp; \frac {\partial f _ {n}}{\partial x _ {2}} &amp; \dots &amp; \frac {\partial f _ {n}}{\partial x _ {m}} \end{array} \right] = \left[ \begin{array}{c c c c} f _ {1, 1} &amp; f _ {1, 2} &amp; \dots &amp; f _ {1, m} \\ f _ {2, 1} &amp; f _ {2, 2} &amp; \dots &amp; f _ {2, m} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ f _ {n, 1} &amp; f _ {n, 2} &amp; \dots &amp; f _ {n, m} \end{array} \right].
-$$
-
+The Jacobian is the multivariate generalization of the derivative. Where the derivative of $f: \mathbb{R} \to \mathbb{R}$ is a number (the slope), the Jacobian of $\mathbf{f}: \mathbb{R}^m \to \mathbb{R}^n$ is an $n \times m$ matrix — the best linear approximation to $\mathbf{f}$ near a point. In JAX, `jax.jacobian(f)` computes this entire matrix.
 
 If $\mathbf{f}:\mathbb{R}^n\to \mathbb{R}^n$, then $D\mathbf{f}$ is a square matrix; its determinant is, unfortunately, also called the Jacobian of $\mathbf{f}$.
 
-One can think of $\mathbf{f}:\mathbb{R}^n\to \mathbb{R}^n$ as a change of coordinate systems. If the original coordinates are, say, $(x,y,z)$, then $\mathbf{f}(x,y,z) = (u,v,w)$ are the coordinates of the point in the alternative system. In this way, $u$, $v$, and $w$ are themselves functions of $x,y$, and $z$. Then the (determinant of the) Jacobian of $\mathbf{f}$ is also denoted:
+One can think of $\mathbf{f}:\mathbb{R}^n\to \mathbb{R}^n$ as a change of coordinate systems. If the original coordinates are, say, $(x,y,z)$, then $\mathbf{f}(x,y,z) = (u,v,w)$ are the coordinates of the point in the alternative system. Then the (determinant of the) Jacobian of $\mathbf{f}$ is also denoted:
 
 $$
-\left| \frac {\partial (u , v , w)}{\partial (x , y , z)} \right| = \det  \left[ \begin{array}{c c c} \frac {\partial u}{\partial x} &amp; \frac {\partial u}{\partial y} &amp; \frac {\partial u}{\partial z} \\ \frac {\partial v}{\partial x} &amp; \frac {\partial v}{\partial y} &amp; \frac {\partial v}{\partial z} \\ \frac {\partial w}{\partial x} &amp; \frac {\partial w}{\partial y} &amp; \frac {\partial w}{\partial z} \end{array} \right].
+\left| \frac{\partial(u, v, w)}{\partial(x, y, z)} \right| = \det \left[ \begin{array}{ccc} \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} & \frac{\partial u}{\partial z} \\ \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y} & \frac{\partial v}{\partial z} \\ \frac{\partial w}{\partial x} & \frac{\partial w}{\partial y} & \frac{\partial w}{\partial z} \end{array} \right].
 $$
 
-**Curl.** For a function $\mathbf{f}:\mathbb{R}^3\to \mathbb{R}^3$ the *curl* of $\mathbf{f}$ is
+### Curl
+
+For a function $\mathbf{f}:\mathbb{R}^3\to \mathbb{R}^3$ the *curl* of $\mathbf{f}$ is
 
 $$
-\operatorname {c u r l} \mathbf {f} = \nabla \times \mathbf {f} = \left[ \begin{array}{l} f _ {3, 2} - f _ {2, 3} \\ f _ {1, 3} - f _ {3, 1} \\ f _ {2, 1} - f _ {1, 2} \end{array} \right]
+\operatorname{curl} \mathbf{f} = \nabla \times \mathbf{f} = \left[ \begin{array}{l} f_{3,2} - f_{2,3} \\ f_{1,3} - f_{3,1} \\ f_{2,1} - f_{1,2} \end{array} \right]
 $$
 
 where $f_{1,2}$ means the partial derivative of $f_{1}$ in its second argument, i.e., $\partial f_1 / \partial x_2$.
 
-The notation $\nabla \times \mathbf{f}$ is inspired by the cross product in which the first “vector” is a list of operators:
+The notation $\nabla \times \mathbf{f}$ is inspired by the cross product in which the first "vector" is a list of operators:
 
 $$
-\nabla \times \mathbf {f} = \left[ \begin{array}{c} \frac {\partial}{\partial x _ {1}} \\ \frac {\partial}{\partial x _ {2}} \\ \frac {\partial}{\partial x _ {3}} \end{array} \right] \times \left[ \begin{array}{c} f _ {1} \\ f _ {2} \\ f _ {3} \end{array} \right].
+\nabla \times \mathbf{f} = \left[ \begin{array}{c} \frac{\partial}{\partial x_{1}} \\ \frac{\partial}{\partial x_{2}} \\ \frac{\partial}{\partial x_{3}} \end{array} \right] \times \left[ \begin{array}{c} f_{1} \\ f_{2} \\ f_{3} \end{array} \right].
 $$
 
-**Divergence.** For a function $\mathbf{f}:\mathbb{R}^3\to \mathbb{R}^3$, the *divergence* of $\mathbf{f}$ is
+### Divergence
+
+For a function $\mathbf{f}:\mathbb{R}^3\to \mathbb{R}^3$, the *divergence* of $\mathbf{f}$ is
 
 $$
-\operatorname {d i v} \mathbf {f} = \nabla \cdot \mathbf {f} = \frac {\partial f _ {1}}{\partial x _ {1}} + \frac {\partial f _ {2}}{\partial x _ {2}} + \frac {\partial f _ {3}}{\partial x _ {3}}.
+\operatorname{div} \mathbf{f} = \nabla \cdot \mathbf{f} = \frac{\partial f_{1}}{\partial x_{1}} + \frac{\partial f_{2}}{\partial x_{2}} + \frac{\partial f_{3}}{\partial x_{3}}.
 $$
 
-Like the notation for curl, this notation is inspired by the dot product in which the first “vector” is a list of operators:
+Like the notation for curl, this notation is inspired by the dot product in which the first "vector" is a list of operators:
 
 $$
-\nabla \cdot \mathbf {f} = \left[ \begin{array}{c} \frac {\partial}{\partial x _ {1}} \\ \frac {\partial}{\partial x _ {2}} \\ \frac {\partial}{\partial x _ {3}} \end{array} \right] \cdot \left[ \begin{array}{c} f _ {1} \\ f _ {2} \\ f _ {3} \end{array} \right].
+\nabla \cdot \mathbf{f} = \left[ \begin{array}{c} \frac{\partial}{\partial x_{1}} \\ \frac{\partial}{\partial x_{2}} \\ \frac{\partial}{\partial x_{3}} \end{array} \right] \cdot \left[ \begin{array}{c} f_{1} \\ f_{2} \\ f_{3} \end{array} \right].
 $$
 
 More generally, for $\mathbf{f}:\mathbb{R}^n\to \mathbb{R}^n$,
 
 $$
-\operatorname {d i v} \mathbf {f} = \nabla \cdot \mathbf {f} = \sum_ {j = 1} ^ {n} \frac {\partial f _ {j}}{\partial x _ {j}}.
+\operatorname{div} \mathbf{f} = \nabla \cdot \mathbf{f} = \sum_{j = 1}^{n} \frac{\partial f_{j}}{\partial x_{j}}.
 $$
+
+### The $\nabla$ operator unifies gradient, divergence, and Laplacian
 
 Note that for the scalar valued function $f: \mathbb{R}^n \to \mathbb{R}$, the gradient of $f$, denoted $\nabla f$, is the vector of $f$'s partial derivatives, and so $\nabla f: \mathbb{R}^n \to \mathbb{R}^n$. If we take the divergence of $\nabla f$ we have
 
 $$
-\nabla \cdot (\nabla f) = \sum_ {j = 0} ^ {n} \frac {\partial^ {2} f _ {j}}{\partial x _ {j} ^ {2}}
+\nabla \cdot (\nabla f) = \sum_{j = 1}^{n} \frac{\partial^{2} f}{\partial x_{j}^{2}}
 $$
 
-which is the Laplacian of $f$. Thus $\nabla \cdot (\nabla f) = \nabla^2 f$.
+which is the Laplacian of $f$. Thus $\nabla \cdot (\nabla f) = \nabla^2 f = \Delta f$. Three different notations, one operation — the pattern of this chapter in miniature.
 
+| Operation | Notation | Input | Output | $\nabla$ form |
+| --- | --- | --- | --- | --- |
+| Gradient | $\nabla f$ | scalar field | vector field | $\nabla$ applied to scalar |
+| Divergence | $\nabla \cdot \mathbf{f}$ | vector field | scalar field | $\nabla$ dot vector |
+| Curl | $\nabla \times \mathbf{f}$ | vector field ($\mathbb{R}^3$) | vector field | $\nabla$ cross vector |
+| Laplacian | $\nabla^2 f$ | scalar field | scalar field | $\nabla \cdot \nabla f$ |
 
 ## 5. Integration
+
+The integral sign $\int$ was introduced by Leibniz in 1675 — it's a stylized elongated S, for *summa* (sum). And that's exactly what integration is: a limit of sums.
+
+### Indefinite and definite integrals
 
 Let $f: \mathbb{R} \to \mathbb{R}$. The notation $\int f(x) \, dx$ is the indefinite integral of $f$; it is a function $F$ whose derivative is $f$. The function $F$ is called an antiderivative or a primitive of $f$. The notation
 
@@ -265,9 +336,11 @@ $$
 F(x) \Big|_{a}^{b} = F(b) - F(a)
 $$
 
-where $F$ is an antiderivative of $f$. Some authors use a roman (as opposed to italic) $d$ in the integral, like this: $\int f(x) \, dx$.
+where $F$ is an antiderivative of $f$. Some authors use a roman $\mathrm{d}$ in the integral, like this: $\int f(x) \, \mathrm{d}x$.
 
 The left and right end points of the interval over which a function is integrated may be $-\infty$ and $\infty$, respectively.
+
+### Multiple integrals
 
 Multiple integrals take the following form:
 
@@ -281,7 +354,9 @@ $$
 \int \left[ \int f(x, y) \, dx \right] \, dy.
 $$
 
-This is not equivalent to $\iint f(x,y) \, dy \, dx$, although the end result is often the same.
+This is not equivalent to $\iint f(x,y) \, dy \, dx$, although the end result is often the same (Fubini's theorem gives conditions under which you can swap the order).
+
+### Domain subscripts
 
 Subscripts on integrals indicate the domain of integration. The typical notation is
 
@@ -303,6 +378,8 @@ $$
 \int_{[0,1]^{2}} (x - y)^{2} \, dx \, dy \text{ means } \int_{0}^{1} \int_{0}^{1} (x - y)^{2} \, dx \, dy
 $$
 
+### Line and contour integrals
+
 When the subscript on the integral is a curve
 
 $$
@@ -310,7 +387,6 @@ $$
 $$
 
 denotes the line integral of $f$ along the curve $\gamma$.
-
 
 If the curve is closed (i.e., it begins and ends at the same point) then we write
 
@@ -323,6 +399,8 @@ $\int_{\partial D}f\,ds\quad\text{or}\quad\oint_{\partial D}f\,ds$
 where $\partial D$ indicates the boundary of $D$.
 
 ## 6. Convolution and transforms
+
+### Convolution
 
 If $f$ and $g$ are functions from $\mathbb{R}$ to $\mathbb{R}$, we define their convolution $f*g$ as a new function with
 
@@ -346,6 +424,9 @@ Similarly, in number theory, the convolution of two functions $f,g:\mathbb{Z}^{+
 
 $(f*g)(n)=\sum_{d|n}f(d)g(n/d).$
 
+If you've used a convolutional neural network, the operation is the same idea: slide one function across another, multiplying and summing at each position. The $*$ in `nn.Conv2d` is literally this $*$.
+
+### Laplace transform
 
 Let $f: \mathbb{R}_+ \to \mathbb{R}$. The Laplace transform of $f$ is denoted $\mathcal{L}f$. It is a new function defined on the nonnegative real numbers by
 
@@ -354,6 +435,8 @@ $$
 $$
 
 The inverse Laplace transform is denoted $\mathcal{L}^{-1}$.
+
+### Fourier transform
 
 Let $f: \mathbb{R} \to \mathbb{R}$ (or, more generally, $f: \mathbb{R} \to \mathbb{C}$). The Fourier transform of $f$ is denoted $\mathcal{F}f$. This is a new function $F: \mathbb{R} \to \mathbb{C}$. Definitions for this vary depending on the author, but the one we prefer is this:
 
@@ -365,13 +448,15 @@ Variations on this definition have different coefficients outside the integral a
 
 The inverse Fourier transform is denoted $\mathcal{F}^{-1}$.
 
+### Discrete Fourier transform and Fourier series
+
 The Fourier transform applies to a function defined on $\mathbb{R}$ while the discrete Fourier transform applies to a finite sequence of numbers $a = (a_0, a_1, \ldots, a_{n-1})$. It is also denoted $\mathcal{F}(a)$ and is a new sequence $A = (A_0, A_1, \ldots, A_{n-1})$ with
 
 $$
 A_k = \sum_{j=0}^{n-1} a_j e^{-jki\pi/n}.
 $$
 
-Some authors scale this by a factor of $1/\sqrt{n}$ (which we think is preferable). Discrete Fourier transforms can be efficiently computed using the fast Fourier transform algorithm, commonly abbreviated FFT.
+Some authors scale this by a factor of $1/\sqrt{n}$ (which we think is preferable). Discrete Fourier transforms can be efficiently computed using the fast Fourier transform algorithm, commonly abbreviated FFT. In NumPy: `np.fft.fft(a)`.
 
 The discrete Fourier transform is closely related to the discrete cosine transform which is commonly abbreviated DCT.
 
@@ -388,3 +473,12 @@ f(t) = \sum_{k=-\infty}^{\infty} \hat{f}(k)e^{ikt}
 $$
 
 and the numbers $\hat{f}(k)$ are the Fourier coefficients. As with the Fourier transform, variations in the definition exist to account for intervals other than $[-\pi, \pi]$ and with different scaling factors.
+
+### Transforms notation summary
+
+| Transform | Notation | Domain | Definition |
+| --- | --- | --- | --- |
+| Laplace | $\mathcal{L}f$ | $\mathbb{R}_+ \to \mathbb{R}$ | $\int_0^\infty f(t) e^{-st}\, dt$ |
+| Fourier | $\mathcal{F}f$ or $\hat{f}$ | $\mathbb{R} \to \mathbb{C}$ | $\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} f(x) e^{-i\omega x}\, dx$ |
+| Discrete Fourier | $\mathcal{F}(a)$ | finite sequence | $\sum_{j=0}^{n-1} a_j e^{-jki\pi/n}$ |
+| Inverse | $\mathcal{L}^{-1}$, $\mathcal{F}^{-1}$ | — | reverses the transform |
