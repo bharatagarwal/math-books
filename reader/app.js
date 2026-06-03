@@ -105,6 +105,29 @@ const BOOKS = [
       { file: '11 - Cryptography.md', title: '11. Cryptography' },
       { file: '12 - Revision and Problem Solving.md', title: '12. Revision & Practice' },
     ]
+  },
+  {
+    id: 'mathematical-notation',
+    title: 'Mathematical Notation',
+    meta: 'Edward R. Scheinerman · Johns Hopkins, 2011',
+    basePath: 'mathematical-notation',
+    chapters: [
+      { file: '00 - Preface.md', title: 'Preface' },
+      { file: '01 - Letters.md', title: '1. Letters' },
+      { file: '02 - Collections.md', title: '2. Collections' },
+      { file: '03 - Logic.md', title: '3. Logic' },
+      { file: '04 - Numbers.md', title: '4. Numbers' },
+      { file: '05 - Geometry.md', title: '5. Geometry' },
+      { file: '06 - Functions.md', title: '6. Functions' },
+      { file: '07 - Linear Algebra.md', title: '7. Linear Algebra' },
+      { file: '08 - Calculus.md', title: '8. Calculus' },
+      { file: '09 - Probability and Statistics.md', title: '9. Probability & Statistics' },
+      { file: '10 - Approximation.md', title: '10. Approximation' },
+      { file: '11 - Bibliography.md', title: 'Bibliography' },
+      { file: '12 - Chart.md', title: 'Chart' },
+      { file: '13 - Notation Index.md', title: 'Notation Index' },
+      { file: '14 - Topic Index.md', title: 'Topic Index' },
+    ]
   }
 ];
 

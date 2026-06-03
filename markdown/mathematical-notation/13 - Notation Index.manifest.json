@@ -1,0 +1,12 @@
+{
+  "source": "mathematical-notation/13 - Notation Index.pdf",
+  "source_size": 31801,
+  "model": "mistral-ocr-latest",
+  "pages": 6,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 6,
+    "doc_size_bytes": 31801
+  }
+}

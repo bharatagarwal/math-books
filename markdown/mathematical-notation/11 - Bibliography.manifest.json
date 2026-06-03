@@ -1,0 +1,12 @@
+{
+  "source": "mathematical-notation/11 - Bibliography.pdf",
+  "source_size": 46431,
+  "model": "mistral-ocr-latest",
+  "pages": 2,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 2,
+    "doc_size_bytes": 46431
+  }
+}

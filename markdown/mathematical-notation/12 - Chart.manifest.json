@@ -1,0 +1,12 @@
+{
+  "source": "mathematical-notation/12 - Chart.pdf",
+  "source_size": 36875,
+  "model": "mistral-ocr-latest",
+  "pages": 4,
+  "images": 0,
+  "render_dpi": 300,
+  "usage": {
+    "pages_processed": 4,
+    "doc_size_bytes": 36875
+  }
+}
