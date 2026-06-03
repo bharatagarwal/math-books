@@ -105,7 +105,7 @@ const BOOKS = [
   }
 ];
 
-let currentBook = 0;
+let currentBook = Math.floor(Math.random() * BOOKS.length);
 let currentChapter = -1;
 
 // Custom renderer for figures with captions
@@ -581,6 +581,7 @@ window.addEventListener('resize', () => {
 // Init
 const sel = document.getElementById('bookSelect');
 sel.innerHTML = BOOKS.map((b, i) => '<option value="' + i + '">' + b.title + '</option>').join('');
+sel.value = currentBook;
 sel.onchange = () => { currentBook = +sel.value; renderBook(); };
 renderBook();
 updateMobileZenToggle();
