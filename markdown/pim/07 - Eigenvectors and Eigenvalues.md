@@ -1,4 +1,4 @@
-# Chapter 12 Eigenvectors and Eigenvalues
+# Eigenvectors and Eigenvalues
 
 > The notion of eigenvalue is one of the most important in linear algebra, if not in algebra, if not in mathematics, if not in the whole of science.
 >
@@ -42,7 +42,7 @@ An eigenvector $v$ of $A$ has another sort of "invariance" under the operation o
 
 This is the best high-level intuition I can give without getting too deep in the math. Before we do, let's see a compelling example of why eigenvalues are so interesting and complex for specific matrices called *adjacency matrices*. In the next section we won't prove any of the theorems we state.
 
-## 12.1 Eigenvalues of Graphs
+## Eigenvalues of Graphs
 
 Let $G=(V,E)$ be an undirected graph, the same sort we studied in Chapter 6. There is a natural matrix we can associate with $G$, defined as follows.
 
@@ -84,7 +84,7 @@ So to make this cluster-finding problem easier, after creating the graph in this
 
 This is a result that is quite recent by mathematics standards. It was proved in 1998 by Alon et al. No method is known to exist that can reliably find a smaller planted clique, and moreover it can be *proved* that methods that only use statistics about the graph cannot find a smaller clique. All of this is to say, eigenvalues of the adjacency matrix don't just encode information about $G$, in certain settings they do so in an *optimal way*. The specific area of math studying how and when eigenvalues are useful in encapsulating information about graphs is called *spectral graph theory*. The general idea of using eigenvalues and eigenvectors of matrices derived from a graph to find dense clusters is called *spectral clustering*, and there are many variations.
 
-## 12.2 Limiting the Scope: Symmetric Matrices
+## Limiting the Scope: Symmetric Matrices
 
 By now I hope I have convinced you that eigenvectors and eigenvalues, together often called an *eigensystem*, encode useful information about linear maps, and the underlying data those linear maps represent.
 
@@ -94,7 +94,7 @@ A stronger intuition is difficult to explain without a longer expedition into th
 
 Introducing complex numbers makes other things simpler, while making some things more complicated. But more importantly, if you're not comfortable with the geometry of complex numbers, you will have difficulty interpreting how they relate to a linear map for vectors of real numbers. This book skips complex numbers, so we will not be able to give a complete picture.
 
-A second reason is that multiple linearly independent eigenvectors can exist for the same eigenvalue, and there may or may not be "enough" eigenvectors to provide a complete picture. This topic is nuanced—and not needed for our application—so we omit it except to mention some pointers in Section 12.5.
+A second reason is that multiple linearly independent eigenvectors can exist for the same eigenvalue, and there may or may not be "enough" eigenvectors to provide a complete picture. This topic is nuanced—and not needed for our application—so we omit it except to mention some pointers in the "Computing Eigenvalues" section.
 
 Luckily, there is a nice way to avoid dealing with these problems while still seeing the lion's share of eigenvalue power in practice. That is the following theorem:
 
@@ -150,7 +150,7 @@ To fulfill my promise: $x+y$ is a natural choice of eigenvector because it's on 
 
 The inner product is starting to take center stage. We should study it in more detail.
 
-## 12.3 Inner Products
+## Inner Products
 
 In order to express one very useful aspect of eigenvectors, we must revisit the discussion from Chapter 10 about the inner product. In general, a vector space only has a limited amount of geometry you can describe. However, if you specify an inner product, you can describe angles, lengths, and more. The inner product is imposed on a vector space, in the same way that a style guide is imposed on a programmer: to give structure to (or elucidate structure in) the underlying space. The standard inner product on $\mathbb{R}^{n}$ is defined by the formula
 
@@ -226,7 +226,7 @@ Most of the facts about perpendicularity and projection we proved for $\mathbb{R
 
 *Proof.* Let $\{v_{1},\ldots,v_{k}\}$ be as in the statement of the proposition, and suppose $c_{1}v_{1}+\cdots+c_{k}v_{k}=0$. To show linear independence, recall, we need to show that all the $c_{i}=0$. Fix any $i$. To show $c_{i}$ is zero, inspect $\langle c_{1}v_{1}+\cdots+c_{k}v_{k},v_{i}\rangle$, which is zero because the first argument is zero by assumption. By linearity, this splits up as $\sum_{j=1}^{k}c_{j}\langle v_{j},v_{i}\rangle$. By pairwise orthogonality, all the terms in the sum are zero except $c_{i}\langle v_{i},v_{i}\rangle$. Thus, this sum reduces to $c_{i}\langle v_{i},v_{i}\rangle=0$. Then either $v_{i}=0$ (ruled out by assumption) or $c_{i}=0$. The same argument applies to every $c_{i}$. $\blacksquare$
 
-## 12.4 Orthonormal Bases
+## Orthonormal Bases
 
 Bases consisting of orthogonal unit vectors are glittering treasures for computation. They make it easy to write a vector in terms of that basis. Let $V$ be an inner product space, and suppose that $\{v_{1},\ldots,v_{n}\}$ is a basis for $V$, where every $v_{i}$ is a unit vector and $\langle v_{i},v_{j}\rangle=0$ for every $i\neq j$. Such a basis is called an *orthonormal basis*. The "ortho" is because each pair is orthogonal, and "normal" because each vector is a unit vector (normalized). Having such a basis allows you to compute the basis representation of any vector using inner products.
 
@@ -298,7 +298,7 @@ The Gram-Schmidt process doesn't dictate how to find a vector not in the span of
 
 As a side note, this algorithm is generally not considered "production ready," because it suffers from numerical instability. Most industry-strength linear algebra libraries use one of a few different techniques based on linear algebra primitives (such as Householder reflections and the famed Cholesky decomposition) that have been fine-tuned and optimized for speed and stability. Instead, it serves as a proof of existence.
 
-## 12.5 Computing Eigenvalues
+## Computing Eigenvalues
 
 Our ultimate goal is to come up with an orthonormal basis of eigenvectors. This will combine the computational ease of orthogonality with the deep secrets revealed by eigenvalues. To appreciate Theorem 12.22, we should investigate why finding a basis of eigenvectors might be hard.
 
@@ -350,7 +350,7 @@ Before we get there, it's worth pausing on the single most-used eigenvalue algor
 <!-- include: code/pim/07 - Eigenvectors and Eigenvalues/03_power_iteration.py -->
 ```
 
-## 12.6 The Spectral Theorem
+## The Spectral Theorem
 
 If you're studying a linear map $f:V\to V$, and for each eigenvalue you can find an orthogonal set of eigenvectors spanning the eigenspace, then the representation of the matrix for $f$ is extremely simple. In this case, the eigenvectors form an orthonormal basis (recall Propositions 12.11 and 12.14). The matrix for $f$, when written with respect to that basis, has all its nonzero entries on the diagonal.
 
@@ -400,7 +400,7 @@ Finally, we can invoke the inductive hypothesis for the matrix $A'$ (which is sy
 
 There is one more detail. We defined $u_{i}$ as an eigenvector of this sub-matrix $A'$, but can we be sure it's an eigenvector of the original $A$? Indeed it is, because of the way we decomposed $\mathbb{R}^{n}$ into $\text{span}(v)$ and the orthogonal complement $W$. Specifically, to compute $Ax$ for any vector $x$, we write it with respect to the basis, and apply $A$ to each piece. In this case, if $u_{i}$ is an eigenvector for $A'$ with eigenvalue $\lambda$, then $u_{i}=\langle u_{i},v\rangle v+y$ for some $y\in W$. But since $\langle u_{i},v\rangle=0$, we have $y=u_{i}$ and so $Au_{i}=A'u_{i}=\lambda u_{i}$, which proves $u_{i}$ is an eigenvector for $A$. $\blacksquare$
 
-## 12.7 Application: Waves
+## Application: Waves
 
 As you can probably tell from the book to this point, my favorite applications of math are to computer science. Linear algebra is no different. However, it would be intellectually dishonest to omit the influence of linear algebra in physics. Nowhere else does the beauty and utility of eigenvalues shine so bright.
 
@@ -689,14 +689,14 @@ If one decreases the distance between beads and increases the number of beads in
 
 So there you have it. Eigenvectors have revealed the secrets of waves on a string.
 
-## 12.8 Cultural Review
+## Cultural Review
 
 1. Eigenvalues and eigenvectors often provide the best perspective (basis) with which to study a linear map.
 2. An orthonormal basis of eigenvectors allows you to decouple aspects of a complex system that are a priori intertwined, and orthonormality makes computing basis decompositions easy.
 3. Invariance is a strong "smell," meaning objects which satisfy an invariance property are probably important, even if you don't know why exactly. In this chapter, it was an eigenvalue being invariant to the choice of basis, and eigenvectors of $f$ being invariant (up to scaling) under the operation of applying $f$.
 4. When trying to solve a complicated problem, a good approach is to simplify the problem as much as possible without losing the essential character of the problem. One can then solve that simplified problem and gain insight. Then gradually add complexity back to the problem and, using the new insights, attempt to solve the harder problem.
 
-## 12.9 Exercises
+## Exercises
 
 **12.1.** For two matrices $A,B$ of compatible dimensions, prove that $(AB)^{T}=B^{T}A^{T}$.
 
@@ -754,7 +754,7 @@ Notice that this matrix is not symmetric. Because the roots of a polynomial migh
 
 **12.21.** PageRank is a ranking algorithm that was a major factor in the Google search engine's domination of the early internet search market. The algorithm involves setting up a linear system based on links between webpages, and computing the eigenvector for the largest eigenvalue. Find an exposition of this algorithm and implement it in code. Can you visualize or interpret the eigenvector in a meaningful way?
 
-## 12.10 Chapter Notes
+## Chapter Notes
 
 ### Transposes and Linear Maps
 
@@ -770,7 +770,7 @@ Moreover, every linear functional on $\mathbb{R}^{n}$ can be expressed as the in
 
 Now we finally get to the transpose, which just extends this linear functional picture to a finite number of independent functionals, the outputs of which are grouped together in a vector. Let $f:V\to W$ be a linear map with matrix representation $A$, an $(m\times n)$-matrix for $n$-dimensional $V$ and $m$-dimensional $W$. Define the *transpose* of $f$ (sometimes called the *adjoint*) as the linear map $f^{T}:W^{*}\to V^{*}$ which takes as input (a linear functional!) $g\in W^{*}$ and produces as output the linear functional $g\circ f\in V^{*}$, the composition of the two maps by first applying $f$ and then applying $g$. And indeed, the matrix representation of $f^{T}$ with respect to the dual bases for $V^{*},W^{*}$ is $A^{T}$.
 
-Since $W^{*}$ and $W$ are isomorphic, and $V^{*}$ and $V$ are isomorphic, you may wonder if you can apply this to realize the dual $f^{T}$ as a map $W\to V$ as well. Indeed you can, and it can even be defined without referring to dual vector spaces at all. Let $V,W$ be inner product spaces and $f:V\to W$ a linear map. Define the transpose $f^{T}:W\to V$ input-by-input as follows. Let $w\in W$, and define $f^{T}(w)$ to be the unique vector for which $\langle f(v),w\rangle=\langle v,f^{T}(w)\rangle$. One needs to prove this is well-defined, but it is. It comes from our discussion about symmetry in Section 12.2 about how in $\mathbb{R}^{n}$ you get $\langle Ax,y\rangle=x^{T}A^{T}y$.
+Since $W^{*}$ and $W$ are isomorphic, and $V^{*}$ and $V$ are isomorphic, you may wonder if you can apply this to realize the dual $f^{T}$ as a map $W\to V$ as well. Indeed you can, and it can even be defined without referring to dual vector spaces at all. Let $V,W$ be inner product spaces and $f:V\to W$ a linear map. Define the transpose $f^{T}:W\to V$ input-by-input as follows. Let $w\in W$, and define $f^{T}(w)$ to be the unique vector for which $\langle f(v),w\rangle=\langle v,f^{T}(w)\rangle$. One needs to prove this is well-defined, but it is. It comes from our discussion about symmetry in the "Limiting the Scope: Symmetric Matrices" section about how in $\mathbb{R}^{n}$ you get $\langle Ax,y\rangle=x^{T}A^{T}y$.
 
 Note that these two definitions of the transpose can only be said to be the same in the case that the vector space has scalars in $\mathbb{R}$. If you allow for complex number scalars, things get a bit trickier.
 
@@ -780,7 +780,7 @@ In addition to the geometric multiplicity of an eigenvalue, there's another, mor
 
 **Definition 12.29.** The *algebraic multiplicity* of an eigenvalue $\lambda$ for $f$ is the largest integer $m$ for which $\ker((f-\lambda I)^{m})$ is strictly larger than $\ker((f-\lambda I)^{m-1})$.
 
-From this definition, we can see that the algebraic multiplicities of $\lambda=1$ are different for $A$ and $B$ in Section 12.5. Taking successive powers of $B-I_{3}$ gives first $(0,1,0)$ and then $(0,0,1)$ in the kernels, while the algebraic multiplicity for $A$ is just $1$.
+From this definition, we can see that the algebraic multiplicities of $\lambda=1$ are different for $A$ and $B$ in the "Computing Eigenvalues" section. Taking successive powers of $B-I_{3}$ gives first $(0,1,0)$ and then $(0,0,1)$ in the kernels, while the algebraic multiplicity for $A$ is just $1$.
 
 Algebraic and geometric multiplicity work together to give a characterization of any linear map, considered over the complex numbers, in terms of so-called *Jordan blocks*. These are square sub-matrices with $\lambda$ on the diagonal and $1$'s on the adjacent diagonal. For example for $n=3$:
 

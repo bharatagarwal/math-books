@@ -1,4 +1,4 @@
-# Chapter 11 Live and Learn Linear Algebra (Again)
+# Live and Learn Linear Algebra (Again)
 
 > Good mathematicians see analogies between theorems or theories. The very best ones see analogies between analogies.
 >

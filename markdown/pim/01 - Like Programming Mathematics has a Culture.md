@@ -1,4 +1,4 @@
-# Chapter 1 Like Programming, Mathematics has a Culture
+# Like Programming, Mathematics has a Culture
 
 > Mathematics knows no races or geographic boundaries; for mathematics, the cultural world is one country.
 >

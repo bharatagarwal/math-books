@@ -1,4 +1,4 @@
-# Chapter 5 Variable Names, Overloading, and Your Brain
+# Variable Names, Overloading, and Your Brain
 
 > Math is the art of giving the same name to different things.
 >

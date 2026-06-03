@@ -1,4 +1,4 @@
-# Chapter 14 Multivariable Calculus and Optimization
+# Multivariable Calculus and Optimization
 
 > The world is continuous, but the mind is discrete.
 >
@@ -10,7 +10,7 @@ Calculus generalizes nicely from one dimension (Chapter 8) to many dimensions. I
 
 As the application for this chapter, we'll write a neural network from scratch. We'll define the so-called computation graph of a function, and optimize its parameters using the chain rule and gradient descent. We'll apply this to the classic problem of classifying handwritten digits. Along the way, we'll get a whirlwind introduction to the theory and practice of machine learning.
 
-## 14.1 Generalizing the Derivative
+## Generalizing the Derivative
 
 Let's start with our fond memories of single-variable calculus. Recall Definition 8.6 of the derivative of a single-variable function.
 
@@ -52,7 +52,7 @@ On this surface at $(0,0)$, the directional derivative exists in every direction
 
 As we'll see soon, a stronger derivative definition avoids these issues. It will provide a linear map representing the whole function, and applying linear algebra produces the directional derivative in any direction. Being linear algebra, we may choose a beneficial basis, though I haven't yet made it clear what the vector space in question is. That will come as we refine what the right definition of "the" derivative should be.
 
-## 14.2 Linear Approximations
+## Linear Approximations
 
 For dimension 1, the derivative of $f$ had the distinction of providing the most accurate line approximating $f$ at a point. The line through $(c,f(c))$ with slope $f'(c)$ is closer to the graph of $f$ near $c$ than any other line. We proved this in detail in Theorem 8.11.
 
@@ -103,7 +103,7 @@ The computational centerpiece of Definition 14.5 is the linear map $A$. It helps
 
 It's worthwhile to do some concrete examples. First in one dimension, then in three. For single-variable functions $f:\mathbb{R}\to\mathbb{R}$, at every point $c$ the tangent space is a one-dimensional vector space. The vectors in the vector space represent left/right deviations of the input of $f$ from $c$, and the linear map $A$ describes the approximate change in $f$ due to this deviation. As an example, let $f(x)=2+\sqrt{x+2}$ and consider the point $(c,f(c))=(2,4)$. The derivative of $f$ is $1/(2\sqrt{x+2})$, which evaluates to $1/4$ at $c=2$. Thus, the tangent space $T_{f}(2)$ is a copy of $\mathbb{R}$, and the total derivative at $c=2$ is $A(x)=\frac{1}{4}x$. The affine linear map is $L(x)=\frac{1}{4}(x-2)+4$.
 
-In three dimensions, let $f(x,y,z)=x^{2}+(y-1)^{3}+(z-2)^{4}$ and let $c=(3,2,1)$. The tangent space $T_{f}(c)=\mathbb{R}^{3}$, and so the total derivative $A:\mathbb{R}^{3}\to\mathbb{R}$ has three-dimensional inputs. We won't learn how to compute this map from the definition of $f$ until Section 14.4, so for now we give the answer magically; it's the following $1\times 3$ matrix:
+In three dimensions, let $f(x,y,z)=x^{2}+(y-1)^{3}+(z-2)^{4}$ and let $c=(3,2,1)$. The tangent space $T_{f}(c)=\mathbb{R}^{3}$, and so the total derivative $A:\mathbb{R}^{3}\to\mathbb{R}$ has three-dimensional inputs. We won't learn how to compute this map from the definition of $f$ until the "Computing the Total Derivative" section, so for now we give the answer magically; it's the following $1\times 3$ matrix:
 
 $$A=\begin{pmatrix}6&3&-4\end{pmatrix}.$$
 
@@ -139,7 +139,7 @@ A quick note on notation, $D$ is a mapping from functions to functions, but the 
 
 Now we'd like to compute total derivatives. To make this process cleaner, we first deviate to generalize the derivative to functions $\mathbb{R}^{n}\to\mathbb{R}^{m}$.
 
-## 14.3 Vector-valued Functions and the Chain Rule
+## Vector-valued Functions and the Chain Rule
 
 Comfort with linear algebra makes converting relevant definitions of single-output functions to multiple-output functions trivial. A function $f:\mathbb{R}^{n}\to\mathbb{R}^{m}$ consumes a vector $x=(x_{1},\ldots,x_{n})$ as before, and produces as output a vector
 
@@ -170,7 +170,7 @@ The chain rule is an extremely useful tool, and despite being abstract, it lands
 [^1]: The little circle $\circ$ denotes function composition.
 [^2]: Mathematicians tend to call the function "extract the $i$-th coordinate" a projection onto the $i$-th coordinate. Because indeed, it's exactly the linear-algebraic projection onto the $i$-th basis vector. This is also why you'll see $\pi$ used as a function, since $\pi$ is the Greek "p," and "p" stands for projection.
 
-## 14.4 Computing the Total Derivative
+## Computing the Total Derivative
 
 Back to single-output functions, recall the total derivative at a point $c$ is a linear map $A: \mathbb{R}^n \to \mathbb{R}$, where the domain represents deviations from $c$. If we want to compute a matrix representation, a natural goal is to find a basis for which $A$ is easy to compute. We'll do this, and arrive at a matrix representation for $A$ (depending on $c$), by computing a small number of directional derivatives. First we'll show that the total derivative is closely related to directional derivatives.
 
@@ -235,11 +235,11 @@ This notation has the advantage that you can use it while still hating linear al
 
 [^5]: I find it curious how "delta" is used as a synonym for "difference" or "change" by executives in discussions that otherwise lack precision. Perhaps they studied math and incorporated that into their natural speech, or perhaps their faux-technical jargon impresses and confounds their enemies. I have certainly seen instances of both.
 
-## 14.5 The Geometry of the Gradient
+## The Geometry of the Gradient
 
 Next we study the geometry of the gradient. Henceforth, when we say "differentiable function" we mean a function with a total derivative, we'll assume all functions are differentiable, and we'll seamlessly swap between total derivatives, directional derivatives, linear maps, and matrices.
 
-Take the gradient $\nabla f$ of a differentiable function $f: \mathbb{R}^n \to \mathbb{R}$, and evaluate it at a concrete point $x \in \mathbb{R}^n$, as we did at the end of Section 14.4. The result is an $n \times 1$ matrix whose entries are all concrete numbers, but since we're working with 1-dimensional outputs, the total derivative is also a vector. This vector represents the linear map $\mathbb{R}^n \to \mathbb{R}$ whose input is a "direction to look in" and whose output is how steep the derivative is in that direction. Since $\nabla f$ is derived from $f$, it's natural to ask how the geometry of $\nabla f$ relates to the shape of $f$.
+Take the gradient $\nabla f$ of a differentiable function $f: \mathbb{R}^n \to \mathbb{R}$, and evaluate it at a concrete point $x \in \mathbb{R}^n$, as we did at the end of the "Computing the Total Derivative" section. The result is an $n \times 1$ matrix whose entries are all concrete numbers, but since we're working with 1-dimensional outputs, the total derivative is also a vector. This vector represents the linear map $\mathbb{R}^n \to \mathbb{R}$ whose input is a "direction to look in" and whose output is how steep the derivative is in that direction. Since $\nabla f$ is derived from $f$, it's natural to ask how the geometry of $\nabla f$ relates to the shape of $f$.
 
 The answer reveals itself easily with a strong grasp of the projection function from linear algebra. Recall the function $\mathrm{proj}_v(w)$, which projects a vector $w$ onto a unit vector $v$. We studied this in Chapters 10 and 12, and there we noted some interesting facts. Let's recall them here. Let $v$ be a unit vector and $w$ an arbitrary vector of the same dimension.
 
@@ -271,7 +271,7 @@ We can exploit this further. A level curve of $f$ at $c$ is the set of constant-
 
 Since many things in life and science can be modeled using functions $\mathbb{R}^{n}\to\mathbb{R}$, a common desire is to find an input $x\in\mathbb{R}^{n}$ which maximizes or minimizes such a function. For the sake of discussion, let's suppose we're looking for a minimum. Even when a mathematical model $f$ exists for a phenomenon, minimizing it might be algebraically intractable for a variety of reasons. For example, it might involve functions that are difficult to separate, such as trigonometric functions and threshold functions. Alternatively, it might simply be so large as to avoid any human analysis whatsoever, as is often the case with a neural network that has millions of parameters related to labeled data. The rest of this chapter is devoted to understanding how to tackle such situations, and the core idea is to "follow" the direction indicated by the gradient.
 
-## 14.6 Optimizing Multivariable Functions
+## Optimizing Multivariable Functions
 
 Now we'll use the geometry of the gradient to derive a popular technique for optimizing functions $\mathbb{R}^{n}\to\mathbb{R}$. First, we review the situation for single-variable functions. In Chapter 9 we outlined the steps to solve a one-dimensional minimization problem, which I'll repeat here:
 
@@ -404,7 +404,7 @@ $$f(x + v) \approx f(x) + \langle \nabla f, v \rangle + \langle Hv, v \rangle$$
 
 See the exercises for a deeper investigation when $n = 2$.
 
-## 14.7 Gradient Descent: an Optimization Hammer
+## Gradient Descent: an Optimization Hammer
 
 As we mentioned, the Hessian provides a sufficient condition to determine if a point is a local min: the gradient is zero and all the eigenvalues of the Hessian are positive. There are two caveats to this. First, the Hessian is expensive to compute. Its size is the square of the size of the gradient. Second, a provable optimum is something of a luxury. Most optimization problems benefit well enough from progressively improving an approximate optimum. Gradient descent does precisely this, and allows you to easily trade off solution quality for runtime.
 
@@ -427,7 +427,7 @@ The bottleneck of gradient descent is computing the gradient. When $f$ is compli
 
 One might wonder, if the Hessian gives more information about the curvature of $f$, why not use the Hessian in determining the next step to take? You can! But unfortunately, since the Hessian is often an order of magnitude more difficult to compute than the gradient—and the gradient *already* requires mountains of engineering to get right—it's simply not feasible to do so. And, as you'll get to explore in the exercises, there are alternative techniques that allow one to "accelerate" gradient descent in a principled fashion without the Hessian.
 
-## 14.8 Gradients of Computation Graphs
+## Gradients of Computation Graphs
 
 The primary practical use of the chain rule is to allow us to compute complicated derivatives mechanically. In particular, one decomposes a function into a large composition of simple pieces, where the derivative of each piece is known, and applies the chain rule to build up the full derivative from the pieces.
 
@@ -488,7 +488,7 @@ This recursion is *reverse-mode automatic differentiation*, and it's worth seein
 
 As one can easily see, a network with heavily interdependent vertices requires one to cache the intermediate values to avoid recomputing derivatives everywhere. That's exactly the strategy we'll take with our neural network.
 
-## 14.9 Application: Automatic Differentiation and a Simple Neural Network
+## Application: Automatic Differentiation and a Simple Neural Network
 
 Neural networks are extremely popular right now. In the decade between 2010 and 2020, neural networks—specifically "deep" neural networks—have transformed subfields of computer science like computer vision and natural language processing. Neural networks and techniques using them can, with rather high fidelity, identify objects and scenes, translate simple language, and play abstract games of logic like Go. This was enabled, in large part, by the increased availability of cheap compute resources and graphical processing units (GPUs).
 
@@ -567,7 +567,7 @@ Summarizing, given a hypothesis class $H$ and a dataset $S$, a learning algorith
 
 ### Neural Networks as Computation Graphs
 
-In Section 14.8 we explored how a differentiable function can be represented as a computation graph of simple operations, each of whose derivative is known. We saw how to compute the gradient of a complicated multivariable function by breaking it into pieces and using recursion and caching.
+In the "Gradients of Computation Graphs" section we explored how a differentiable function can be represented as a computation graph of simple operations, each of whose derivative is known. We saw how to compute the gradient of a complicated multivariable function by breaking it into pieces and using recursion and caching.
 
 A neural network is exactly this: a massive function composed of simple, differentiable parts, whose output is a real number approximating the desired label of a training example. In Python, our network is an object wrapping the computation graph data structure. The trained network will evaluate an input and produce a binary label saying whether the input is a 1 (a label of zero) or a 7 (a label of one).
 
@@ -637,7 +637,7 @@ This is the right moment to make the whole apparatus concrete and small. The fol
 <!-- include: code/pim/08 - Multivariable Calculus and Optimization/07_tiny_neural_net.py -->
 ```
 
-As we outlined in Section 14.8, each vertex of our computation graph needs to know about various derivatives related to the operation computed at that node, and that these values need to be cached to compute a gradient efficiently. Now we'll see one way to manifest that in code. Let's start by defining a generic base node class, representing a generic operation in a computation graph. We'll call the operation computed at that node $f$, which has arguments $z_{1},\ldots,z_{m}$, and possibly tunable parameters $w_{1},\ldots,w_{k}$.
+As we outlined in the "Gradients of Computation Graphs" section, each vertex of our computation graph needs to know about various derivatives related to the operation computed at that node, and that these values need to be cached to compute a gradient efficiently. Now we'll see one way to manifest that in code. Let's start by defining a generic base node class, representing a generic operation in a computation graph. We'll call the operation computed at that node $f$, which has arguments $z_{1},\ldots,z_{m}$, and possibly tunable parameters $w_{1},\ldots,w_{k}$.
 
 $$f=f(w_{1},\ldots,w_{k},z_{1},\ldots,z_{m})$$
 
@@ -991,12 +991,12 @@ Looking closely at the validation error as training progresses, the validation e
 
 So there we have it! A functioning neural network, built as a computational graph of arbitrary operations, with automatic gradient computations.
 
-## 14.10 Cultural Review
+## Cultural Review
 
 - At its core, the derivative is the linear approximation of a function at a point. This view applies to both single- and multivariable settings.
 - Local properties—those properties which hold only in a narrow slice around a point of interest—tend to be easier to reason about and compute, and they often inform one about the global properties of an object.
 
-## 14.11 Exercises
+## Exercises
 
 **14.1.** A function $f: \mathbb{R}^n \to \mathbb{R}$ is called continuous at a point $c \in \mathbb{R}^n$ if for every $\varepsilon > 0$ there exists a $\delta > 0$ such that whenever $\| x - c \| < \delta$ it holds that $|f(x) - f(c)| < \varepsilon$. Using this definition, show that $f(x, y, z) = x^2 + y^2 + z^2$ is continuous at $(0, 0, 0)$, but that $g(x, y, z) = \frac{xyz}{x^3 + y^3 + z^3}$ (defining $g(0, 0, 0) = 0$) is not continuous at $(0, 0, 0)$. Hint: look at different directions one could approach $(0, 0, 0)$.
 
@@ -1040,7 +1040,7 @@ Hint: the same proof works, but the construction of the single-variable function
 
 **14.19.** Space and orientation is particularly useful to computer vision applications. One industry-standard "feature" used in deep neural networks for computer vision is a primitive called convolution. Research this new operation, and implement a $4\times 4$ convolution node in the neural network from this chapter. Design an architecture that incorporates convolution, and train MNIST on it. Does the quality improve?
 
-## 14.12 Chapter Notes
+## Chapter Notes
 
 ### The Chain Rule: a Reprise and a Proof
 

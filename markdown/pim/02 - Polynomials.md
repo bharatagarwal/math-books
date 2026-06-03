@@ -1,4 +1,4 @@
-# Chapter 2 Polynomials
+# Polynomials
 
 > We are not trying to meet some abstract production quota of definitions, theorems and proofs. The measure of our success is whether what we do enables people to understand and think more clearly and effectively about mathematics.
 >
@@ -6,7 +6,7 @@
 
 We begin with polynomials. In studying polynomials, we'll discuss mathematical definitions, work carefully through two nontrivial proofs, and implement a system for "sharing secrets" using something called polynomial interpolation. To whet your appetite, this secret sharing scheme allows one to encode a secret message in 10 parts so that any 6 can be used to reconstruct the secret, but with fewer than 6 pieces it's impossible to determine even a single bit of the original message. The numbers 10 and 6 are just examples, and the scheme we'll present works for any pair of integers.
 
-### 2.1 Polynomials, Java, and Definitions
+### Polynomials, Java, and Definitions
 
 We start with the definition of a polynomial. The problem, if you're the sort of person who struggled with math, is that reading the definition as a formula will make your eyes glaze over. In this chapter we're going to overcome this.
 
@@ -163,7 +163,7 @@ It's also worth noting that the multiplicity of definitions arose throughout his
 
 In any case, the point is that we will fluidly convert between the many ways of thinking about polynomials: as expressions defined abstractly by picking a list of numbers, or as functions with a special structure. Effective mathematics is flexible in this way.
 
-### 2.2. A Little More Notation
+### A Little More Notation
 
 When defining a function, one often uses the compact arrow notation $f:A\to B$ to describe the allowed inputs and outputs. All possible inputs are collectively called the *domain*, and all possible outputs are called the *range*. There is one caveat I'll explain via programming. Say you have a function that doubles the input, such as
 
@@ -184,7 +184,7 @@ Most famous number types have special symbols. The symbol for integers is $\math
 
 Finally, I'll use the $\in$ symbol, read "in," to assert or assume membership in some set. For example $q\in\mathbb{N}$ is the claim that $q$ is a natural number. It is literally short hand for the phrase, "$q$ is in the natural numbers," or "$q$ is a natural number." It can be used in a condition (preceded by "if"), an assertion (preceded by "suppose"), or a question.
 
-### 2.3. Existence & Uniqueness
+### Existence & Uniqueness
 
 Having seen some definitions, we're ready to develop the main tool we need for secret sharing: the existence and uniqueness theorem for polynomials passing through a given set of points.
 
@@ -388,7 +388,7 @@ We spent quite a few pages expanding the details of a ten-line proof. This is pa
 
 Now that we've shown the existence and uniqueness of a degree at most $n$ polynomial passing through a given list of $n+1$ points, we're allowed to give "it" a name. It's called the interpolating polynomial of the given points. The verb interpolate means to take a list of points and find the unique minimum-degree polynomial passing through them.
 
-### 2.4 Realizing it in Code
+### Realizing it in Code
 
 Let's write a Python program that computes the interpolating polynomial. I'm going to assume the existence of a polynomial class that accepts as input a list of coefficients (in the same order as Definition 2.1, starting from the degree zero term) and has methods for adding, multiplying, and evaluating at a given value. All of this code, including the polynomial class, is available at this book's Github repository. Note the polynomial class is not intended to be perfect. The goal is not to be industry-strength, but to help you understand the constructions we've seen in the chapter.
 
@@ -478,7 +478,7 @@ We had to break up the degree-1 polynomial $(x-x_{j})/(x_{i}-x_{j})$ into its co
 
 Ignoring the rounding errors, we can see the interpolation is correct.
 
-### 2.5 Application: Sharing Secrets
+### Application: Sharing Secrets
 
 Next we'll use polynomial interpolation to "share secrets" in a secure way. Here's the scenario. Say I have five daughters, and I want to share a secret with them, represented as a binary string and interpreted as an integer. Perhaps the secret is the key code for a safe which contains my will. The problem is that my daughters are greedy. If I just give them the secret one might do something nefarious, like forge a modified will that leaves her all my riches at the expense of the others.
 
@@ -553,15 +553,15 @@ Figure 2.3: A plot of four different curves that agree on the two points (2, 108
 
 The property of being able to "decode" to any possible plaintext given an encrypted text is called perfect secrecy, and it's an early topic on a long journey through mathematical cryptography.
 
-### 2.6 Cultural Review
+### Cultural Review
 
 1. Whenever you see a definition, you must immediately write down examples. They are your test cases and form a foundation for intuition.
 2. In mathematics, we place a special emphasis on the communication of ideas from human to human.
 3. A mathematical concept usually has multiple definitions. We prefer to work with the conceptual definition that is easiest to maintain in our minds, and we often don't say when we switch between two representations.
 
-### 2.7 Exercises
+### Exercises
 
-#### 2.1. Prove the following:
+#### Prove the following:
 
 1. If $f$ is a degree-$2$ polynomial and $g$ is a degree-$1$ polynomial, then their product $f\cdot g$ is a degree-$3$ polynomial.
 2. Generalize the above: if $f$ is a degree-$n$ polynomial and $g$ is a degree-$m$ polynomial, then their product $f\cdot g$ has degree $n+m$.
@@ -666,7 +666,7 @@ If $M$ is replaced with $2$, then you get Twin Primes. The thinking is that perh
 
 As of this writing, subsequent progress, carried out by some of the world's most famous mathematicians in an online collaboration called the Polymath Project, brought $M$ down to $246$. Assuming a conjecture in number theory called the Elliott-Halberstam conjecture, they reduced this constant to $6$.
 
-### 2.9 Impossibility of Clustering
+### Impossibility of Clustering
 
 A clustering algorithm is a program $f$ that takes as input:
 

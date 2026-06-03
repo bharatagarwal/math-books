@@ -1,4 +1,4 @@
-# Chapter 17: A New Interface
+# A New Interface
 
 > We are no longer constrained by pencil and paper. The symbolic shuffle should no longer be taken for granted as the fundamental mechanism for understanding quantity and change. Math needs a new interface.
 >

@@ -1,4 +1,4 @@
-# Chapter 4 Sets
+# Sets
 
 > God created infinity, and man, unable to understand infinity, created finite sets.
 >
@@ -10,7 +10,7 @@ After converting an idea into the language of sets, you may use the many existin
 
 At the end of the chapter we'll see the full modeling process for an application called *stable marriages*, which is part of an interdisciplinary field of mathematics and economics called *market design*. In economics, there are occasionally markets in which money can't be used as a medium of exchange. In these instances, one has to find some other mechanism to allow the market to function efficiently. The example we'll see is the medical residency matching market, but similar ideas apply to markets like organ donation and housing allocation. As we'll see, the process of modeling these systems so they can be analyzed with mathematics requires nothing more than fluency with sets and functions. The result is a Nobel-prize winning algorithm used by thousands of medical students every year.
 
-## 4.1 Sets, Functions, and Their -Jections
+## Sets, Functions, and Their -Jections
 
 A set is a collection of unique objects. You've certainly seen sets before in software. In Python they are simply called "sets." In Java they go by HashSet, and in C++ by unordered_set. Functionally they are all equivalent: a collection of objects without repetition. While set implementations often have a menagerie of details—such as immutability of items, collision avoidance techniques, complexity of storing/lookup—mathematical sets "just work." In other words, we don't care how items enter and leave sets, and mutability is not a concern because we aren't hashing anything to look it up. Efficiency is irrelevant.
 
@@ -170,7 +170,7 @@ The next proposition says that a "left-sided" inverse—satisfying just one of t
 
 Before we move on let me explain an earlier comment. I said we call $(\mathbb{R} \times \mathbb{R}) \times \mathbb{R} = \mathbb{R} \times (\mathbb{R} \times \mathbb{R})$ by "brushing aside" the differences between the two. There is a rigorous way to do this, but I'll only explain half of the rigor right now. The essential reason is because there is a bijection $(\mathbb{R} \times \mathbb{R}) \times \mathbb{R} \to \mathbb{R} \times (\mathbb{R} \times \mathbb{R})$ that maps $((a, b), c)$ to $(a, (b, c))$. Often when mathematicians want to "call" two things the same, they'll come up with such a bijection, and say the two things on either side of such a bijection should be considered the same. It's like an implicit typecast, always reversible in this case. The formal idea is called a "quotient," which we'll see in Chapter 9.
 
-## 4.2 Clever Bijections and Counting
+## Clever Bijections and Counting
 
 Now that we have the basic language of sets to model our problems, on to some problems. Say you want to count the size of a set. Since sets can be defined implicitly, it may not be obvious how. A useful tool used all over math is the trick of coming up with a clever bijection. This can transform a seemingly difficult counting problem into an elegantly trivial one.
 
@@ -220,7 +220,7 @@ You may wonder: how can we use a picture as the central part of our proof? Didn'
 
 This is a common feature of more advanced mathematics. Mathematicians are constantly reading papers, and there is rarely enough time to verify all the details of every argument. If you're not an official reviewer of the paper before it's been published, it is usually enough to be convinced that something should be true, especially if the details are messy but clear, while focusing on the high level picture. An example with all the essential features of a general solution is an effective substitute. And this doubles for readers of mathematics too: finding a simple example with the essential features of a general solution, and testing claims on the example, is one of the best ways to read a proof!
 
-## 4.3 Proof by Induction and Contradiction
+## Proof by Induction and Contradiction
 
 Next we're going to see two rigorous methods of proof that are used in all areas of math. The first is induction, but you're likely familiar with it by a different name: recursion.
 
@@ -299,7 +299,7 @@ The point of a proof by contradiction is to get an object with a property that y
 
 For those readers who are interested in a bit more details about what makes a mathematical proof, or how to approach proving things, in this second edition I added two appendices that may help. Appendix B contains a bit more details about the formalities underlying proofs, along with a section at the end called "How does one actually prove things?" Appendix C contains a list of books under "Fundamentals and Foundations" that cover the basics of set theory, proofs, and problem solving strategies. Readers of the first edition have told me that following along with these books has helped immensely.
 
-## 4.4 Application: Stable Marriages
+## Application: Stable Marriages
 
 Now we're ready to apply the tools in this chapter to implement a Nobel Prize-winning algorithm for the stable marriage problem. The problem is set up as follows. Say you have $n$ men and $n$ women. Your end goal is to choose who should marry whom. Same-sex marriages are excluded, not for political or religious reasons but because it's a more difficult problem. So if we call $M$ the men and $W$ the women, our output will be a bijection $M \to W$ describing the marriages (or equivalently $W \to M$). I will freely switch between "bijection" and "marriage" in this section.
 
@@ -449,7 +449,7 @@ We close with an example run:
 }
 ```
 
-## 4.5 Cultural Review
+## Cultural Review
 
 1. Sets and functions between sets are a modeling language for mathematics.
 2. Bijections show up everywhere, and they're a central tool for understanding the same object from two different perspectives.
@@ -457,7 +457,7 @@ We close with an example run:
 4. Induction is a similar idea to recursion in programming, but applied to proofs.
 5. A picture or example that captures the spirit of a fully general proof is often good enough.
 
-## 4.6 Exercises
+## Exercises
 
 **4.1.** Write down examples for the following definitions. A set $A$ (finite or infinite) is called *countable* if it is empty, or if there is a surjection $\mathbb{N} \to A$. The *power set* of a set $A$, denoted $2^A$, is the set of all subsets of $A$. For two sets $A, B$, we denote by $B^A$ the set of all functions from $A$ to $B$. This makes sense with the previous notation $2^A$ if we think of "2" as the set of two elements $2 = \{0, 1\}$, and think of a function $f : A \to \{0, 1\}$ as describing a subset $C \subset A$ by sending elements of $C$ to $1$ and elements of $A - C$ to $0$. In other words, the subset defined by $f$ is $C = f^{-1}(1)$.
 
@@ -515,7 +515,7 @@ The $(7, 3, 2)$-system is the celebrated *Fano plane*. As a worked highlight, th
 
 **4.19.** Is the stable marriage algorithm biased? Come up with a concrete measure of how "good" a bijection is for the men or the women collectively, and determine if the stable marriage algorithm is biased toward men or women for that measure.
 
-## 4.7 Chapter Notes
+## Chapter Notes
 
 ### Residency Matching
 

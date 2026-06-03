@@ -1,4 +1,4 @@
-# Chapter 10 Linear Algebra
+# Linear Algebra
 
 > There is hardly any theory which is more elementary [than linear algebra], in spite of the fact that generations of professors and textbook writers have obscured its simplicity by preposterous calculations with matrices.
 >
@@ -18,7 +18,7 @@ Linear algebra is obscenely practical. The application we'll see in this chapter
 
 We devote a fair chunk of this chapter's application to studying a specific linear model for movie ratings and text documents, using SVD to cluster the latter. An additional goal of this chapter is to prepare us for multivariable calculus and optimization. These subjects use vectors, vector spaces, and linear maps as primitive types.
 
-## 10.1 Linear Maps and Vector Spaces
+## Linear Maps and Vector Spaces
 
 The definition of a linear map requires a bit of groundwork to nail down precisely, but the crucial underlying intuition is simple. A function $f:A\rightarrow B$ is called linear if the following identity is always true, no matter what $x,y\in A$ are:
 
@@ -82,7 +82,7 @@ You can further get a line not passing through the origin by taking some other v
 
 All this said, a plain vector space isn't quite enough to get all of geometry. For example, we can't compute distances or angles without more structure in the vector space. We will enhance the geometric picture by the end of the chapter, but for now we see there are connections between vectors and geometry. We'll keep this geometric foundation in mind while dealing with linear maps more abstractly (which, to be frank, is the hard part of linear algebra). Our task for now is to study where Definition 10.1 takes us.
 
-## 10.2 Linear Maps, Formally This Time
+## Linear Maps, Formally This Time
 
 A linear map describes a function between two vector spaces that preserves the linear structure of the input. The formal definition is just an iota more complicated than our version from the beginning of the chapter.
 
@@ -139,7 +139,7 @@ $$f(\mathbf{0})=f(\mathbf{0}+\mathbf{0})=f(\mathbf{0})+f(\mathbf{0}).$$
 
 Subtracting $f(\mathbf{0})$ from both sides gives $\mathbf{0}=f(\mathbf{0})$. Now it's your turn: prove the facts in Exercises 10.1–10.4 which establish basic properties of linear maps.
 
-## 10.3 The Basis and Linear Combinations
+## The Basis and Linear Combinations
 
 Though we defined a vector space as a set with two operations, you can't do much with that mental model. We need more concrete computational tools to work with a vector space. The first tool is called a *basis*. In short, a basis for a vector space $V$ is a minimal set of vectors $B$ from which you can get all vectors in $V$ by adding and scaling vectors in $B$. The important examples in this book—and crucially, the proofs in this chapter—will focus on the case where $B$ is finite.
 
@@ -224,13 +224,13 @@ The above proof makes it clear that for any $x\not\in B$, the statements "$x\in\
 
 With linear independence, spanning, and bases in hand, we can define dimension and finally the matrix.
 
-## 10.4 Dimension
+## Dimension
 
 At first the concept of a basis seems tame. But it unlocks a world of use. The first thing it allows us to do is measure the size of a vector space. We can do this because of the following fact:
 
 **Theorem 10.8 (The Steinitz exchange lemma).** Let $V$ be a vector space. Then every basis of $V$ has the same size.
 
-**Proof.** This proof hinges on the claim that if $U=\{u_{1},\ldots,u_{n}\}$ is a list of $n$ linearly independent vectors in $V$ (perhaps not maximal), and $W=\{w_{1},\ldots,w_{m}\}$ is a list of $m$ vectors which span $V$ (perhaps not minimally), then $n\leq m$. The theorem follows because if $U$ and $W$ are both bases, then they are both independent and spanning, meaning both $n\leq m$ and $m\leq n$, so $n=m$. To prove the claim, we use an iterative algorithm that transforms $W$ into $U$ as much as possible. This will work by replacing each item from $W$ by one from $U$ until we run out of vectors from $U$. Using the terminology from Section 4.1, we're building an injection $U\to W$ one element at a time, and the existence of an injection $U\to W$ implies $|U|\leq|W|$.
+**Proof.** This proof hinges on the claim that if $U=\{u_{1},\ldots,u_{n}\}$ is a list of $n$ linearly independent vectors in $V$ (perhaps not maximal), and $W=\{w_{1},\ldots,w_{m}\}$ is a list of $m$ vectors which span $V$ (perhaps not minimally), then $n\leq m$. The theorem follows because if $U$ and $W$ are both bases, then they are both independent and spanning, meaning both $n\leq m$ and $m\leq n$, so $n=m$. To prove the claim, we use an iterative algorithm that transforms $W$ into $U$ as much as possible. This will work by replacing each item from $W$ by one from $U$ until we run out of vectors from $U$. Using the terminology from the "Sets, Functions, and Their -Jections" section, we're building an injection $U\to W$ one element at a time, and the existence of an injection $U\to W$ implies $|U|\leq|W|$.
 
 Start by taking $u_{1}$, removing it from $U$, and adding it to $W$. By the fact that $W$ spans $V$, we can write $u_{1}$ as a linear combination of the $w_{i}$ in which some coefficient, say $a_{1}$ for $w_{1}$, is nonzero.[^wlog]
 
@@ -256,7 +256,7 @@ The simplest nontrivial example of a subspace is in $V = \mathbb{R}^2$. A one-di
 
 As these two examples suggest, subspaces can be formed easily by taking a basis $B$ of $V$, and picking any subset $A$ of $B$ to form a basis of $W=\operatorname{span}(A)\subset V$. The converse also works: if you start with a set of vectors $A=\{v_{1},\ldots,v_{k}\}$ spanning a $k$-dimensional subspace of an $n$-dimensional vector space $V$, you can iteratively add vectors not in the span of $A$ until the resulting set spans all of $V$. This process, though not well-defined algorithmically, is existentially possible, and it's called *extending* $A$ to a basis of $V$. In Chapter 12 we'll see a concrete algorithm for it called the *Gram-Schmidt process*, which produces additional useful properties of the resulting basis.
 
-## 10.5 Matrices
+## Matrices
 
 Now we can finally get to the heart of linear algebra.
 
@@ -428,7 +428,7 @@ In some more concrete and advanced terminology, we've defined an algebra for lin
 
 The task of finding a route from a conceptually intuitive land (linear maps) to a computationally friendly world (matrices) is a chief goal of much of mathematics. This is the same goal of calculus—its namesake is "calculate"—to convert computations on curves with an infinite nature to a domain where one can do mechanical calculations. And we aren't yet done doing this with linear algebra! Because while we have said how to compute once you have chosen a basis, we haven't discussed the means of actually finding such bases. Many applications of linear algebra are based on computing a useful basis, and that will be the subject of both this chapter's application and the next. As such, we must dive deeper.
 
-## 10.6 Conjugations and Computations
+## Conjugations and Computations
 
 One assumption I've been leaning on so far is that, given a basis $\{v_{1},\ldots,v_{n}\}$ for $V$ and a vector $x\in V$, one can find the unique expression of $x$ in terms of the basis. In fact, the way we defined a basis ensures existence, but the only example I gave so far to compute this decomposition was, for $V=\mathbb{R}^{2}$, to set up a system of two linear equations with two variables, and solve them.
 
@@ -504,7 +504,7 @@ To compute $P^{-1}x$ is a different pickle. From the perspective of a system of 
 
 Gaussian elimination is a general-purpose algorithm that works no matter what your basis is. A shrewder approach, which many applications of linear algebra utilize, is to think hard about the best basis for your intended application, and convert to that basis once at the beginning of a computation. See the exercises for further references and pointers to industry-standard techniques for changing bases, and Chapter 12 for an extended parable on the value of a good basis.
 
-## 10.7 One Vector Space to Rule Them All
+## One Vector Space to Rule Them All
 
 Now we turn to a classification theorem, that $\mathbb{R}^{n}$ is the "only" vector space of finite dimension. We make this formal by showing that all $n$-dimensional vector spaces are isomorphic to each other. We'll define "isomorphic" shortly.
 
@@ -532,7 +532,7 @@ This exploration suggests that *all* data representations of finite-dimensional 
 
 **Proof.** Let $\{v_{1},\ldots,v_{n}\}$ be a basis for an $n$-dimensional vector space $V$, and let $\{e_{1},\ldots,e_{n}\}$ be the standard basis for $\mathbb{R}^{n}$. Define $f:V\to\mathbb{R}^{n}$ as follows. Let $x\in V$ be the input, write $x=\alpha_{1}v_{1}+\cdots+\alpha_{n}v_{n}$, and let $f(x)=(\alpha_{1},\ldots,\alpha_{n})$. An analogous argument as in Proposition 10.16 shows $f$ is a linear bijection. ∎
 
-## 10.8 Geometry of Vector Spaces
+## Geometry of Vector Spaces
 
 In studying matrices, we saw the elegant relationship linear algebra provides between the functional and algebraic perspectives on a linear map. Geometry is the final ingredient. To that end, we need to be able to compute distances and angles. Because all finite-dimensional vector spaces are isomorphic to $\mathbb{R}^{n}$, it makes sense to define angles and distances for vectors in $\mathbb{R}^{n}$ with its standard basis. Subsequently, angles in a vector space $V$ can be defined using an isomorphism between $V$ and $\mathbb{R}^{n}$.
 
@@ -653,7 +653,7 @@ $$\operatorname{proj}_{V}(w)=\sum_{i=1}^{k}\operatorname{proj}_{v_{i}}(w).$$
 
 Then the distance from $w$ to the subspace $V$ is $\|w-\operatorname{proj}_{V}(w)\|$, as expected.
 
-## 10.9 Application: Singular Value Decomposition
+## Application: Singular Value Decomposition
 
 A brief summary of this chapter would rephrase the relationship between a matrix and a linear map. A matrix is a useful representation of a linear map that is fixed after choosing a basis, and the algebraic properties of a matrix correspond to the functional properties of the map. That, and certain operations on vectors have nice geometric interpretations.
 
@@ -996,14 +996,14 @@ This is surprising, and it tells us that some aspect of this SVD representation 
 
 This fascinates me philosophically. Because while I certainly unconsciously understood that semantic meaning is roughly additive, I never consciously knew it until I saw these linear models and asked why they work. Math imitates life, but it can also teach us about life as it drives us to explore, refine, and build. In fact, I was confused for a long time because the original "additive word vector" ideas came from neural network research, which typically involves models that are highly nonlinear. It wasn't until I talked with some experts in natural language processing that the additive roots of the model became apparent.
 
-## 10.10 Cultural Review
+## Cultural Review
 
 1. The heart of linear algebra is a very concrete connection between linear maps and matrices. The former is intuitive, useful for thinking about linear algebra geometrically. The latter is computationally tractable, allowing us to discover and apply useful algorithms. Operations on linear maps, such as function composition, correspond pleasingly to operations on matrices, such as matrix multiplication.
 2. Coordinate systems are arbitrary, and linear algebra gives you the power to change coordinate systems—change the basis of the vector space—at will. A useful basis is a treasure.
 3. The matrix representation hides the difficult notation of working with linear maps, reducing the cognitive burden of the mathematician.
 4. The linear model is a powerful abstraction for working with real-world data, and understanding linear algebra allows us to pinpoint the assumptions of this model, and in particular where those assumptions might break down or limit the applicability of the model.
 
-## 10.11 Exercises
+## Exercises
 
 1. Prove that $0$ (the zero vector) is unique; that is, if there are two vectors $v$, $w$ both having the properties of the zero vector, then they are equal.
 2. Prove that the composition of two linear maps is linear. I.e., the map $x\mapsto g(f(x))$ is linear if $g$ and $f$ are linear.
@@ -1035,7 +1035,7 @@ This fascinates me philosophically. Because while I certainly unconsciously unde
 21. The singular value decomposition code in this chapter has at least one undesirable property: numerical instability. In general, numerical instability is when an algorithm is highly sensitive to small perturbations in the input. The SVD of a matrix which is not full rank (cf. Exercise 10.7) contains values that are zero. The algorithm in this chapter does not output these properly, and instead produces non-deterministic mumbo-jumbo. Audit the algorithm to verify this undesirable behavior occurs, and research a fix.
 22. Research the details of the winning submission for the Netflix Prize competition. Identify what other ways a linear model is incorporated into the solution.
 
-## 10.12 Chapter Notes
+## Chapter Notes
 
 ### Vector Spaces, Rigorously
 

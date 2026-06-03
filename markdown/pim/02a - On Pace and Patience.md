@@ -1,4 +1,4 @@
-# Chapter 3 On Pace and Patience
+# On Pace and Patience
 
 > You enter the first room of the mansion and it’s completely dark. You stumble around bumping into the furniture but gradually you learn where each piece of furniture is. Finally, after six months or so, you find the light switch, you turn it on, and suddenly it’s all illuminated. You can see exactly where you were. Then you move into the next room and spend another six months in the dark. So each of these breakthroughs, while sometimes they’re momentary, sometimes over a period of a day or two, they are the culmination of, and couldn’t exist without, the many months of stumbling around in the dark that precede them.
 >

@@ -1,4 +1,4 @@
-# Chapter 15 The Argument for Big-O Notation
+# The Argument for Big-O Notation
 
 > [Big-O notation] significantly simplifies calculations because it allows us to be sloppy—but in a satisfactorily controlled way. […] The extra time needed to introduce $O$ notation is amply repaid by the simplifications that occur later.
 >
@@ -61,7 +61,7 @@ This notation satisfies some straightforward properties that allows one to do al
 
 Take care, because when we say $f=O(g)$, the symbol $=$ doesn't mean equals in the usual sense. For example, it's not symmetric or transitive; $x^{3}=O(x)$ and $x^{2}=O(x)$ as $x\to 0$, but $x^{3}\neq x^{2}$. When someone uses big-O notation like $f=O(g)$, it's best to read $=$ as "is," and then the sentence makes sense: "$f$ is (at most) order of $g$." Moreover, when we include $O(g(x))$ in the context of some larger expression, like $\sin(x)=x+O(x^{3})$, what we mean is that $\sin(x)=x+f(x)$ for some $f(x)=O(x^{3})$. Fluent use of big-O involves "native support" for this implicit association in your head, which can take to get used to.
 
-Continuing with the example of $\sin(x)$, say we wanted an estimate of $\sin(x)\sqrt{1+x^{2}}$. Recall from Section 12.7 that the Taylor series for $\sqrt{1+x^{2}}$ is
+Continuing with the example of $\sin(x)$, say we wanted an estimate of $\sin(x)\sqrt{1+x^{2}}$. Recall from the "Application: Waves" section that the Taylor series for $\sqrt{1+x^{2}}$ is
 
 $$\sqrt{1+x^{2}}=1+\frac{x^{2}}{2}-\frac{x^{4}}{8}+\frac{x^{6}}{16}-\cdots$$
 

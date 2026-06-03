@@ -1,4 +1,4 @@
-# Chapter 13 Rigor and Formality
+# Rigor and Formality
 
 > Mathematics as we practice it is much more formally complete and precise than other sciences, but it is much less formally complete and precise for its content than computer programs. The difference has to do not just with the amount of effort: the kind of effort is qualitatively different. In large computer programs, a tremendous proportion of effort must be spent on myriad compatibility issues: making sure that all definitions are consistent, developing good data structures that have useful but not cumbersome generality, deciding on the right generality for functions, etc. The proportion of energy spent on the working part of a large program, as distinguished from the bookkeeping part, is surprisingly small. Because of compatibility issues that almost inevitably escalate out of hand because the right definitions change as generality and functionality are added, computer programs usually need to be rewritten frequently, often from scratch.
 >

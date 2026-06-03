@@ -1,4 +1,4 @@
-# Chapter 8 Calculus with One Variable
+# Calculus with One Variable
 
 > The derivative can be thought of as infinitesimal, symbolic, logical, geometric, a rate, an approximation, microscopic.
 >
@@ -18,7 +18,7 @@ If you've seen a lot of calculus before, you can probably tell that I don't rega
 
 Besides calculus, in this chapter we'll dive into more detail about the process of *designing* a good mathematical definition. In doing this we'll introduce the idea of a *quantifier*, which is the basis for compound (recursive) conditions and claims. We'll also come to understand the idea of *well-definition* in mathematics, which is how a mathematician proves (or asserts) that the definition of a concept doesn't depend on certain irrelevant details in its construction. Finally, we'll level up our proof skills by using multiple definitions in conjunction to prove theorems. The application for this chapter is an analysis of the classic Newton's method for finding roots of functions.
 
-## 8.1 Lines and Curves
+## Lines and Curves
 
 Let's start with something we know well. If you give me a line in the plane, with tick marks forming integer coordinates like in Figure 8.1, then I can tell you how "steep" the line is. That is, I can assign a number to the line, and larger numbers correspond to steeper lines while smaller numbers correspond to more gradual lines. Also recall that the picture with coordinate axes is just one representation of the line. Another might be as a set of points $\{(x,y)\in\mathbb{R}^{2}:2y-x=2\}$. How we choose to draw the line isn't as important as the set-with-equation definition, but a good drawing swiftly reveals qualitative facts about the line (such as whether its "steepness" goes up or down).
 
@@ -68,7 +68,7 @@ How do we reason about the "end" of this process? We get a number at every step.
 
 That is exactly what limits do. A limit is computational machinery that allows one to say "this sequence of increasingly good approximations would, if followed forever, end up at a specific value." The limit of this particular line-approximation-scheme is called the derivative. We'll return to derivatives in a bit. Note in particular that whether this "limiting process" works shouldn't depend on how we move $x'$ closer to $x$. A good definition should work so long as $x'$ approaches $x$ somehow.
 
-## 8.2 Limits
+## Limits
 
 In the last section we saw a strong motivation for inventing limits, and an intuitive understanding for what a limit should look like. It's the "end result" of iteratively improving an approximation forever. You have some quantity $a_{n}$ indexed by a positive integer $n$, and as $n$ grows, $a_{n}$ eventually gets closer and closer to some target. For example, if $a_{n} = 1 - 1/n$, the numbers in the sequence $0, \frac{1}{2}, \frac{2}{3}, \frac{3}{4}, \frac{4}{5}, \ldots$ seem to approach 1.
 
@@ -216,7 +216,7 @@ Before continuing, here are a few basic propositions for working with limits tha
 - $\lim_{x\to a}f(x)g(x)=(\lim_{x\to a}f(x))\cdot(\lim_{x\to a}g(x))$, provided that each limit on the right hand side exists.
 - $\lim_{x\to a}g(f(x))=g(f(a))$, provided that $\lim_{x\to a}f(x)=L$ exists and $g$ is continuous at $L$.
 
-## 8.3 The Derivative
+## The Derivative
 
 Now we define the derivative, which formalizes the steepness of a function $f(x)$ at a given input $x=c$.
 
@@ -344,7 +344,7 @@ As a notational side note, let me explain the "fractions make you guess the chai
 
 Historically, symbols like $dx$ had no concrete mathematical meaning. They were called "infinitesimals" and regarded informally as quantities infinitely smaller than any fixed value. More recently, $dx$ was retroactively assigned a semantic meaning that allows one to work with it as the notation suggests. The formalism is beyond the scope of this book.
 
-## 8.4 Taylor Series
+## Taylor Series
 
 ### Approximation by a Line
 
@@ -456,7 +456,7 @@ There are somewhat natural functions that fail to accommodate Taylor series wors
 
 This highlights the shortcomings of Taylor polynomials. They're not the perfect tool for every job. It also leads us to ask why, for this mildly pathological $f$, the Taylor series fails so spectacularly. Complex analysis provides a satisfactory answer, but the subject is unfortunately beyond the scope of this book.
 
-## 8.5 Remainders
+## Remainders
 
 The Adolescent Taylor Theorem tells us how to compute the best polynomial of a given degree that approximates the behavior of a function. In fact, it approximates the behavior of a function's "slope" (first derivative) and more informally its curvature (higher derivatives), provided you're willing to compute enough terms.
 
@@ -502,7 +502,7 @@ In this case, if $x$ is within $0.1$ of $a$, then the error of the Taylor polyno
 
 ![Figure 8.11: A function whose root does not have a nice formula.](05 - Calculus with One Variable_images/img-10.jpeg)
 
-## 8.6 Application: Finding Roots
+## Application: Finding Roots
 
 Let's say you have a function $f(x)$ and you want to find its zeros,[^2] that is, an input $r$ producing $f(r) = 0$. Let's also say that you can compute both $f(x)$ and $f'(x)$ at any given input. An example of such a function is $x^5 - x - 1$. Try to algebraically solve for $f(x) = 0$, if you dare. On the other hand, $f'(x) = 5x^4 - 1$ is simple enough to compute.
 
@@ -672,14 +672,14 @@ Admittedly, finding the root of a degree 2 polynomial isn't so hard (there's a f
 
 Nevertheless, there is a technique called Householder's method that generalizes Newton's method to higher degree Taylor polynomials. Higher degrees unlock order-of-magnitude better convergence. The tradeoff, as expected, is that it takes progressively more work to compute each step in the update (and existence and good behavior of higher derivatives). Moreover, there are additional requirements at each step on the suitability of a starting point to guarantee convergence. You will explore this in an exercise.
 
-## 8.7 Cultural Review
+## Cultural Review
 
 - Good definitions are designed to match a visual intuition while withstanding (or excluding) pathological counterexamples.
 - Much of the murkiness of calculus comes from the fact that it must support a long history of manual calculations and pathological counterexamples. The "normal" case is usually easier to understand.
 - A concept is well-defined if it doesn't depend on choices that are supposed to be arbitrary. E.g., the limit of a function as the input approaches a point must not depend on which sequence you choose to approach that point.
 - The Taylor polynomial is a mathematical hammer, and math is full of nails.
 
-## 8.8 Exercises
+## Exercises
 
 **8.1.** Write down examples for the following definitions.
 

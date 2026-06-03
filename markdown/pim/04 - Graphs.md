@@ -1,4 +1,4 @@
-# Chapter 6 Graphs
+# Graphs
 
 > One will not get anywhere in graph theory by sitting in an armchair and trying to understand graphs better. Neither is it particularly necessary to read much of the literature before tackling a problem: it is of course helpful to be aware of some of the most important techniques, but the interesting problems tend to be open precisely because the established techniques cannot easily be applied.
 >
@@ -14,7 +14,7 @@ In this chapter we won't learn any new tools. Instead we'll apply the tools abov
 
 In addition to having interesting applications, graph coloring has important theorems one can prove using only the tools we've learned so far. The main theorem we'll prove in this chapter is that every planar graph is 5-colorable (I will explain these terms soon). So think of this chapter as a sort of checkpoint exam. If you're struggling to understand the definitions, theorems, and proofs here—and you've set your pace appropriately—then you should go back and review the previous chapters.
 
-## 6.1 The Definition of a Graph
+## The Definition of a Graph
 
 The definition of a graph is best done by picture, as in Figure 6.1. Take some "things" and describe which things are "connected." The result is a graph. As a simple example, the "things" might be airports, and two airports are "connected" if there is a flight between the two. Or the things are people and friends have connections. We draw the things and connections using dots and lines to erase the application from our minds. All we care about is the structure of the connections.
 
@@ -44,7 +44,7 @@ A *subgraph* $(H, F)$ of a graph $(G, E)$ is a choice of a subset of the vertice
 
 A graph is called *connected* if there is a path from each vertex to each other vertex, and otherwise it is called *disconnected*. Equivalently (you will prove this in an exercise), $G = (V, E)$ is connected if it is impossible to split $V$ into two nonempty subsets $X, Y$ with no edges between $X$ and $Y$. A disconnected graph is a union of connected *components*, where the component of $v$ is the largest connected subgraph containing $v$. A single vertex which forms a connected component is called an *isolated vertex*.
 
-## 6.2 Graph Coloring
+## Graph Coloring
 
 The main object of study in this chapter is called a *coloring* of a graph $G = (V, E)$, which is an assignment of "colors" (really, numbers from $\{1, 2, \ldots, k\}$) to the vertices of $G$ satisfying some property. We realize this officially as a function.
 
@@ -90,7 +90,7 @@ One other perspective on graph coloring I want to describe is the partition pers
 
 This perspective can be used to design coloring algorithms. Start with an improper or unfinished coloring, and fiddle with it to correct the improprieties. We will do this in the main application of this chapter, coloring planar graphs. But right now we're going to take a quick detour to see why graph coloring is useful.
 
-## 6.3 Register Allocation and Hardness
+## Register Allocation and Hardness
 
 The wishy-washy way to motivate graph coloring is to claim that many problems can be expressed as an "anti-coordination problem," where you win when no agent in the system behaves the same as any of their neighbors. A totally made up example is radio frequencies. Radio towers pick frequencies to broadcast, but if nearby towers are broadcasting on the same frequency, they will interfere. So the vertices of the graph are towers, nearby towers are connected by an edge, and the colors are frequencies.
 
@@ -129,9 +129,9 @@ Moreover, it is even NP-hard to get any reasonable approximation of the chromati
 
 As mentioned, this is an asymptotic statement, meaning an algorithm that only works for all graphs with fewer than a thousand nodes is not a solution. A lookup table, though it would be massive, would solve this problem efficiently. No, a true solution must work and must work efficiently for any arbitrarily large graph in principle, though working on small graphs may be sufficient in practice. But to put the numbers in perspective with an example, this theorem says that for graphs with $n = 10^{4}$ vertices and with $c = 1/2$, algorithms will struggle to output a number guaranteed to be between $\chi(G)$ and $100 \cdot \chi(G)$.
 
-But I digress. The takeaway is that coloring is a hard problem. This is a sad result for people who really want to color their graphs, but there are other ways to attack the problem. You can assume that your graph has some nice structure. This is what we'll do in the next section, and there it turns out that the chromatic number will always be at most 4. Alternatively, you could assume that you know your graph's chromatic number, and try to color it without introducing too many improperly colored edges. We'll see this approach in Section 6.6.
+But I digress. The takeaway is that coloring is a hard problem. This is a sad result for people who really want to color their graphs, but there are other ways to attack the problem. You can assume that your graph has some nice structure. This is what we'll do in the next section, and there it turns out that the chromatic number will always be at most 4. Alternatively, you could assume that you know your graph's chromatic number, and try to color it without introducing too many improperly colored edges. We'll see this approach in the "Approximate Coloring" section.
 
-## 6.4 Planarity and the Euler Characteristic
+## Planarity and the Euler Characteristic
 
 The condition we'll impose on a graph to make coloring easier is called *planarity*. A graph $G = (V, E)$ is called *planar* if one can draw it on a plane in such a way that no edges cross. Figure 6.6 contains an example.
 
@@ -176,7 +176,7 @@ The cleanest way to *believe* this is to count faces on a real embedding. networ
 
 This is a surprising fact. We have some measurement derived from a drawing of a graph that doesn't depend on the choices made to draw it! This is called an *invariant*, and we'll discuss invariants more in Chapter 10 when we study linear algebra, and Chapter 16 when we study geometry. For now it will remain a deep mathematical curiosity. Lastly, note that the connectivity requirement is crucial for the theorem to hold, since a graph with $n$ vertices and no edges has $|V| - |E| + |F| = n + 1$.
 
-## 6.5 Application: the Five Color Theorem
+## Application: the Five Color Theorem
 
 Here is an amazing theorem about planar graphs.
 
@@ -343,7 +343,7 @@ So that this version of the book stays runnable without an igraph install, here 
 <!-- include: code/pim/04 - Graphs/07_planar_five_color.py -->
 ```
 
-## 6.6 Approximate Coloring
+## Approximate Coloring
 
 Earlier I remarked that coloring is probably too hard for algorithms to solve in the worst case. To get around the problem we added the planarity constraint. Though a practical coloring algorithm would likely use an industry standard optimization engine to approximately color graphs, let's try something different to see the theory around graph coloring. Suppose we're promised a graph can be colored with 3 colors, and let's try to color it with some larger number of colors.
 
@@ -367,19 +367,19 @@ One might naturally ask whether we can improve $\sqrt{n}$ to something like $\lo
 
 I should make a clarification here: the open problem is on the existence of an algorithm which is guaranteed to achieve some number of colors (depending on the size of the graph) *no matter what the graph is*. As a programmer you are probably somewhat familiar with this idea that one often measures an algorithm by its worst-case guarantees, but the point is important enough to emphasize. So when I say a problem is "possible" or "impossible" to solve, I mean that there exists (or does not exist, respectively) an efficient algorithm that achieves the desired worst-case guarantee on all inputs. In particular, there is no evidence for either claim that it is possible or impossible to color a 3-colorable graph with $\log(n)$ colors (or anything close to that order of magnitude, like $(\log(n))^{10}$). A ripe problem indeed.
 
-## 6.7 Cultural Review
+## Cultural Review
 
 1. Invariants are measurements intrinsic to a concept, which don't depend on the choices made for some particular representation of that concept.
 2. Sometimes if you want to come up with the right rigorous definition for an intuitive concept (like a planar graph), you need to develop a much more general framework for that concept. But in the mean time, you can still do mathematics with the informal notion.
 3. Every conjecture about graphs must be tested on the Petersen graph.
 
-## 6.8 Exercises
+## Exercises
 
 **6.1.** Write down examples for the following definitions. A graph is a *tree* if it contains no cycles. Two graphs $G, H$ are *isomorphic* if they differ only by relabeling their vertices. That is, if $G = (V, E)$ and $H = (V', E')$, then $G$ and $H$ are isomorphic if there is a bijection $f : V \to V'$ with the property that $(i, j) \in E$ if and only if $(f(i), f(j)) \in E'$. Given a subset of vertices $S \subset V$ of a graph $G = (V, E)$, the *induced subgraph on $S$* is the subgraph consisting of all edges with both endpoints in $S$. Given a vertex $v$ of degree 2, one can *contract* it by removing it and "connecting its two edges," i.e., the two edges $(v, w), (v, u)$ become $(w, u)$. Likewise, one can contract an edge by merging its endpoint vertices, or *subdivide* an edge by adding a vertex of degree two in the middle of an edge. If $H$ can be obtained from $G$ after some sequence of contractions and subdivisions, it is called a *minor* of $G$.
 
 **6.2.** Look up the statement of Wagner's theorem, which characterizes planar graphs in terms of contractions and the two graphs $K_{3,3}$ and $K_{5}$. Find a proof you can understand.
 
-**6.3.** In Section 6.1 we claimed that the following two definitions of a connected graph are equivalent: (1) there is a path between every pair of vertices, (2) it is impossible to split $V$ into two nonempty subsets $X, Y$ such that no edge $e = (a, b)$ has $a \in X$ and $b \in Y$. Prove this.
+**6.3.** In the "Definition of a Graph" section we claimed that the following two definitions of a connected graph are equivalent: (1) there is a path between every pair of vertices, (2) it is impossible to split $V$ into two nonempty subsets $X, Y$ such that no edge $e = (a, b)$ has $a \in X$ and $b \in Y$. Prove this.
 
 **6.4.** Here's a simple way to make examples of planar graphs: draw some non-overlapping circles of various sizes on a piece of paper, call the circles vertices, and put an edge between any two circles that touch each other. Clearly the result is going to be a planar graph, but an interesting question is whether every planar graph can be made with this method. Amazingly the answer is yes! This is called Koebe's theorem. It is a relatively difficult theorem to prove for the intended reader of this book, but as a consequence it implies Fáry's theorem. Fáry's theorem states that every planar graph can be drawn so that the edges are all straight lines. Look up a proof of Fáry's theorem that uses Koebe's theorem as a starting point, and rewrite it in your own words.
 
@@ -401,7 +401,7 @@ I should make a clarification here: the open problem is on the existence of an a
 
 **6.13.** A *hypergraph* generalizes the size of an edge to contain more than two vertices. Hypergraphs are also called *set systems* or *families of sets*. Edges of a hypergraph are called *hyperedges*, and a $k$-*uniform* hypergraph is one in which all of its hyperedges have size $k$. Look up a proof of the Erdős-Ko-Rado theorem: let $G$ be a $k$-uniform hypergraph with $n \geq 2k$ vertices, in which every pair of hyperedges shares a vertex in common. Then $G$ has at most $\binom{n-1}{k-1}$ hyperedges in total. Find a construction that achieves this bound exactly when $n > 2k$.
 
-## 6.9 Chapter Notes
+## Chapter Notes
 
 **Some Topology and the Rigorous Definition of an Embedding**
 

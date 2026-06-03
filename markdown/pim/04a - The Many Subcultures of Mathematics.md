@@ -1,4 +1,4 @@
-# Chapter 7: The Many Subcultures of Mathematics
+# The Many Subcultures of Mathematics
 
 > Some people may sit back and say, "I want to solve this problem" and they sit down and say, "How do I solve this problem?" I don't. I just move around in the mathematical waters, thinking about things, being curious, interested, talking to people, stirring up ideas; things emerge and I follow them up. Or I see something which connects up with something else I know about, and I try to put them together and things develop. I have practically never started off with any idea of what I'm going to be doing or where it's going to go. I'm interested in mathematics; I talk, I learn, I discuss and then interesting questions simply emerge. I have never started off with a particular goal, except the goal of understanding mathematics.
 >

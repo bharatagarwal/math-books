@@ -1,4 +1,4 @@
-# Chapter 9 On Types and Tail Calls
+# On Types and Tail Calls
 
 > By relieving the brain of all unnecessary work, a good notation sets it free to concentrate on more advanced problems, and in effect increases the mental power of the race.
 >
