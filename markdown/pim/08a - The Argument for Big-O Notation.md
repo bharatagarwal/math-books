@@ -10,15 +10,23 @@ Big-O notation is a common plight of programmers seeking a job at a top-tier sof
 
 As we've discussed, the bulk of software is bookkeeping, moving and reshaping data to adhere to APIs of various specifications, and doing this in a way that's easy to extend and maintain. The ever-present specter of software is the fickle user who thinks they know what they want, only to change their mind when you finish implementing it. Big-O analysis doesn't seem to play a part in that struggle.
 
-One should try to see the other side of the coin as well. Often an interviewer doesn't particularly care about the exact big-O runtime of an algorithm. They aren't testing your aptitude to recall arbitrary facts and do algebra. They care that you can reason about the behavior of the thing you just wrote on the whiteboard. As we all know, beyond correctness, an important part of software is anticipating how things will break in subtler ways. What kind of data will make the system hog memory? For what sort of usage will a system thrash? Can you guarantee there are no deadlocks? Most importantly, can you be concrete in your analysis?
+One should try to see the other side of the coin as well. Often an interviewer doesn't particularly care about the exact big-O runtime of an algorithm. They aren't testing your aptitude to recall arbitrary facts and do algebra. They care that you can reason about the behavior of the thing you just wrote on the whiteboard.
 
-Among the simplest things one could possibly ask is what part of the algorithm you just wrote is the bottleneck at scale. To do that, you have to walk a fine line between being precise and vague. Define the quantities of interest—whether they're joins in a database query or sending data across a network—and the simplifying assumptions that make it possible to discuss in principle. You also have to sweep an immense amount of complexity under the rug. Maybe you'll ignore problems that could occur due to multithreading, or the overhead of stack frame management incurred by splitting code into functions in just such a way, or even ignore the *benefits* of helpful compiler optimizations and memory locality, when the application doesn't depend on it.
+As we all know, beyond correctness, an important part of software is anticipating how things will break in subtler ways. What kind of data will make the system hog memory? For what sort of usage will a system thrash? Can you guarantee there are no deadlocks? Most importantly, can you be concrete in your analysis?
+
+Among the simplest things one could possibly ask is what part of the algorithm you just wrote is the bottleneck at scale. To do that, you have to walk a fine line between being precise and vague. Define the quantities of interest—whether they're joins in a database query or sending data across a network—and the simplifying assumptions that make it possible to discuss in principle.
+
+You also have to sweep an immense amount of complexity under the rug. Maybe you'll ignore problems that could occur due to multithreading, or the overhead of stack frame management incurred by splitting code into functions in just such a way, or even ignore the *benefits* of helpful compiler optimizations and memory locality, when the application doesn't depend on it.
 
 ## The Precision-Vagueness Tradeoff
 
-In dealing with this, we weigh the consequences of a double-edged sword. Be too precise and you drown in a sea of details. It becomes impossible to have a discussion with principled arguments and reasonable conclusions. On the other hand, be too vague and you risk invalid conclusions, leading to wasted work and worse software. Like we did with waves on a string in Chapter 12, even if we know we're ignoring certain details, we want to understand the dominant behavior of the system—the aspects we care about—while ignoring the complexities that prevent us from gaining a deeper understanding.
+In dealing with this, we weigh the consequences of a double-edged sword. Be too precise and you drown in a sea of details. It becomes impossible to have a discussion with principled arguments and reasonable conclusions. On the other hand, be too vague and you risk invalid conclusions, leading to wasted work and worse software.
 
-Few tools in computer science help one balance on the tightrope. We have experimental measurements, tests against historical data, and monitoring on live data. But these are tools designed for incrementalism. For most big decisions, such as designing a new database, data structure, operating system, or a truly novel product—as companies like Google, Amazon, Facebook, and Microsoft have done many times—the investment required for a redesign requires strong and principled justification. No users exist yet, nor does any usage data.
+Like we did with waves on a string in Chapter 12, even if we know we're ignoring certain details, we want to understand the dominant behavior of the system—the aspects we care about—while ignoring the complexities that prevent us from gaining a deeper understanding.
+
+Few tools in computer science help one balance on the tightrope. We have experimental measurements, tests against historical data, and monitoring on live data. But these are tools designed for incrementalism.
+
+For most big decisions, such as designing a new database, data structure, operating system, or a truly novel product—as companies like Google, Amazon, Facebook, and Microsoft have done many times—the investment required for a redesign requires strong and principled justification. No users exist yet, nor does any usage data.
 
 ## Big-O as a Language for Tradeoffs
 
@@ -36,7 +44,9 @@ So in this short chapter I'll introduce big-O notation, describe some of its his
 
 ### Origins and the Taylor Series Connection
 
-The original use of big-O notation was by Landau and Bachmann in the 1890's for approximating the accuracy of function approximations at a point. The $O$ notation was chosen because $O$ stands for "Order" (more precisely, the German *Ordnung*). Big-O notation is meant to replace an expression with its order of magnitude. It was a particularly popular notation in number theory. It was not until mid-century 1900's that big-O found its way to computer science, in part because computer science had to be invented. Donald Knuth opens a 1976 essay with, "Most of us have gotten accustomed to [big-O notation]," and goes on to formalize it and introduce lower-bound analogues.
+The original use of big-O notation was by Landau and Bachmann in the 1890's for approximating the accuracy of function approximations at a point. The $O$ notation was chosen because $O$ stands for "Order" (more precisely, the German *Ordnung*). Big-O notation is meant to replace an expression with its order of magnitude.
+
+It was a particularly popular notation in number theory. It was not until mid-century 1900's that big-O found its way to computer science, in part because computer science had to be invented. Donald Knuth opens a 1976 essay with, "Most of us have gotten accustomed to [big-O notation]," and goes on to formalize it and introduce lower-bound analogues.
 
 For understanding function approximations, big-O is relevant to Taylor series. In the language of big-O, $\sin(x)$ being well approximated by $x$ near $x=0$ is phrased as
 
@@ -71,7 +81,9 @@ This notation satisfies some straightforward properties that allows one to do al
 3. If $f_{1}=O(g_{1})$ and $f_{2}=O(g_{2})$, then $f_{1}+f_{2}=O(g_{1}+g_{2})$.
 4. $f+f=O(f)$, and moreover $Cf=O(f)$ for any constant $C$.
 
-Take care, because when we say $f=O(g)$, the symbol $=$ doesn't mean equals in the usual sense. For example, it's not symmetric or transitive; $x^{3}=O(x)$ and $x^{2}=O(x)$ as $x\to 0$, but $x^{3}\neq x^{2}$. When someone uses big-O notation like $f=O(g)$, it's best to read $=$ as "is," and then the sentence makes sense: "$f$ is (at most) order of $g$." Moreover, when we include $O(g(x))$ in the context of some larger expression, like $\sin(x)=x+O(x^{3})$, what we mean is that $\sin(x)=x+f(x)$ for some $f(x)=O(x^{3})$. Fluent use of big-O involves "native support" for this implicit association in your head, which can take to get used to.
+Take care, because when we say $f=O(g)$, the symbol $=$ doesn't mean equals in the usual sense. For example, it's not symmetric or transitive; $x^{3}=O(x)$ and $x^{2}=O(x)$ as $x\to 0$, but $x^{3}\neq x^{2}$. When someone uses big-O notation like $f=O(g)$, it's best to read $=$ as "is," and then the sentence makes sense: "$f$ is (at most) order of $g$."
+
+Moreover, when we include $O(g(x))$ in the context of some larger expression, like $\sin(x)=x+O(x^{3})$, what we mean is that $\sin(x)=x+f(x)$ for some $f(x)=O(x^{3})$. Fluent use of big-O involves "native support" for this implicit association in your head, which can take to get used to.
 
 ## Simplifying a Product of Series
 
@@ -79,7 +91,9 @@ Continuing with the example of $\sin(x)$, say we wanted an estimate of $\sin(x)\
 
 $$\sqrt{1+x^{2}}=1+\frac{x^{2}}{2}-\frac{x^{4}}{8}+\frac{x^{6}}{16}-\cdots$$
 
-The generic $n$-th term of $\sqrt{1+x^{2}}$ is not that easy to write down, so we won't. But we just want to compute an approximation of the product $\sin(x)\sqrt{1+x^{2}}$ near zero. One thing we could do is compute the Taylor series of the entire thing by hand, computing derivatives for every term. Quite laborious! Another thing we could do is try to reason about the infinite product of their Taylor series. That would still be a lot of work, and without extra prior knowledge, we might question whether it's valid to take a term-by-term product of two infinite series.
+The generic $n$-th term of $\sqrt{1+x^{2}}$ is not that easy to write down, so we won't. But we just want to compute an approximation of the product $\sin(x)\sqrt{1+x^{2}}$ near zero. One thing we could do is compute the Taylor series of the entire thing by hand, computing derivatives for every term.
+
+Quite laborious! Another thing we could do is try to reason about the infinite product of their Taylor series. That would still be a lot of work, and without extra prior knowledge, we might question whether it's valid to take a term-by-term product of two infinite series.
 
 Big-O can help. If we decide in advance how many terms we care about, then we can truncate the two series with big-O and we're left with a finite product. Note that if these next computations look strange, it's probably because you're used to seeing big-O as an infinite limit, whereas the big-O used here is a limit as $x\to 0$. In this context, $x^{5}=O(x^{3})$. We'll see the "usual" version of big-O shortly.
 
@@ -92,7 +106,11 @@ $$\begin{aligned}
 &=x+O(x^{3})
 \end{aligned}$$
 
-In particular, this makes rigorous the idea that "($x+$ something small), multiplied by ($1+$ something small), is still ($x+$ something small)." It's the kind of reasoning that one sees in physics books all the time, but instead of using the mathematically valid big-O, they say "we'll ignore this term" or "assume this term is zero." Being sloppy in this uncontrolled way can result in unforeseeable errors. Missing error terms can get combined in ways that the combination of the error is of the same order of magnitude as the term you care about. With big-O, error terms are still present, but they're present in a way that doesn't complicate calculations too much more. When two terms get combined, you're forced to ask if the combined error is too big. The interface helps prevent careless mistakes. Following one of the major themes of this book, it reduces both the cognitive load of doing algebra, and the cognitive load of keeping track of error terms.
+In particular, this makes rigorous the idea that "($x+$ something small), multiplied by ($1+$ something small), is still ($x+$ something small)." It's the kind of reasoning that one sees in physics books all the time, but instead of using the mathematically valid big-O, they say "we'll ignore this term" or "assume this term is zero."
+
+Being sloppy in this uncontrolled way can result in unforeseeable errors. Missing error terms can get combined in ways that the combination of the error is of the same order of magnitude as the term you care about. With big-O, error terms are still present, but they're present in a way that doesn't complicate calculations too much more.
+
+When two terms get combined, you're forced to ask if the combined error is too big. The interface helps prevent careless mistakes. Following one of the major themes of this book, it reduces both the cognitive load of doing algebra, and the cognitive load of keeping track of error terms.
 
 ## Extending to Infinite Limits
 
@@ -166,7 +184,9 @@ Infinite limit big-O notation is a hallmark of algorithm runtime and space analy
 
 ### Independence from Implementation and System Details
 
-To say anything meaningful about which algorithm is better, we want big-O for two reasons. First, just as the interface for a software system shouldn't depend on the implementation, our analysis of the quality of an algorithm shouldn't depend on the fine-grained details of the implementation. If one decides to structure the algorithm as three functions instead of four, the raw runtime will change; extra steps are taken to push stack frames and handle return values! Of course, many engineers spend a lot of important and valuable time studying the fine-grained runtime of time-critical algorithms. There are experts in loop-unrolling, after all. But big-O isn't meant for those situations; rather, it's meant for the life of the system that comes before fine-tuning. Big-O is a first responder to the scene. By the time you're fine-tuning, big-O's job is done.
+To say anything meaningful about which algorithm is better, we want big-O for two reasons. First, just as the interface for a software system shouldn't depend on the implementation, our analysis of the quality of an algorithm shouldn't depend on the fine-grained details of the implementation. If one decides to structure the algorithm as three functions instead of four, the raw runtime will change; extra steps are taken to push stack frames and handle return values!
+
+Of course, many engineers spend a lot of important and valuable time studying the fine-grained runtime of time-critical algorithms. There are experts in loop-unrolling, after all. But big-O isn't meant for those situations; rather, it's meant for the life of the system that comes before fine-tuning. Big-O is a first responder to the scene. By the time you're fine-tuning, big-O's job is done.
 
 Second, and closely related, the analysis of the quality of the algorithm shouldn't depend on features of the system the code is being run on that are beyond the programmer's control. If you're sensitive to whether your C compiler is run with aggressive or *extremely* aggressive optimization flags, then big-O will not help. But most systems don't ever reach that level of care in their entire lifetime. Big-O allows you to ignore it.
 
@@ -174,7 +194,11 @@ And so we package those details up into a "constant factor" of overhead, which w
 
 ### The "Just a Constant Factor" Defense
 
-I often hear the complaint, "But what if the constant factor is a billion! Then it's completely useless to use big-O!" Computer scientists are well aware of the possibility that the hidden constant might be absurd. A witty meme, whose origin I can't recall and failed to hunt down, involves the Black Knight of Monty Python and the Holy Grail. This character famously loses his limbs in a sword fight, but refuses to surrender, exclaiming, "It's just a flesh wound!" On this image, the meme superimposes the quote, "It's just a constant factor!" Joking aside, more often than not the constant factors are mere flesh wounds. Constants dominating runtime—i.e., when big-O misleads—is the exception to the rule, and usually a sign of recent, or purely theoretical research. A famous example is the linear-time algorithm for polygon triangulation. This algorithm has a large constant factor, and is so tricky to implement that it has been called "hopeless" by Steve Skiena, the author of "The Algorithm Design Manual."
+I often hear the complaint, "But what if the constant factor is a billion! Then it's completely useless to use big-O!" Computer scientists are well aware of the possibility that the hidden constant might be absurd.
+
+A witty meme, whose origin I can't recall and failed to hunt down, involves the Black Knight of Monty Python and the Holy Grail. This character famously loses his limbs in a sword fight, but refuses to surrender, exclaiming, "It's just a flesh wound!" On this image, the meme superimposes the quote, "It's just a constant factor!" Joking aside, more often than not the constant factors are mere flesh wounds.
+
+Constants dominating runtime—i.e., when big-O misleads—is the exception to the rule, and usually a sign of recent, or purely theoretical research. A famous example is the linear-time algorithm for polygon triangulation. This algorithm has a large constant factor, and is so tricky to implement that it has been called "hopeless" by Steve Skiena, the author of "The Algorithm Design Manual."
 
 ## Beyond Runtime: Other Constrained Resources
 
@@ -189,6 +213,8 @@ We've established that big-O can be used to measure things beyond algorithm runt
 
 [^bandit]: If you're interested in this, a keyword to search for is "bandit learning."
 
-Each of these topics has a rich history of design and analysis, and for each the principles of the discussion revolve around asymptotic analysis. An interactive learning system that takes $n$ pieces of input data but requires $\Omega(n)$ queries to a human to learn can already be determined unscalable, but one that only needs $O(\log(n))$ might work. A load balancer that spreads $m$ jobs over $n$ servers and causes the worst server to have $\Theta(m/n+\sqrt{m})$ jobs is almost certain to crash servers during peak hours compared to one that guarantees $O(m/n+\log n)$.
+Each of these topics has a rich history of design and analysis, and for each the principles of the discussion revolve around asymptotic analysis. An interactive learning system that takes $n$ pieces of input data but requires $\Omega(n)$ queries to a human to learn can already be determined unscalable, but one that only needs $O(\log(n))$ might work.
+
+A load balancer that spreads $m$ jobs over $n$ servers and causes the worst server to have $\Theta(m/n+\sqrt{m})$ jobs is almost certain to crash servers during peak hours compared to one that guarantees $O(m/n+\log n)$.
 
 Big-O is a cognitive tool that allows a human to organize and make sense of a mess of details in a rigorous fashion. It's a tool for high level thinking. Software is full of constrained resources, tradeoffs, and the desire for principled decision making. Fluency in asymptotic language will help you navigate these decisions efficiently and formulate hypotheses that can then be backed up by data.

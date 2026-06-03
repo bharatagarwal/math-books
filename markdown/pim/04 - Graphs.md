@@ -44,11 +44,17 @@ The size of a neighborhood (and the number of incident edges) is called the *deg
 
 ### Paths, Subgraphs, and Connectivity
 
-Another concept we'll need in this chapter is the concept of a connected graph. First, a *path* in a graph is a sequence of alternating vertices and edges $(v_{1}, e_{1}, v_{2}, e_{2}, \ldots, v_{t})$ so that each $e_{i} = (v_{i}, v_{i+1})$ connects the two vertices next to it in the list. Visually, a path is just a way to traverse through the vertices of $G$ by following edges from vertex to vertex. In Figure 6.2, there are many different paths from $v_{4}$ to $v_{6}$, four of which do not repeat any vertices. Many authors enforce that paths do not repeat vertices by definition, and give the name "trail" or "walk" to a path which does repeat vertices. For us, the difference won't matter. A *cycle* is a path that starts and ends at the same vertex.
+Another concept we'll need in this chapter is the concept of a connected graph. First, a *path* in a graph is a sequence of alternating vertices and edges $(v_{1}, e_{1}, v_{2}, e_{2}, \ldots, v_{t})$ so that each $e_{i} = (v_{i}, v_{i+1})$ connects the two vertices next to it in the list. Visually, a path is just a way to traverse through the vertices of $G$ by following edges from vertex to vertex.
 
-A *subgraph* $(H, F)$ of a graph $(G, E)$ is a choice of a subset of the vertices and edges of $G$ which also forms a valid graph. I.e., $H \subset G$ and $F \subset E$. Crucially, this requires that any edge $e = (u, v)$ in $F$ has both $u$ and $v$ in $H$. An *induced subgraph* has the additional property that if two vertices are adjacent in $G$, they must also be adjacent in $H$. In that way, the structure of an induced subgraph $H$ is completely determined by the subset of vertices, which is why the term "induce" is appropriate.
+In Figure 6.2, there are many different paths from $v_{4}$ to $v_{6}$, four of which do not repeat any vertices. Many authors enforce that paths do not repeat vertices by definition, and give the name "trail" or "walk" to a path which does repeat vertices. For us, the difference won't matter. A *cycle* is a path that starts and ends at the same vertex.
 
-A graph is called *connected* if there is a path from each vertex to each other vertex, and otherwise it is called *disconnected*. Equivalently (you will prove this in an exercise), $G = (V, E)$ is connected if it is impossible to split $V$ into two nonempty subsets $X, Y$ with no edges between $X$ and $Y$. A disconnected graph is a union of connected *components*, where the component of $v$ is the largest connected subgraph containing $v$. A single vertex which forms a connected component is called an *isolated vertex*.
+A *subgraph* $(H, F)$ of a graph $(G, E)$ is a choice of a subset of the vertices and edges of $G$ which also forms a valid graph. I.e., $H \subset G$ and $F \subset E$. Crucially, this requires that any edge $e = (u, v)$ in $F$ has both $u$ and $v$ in $H$.
+
+An *induced subgraph* has the additional property that if two vertices are adjacent in $G$, they must also be adjacent in $H$. In that way, the structure of an induced subgraph $H$ is completely determined by the subset of vertices, which is why the term "induce" is appropriate.
+
+A graph is called *connected* if there is a path from each vertex to each other vertex, and otherwise it is called *disconnected*. Equivalently (you will prove this in an exercise), $G = (V, E)$ is connected if it is impossible to split $V$ into two nonempty subsets $X, Y$ with no edges between $X$ and $Y$.
+
+A disconnected graph is a union of connected *components*, where the component of $v$ is the largest connected subgraph containing $v$. A single vertex which forms a connected component is called an *isolated vertex*.
 
 ## Graph Coloring
 
@@ -80,7 +86,9 @@ If you believe that the Petersen graph is not 2-colorable—or you do the exerci
 
 **Proposition 6.4.** If $G = (V, E)$ is a graph and $d$ is the largest degree of a vertex $v \in V$, then $\chi(G) \leq d + 1$.
 
-*Proof.* We define a greedy algorithm for coloring a graph. Pick an arbitrary ordering $v_{1}, \ldots, v_{n}$ of the vertices of $G$, and then for each $v_{i}$ pick the first color $j$ which is unused by any of the neighbors of $v_{i}$. In the worst case, a vertex $v$ of degree $d$ will have all of its neighbors using different colors, and so it will use color $d + 1$. Otherwise $v$ could reuse one of the first $d$ colors not used by any neighbor. So the worst-case number of colors is at most the largest degree in the graph plus one, as claimed. $\square$
+*Proof.* We define a greedy algorithm for coloring a graph. Pick an arbitrary ordering $v_{1}, \ldots, v_{n}$ of the vertices of $G$, and then for each $v_{i}$ pick the first color $j$ which is unused by any of the neighbors of $v_{i}$.
+
+In the worst case, a vertex $v$ of degree $d$ will have all of its neighbors using different colors, and so it will use color $d + 1$. Otherwise $v$ could reuse one of the first $d$ colors not used by any neighbor. So the worst-case number of colors is at most the largest degree in the graph plus one, as claimed. $\square$
 
 The proof *is* the algorithm. Here is the greedy coloring written out literally—each vertex takes the smallest color none of its already-colored neighbors use—together with a check that it never exceeds $d + 1$ colors, and a demonstration that the bound can be hopelessly loose.
 
@@ -92,11 +100,15 @@ The proof *is* the algorithm. Here is the greedy coloring written out literally�
 
 ![Figure 6.5: A coloring of the Petersen graph.](04 - Graphs_images/img-4.jpeg)
 
-A simple graph meets this bound and has $\chi(G) = \max_{v \in V} \deg(v) + 1$. See if you can find it. On the other hand, this bound can be quite loose. Here "loose" means that there are graphs which meet the conditions of the proposition, but the true $\chi(G)$ is much smaller than the proposition enforces. Consider the "star" graph which has $n$ vertices and only one vertex of degree $n - 1$, pictured in Figure 6.4. Clearly the star graph is 2-colorable, but the max degree is $n - 1$. The guarantee of the proposition is effectively useless.
+A simple graph meets this bound and has $\chi(G) = \max_{v \in V} \deg(v) + 1$. See if you can find it. On the other hand, this bound can be quite loose. Here "loose" means that there are graphs which meet the conditions of the proposition, but the true $\chi(G)$ is much smaller than the proposition enforces.
+
+Consider the "star" graph which has $n$ vertices and only one vertex of degree $n - 1$, pictured in Figure 6.4. Clearly the star graph is 2-colorable, but the max degree is $n - 1$. The guarantee of the proposition is effectively useless.
 
 ### The Partition Perspective
 
-One other perspective on graph coloring I want to describe is the partition perspective. Specifically, if $G = (V, E)$ is a graph and $\varphi$ is a proper $k$-coloring, then we can look at $\varphi^{-1}(j)$, the set of all vertices that have color $j$. Since $\varphi$ is proper, there are no edges among these vertices. Moreover, since $\varphi$ is a function, the set $\{\varphi^{-1}(j) : j = 1, \ldots, k\}$ partitions[^4] $V$ into "color classes," and all the edges of $G$ go between the color classes. Figure 6.5 shows a picture for the Petersen graph.
+One other perspective on graph coloring I want to describe is the partition perspective. Specifically, if $G = (V, E)$ is a graph and $\varphi$ is a proper $k$-coloring, then we can look at $\varphi^{-1}(j)$, the set of all vertices that have color $j$.
+
+Since $\varphi$ is proper, there are no edges among these vertices. Moreover, since $\varphi$ is a function, the set $\{\varphi^{-1}(j) : j = 1, \ldots, k\}$ partitions[^4] $V$ into "color classes," and all the edges of $G$ go between the color classes. Figure 6.5 shows a picture for the Petersen graph.
 
 [^4]: A *partition* of $X$ is a set of non-overlapping (disjoint) subsets $A_{i} \subset X$, the union of all of them being $\cup_{i} A_{i} = X$.
 
@@ -104,9 +116,13 @@ This perspective can be used to design coloring algorithms. Start with an improp
 
 ## Register Allocation and Hardness
 
-The wishy-washy way to motivate graph coloring is to claim that many problems can be expressed as an "anti-coordination problem," where you win when no agent in the system behaves the same as any of their neighbors. A totally made up example is radio frequencies. Radio towers pick frequencies to broadcast, but if nearby towers are broadcasting on the same frequency, they will interfere. So the vertices of the graph are towers, nearby towers are connected by an edge, and the colors are frequencies.
+The wishy-washy way to motivate graph coloring is to claim that many problems can be expressed as an "anti-coordination problem," where you win when no agent in the system behaves the same as any of their neighbors. A totally made up example is radio frequencies.
 
-A more interesting and satisfying application is *register allocation*. That is, suppose you're writing a compiler for a programming language. Logically the programmer has no bound on the number of variables used in a program, but on the physical machine there is a constant number of CPU registers in which to store those variables. The register allocation algorithm must decide (at compile time) which registers will store which logical variables as the computation progresses, and which logical variables must be stored in memory. The less often you need to shuffle data back and forth between memory and CPU registers, the faster the program will run.
+Radio towers pick frequencies to broadcast, but if nearby towers are broadcasting on the same frequency, they will interfere. So the vertices of the graph are towers, nearby towers are connected by an edge, and the colors are frequencies.
+
+A more interesting and satisfying application is *register allocation*. That is, suppose you're writing a compiler for a programming language. Logically the programmer has no bound on the number of variables used in a program, but on the physical machine there is a constant number of CPU registers in which to store those variables.
+
+The register allocation algorithm must decide (at compile time) which registers will store which logical variables as the computation progresses, and which logical variables must be stored in memory. The less often you need to shuffle data back and forth between memory and CPU registers, the faster the program will run.
 
 The connection to graph coloring is beginning to reveal itself: the vertices are the logical variables and the colors are physical registers, but I haven't yet said how to connect two vertices by an edge. Intuitively, it depends on whether the logical variables "overlap" in the scope of their use. The structure of scope overlap is destined to be studied with graph theory.
 
@@ -127,9 +143,13 @@ endBlock:
 $43 = $41 + $40
 ```
 
-In this example variables 41 and 42 cannot share a physical register. They have different values and are used in the same line to compute a difference. Call a variable *live* at a statement in the code if its value is used after the end of that statement. Thinking of it in reverse: a variable is *dead* in all of the lines of code between when it was last read and when it is next written to. Whenever a variable is dead we know it's safe to reuse its physical register (storing the value of the dead variable in memory).
+In this example variables 41 and 42 cannot share a physical register. They have different values and are used in the same line to compute a difference. Call a variable *live* at a statement in the code if its value is used after the end of that statement.
 
-Now we can define the edges. Two variables `$i` and `$j` "interfere," and hence we add the edge $(i, j)$ to $G$, if they are ever live at the same time in the program. With a bit of work (uncoincidentally using graphs to do a flow analysis), one can efficiently compute the places in the code where each variable is live and construct this graph $G$. Then if we can compute the chromatic number of $G$ and find an actual $\chi(G)$-coloring, we can assign physical registers to the variables according to the coloring. Without some deeper semantic analysis, this provides the most efficient possible use of our physical registers.
+Thinking of it in reverse: a variable is *dead* in all of the lines of code between when it was last read and when it is next written to. Whenever a variable is dead we know it's safe to reuse its physical register (storing the value of the dead variable in memory).
+
+Now we can define the edges. Two variables `$i` and `$j` "interfere," and hence we add the edge $(i, j)$ to $G$, if they are ever live at the same time in the program. With a bit of work (uncoincidentally using graphs to do a flow analysis), one can efficiently compute the places in the code where each variable is live and construct this graph $G$.
+
+Then if we can compute the chromatic number of $G$ and find an actual $\chi(G)$-coloring, we can assign physical registers to the variables according to the coloring. Without some deeper semantic analysis, this provides the most efficient possible use of our physical registers.
 
 We can turn this directly into code. The demo below does the backward liveness pass on Kun's exact snippet (a variable is live where its value is still needed), builds the interference graph, and colors it—giving a concrete register assignment. Note that the edge `$41 -- $42` shows up, just as Kun says it must.
 
@@ -139,13 +159,19 @@ We can turn this directly into code. The demo below does the backward liveness p
 
 ### NP-Hardness and Inapproximability
 
-Unfortunately, in general you should not hope to compute the chromatic number of an arbitrary graph. This problem is what's called "NP-hard," which roughly means there is no known provably correct (in the worst case) and provably efficient algorithm for computing it. Moreover, if there were, the same algorithm could be adapted to solve a whole class of problems that are also believed to be intrinsically hard to solve. The notion of efficiency here is—as usual for algorithm analysis—in terms of the runtime compared to the size of the input as the input grows. This is called "asymptotic analysis" or "big-O." See Chapter 15 for a longer discussion.
+Unfortunately, in general you should not hope to compute the chromatic number of an arbitrary graph. This problem is what's called "NP-hard," which roughly means there is no known provably correct (in the worst case) and provably efficient algorithm for computing it.
+
+Moreover, if there were, the same algorithm could be adapted to solve a whole class of problems that are also believed to be intrinsically hard to solve. The notion of efficiency here is—as usual for algorithm analysis—in terms of the runtime compared to the size of the input as the input grows. This is called "asymptotic analysis" or "big-O." See Chapter 15 for a longer discussion.
 
 Moreover, it is even NP-hard to get any reasonable approximation of the chromatic number of a general graph. To be more specific, we can't hope to find an efficient and provably correct algorithm for the following problem. Fix any $c$ such that $0 < c < 1$. Given any graph $G$ as input, if $G$ has $n$ vertices, output a number $Z$ with the property that $\frac{Z}{\chi(G)} < n^{c}$.
 
-As mentioned, this is an asymptotic statement, meaning an algorithm that only works for all graphs with fewer than a thousand nodes is not a solution. A lookup table, though it would be massive, would solve this problem efficiently. No, a true solution must work and must work efficiently for any arbitrarily large graph in principle, though working on small graphs may be sufficient in practice. But to put the numbers in perspective with an example, this theorem says that for graphs with $n = 10^{4}$ vertices and with $c = 1/2$, algorithms will struggle to output a number guaranteed to be between $\chi(G)$ and $100 \cdot \chi(G)$.
+As mentioned, this is an asymptotic statement, meaning an algorithm that only works for all graphs with fewer than a thousand nodes is not a solution. A lookup table, though it would be massive, would solve this problem efficiently. No, a true solution must work and must work efficiently for any arbitrarily large graph in principle, though working on small graphs may be sufficient in practice.
 
-But I digress. The takeaway is that coloring is a hard problem. This is a sad result for people who really want to color their graphs, but there are other ways to attack the problem. You can assume that your graph has some nice structure. This is what we'll do in the next section, and there it turns out that the chromatic number will always be at most 4. Alternatively, you could assume that you know your graph's chromatic number, and try to color it without introducing too many improperly colored edges. We'll see this approach in the "Approximate Coloring" section.
+But to put the numbers in perspective with an example, this theorem says that for graphs with $n = 10^{4}$ vertices and with $c = 1/2$, algorithms will struggle to output a number guaranteed to be between $\chi(G)$ and $100 \cdot \chi(G)$.
+
+But I digress. The takeaway is that coloring is a hard problem. This is a sad result for people who really want to color their graphs, but there are other ways to attack the problem. You can assume that your graph has some nice structure.
+
+This is what we'll do in the next section, and there it turns out that the chromatic number will always be at most 4. Alternatively, you could assume that you know your graph's chromatic number, and try to color it without introducing too many improperly colored edges. We'll see this approach in the "Approximate Coloring" section.
 
 ## Planarity and the Euler Characteristic
 
@@ -155,7 +181,9 @@ Here's a little exercise: come up with an example of a graph which is not planar
 
 ![Figure 6.6: An example of a planar graph which can be drawn with no edges crossing.](04 - Graphs_images/img-5.jpeg)
 
-Now that you've tried the exercise: Figure 6.7 depicts two important graphs that are not planar. The left one is called the *complete graph* on 5 vertices, denoted $K_{5}$. The word "complete" here just means that all possible edges between vertices are present. The second graph is called the *complete bipartite graph* $K_{3,3}$. "Bipartite" means "two parts," and the completeness refers to all possible edges going between the two parts. The subscript of $K_{a,b}$ for $a, b \in \mathbb{N}$ means there are $a$ vertices in one part and $b$ in the other.
+Now that you've tried the exercise: Figure 6.7 depicts two important graphs that are not planar. The left one is called the *complete graph* on 5 vertices, denoted $K_{5}$. The word "complete" here just means that all possible edges between vertices are present.
+
+The second graph is called the *complete bipartite graph* $K_{3,3}$. "Bipartite" means "two parts," and the completeness refers to all possible edges going between the two parts. The subscript of $K_{a,b}$ for $a, b \in \mathbb{N}$ means there are $a$ vertices in one part and $b$ in the other.
 
 ### Embeddings and the Rigorous View
 
@@ -214,7 +242,9 @@ If you're like me and frequently make off-by-one errors, then the five color the
 
 *Proof.* The important observation is that the degree of a vertex is just the number of edges incident to it, and every edge is incident to exactly two vertices.
 
-This is where the proof would usually end. As a variation on a theme, you can (and should) think of this as constructing a clever bijection like we did in Chapter 4, but it's difficult to clearly define a domain and codomain. Let me try: the domain consists of "edge stubs" sticking out from each vertex, and the codomain is the set of edges $E$. We're mapping each edge stub to the edge that contains that stub. This map is a surjection and a double cover of $E$, and the size of the domain is exactly $\sum_{v \in V} \deg(v)$. $\square$
+This is where the proof would usually end. As a variation on a theme, you can (and should) think of this as constructing a clever bijection like we did in Chapter 4, but it's difficult to clearly define a domain and codomain.
+
+Let me try: the domain consists of "edge stubs" sticking out from each vertex, and the codomain is the set of edges $E$. We're mapping each edge stub to the edge that contains that stub. This map is a surjection and a double cover of $E$, and the size of the domain is exactly $\sum_{v \in V} \deg(v)$. $\square$
 
 This "handshake lemma" is the easiest one to confirm on real graphs: sum the degrees, and you always get twice the edge count.
 
@@ -230,9 +260,13 @@ This "handshake lemma" is the easiest one to confirm on real graphs: sum the deg
 
 [^8]: An edge incident to a vertex of degree 1 will touch the "outside" face twice, but this only counts as one face.
 
-The requirement that $m \geq 2$ is necessary, since if there is only one edge (or zero), then the outside face is the only face. It only gets "counted" twice (or zero times) by the edges it touches. Once we get to two edges, the outside face is counted twice ($2m = 4$). As you add more edges, either you add dangling edges (or subdivide existing edges) which increases $2m$ but not $3f$, or you add edges that create new faces. In the case of a single edge creating a single new face, the lower bound $3f$ increases by exactly $3$, but the upper bound $2m$ only increases by $2$.
+The requirement that $m \geq 2$ is necessary, since if there is only one edge (or zero), then the outside face is the only face. It only gets "counted" twice (or zero times) by the edges it touches. Once we get to two edges, the outside face is counted twice ($2m = 4$).
 
-Despite having just read a proof, this may be surprising: can't we keep adding face-creating edges to make the lower bound of $3f$ exceed the upper bound of $2m$? It's instructive to take a moment and play with examples. You'll eventually get to a situation in which all interior faces are triangles, and the inequality is either an equality or very close. Then the creation of new faces requires a sufficient number of non-face-creating edges to be made first, which loosens the inequality. The proof above explains how this loosening and tightening of the inequality corresponds to the geometry of a graph drawn in the plane. It translates the geometry to algebra. When the algebra seems to misbehave, we can call back to the geometry to understand.
+As you add more edges, either you add dangling edges (or subdivide existing edges) which increases $2m$ but not $3f$, or you add edges that create new faces. In the case of a single edge creating a single new face, the lower bound $3f$ increases by exactly $3$, but the upper bound $2m$ only increases by $2$.
+
+Despite having just read a proof, this may be surprising: can't we keep adding face-creating edges to make the lower bound of $3f$ exceed the upper bound of $2m$? It's instructive to take a moment and play with examples. You'll eventually get to a situation in which all interior faces are triangles, and the inequality is either an equality or very close.
+
+Then the creation of new faces requires a sufficient number of non-face-creating edges to be made first, which loosens the inequality. The proof above explains how this loosening and tightening of the inequality corresponds to the geometry of a graph drawn in the plane. It translates the geometry to algebra. When the algebra seems to misbehave, we can call back to the geometry to understand.
 
 You should do what I did for Lemma 6.8 and think about how to express this as an injection from one set to another. The last lemma is the key to the five color theorem.
 
@@ -250,7 +284,9 @@ $$6|V| \leq 2|E| \leq 6|V| - 12,$$
 
 which is a contradiction. $\square$
 
-As a quick side note that we'll need in the next theorem, along the way to proving Lemma 6.10 we get a bonus fact: the complete graph $K_{5}$ is not planar. This is because we proved that all planar graphs satisfy $|E| \leq 3|V| - 6$, and for $K_{5}$, $|E| = 10 > 15 - 6 = 9$. This argument doesn't work for showing $K_{3,3}$ is not planar, but if you're willing to do a bit extra work (and take advantage of the fact that $K_{3,3}$ has no cycles of length 3), then you can improve the bound from Lemma 6.10 to work. In particular, because $K_{5}$ is not planar, no planar graph can contain $K_{5}$ as a subgraph.
+As a quick side note that we'll need in the next theorem, along the way to proving Lemma 6.10 we get a bonus fact: the complete graph $K_{5}$ is not planar. This is because we proved that all planar graphs satisfy $|E| \leq 3|V| - 6$, and for $K_{5}$, $|E| = 10 > 15 - 6 = 9$.
+
+This argument doesn't work for showing $K_{3,3}$ is not planar, but if you're willing to do a bit extra work (and take advantage of the fact that $K_{3,3}$ has no cycles of length 3), then you can improve the bound from Lemma 6.10 to work. In particular, because $K_{5}$ is not planar, no planar graph can contain $K_{5}$ as a subgraph.
 
 The inequality $|E| \leq 3|V| - 6$ is the engine behind both Lemma 6.10 and the "$K_{5}$ is not planar" bonus fact. The demo below checks that planar graphs obey it (and so always have a vertex of degree $\leq 5$), while $K_{5}$ violates it outright.
 
@@ -266,15 +302,23 @@ Now we can prove the five color theorem.
 
 Now let $|V| \geq 6$. By Lemma 6.10, $G$ has a vertex $v$ of degree at most 5. If we remove $v$ from $G$ then the inductive hypothesis guarantees us a 5-coloring. We want to extend or modify this coloring and in doing so properly color $v$. This will finish the proof. When $v$ has degree at most 4, choose one of the unused colors among $v$'s neighbors. Otherwise $v$ has degree exactly 5, and we have to be more clever, because the neighbors may need all 5 colors a priori.
 
-Call $v$'s five neighbors $w_{1}, w_{2}, w_{3}, w_{4}, w_{5}$. Because $K_{5}$ is not planar and $G$ is, these five neighbors can't form $K_{5}$. In particular there must be some $i, j$ for which $w_{i}$ and $w_{j}$ are not adjacent. We can form a new graph $G'$ ("G prime"[^9]) by deleting $v$ and *merging* $w_{i}$ and $w_{j}$, i.e., delete $v, w_{i}, w_{j}$ and add a new vertex $x$ which is adjacent to all the remaining vertices in $N(w_{i}) \cup N(w_{j})$. I claim that if $G'$ is planar then we're done: $G'$ has $|V| - 1$ vertices and so it has a 5-coloring by the inductive hypothesis, and we can use that 5-coloring to color most of $G$ (everything except $w_{i}, w_{j},$ and $v$). Then use the color assigned to $x$ for both $w_{i}$ and $w_{j}$; they had no edge between them in $G$, so this coloring is proper. These choices ensure the neighbors of $v$ use only 4 of the 5 colors, so finally pick the unused color for $v$. This produces a proper coloring of $G$.
+Call $v$'s five neighbors $w_{1}, w_{2}, w_{3}, w_{4}, w_{5}$. Because $K_{5}$ is not planar and $G$ is, these five neighbors can't form $K_{5}$. In particular there must be some $i, j$ for which $w_{i}$ and $w_{j}$ are not adjacent.
+
+We can form a new graph $G'$ ("G prime"[^9]) by deleting $v$ and *merging* $w_{i}$ and $w_{j}$, i.e., delete $v, w_{i}, w_{j}$ and add a new vertex $x$ which is adjacent to all the remaining vertices in $N(w_{i}) \cup N(w_{j})$. I claim that if $G'$ is planar then we're done: $G'$ has $|V| - 1$ vertices and so it has a 5-coloring by the inductive hypothesis, and we can use that 5-coloring to color most of $G$ (everything except $w_{i}, w_{j},$ and $v$).
+
+Then use the color assigned to $x$ for both $w_{i}$ and $w_{j}$; they had no edge between them in $G$, so this coloring is proper. These choices ensure the neighbors of $v$ use only 4 of the 5 colors, so finally pick the unused color for $v$. This produces a proper coloring of $G$.
 
 [^9]: The tick is called the "prime" symbol, and it is used to denote that two things are closely related, usually that the prime'd thing is a minor variation on the un-primed thing. So using $G'$ here is a reminder to the reader that $G'$ was constructed from $G$.
 
-So why is $G'$ planar? To argue this, we can show that for any planar drawing of $G$, removing $v$ leaves $w_{i}$ and $w_{j}$ in the same face. This is equivalent to being able to trace a curve in the plane from $w_{i}$ to $w_{j}$ without hitting any other edges, since we could then "drag" $w_{i}$ along that curve to $w_{j}$ and "lengthen" the edges incident to $w_{i}$ as we go. When the two vertices merge, and "become" $x$, we get a planar drawing of $G'$. The picture in my head is like the strands of a spider web, shown in Figure 6.9.
+So why is $G'$ planar? To argue this, we can show that for any planar drawing of $G$, removing $v$ leaves $w_{i}$ and $w_{j}$ in the same face. This is equivalent to being able to trace a curve in the plane from $w_{i}$ to $w_{j}$ without hitting any other edges, since we could then "drag" $w_{i}$ along that curve to $w_{j}$ and "lengthen" the edges incident to $w_{i}$ as we go.
+
+When the two vertices merge, and "become" $x$, we get a planar drawing of $G'$. The picture in my head is like the strands of a spider web, shown in Figure 6.9.
 
 ![Figure 6.9: The "strands of a spider web" image guide the proof that $G'$ is planar.](04 - Graphs_images/img-9.jpeg)
 
-The key is that $G$ is planar and that $v$ has all of the $w$'s as neighbors. If we want to merge $w_{i}$ to $w_{j}$, we can use the curve already traced by the edges from $w_{i}$ to $v$ and from $v$ to $w_{j}$. By planarity this is guaranteed not to cross any of the other edges of $G$, and hence of $G'$. To say it a different way, if we took the drawing above and continued drawing $G'$, and the result required an edge to cross one of the edges above, then it would have crossed through one of the edges going from $v$ to $w_{i}$ or $v$ to $w_{j}$!
+The key is that $G$ is planar and that $v$ has all of the $w$'s as neighbors. If we want to merge $w_{i}$ to $w_{j}$, we can use the curve already traced by the edges from $w_{i}$ to $v$ and from $v$ to $w_{j}$. By planarity this is guaranteed not to cross any of the other edges of $G$, and hence of $G'$.
+
+To say it a different way, if we took the drawing above and continued drawing $G'$, and the result required an edge to cross one of the edges above, then it would have crossed through one of the edges going from $v$ to $w_{i}$ or $v$ to $w_{j}$!
 
 This proves $G'$ is planar, which completes the proof. $\square$
 
@@ -377,7 +421,9 @@ So that this version of the book stays runnable without an igraph install, here 
 
 Earlier I remarked that coloring is probably too hard for algorithms to solve in the worst case. To get around the problem we added the planarity constraint. Though a practical coloring algorithm would likely use an industry standard optimization engine to approximately color graphs, let's try something different to see the theory around graph coloring. Suppose we're promised a graph can be colored with 3 colors, and let's try to color it with some larger number of colors.
 
-The first algorithm of this kind colors a 3-colorable graph with $4\sqrt{n}$ colors, where $n = |V|$. To make the numbers concrete, for a 3-colorable graph with 1000 vertices, this algorithm will use no more than 127 colors. Sounds pretty rotten, but the algorithm is quite simple. As long as there is an uncolored vertex $v$ with degree at least $\sqrt{n}$, pick three new colors. Use one for $v$, and the other two to color $N(v)$. Then remove all these vertices from the graph and repeat. If there are no vertices of degree $\sqrt{n}$, then use the greedy algorithm to color the remaining graph.
+The first algorithm of this kind colors a 3-colorable graph with $4\sqrt{n}$ colors, where $n = |V|$. To make the numbers concrete, for a 3-colorable graph with 1000 vertices, this algorithm will use no more than 127 colors. Sounds pretty rotten, but the algorithm is quite simple.
+
+As long as there is an uncolored vertex $v$ with degree at least $\sqrt{n}$, pick three new colors. Use one for $v$, and the other two to color $N(v)$. Then remove all these vertices from the graph and repeat. If there are no vertices of degree $\sqrt{n}$, then use the greedy algorithm to color the remaining graph.
 
 **Theorem 6.11.** This algorithm colors any 3-colorable graph using at most $4\lceil\sqrt{n}\rceil$ colors.
 
@@ -397,7 +443,9 @@ The whole algorithm, including the two-coloring subroutine for $N(v)$, fits in o
 
 One might naturally ask whether we can improve $\sqrt{n}$ to something like $\log(n)$, or even some very large constant. This is actually an open question. Recent breakthroughs using a technique called *semidefinite programming* got the number of colors down to roughly $n^{0.2}$. For reference, a thousand-node 3-colorable graph would have $n^{0.2} \approx 4$. That's quite an improvement over 127 colors given by the $4\sqrt{n}$ bound.
 
-I should make a clarification here: the open problem is on the existence of an algorithm which is guaranteed to achieve some number of colors (depending on the size of the graph) *no matter what the graph is*. As a programmer you are probably somewhat familiar with this idea that one often measures an algorithm by its worst-case guarantees, but the point is important enough to emphasize. So when I say a problem is "possible" or "impossible" to solve, I mean that there exists (or does not exist, respectively) an efficient algorithm that achieves the desired worst-case guarantee on all inputs. In particular, there is no evidence for either claim that it is possible or impossible to color a 3-colorable graph with $\log(n)$ colors (or anything close to that order of magnitude, like $(\log(n))^{10}$). A ripe problem indeed.
+I should make a clarification here: the open problem is on the existence of an algorithm which is guaranteed to achieve some number of colors (depending on the size of the graph) *no matter what the graph is*. As a programmer you are probably somewhat familiar with this idea that one often measures an algorithm by its worst-case guarantees, but the point is important enough to emphasize.
+
+So when I say a problem is "possible" or "impossible" to solve, I mean that there exists (or does not exist, respectively) an efficient algorithm that achieves the desired worst-case guarantee on all inputs. In particular, there is no evidence for either claim that it is possible or impossible to color a 3-colorable graph with $\log(n)$ colors (or anything close to that order of magnitude, like $(\log(n))^{10}$). A ripe problem indeed.
 
 ## Cultural Review
 
@@ -407,13 +455,19 @@ I should make a clarification here: the open problem is on the existence of an a
 
 ## Exercises
 
-**6.1.** Write down examples for the following definitions. A graph is a *tree* if it contains no cycles. Two graphs $G, H$ are *isomorphic* if they differ only by relabeling their vertices. That is, if $G = (V, E)$ and $H = (V', E')$, then $G$ and $H$ are isomorphic if there is a bijection $f : V \to V'$ with the property that $(i, j) \in E$ if and only if $(f(i), f(j)) \in E'$. Given a subset of vertices $S \subset V$ of a graph $G = (V, E)$, the *induced subgraph on $S$* is the subgraph consisting of all edges with both endpoints in $S$. Given a vertex $v$ of degree 2, one can *contract* it by removing it and "connecting its two edges," i.e., the two edges $(v, w), (v, u)$ become $(w, u)$. Likewise, one can contract an edge by merging its endpoint vertices, or *subdivide* an edge by adding a vertex of degree two in the middle of an edge. If $H$ can be obtained from $G$ after some sequence of contractions and subdivisions, it is called a *minor* of $G$.
+**6.1.** Write down examples for the following definitions. A graph is a *tree* if it contains no cycles. Two graphs $G, H$ are *isomorphic* if they differ only by relabeling their vertices. That is, if $G = (V, E)$ and $H = (V', E')$, then $G$ and $H$ are isomorphic if there is a bijection $f : V \to V'$ with the property that $(i, j) \in E$ if and only if $(f(i), f(j)) \in E'$.
+
+Given a subset of vertices $S \subset V$ of a graph $G = (V, E)$, the *induced subgraph on $S$* is the subgraph consisting of all edges with both endpoints in $S$. Given a vertex $v$ of degree 2, one can *contract* it by removing it and "connecting its two edges," i.e., the two edges $(v, w), (v, u)$ become $(w, u)$.
+
+Likewise, one can contract an edge by merging its endpoint vertices, or *subdivide* an edge by adding a vertex of degree two in the middle of an edge. If $H$ can be obtained from $G$ after some sequence of contractions and subdivisions, it is called a *minor* of $G$.
 
 **6.2.** Look up the statement of Wagner's theorem, which characterizes planar graphs in terms of contractions and the two graphs $K_{3,3}$ and $K_{5}$. Find a proof you can understand.
 
 **6.3.** In the "Definition of a Graph" section we claimed that the following two definitions of a connected graph are equivalent: (1) there is a path between every pair of vertices, (2) it is impossible to split $V$ into two nonempty subsets $X, Y$ such that no edge $e = (a, b)$ has $a \in X$ and $b \in Y$. Prove this.
 
-**6.4.** Here's a simple way to make examples of planar graphs: draw some non-overlapping circles of various sizes on a piece of paper, call the circles vertices, and put an edge between any two circles that touch each other. Clearly the result is going to be a planar graph, but an interesting question is whether every planar graph can be made with this method. Amazingly the answer is yes! This is called Koebe's theorem. It is a relatively difficult theorem to prove for the intended reader of this book, but as a consequence it implies Fáry's theorem. Fáry's theorem states that every planar graph can be drawn so that the edges are all straight lines. Look up a proof of Fáry's theorem that uses Koebe's theorem as a starting point, and rewrite it in your own words.
+**6.4.** Here's a simple way to make examples of planar graphs: draw some non-overlapping circles of various sizes on a piece of paper, call the circles vertices, and put an edge between any two circles that touch each other. Clearly the result is going to be a planar graph, but an interesting question is whether every planar graph can be made with this method. Amazingly the answer is yes!
+
+This is called Koebe's theorem. It is a relatively difficult theorem to prove for the intended reader of this book, but as a consequence it implies Fáry's theorem. Fáry's theorem states that every planar graph can be drawn so that the edges are all straight lines. Look up a proof of Fáry's theorem that uses Koebe's theorem as a starting point, and rewrite it in your own words.
 
 ### Coloring and Polynomials
 
@@ -429,13 +483,19 @@ I should make a clarification here: the open problem is on the existence of an a
 
 ### Directed Graphs, DAGs, and Flows
 
-**6.10.** A *directed graph* is a graph in which edges are oriented (i.e., they're ordered pairs instead of unordered pairs). The endpoints of an edge $e = (u, v)$ are distinguished as the *source* $u$ and the *target* $v$. A directed graph gives rise to natural *directed paths*, which are like normal paths, but you can only follow edges from source to target. A graph is called *strongly connected* if every pair of vertices is connected by a directed path. Write a program that determines if a given directed graph is strongly connected.
+**6.10.** A *directed graph* is a graph in which edges are oriented (i.e., they're ordered pairs instead of unordered pairs). The endpoints of an edge $e = (u, v)$ are distinguished as the *source* $u$ and the *target* $v$.
 
-**6.11.** A *directed acyclic graph* (DAG) is a directed graph which has no directed cycles (paths that start and end at the same vertex). DAGs are commonly used to represent dependencies in software systems. Often, one needs to *resolve* dependencies by evaluating them in order so that no vertex is evaluated before all of its dependencies have been evaluated. One often solves this problem by sorting the vertices using what's called a "topological" sort, which guarantees every vertex occurs before any downstream dependency. Write a program that produces a topological sort of a given DAG.
+A directed graph gives rise to natural *directed paths*, which are like normal paths, but you can only follow edges from source to target. A graph is called *strongly connected* if every pair of vertices is connected by a directed path. Write a program that determines if a given directed graph is strongly connected.
+
+**6.11.** A *directed acyclic graph* (DAG) is a directed graph which has no directed cycles (paths that start and end at the same vertex). DAGs are commonly used to represent dependencies in software systems. Often, one needs to *resolve* dependencies by evaluating them in order so that no vertex is evaluated before all of its dependencies have been evaluated.
+
+One often solves this problem by sorting the vertices using what's called a "topological" sort, which guarantees every vertex occurs before any downstream dependency. Write a program that produces a topological sort of a given DAG.
 
 **6.12.** A *weighted* graph is a graph $G$ for which each edge is assigned a number $w_{e} \in \mathbb{R}$. Weights on edges often represent *capacities*, such as the capacity of traffic flow in a road network. Look up a description of the maximum flow problem in directed, weighted graphs, and the Ford-Fulkerson algorithm which solves it. Specifically, observe how the maximum flow problem is modeled using a graph. Find real-world problems that are solved via a max flow problem.
 
-**6.13.** A *hypergraph* generalizes the size of an edge to contain more than two vertices. Hypergraphs are also called *set systems* or *families of sets*. Edges of a hypergraph are called *hyperedges*, and a $k$-*uniform* hypergraph is one in which all of its hyperedges have size $k$. Look up a proof of the Erdős-Ko-Rado theorem: let $G$ be a $k$-uniform hypergraph with $n \geq 2k$ vertices, in which every pair of hyperedges shares a vertex in common. Then $G$ has at most $\binom{n-1}{k-1}$ hyperedges in total. Find a construction that achieves this bound exactly when $n > 2k$.
+**6.13.** A *hypergraph* generalizes the size of an edge to contain more than two vertices. Hypergraphs are also called *set systems* or *families of sets*. Edges of a hypergraph are called *hyperedges*, and a $k$-*uniform* hypergraph is one in which all of its hyperedges have size $k$.
+
+Look up a proof of the Erdős-Ko-Rado theorem: let $G$ be a $k$-uniform hypergraph with $n \geq 2k$ vertices, in which every pair of hyperedges shares a vertex in common. Then $G$ has at most $\binom{n-1}{k-1}$ hyperedges in total. Find a construction that achieves this bound exactly when $n > 2k$.
 
 ## Chapter Notes
 
@@ -459,7 +519,9 @@ The problem is that the definition is full of a bunch of "except" and special ca
 
 ### Toward Abstract Spaces and Topology
 
-We really want to define an embedding as a single function $f$ whose codomain is $\mathbb{R}^{2}$. And because we said we don't want any of the edges to cross each other in the plane, we probably want $f$ to be injective. Finally, because the drawing has to be a sensible drawing, we need $f$ to be continuous. Recall from calculus that a continuous function intuitively maps points that are "close together" in the domain to points that remain close together in the codomain. Without continuity, a "drawing" could break edges into disjoint pieces and there would be chaos.
+We really want to define an embedding as a single function $f$ whose codomain is $\mathbb{R}^{2}$. And because we said we don't want any of the edges to cross each other in the plane, we probably want $f$ to be injective. Finally, because the drawing has to be a sensible drawing, we need $f$ to be continuous.
+
+Recall from calculus that a continuous function intuitively maps points that are "close together" in the domain to points that remain close together in the codomain. Without continuity, a "drawing" could break edges into disjoint pieces and there would be chaos.
 
 The real question is: what is the domain of this function? It can't be $G$ as a set because we don't have a notion of "closeness" for pairs of vertices, and we really want to think of an edge as a line-like thing.
 
@@ -469,7 +531,9 @@ One can take the *disjoint union* of two abstract spaces and get another abstrac
 
 The second idea is that one can *identify* two points in an abstract space. Intuitively, one can "glue together" two points and maintain the rest of the space unhindered. For us, if a copy of $[0, 1]$ represents an edge, then we'll want two edges incident to the same vertex to have one of their two endpoints identified. This foreshadows a topic in a later chapter called the *equivalence relation*, which formalizes how to identify points in a consistent way.
 
-Putting these two ideas together, the abstract space $X_{G}$ corresponding to a graph $G$ is the disjoint union of copies of $[0, 1]$ for each edge, with endpoints identified when two edges intersect at a vertex. Then we can define a function $f : X_{G} \to \mathbb{R}^{2}$, require it to be injective, and call it continuous if points that are close in $X_{G}$, using the natural distance for points in the interval $[0, 1]$, get sent to points that are close in $f(X_{G})$. How do I measure distance between two points $a, b \in X_{G}$ that might be on different edges? Well $a, b$ are either vertices or on some copy of $[0, 1]$, so I can find a path in the graph $G$ that gets from one edge to another (if not, then the distance can be called infinite). Then I could measure the length of each full edge on this path, and add up the partial edges required to get from $a$ or $b$ to the desired endpoint of the edge they're in.
+Putting these two ideas together, the abstract space $X_{G}$ corresponding to a graph $G$ is the disjoint union of copies of $[0, 1]$ for each edge, with endpoints identified when two edges intersect at a vertex. Then we can define a function $f : X_{G} \to \mathbb{R}^{2}$, require it to be injective, and call it continuous if points that are close in $X_{G}$, using the natural distance for points in the interval $[0, 1]$, get sent to points that are close in $f(X_{G})$.
+
+How do I measure distance between two points $a, b \in X_{G}$ that might be on different edges? Well $a, b$ are either vertices or on some copy of $[0, 1]$, so I can find a path in the graph $G$ that gets from one edge to another (if not, then the distance can be called infinite). Then I could measure the length of each full edge on this path, and add up the partial edges required to get from $a$ or $b$ to the desired endpoint of the edge they're in.
 
 This is a very fancy way to say that I can impose the same geometry that was on $[0, 1]$ onto the different pieces of $X_{G}$ and patch them together. But once you get comfortable with that idea, you have a natural way to define an embedding of any abstract space into any other abstract space: a continuous injective function!
 

@@ -12,7 +12,9 @@
 
 There is a fascinating bit of folk lore, which as far as I know originated with a 2010 blog post of Ben Tilly, that you can tell what type of mathematician you are by how you eat corn on the cob. It turns out there are multiple ways to eat corn, and they are roughly grouped as "eat in rows like a typewriter, left to right," and "eat in a spiral, teeth scraping the corn into your mouth."
 
-The corresponding two types of mathematicians are roughly grouped as algebraists and analysts. An algebraist, as we'll see in Chapters 10, 12, and 16, supposedly prefers orderliness and working with the inherent structure of the corn cob. Analysis, the topic of Chapters 8, 14, and 15, alternatively prioritizes efficiency, approximation, and getting the job done. One's underlying preference apparently explains both the choice of a mathematical domain of study, and the less conscious choice of how to eat corn.
+The corresponding two types of mathematicians are roughly grouped as algebraists and analysts. An algebraist, as we'll see in Chapters 10, 12, and 16, supposedly prefers orderliness and working with the inherent structure of the corn cob.
+
+Analysis, the topic of Chapters 8, 14, and 15, alternatively prioritizes efficiency, approximation, and getting the job done. One's underlying preference apparently explains both the choice of a mathematical domain of study, and the less conscious choice of how to eat corn.
 
 According to Tilly, who surveyed 40-ish mathematicians and received countless more self-selected responses via the internet, corn eating predicts mathematical preference with surprising accuracy. Since his post, this observation has become a bit of folk lore that reinforces the idea that mathematics has many subcultures organized around preference and character.
 
@@ -29,7 +31,9 @@ One of the more prominent distinctions is the concept described by mathematician
 
 ## Erdos: Another Roof, Another Proof
 
-The Hungarian mathematician Paul Erdős was a pillar of the problem solving camp. Though this short essay could not possibly do justice to his outlandish life story, I will try to summarize. Erdős is the most prolific mathematician in history, by count of papers published (over 1500). He was able to do this because he renounced every aspect of life beyond mathematics. He had no home, and lived out of a suitcase while traveling from university to university. At each stop, he would show up, knock on the department chair's office door, and be provided housing and food by an attendant professor. In the subsequent weeks, Erdős and his host would work on problems and usually publish a paper or two, until such time as Erdős decided to move on to his next host. As Erdős said, "Another roof, another proof." He never married and had no children.
+The Hungarian mathematician Paul Erdős was a pillar of the problem solving camp. Though this short essay could not possibly do justice to his outlandish life story, I will try to summarize. Erdős is the most prolific mathematician in history, by count of papers published (over 1500). He was able to do this because he renounced every aspect of life beyond mathematics. He had no home, and lived out of a suitcase while traveling from university to university.
+
+At each stop, he would show up, knock on the department chair's office door, and be provided housing and food by an attendant professor. In the subsequent weeks, Erdős and his host would work on problems and usually publish a paper or two, until such time as Erdős decided to move on to his next host. As Erdős said, "Another roof, another proof." He never married and had no children.
 
 Erdős would often do bizarre things like wake up his host in the middle of the night, exclaiming, "My mind is open," meaning he was ready to do mathematics. He was a serious user of amphetamines, and since he had no possessions or money, it fell to his hosts to procure his drugs. Despite being an atheist, he called God the "Supreme Fascist." He also claimed God kept a Book of the most beautiful proofs of every theorem. He didn't believe in God, but he believed in the Book.
 
@@ -37,7 +41,9 @@ Erdős's hosts tolerated his idiosyncratic behavior because his presence was a b
 
 [^1]: You didn't ask, but my Erdős number is three, by way of György Turán → Endre Szemerédi (and others) → Erdős.
 
-His work focused on problems in combinatorics, number theory, graph theory, and incidence geometry (statements about configurations of points and lines), the sort of counting arguments that we saw in Chapters 4 and 6—though much more sophisticated and interesting. As he spread his ideas from university to university, he gave combinatorics credibility as a field of study and established its reputation as a field that prioritizes problem solving over theory building. To Erdős, mathematics was "conjecture and proof."
+His work focused on problems in combinatorics, number theory, graph theory, and incidence geometry (statements about configurations of points and lines), the sort of counting arguments that we saw in Chapters 4 and 6—though much more sophisticated and interesting.
+
+As he spread his ideas from university to university, he gave combinatorics credibility as a field of study and established its reputation as a field that prioritizes problem solving over theory building. To Erdős, mathematics was "conjecture and proof."
 
 Indeed, as Tim Gowers writes, graph theory tends not to benefit from extensive theory-building.
 
@@ -59,11 +65,15 @@ I interpret this in more of a metaphysical sense than a literal sense; one needs
 
 ## Grothendieck: Rewriting the Foundations Until Theorems Become Trivial
 
-One person who might be said to be the stylistic antithesis to Paul Erdős is the French mathematician Alexander Grothendieck. He also lived a curiously eccentric lifestyle involving radical anti-military politics and an eventual self-exile to a small village in Southern France. Grothendieck declined various prizes for his life's work, and decried the mathematical establishment as being obsessed by status to the point of intellectual bankruptcy. Toward the end of his life he also turned to mysticism and spiritualism, almost starving himself to death via unusual diets and fasting.
+One person who might be said to be the stylistic antithesis to Paul Erdős is the French mathematician Alexander Grothendieck. He also lived a curiously eccentric lifestyle involving radical anti-military politics and an eventual self-exile to a small village in Southern France.
+
+Grothendieck declined various prizes for his life's work, and decried the mathematical establishment as being obsessed by status to the point of intellectual bankruptcy. Toward the end of his life he also turned to mysticism and spiritualism, almost starving himself to death via unusual diets and fasting.
 
 Grothendieck's work was a complete rebuilding of the foundations of the subfield of *algebraic geometry* in terms of category theory. These developments concurrently reshaped the foundations of adjacent and burgeoning fields of cohomology theory, algebraic topology, and representation theory. His work also led to the resolution of a number of high-profile conjectures, and important generalizations of famous theorems.
 
-In particular, his theory elucidated the role of category theory in connecting disparate fields of mathematics together via *universality*. In brief, universality is a uniqueness property of a particular pattern or structure that occurs within a subfield of mathematics. For example, the product of two sets has a universal property, and it is the same property as the product of vector spaces (Chapter 10) as well as groups (Chapter 16). Noticing these similarities allows one to formalize a "product" in a domain-independent way, and then prove theorems about it that apply to all relevant domains at once! Grothendieck's attitude takes theory-building to the extreme.
+In particular, his theory elucidated the role of category theory in connecting disparate fields of mathematics together via *universality*. In brief, universality is a uniqueness property of a particular pattern or structure that occurs within a subfield of mathematics.
+
+For example, the product of two sets has a universal property, and it is the same property as the product of vector spaces (Chapter 10) as well as groups (Chapter 16). Noticing these similarities allows one to formalize a "product" in a domain-independent way, and then prove theorems about it that apply to all relevant domains at once! Grothendieck's attitude takes theory-building to the extreme.
 
 Mathematicians David Mumford and John Tate wrote about Grothendieck,
 

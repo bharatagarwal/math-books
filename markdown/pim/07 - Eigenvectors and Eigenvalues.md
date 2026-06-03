@@ -12,15 +12,23 @@ If you polled mathematicians on what the "most interesting" topic in linear alge
 
 A more concise, less precise rephrasing is to find a "nontrivial" solution to $f(v)=\lambda v$. Note that $\lambda=0$ is a valid choice, so long as $v$ is nonzero. As you would infer from our discussion in Chapter 10, the same definition holds for a matrix $A$, where the condition is equivalently written $Av=\lambda v$.
 
-The question of why eigenvalues are so central to linear algebra and its applications is a deep one, and there is no easy answer. In a vague sense, the eigenvectors and eigenvalues of a linear map encode the most important data about that map in a natural, efficient way. More concretely, in the scope of this chapter eigenvectors provide the "right" basis in which to study a linear map $V\to V$. They transform our perspective so that the important features of a map can be studied in isolation. If you accept that premise, it's no surprise that eigenvalues are useful for computation. But to say anything more concrete than that, to explain the universality of eigenvalues, is difficult.
+The question of why eigenvalues are so central to linear algebra and its applications is a deep one, and there is no easy answer. In a vague sense, the eigenvectors and eigenvalues of a linear map encode the most important data about that map in a natural, efficient way. More concretely, in the scope of this chapter eigenvectors provide the "right" basis in which to study a linear map $V\to V$.
 
-The application for this chapter is a deep dive into how eigenvectors and eigenvalues explain the dynamics of a particular physical system describing one-dimensional waves. In no uncertain terms, eigenvalues are the scientific theory that reveals the inner nature of the system. As a bonus, the clarification provided by eigenvectors gives naturally efficient algorithms to determine the state of the dynamical system at any future time. In Chapter 14 we'll see how eigenvalues encode information about smooth surfaces in a way that enables optimization. And the singular values we saw in Chapter 10 are closely related to eigenvectors and eigenvalues in a way we didn't have the language to explain in that chapter (see the exercises for more on that).
+They transform our perspective so that the important features of a map can be studied in isolation. If you accept that premise, it's no surprise that eigenvalues are useful for computation. But to say anything more concrete than that, to explain the universality of eigenvalues, is difficult.
 
-I could spend all day giving examples of how eigenvectors are used in practice. But to get to the heart of what makes them useful is another task entirely. The word eigenvalue itself doesn't have any intrinsic meaning that might hint at an answer. Eigenvalue comes from the German word *eigen*, simply meaning "own," in the sense of the phrase, "I have my own principles to uphold and refuse to use emacs." In that sense, eigenvalue simply means a value that is intrinsic to the linear map. The importance of the study of eigenvalues and eigenvectors is analogous to the importance of the roots of a polynomial to the study of polynomials. Knowing the roots of a polynomial allows you to write the polynomial in a simpler form, and "read off" information about the polynomial from the simpler representation. So it is with eigenvalues and eigenvectors. The eigenvalues of a linear map are even the roots of a special polynomial (see Exercise 12.11).
+The application for this chapter is a deep dive into how eigenvectors and eigenvalues explain the dynamics of a particular physical system describing one-dimensional waves. In no uncertain terms, eigenvalues are the scientific theory that reveals the inner nature of the system. As a bonus, the clarification provided by eigenvectors gives naturally efficient algorithms to determine the state of the dynamical system at any future time.
+
+In Chapter 14 we'll see how eigenvalues encode information about smooth surfaces in a way that enables optimization. And the singular values we saw in Chapter 10 are closely related to eigenvectors and eigenvalues in a way we didn't have the language to explain in that chapter (see the exercises for more on that).
+
+I could spend all day giving examples of how eigenvectors are used in practice. But to get to the heart of what makes them useful is another task entirely. The word eigenvalue itself doesn't have any intrinsic meaning that might hint at an answer. Eigenvalue comes from the German word *eigen*, simply meaning "own," in the sense of the phrase, "I have my own principles to uphold and refuse to use emacs." In that sense, eigenvalue simply means a value that is intrinsic to the linear map.
+
+The importance of the study of eigenvalues and eigenvectors is analogous to the importance of the roots of a polynomial to the study of polynomials. Knowing the roots of a polynomial allows you to write the polynomial in a simpler form, and "read off" information about the polynomial from the simpler representation. So it is with eigenvalues and eigenvectors. The eigenvalues of a linear map are even the roots of a special polynomial (see Exercise 12.11).
 
 ### Eigenvalues Are Basis-Invariant
 
-We'll start by proving intrinsic-ness; the eigenvalues of a matrix are independent of the choice of basis. Let $A$ be the matrix representation of a linear map $f:\mathbb{R}^{n}\to\mathbb{R}^{n}$, written with respect to the standard basis. Let $U$ be a change of basis matrix. That is, the columns of $U$ are the new basis vectors, and if we were to write $f$ with respect to the new basis, its matrix would be $B=UAU^{-1}$. Recall, in words, this matrix converts the input to the standard basis via $U^{-1}$ (the inverse of $U$), then applies $A$, then converts the output back to the new basis using $U$. Now we can state the theorem.
+We'll start by proving intrinsic-ness; the eigenvalues of a matrix are independent of the choice of basis. Let $A$ be the matrix representation of a linear map $f:\mathbb{R}^{n}\to\mathbb{R}^{n}$, written with respect to the standard basis. Let $U$ be a change of basis matrix.
+
+That is, the columns of $U$ are the new basis vectors, and if we were to write $f$ with respect to the new basis, its matrix would be $B=UAU^{-1}$. Recall, in words, this matrix converts the input to the standard basis via $U^{-1}$ (the inverse of $U$), then applies $A$, then converts the output back to the new basis using $U$. Now we can state the theorem.
 
 **Theorem 12.2.** Let $A$ be a matrix and $U$ be a change of basis matrix, with $B=UAU^{-1}$. Let $v\in\mathbb{R}^{n}$ be an eigenvector for $A$ with eigenvalue $\lambda$. Then $v'=Uv$ is an eigenvector for $B$ that also has eigenvalue $\lambda$.
 
@@ -30,9 +38,13 @@ $$(UAU^{-1})(Uv)=UA(U^{-1}U)v=UAI_{n}v=U(Av)=U(\lambda v)=\lambda Uv.$$
 
 Finally note that since $U$ is an invertible matrix and $v$ is nonzero, $Uv\neq 0$ as well. $\blacksquare$
 
-So while (the coordinates of) eigenvectors are not preserved across different bases, the eigenvalues are. A technical way to say this is that eigenvalues of a linear map $f$ are *invariant* properties of $f$. Invariance means that the property doesn't change under some prespecified family of transformations. In this case, eigenvalues are invariant under the operation of changing a basis. Invariance is a natural property to require for something which purports to reveal the divine secrets of a linear map.
+So while (the coordinates of) eigenvectors are not preserved across different bases, the eigenvalues are. A technical way to say this is that eigenvalues of a linear map $f$ are *invariant* properties of $f$.
 
-This is also related to our earlier discussion in Chapter 8 of the well-definition of the limit. We're saying that the eigenvalues of a linear map don't depend on the arbitrary choices you make to represent them in the nice computational setting of matrix algebra. However, this time it's a bit different because we didn't intentionally bake basis-invariance into the definition. If you stumbled across a matrix-vector equation like $Av=2v$ in the wild, perhaps while modeling some physical system, it might not occur to you that the number $2$ is a special property of the system. In other words, this invariance feels discovered. On the other hand, the definition of a limit had an explicit invariance baked in.
+Invariance means that the property doesn't change under some prespecified family of transformations. In this case, eigenvalues are invariant under the operation of changing a basis. Invariance is a natural property to require for something which purports to reveal the divine secrets of a linear map.
+
+This is also related to our earlier discussion in Chapter 8 of the well-definition of the limit. We're saying that the eigenvalues of a linear map don't depend on the arbitrary choices you make to represent them in the nice computational setting of matrix algebra. However, this time it's a bit different because we didn't intentionally bake basis-invariance into the definition.
+
+If you stumbled across a matrix-vector equation like $Av=2v$ in the wild, perhaps while modeling some physical system, it might not occur to you that the number $2$ is a special property of the system. In other words, this invariance feels discovered. On the other hand, the definition of a limit had an explicit invariance baked in.
 
 Invariance is a "smell." Invariant properties point toward the soul of mathematics. We'll have more to say on this when we study hyperbolic geometry in Chapter 16.
 
@@ -44,7 +56,9 @@ We can watch this invariance happen numerically. Conjugating a matrix $A$ by any
 
 ### Eigenvectors as Maximally Invariant Directions
 
-An eigenvector $v$ of $A$ has another sort of "invariance" under the operation of left-multiplication by $A$. That is, if you ignore scaling—or rescale $v$ to a unit vector before and after left multiplying by $A$—then $A$ sends $v$ to itself. This is why we say that the eigenvectors span the "best axes" in which to view $A$, because $A$ sends any vector on the axis to another vector within the same line. They exhibit maximal invariance when the linear map is applied to them. And for the limited scope of this chapter, the set of all eigenvalues and eigenvectors of a linear map allows one to represent the entire map in terms of these invariant, independent pieces.
+An eigenvector $v$ of $A$ has another sort of "invariance" under the operation of left-multiplication by $A$. That is, if you ignore scaling—or rescale $v$ to a unit vector before and after left multiplying by $A$—then $A$ sends $v$ to itself. This is why we say that the eigenvectors span the "best axes" in which to view $A$, because $A$ sends any vector on the axis to another vector within the same line.
+
+They exhibit maximal invariance when the linear map is applied to them. And for the limited scope of this chapter, the set of all eigenvalues and eigenvectors of a linear map allows one to represent the entire map in terms of these invariant, independent pieces.
 
 This is the best high-level intuition I can give without getting too deep in the math. Before we do, let's see a compelling example of why eigenvalues are so interesting and complex for specific matrices called *adjacency matrices*. In the next section we won't prove any of the theorems we state.
 
@@ -54,14 +68,18 @@ Let $G=(V,E)$ be an undirected graph, the same sort we studied in Chapter 6. The
 
 **Definition 12.3.** Let $G=(V,E)$ be a graph and $V=\{v_{1},\ldots,v_{n}\}$ (i.e., pick an ordering of the $n$ vertices of $G$). Define the *adjacency matrix of $G$*, denoted $A(G)$, as the $n\times n$ matrix whose $i,j$ entry is $1$ if $(v_{i},v_{j})\in E$ and $0$ otherwise.
 
-In the exercises, you will write down a description of this matrix as a linear map and interpret what it means in graph-theoretic terms. In particular, each of the standard basis vectors $e_{i}=(0,\ldots,0,1,0,\ldots,0)$ can be thought of as identifying the $i$-th vertex $v_{i}$ of $G$. Figure 12.1 is an example graph and its adjacency matrix. We call a graph *bipartite* if its vertices can be partitioned into two parts in such a way that all edges cross from one part to the other. The graph $G$ in Figure 12.1 is bipartite because it can be partitioned into $\{1,3\}$ and $\{2,4,5\}$.
+In the exercises, you will write down a description of this matrix as a linear map and interpret what it means in graph-theoretic terms. In particular, each of the standard basis vectors $e_{i}=(0,\ldots,0,1,0,\ldots,0)$ can be thought of as identifying the $i$-th vertex $v_{i}$ of $G$.
+
+Figure 12.1 is an example graph and its adjacency matrix. We call a graph *bipartite* if its vertices can be partitioned into two parts in such a way that all edges cross from one part to the other. The graph $G$ in Figure 12.1 is bipartite because it can be partitioned into $\{1,3\}$ and $\{2,4,5\}$.
 
 <!-- carousel -->
 ![Figure 12.1a: The example graph $G$, with edges $1\text{–}2$, $1\text{–}4$, $1\text{–}5$, and $3\text{–}4$.](07 - Eigenvectors and Eigenvalues_images/img-0.jpeg)
 ![Figure 12.1b: The adjacency matrix $A(G)$. Rows and columns are indexed by the standard basis vectors $e_i$; the $i,j$ entry is $1$ exactly when $v_i$ and $v_j$ are joined by an edge.](07 - Eigenvectors and Eigenvalues_images/img-1.jpeg)
 <!-- endcarousel -->
 
-Bipartite graphs are common in applications, because they naturally encode networks in which there are two classes of things, where things within a class don't relate to each other. For example: students and teachers, with edges being class membership; wholesale factories and distributors, with edges being shipments; or files and users, with edges being access logs. Problems that can be intractable on general graphs can be easy to solve on bipartite graphs, which is a compelling reason to study them.
+Bipartite graphs are common in applications, because they naturally encode networks in which there are two classes of things, where things within a class don't relate to each other.
+
+For example: students and teachers, with edges being class membership; wholesale factories and distributors, with edges being shipments; or files and users, with edges being access logs. Problems that can be intractable on general graphs can be easy to solve on bipartite graphs, which is a compelling reason to study them.
 
 ### Detecting Bipartiteness from the Spectrum
 
@@ -85,14 +103,18 @@ Let $G = (V, E)$ be a graph constructed by the following process: for each pair 
 
 One can show (though we will not) that for a random graph, with overwhelming probability the densest cluster of vertices will have almost exactly $2\log(n)$ vertices in it. It's also widely believed that no efficient algorithm can reliably find the densest cluster.
 
-So to make this cluster-finding problem easier, after creating the graph in this random way, pick a random subset of vertices of size $t$, and connect all remaining edges among those vertices. We'll call the chosen subset a *planted clique*. In general, a *clique* is a subset of vertices with a complete set of edges among them. It's a subgraph that forms the complete graph $K_{t}$ for some $t$. You might expect that such a dense cluster of vertices would be detectable, simply by being a statistical anomaly. Maybe you could just count up how many edges are on each vertex, looking at the ones that are unusually large, to find the planted clique. I won't prove so here, but for this method to work, the planted clique must have size at least $t\sim\sqrt{n\log n}$. The following algorithm succeeds for a much smaller $t$:
+So to make this cluster-finding problem easier, after creating the graph in this random way, pick a random subset of vertices of size $t$, and connect all remaining edges among those vertices. We'll call the chosen subset a *planted clique*. In general, a *clique* is a subset of vertices with a complete set of edges among them. It's a subgraph that forms the complete graph $K_{t}$ for some $t$.
+
+You might expect that such a dense cluster of vertices would be detectable, simply by being a statistical anomaly. Maybe you could just count up how many edges are on each vertex, looking at the ones that are unusually large, to find the planted clique. I won't prove so here, but for this method to work, the planted clique must have size at least $t\sim\sqrt{n\log n}$. The following algorithm succeeds for a much smaller $t$:
 
 **Theorem 12.5.** Let $v$ be an eigenvector for $\lambda_{2}$, the second largest eigenvalue of the adjacency matrix of $G$, a random graph on $n$ vertices with a planted clique of size at least $\sqrt{n}$. The following algorithm recovers the vertices of the planted clique with high probability:
 
 1. Recall that the indices of $v$ correspond to vertices of $G$, and select $\sqrt{n}$ such vertices whose corresponding entries in $v$ are the largest in absolute value. Call this set $T$.
 2. Output the set of vertices of $G$ that are adjacent to at least $3/4$ of the vertices in $T$.
 
-This is a result that is quite recent by mathematics standards. It was proved in 1998 by Alon et al. No method is known to exist that can reliably find a smaller planted clique, and moreover it can be *proved* that methods that only use statistics about the graph cannot find a smaller clique. All of this is to say, eigenvalues of the adjacency matrix don't just encode information about $G$, in certain settings they do so in an *optimal way*. The specific area of math studying how and when eigenvalues are useful in encapsulating information about graphs is called *spectral graph theory*. The general idea of using eigenvalues and eigenvectors of matrices derived from a graph to find dense clusters is called *spectral clustering*, and there are many variations.
+This is a result that is quite recent by mathematics standards. It was proved in 1998 by Alon et al. No method is known to exist that can reliably find a smaller planted clique, and moreover it can be *proved* that methods that only use statistics about the graph cannot find a smaller clique. All of this is to say, eigenvalues of the adjacency matrix don't just encode information about $G$, in certain settings they do so in an *optimal way*.
+
+The specific area of math studying how and when eigenvalues are useful in encapsulating information about graphs is called *spectral graph theory*. The general idea of using eigenvalues and eigenvectors of matrices derived from a graph to find dense clusters is called *spectral clustering*, and there are many variations.
 
 ## Limiting the Scope: Symmetric Matrices
 
@@ -100,7 +122,9 @@ By now I hope I have convinced you that eigenvectors and eigenvalues, together o
 
 However, we still have little understanding about why eigensystems reveal such valuable information. The briefest possible answer might be formulated as "eigenvectors, scaled by their eigenvalues, provide the most natural coordinate system in which to view linear maps $V\to V$."
 
-A stronger intuition is difficult to explain without a longer expedition into the theory than we have time in these pages. One reason it's hard is that a linear map $f$ on $\mathbb{R}^{n}$ might not have any eigenvalues! For example, the $2$-dimensional linear map that rotates a vector by $\pi/4$ radians clockwise. In fact, the existence of eigenvalues and eigenvectors is similar in nature to the existence of roots of single-variable polynomials. We will reveal the first step toward making this connection concrete in Exercise 12.11. As a consequence, some linear maps only have eigenvalues that are complex numbers, and the corresponding eigenvectors have complex entries. Each complex eigenvalue a linear map has reduces the number of real eigenvalues it can have.
+A stronger intuition is difficult to explain without a longer expedition into the theory than we have time in these pages. One reason it's hard is that a linear map $f$ on $\mathbb{R}^{n}$ might not have any eigenvalues! For example, the $2$-dimensional linear map that rotates a vector by $\pi/4$ radians clockwise. In fact, the existence of eigenvalues and eigenvectors is similar in nature to the existence of roots of single-variable polynomials.
+
+We will reveal the first step toward making this connection concrete in Exercise 12.11. As a consequence, some linear maps only have eigenvalues that are complex numbers, and the corresponding eigenvectors have complex entries. Each complex eigenvalue a linear map has reduces the number of real eigenvalues it can have.
 
 Introducing complex numbers makes other things simpler, while making some things more complicated. But more importantly, if you're not comfortable with the geometry of complex numbers, you will have difficulty interpreting how they relate to a linear map for vectors of real numbers. This book skips complex numbers, so we will not be able to give a complete picture.
 
@@ -116,7 +140,9 @@ A useful notation when working with symmetric matrices is that of the *transpose
 
 $$\begin{pmatrix}1&2&3&4\\2&5&6&7\\3&6&8&9\\4&7&9&-1\end{pmatrix}$$
 
-In Chapter 10 I promised you that every operation on a matrix corresponds to an operation on a linear map. This is also true for the matrix transpose. If $f$ is a linear map and $A$ is a matrix representation, then $A^{T}$ corresponds to some linear map $f^{T}$ that's related to $f$. However, the operation itself is difficult to describe without a lot of extra notation and definitions. We'll revisit those ideas in the Chapter Notes, but here we'll directly prove the important takeaway of that discussion: symmetric matrices play nicely with the inner product.
+In Chapter 10 I promised you that every operation on a matrix corresponds to an operation on a linear map. This is also true for the matrix transpose. If $f$ is a linear map and $A$ is a matrix representation, then $A^{T}$ corresponds to some linear map $f^{T}$ that's related to $f$.
+
+However, the operation itself is difficult to describe without a lot of extra notation and definitions. We'll revisit those ideas in the Chapter Notes, but here we'll directly prove the important takeaway of that discussion: symmetric matrices play nicely with the inner product.
 
 First, one can verify that the standard inner product definition results in $\langle Ax,y\rangle=\langle x,A^{T}y\rangle$ for all $x,y$. This is often written as $\langle Ax,y\rangle=x^{T}A^{T}y$. One considers vectors "single-column matrices," notes that in this perspective $\langle x,y\rangle=x^{T}y$, and then, using Exercise 12.1 that $(AB)^{T}=B^{T}A^{T}$,
 
@@ -160,13 +186,17 @@ Since $c$ is on either end of this inequality, all of the quantities must be equ
 
 The final observation is simply that $A(x+y)=Ax+Ay=cy+cx$, and so $c$ is an eigenvalue for $x+y$. $\blacksquare$
 
-To fulfill my promise: $x+y$ is a natural choice of eigenvector because it's on the line "halfway" between $x$ and $y$. Indeed, it's in the span of the vector $(x+y)/2$, which is a more suggestive way to say the "average" of $x$ and $y$. Symmetry was our guide: $A$ sends $x$ to the span of $y$ and vice versa. The seasoned linear algebraist would guess—and prove shortly thereafter—that the symmetry extends to the whole plane spanned by $\{x,y\}$. Since the behavior of any linear map (on this subspace) only depends on its behavior on the basis (of the subspace), we deduce that $A$ behaves as a reflection, flipping the entire plane $\text{span}\{x,y\}$. And every reflection in a plane has a line of symmetry, which in this case is through $x+y$.
+To fulfill my promise: $x+y$ is a natural choice of eigenvector because it's on the line "halfway" between $x$ and $y$. Indeed, it's in the span of the vector $(x+y)/2$, which is a more suggestive way to say the "average" of $x$ and $y$. Symmetry was our guide: $A$ sends $x$ to the span of $y$ and vice versa.
+
+The seasoned linear algebraist would guess—and prove shortly thereafter—that the symmetry extends to the whole plane spanned by $\{x,y\}$. Since the behavior of any linear map (on this subspace) only depends on its behavior on the basis (of the subspace), we deduce that $A$ behaves as a reflection, flipping the entire plane $\text{span}\{x,y\}$. And every reflection in a plane has a line of symmetry, which in this case is through $x+y$.
 
 The inner product is starting to take center stage. We should study it in more detail.
 
 ## Inner Products
 
-In order to express one very useful aspect of eigenvectors, we must revisit the discussion from Chapter 10 about the inner product. In general, a vector space only has a limited amount of geometry you can describe. However, if you specify an inner product, you can describe angles, lengths, and more. The inner product is imposed on a vector space, in the same way that a style guide is imposed on a programmer: to give structure to (or elucidate structure in) the underlying space. The standard inner product on $\mathbb{R}^{n}$ is defined by the formula
+In order to express one very useful aspect of eigenvectors, we must revisit the discussion from Chapter 10 about the inner product. In general, a vector space only has a limited amount of geometry you can describe. However, if you specify an inner product, you can describe angles, lengths, and more.
+
+The inner product is imposed on a vector space, in the same way that a style guide is imposed on a programmer: to give structure to (or elucidate structure in) the underlying space. The standard inner product on $\mathbb{R}^{n}$ is defined by the formula
 
 $$\langle x,y\rangle=\sum_{i=1}^{n}x_{i}y_{i}.$$
 
@@ -184,9 +214,13 @@ Over the years mathematicians have extracted the generic properties of this form
 
 A vector space $V$ and a specific inner product $\langle-,-\rangle$ are together called an *inner product space*.
 
-In Chapter 10 we proved Theorem 10.17 that every finite-dimensional vector space is isomorphic to $\mathbb{R}^{n}$ for some $n$. A similar theorem holds for finite-dimensional inner product spaces. That is, every finite-dimensional inner product space is isomorphic to $\mathbb{R}^{n}$ with the usual sum-of-squares inner product. The notion of isomorphism is more complicated here, because it needs to preserve the inner product. See the exercises for more details. This allows us to justify using the standard inner product and $\mathbb{R}^{n}$ for applications that lack a more principled choice.
+In Chapter 10 we proved Theorem 10.17 that every finite-dimensional vector space is isomorphic to $\mathbb{R}^{n}$ for some $n$. A similar theorem holds for finite-dimensional inner product spaces. That is, every finite-dimensional inner product space is isomorphic to $\mathbb{R}^{n}$ with the usual sum-of-squares inner product.
 
-More generally, the abstract definition of an inner product becomes more useful and interesting when you're dealing with infinite-dimensional vector spaces. We won't cover this in depth in this book, but a quick aside may pique your interest. The gold standard example of an interesting inner product space is the space of functions of a single real variable $f: \mathbb{R} \to \mathbb{R}$ whose square has a finite integral. Call this space $L^2(\mathbb{R})$, or just $L^2$ for short (the exponent reminds us we're squaring):
+The notion of isomorphism is more complicated here, because it needs to preserve the inner product. See the exercises for more details. This allows us to justify using the standard inner product and $\mathbb{R}^{n}$ for applications that lack a more principled choice.
+
+More generally, the abstract definition of an inner product becomes more useful and interesting when you're dealing with infinite-dimensional vector spaces. We won't cover this in depth in this book, but a quick aside may pique your interest.
+
+The gold standard example of an interesting inner product space is the space of functions of a single real variable $f: \mathbb{R} \to \mathbb{R}$ whose square has a finite integral. Call this space $L^2(\mathbb{R})$, or just $L^2$ for short (the exponent reminds us we're squaring):
 
 $$L^{2}(\mathbb{R}) = \left\{f: \mathbb{R} \to \mathbb{R} \;\middle|\; \int_{-\infty}^{\infty} f(x)^{2}\, dx \text{ is finite} \right\}$$
 
@@ -194,7 +228,9 @@ A typical example of where these functions occur in real life is as sound waves.
 
 $$\langle f, g \rangle = \int_{-\infty}^{\infty} f(x) g(x)\, dx.$$
 
-This inner product space—which actually satisfies some additional properties that make it into a so-called *Hilbert space*—is different from vector spaces we've seen so far. In particular, in $\mathbb{R}^n$ there's a "default" basis in which we express vectors without realizing it: the standard basis. $L^2$ has no obvious basis. From our discussion of Taylor series in Chapter 8, we know that polynomials can approximate functions in the limit. One might hope that polynomials form a basis of this space, perhaps $\{1, x, x^2, \ldots\}$. But actually these functions are not even in $L^2$. Moreover, many functions in $L^2$ aren't differentiable everywhere, so Taylor series can run into trouble.
+This inner product space—which actually satisfies some additional properties that make it into a so-called *Hilbert space*—is different from vector spaces we've seen so far. In particular, in $\mathbb{R}^n$ there's a "default" basis in which we express vectors without realizing it: the standard basis. $L^2$ has no obvious basis.
+
+From our discussion of Taylor series in Chapter 8, we know that polynomials can approximate functions in the limit. One might hope that polynomials form a basis of this space, perhaps $\{1, x, x^2, \ldots\}$. But actually these functions are not even in $L^2$. Moreover, many functions in $L^2$ aren't differentiable everywhere, so Taylor series can run into trouble.
 
 As it happens, there are many interesting and useful bases for this space. For example, the following basis is called the *Hermite basis*:
 
@@ -204,7 +240,9 @@ But proving this is a basis is not trivial! There are other useful bases as well
 
 These bases are difficult to discover. But even when we have one, how in the name of Grace Hopper can one even write a function in such a basis? You can't set up a system of equations because there's no decent starting basis! Not to mention it'd be an infinite system of infinitely long equations.
 
-Using the inner product, and some work to modify the basis to make it geometrically amenable, the process of writing a function with respect to one of these (modified) bases reduces to computing an inner product. Once again, we translate an intuitive but hard mathematical concept into a more computationally friendly language. This should impress upon you the importance of the inner product. Not only does it endow a vector space with new, geometric measurements; it also makes computing basis representations possible where it might otherwise not be. A powerful revelation indeed.
+Using the inner product, and some work to modify the basis to make it geometrically amenable, the process of writing a function with respect to one of these (modified) bases reduces to computing an inner product. Once again, we translate an intuitive but hard mathematical concept into a more computationally friendly language.
+
+This should impress upon you the importance of the inner product. Not only does it endow a vector space with new, geometric measurements; it also makes computing basis representations possible where it might otherwise not be. A powerful revelation indeed.
 
 In the rest of this chapter, except for the application, the inner product will be considered abstractly, as we study its generic properties and how it relates to eigenvectors. We'll also see how the inner product relates to simplifying the computation of expressing a vector in terms of a basis.
 
@@ -238,11 +276,15 @@ Most of the facts about perpendicularity and projection we proved for $\mathbb{R
 
 **Proposition 12.14.** Any set of nonzero vectors $\{v_{1},\ldots,v_{k}\}$ which is pairwise orthogonal (for each $i\neq j$, $\langle v_{i},v_{j}\rangle=0$) is linearly independent.
 
-*Proof.* Let $\{v_{1},\ldots,v_{k}\}$ be as in the statement of the proposition, and suppose $c_{1}v_{1}+\cdots+c_{k}v_{k}=0$. To show linear independence, recall, we need to show that all the $c_{i}=0$. Fix any $i$. To show $c_{i}$ is zero, inspect $\langle c_{1}v_{1}+\cdots+c_{k}v_{k},v_{i}\rangle$, which is zero because the first argument is zero by assumption. By linearity, this splits up as $\sum_{j=1}^{k}c_{j}\langle v_{j},v_{i}\rangle$. By pairwise orthogonality, all the terms in the sum are zero except $c_{i}\langle v_{i},v_{i}\rangle$. Thus, this sum reduces to $c_{i}\langle v_{i},v_{i}\rangle=0$. Then either $v_{i}=0$ (ruled out by assumption) or $c_{i}=0$. The same argument applies to every $c_{i}$. $\blacksquare$
+*Proof.* Let $\{v_{1},\ldots,v_{k}\}$ be as in the statement of the proposition, and suppose $c_{1}v_{1}+\cdots+c_{k}v_{k}=0$. To show linear independence, recall, we need to show that all the $c_{i}=0$. Fix any $i$. To show $c_{i}$ is zero, inspect $\langle c_{1}v_{1}+\cdots+c_{k}v_{k},v_{i}\rangle$, which is zero because the first argument is zero by assumption.
+
+By linearity, this splits up as $\sum_{j=1}^{k}c_{j}\langle v_{j},v_{i}\rangle$. By pairwise orthogonality, all the terms in the sum are zero except $c_{i}\langle v_{i},v_{i}\rangle$. Thus, this sum reduces to $c_{i}\langle v_{i},v_{i}\rangle=0$. Then either $v_{i}=0$ (ruled out by assumption) or $c_{i}=0$. The same argument applies to every $c_{i}$. $\blacksquare$
 
 ## Orthonormal Bases
 
-Bases consisting of orthogonal unit vectors are glittering treasures for computation. They make it easy to write a vector in terms of that basis. Let $V$ be an inner product space, and suppose that $\{v_{1},\ldots,v_{n}\}$ is a basis for $V$, where every $v_{i}$ is a unit vector and $\langle v_{i},v_{j}\rangle=0$ for every $i\neq j$. Such a basis is called an *orthonormal basis*. The "ortho" is because each pair is orthogonal, and "normal" because each vector is a unit vector (normalized). Having such a basis allows you to compute the basis representation of any vector using inner products.
+Bases consisting of orthogonal unit vectors are glittering treasures for computation. They make it easy to write a vector in terms of that basis. Let $V$ be an inner product space, and suppose that $\{v_{1},\ldots,v_{n}\}$ is a basis for $V$, where every $v_{i}$ is a unit vector and $\langle v_{i},v_{j}\rangle=0$ for every $i\neq j$.
+
+Such a basis is called an *orthonormal basis*. The "ortho" is because each pair is orthogonal, and "normal" because each vector is a unit vector (normalized). Having such a basis allows you to compute the basis representation of any vector using inner products.
 
 **Proposition 12.15.** Let $\{v_{1},\ldots,v_{n}\}$ be an orthonormal basis for $V$, and let $x\in V$. Then $x$ can be written as
 
@@ -271,7 +313,9 @@ This shortcut is dramatic. The naive way to write $x$ in a basis $\{v_i\}$ is to
 
 As we've discussed, the naive approach to computing the basis representation of a vector $x\in\mathbb{R}^{n}$ with respect to a basis $\{v_{i}\}$ would be to set up the system of linear equations $Ay=x$, where the columns of $A$ are the $v_{i}$, and solve for $y$ using a technique like Gaussian elimination. As it turns out, Gaussian elimination takes cubic runtime in the worst case (cubic in $n$, the dimension of the vector space).
 
-However, with an orthonormal basis all you need to do is compute $n$ inner products. The standard inner product only takes $n$ multiplications and $n$ additions, meaning the entire decomposition only takes time $n^{2}$. This is a huge improvement if, suppose, you could compute an orthonormal basis once and use it to compute basis representations many more times, as opposed to doing Gaussian elimination for each vector you wanted to represent in the target basis. It's also worth noting that in practice there's often a natural ordering on a basis, so that the first vectors in the basis contribute "most significantly" to the space, and one can approximate a basis representation using a constant-sized subset of the basis. The singular values played this role in Chapter 10. For our physics application the eigenvalues will determine the ordering.
+However, with an orthonormal basis all you need to do is compute $n$ inner products. The standard inner product only takes $n$ multiplications and $n$ additions, meaning the entire decomposition only takes time $n^{2}$. This is a huge improvement if, suppose, you could compute an orthonormal basis once and use it to compute basis representations many more times, as opposed to doing Gaussian elimination for each vector you wanted to represent in the target basis.
+
+It's also worth noting that in practice there's often a natural ordering on a basis, so that the first vectors in the basis contribute "most significantly" to the space, and one can approximate a basis representation using a constant-sized subset of the basis. The singular values played this role in Chapter 10. For our physics application the eigenvalues will determine the ordering.
 
 But beyond that, in a space like $L^{2}$ where there's no natural starting basis, this gives us a feasible way to compute basis representations: just compute the inner product! In $L^{2}$ you simply integrate.
 
@@ -312,7 +356,9 @@ The Gram-Schmidt process operates as follows to build up an orthonormal basis fo
    3. Let $S_{i}=S_{i-1}\cup\{v'/\|v'\|\}$ (add normalized $v'$ to the partial basis).
 3. Output $S_{n}$.
 
-The Gram-Schmidt process doesn't dictate how to find a vector not in the span of a given set, but using that as a subroutine, the rest is well-defined arithmetic. The proof that the result is an orthonormal basis is a simple exercise in induction. The same algorithm allows one to start from a given basis (possibly of a subspace), and transform it into an orthonormal basis with the same span. For this variant, if you have a subspace basis $\{v_{1},\ldots,v_{k}\}$, and you want to know what new vector to choose at step $i$, you can simply choose $v_{i}$.
+The Gram-Schmidt process doesn't dictate how to find a vector not in the span of a given set, but using that as a subroutine, the rest is well-defined arithmetic. The proof that the result is an orthonormal basis is a simple exercise in induction.
+
+The same algorithm allows one to start from a given basis (possibly of a subspace), and transform it into an orthonormal basis with the same span. For this variant, if you have a subspace basis $\{v_{1},\ldots,v_{k}\}$, and you want to know what new vector to choose at step $i$, you can simply choose $v_{i}$.
 
 As a side note, this algorithm is generally not considered "production ready," because it suffers from numerical instability. Most industry-strength linear algebra libraries use one of a few different techniques based on linear algebra primitives (such as Householder reflections and the famed Cholesky decomposition) that have been fine-tuned and optimized for speed and stability. Instead, it serves as a proof of existence.
 
@@ -320,7 +366,11 @@ As a side note, this algorithm is generally not considered "production ready," b
 
 Our ultimate goal is to come up with an orthonormal basis of eigenvectors. This will combine the computational ease of orthogonality with the deep secrets revealed by eigenvalues. To appreciate Theorem 12.22, we should investigate why finding a basis of eigenvectors might be hard.
 
-For instance, we established existence of at least one eigenvalue-eigenvector pair, but can we say anything about uniqueness? Given a linear map $A$ with eigenvector $v$ and corresponding eigenvalue $\lambda$, it is obvious that every nonzero vector in $\text{span}(v)$ is also an eigenvector for $\lambda$. But is it possible that some independent vector is also an eigenvector for $\lambda$? A simple example says yes: take the map $f:\mathbb{R}^{3}\to\mathbb{R}^{3}$ sending $(a,b,c)\mapsto(a,b,0)$, a projection onto the degree-two subspace spanned by $(1,0,0)$ and $(0,1,0)$. Both $(1,0,0)$ and $(0,1,0)$ are eigenvectors for the eigenvalue $\lambda=1$, and so are all nonzero linear combinations. The story of an eigenvalue stretches beyond finding a single eigenvector. Due to this, we have a name for the subspace of a vector space $V$ spanned by the eigenvectors of a single eigenvalue $\lambda$ of a map $f:V\to V$, the *eigenspace* for $\lambda$ and $f$.
+For instance, we established existence of at least one eigenvalue-eigenvector pair, but can we say anything about uniqueness? Given a linear map $A$ with eigenvector $v$ and corresponding eigenvalue $\lambda$, it is obvious that every nonzero vector in $\text{span}(v)$ is also an eigenvector for $\lambda$.
+
+But is it possible that some independent vector is also an eigenvector for $\lambda$? A simple example says yes: take the map $f:\mathbb{R}^{3}\to\mathbb{R}^{3}$ sending $(a,b,c)\mapsto(a,b,0)$, a projection onto the degree-two subspace spanned by $(1,0,0)$ and $(0,1,0)$.
+
+Both $(1,0,0)$ and $(0,1,0)$ are eigenvectors for the eigenvalue $\lambda=1$, and so are all nonzero linear combinations. The story of an eigenvalue stretches beyond finding a single eigenvector. Due to this, we have a name for the subspace of a vector space $V$ spanned by the eigenvectors of a single eigenvalue $\lambda$ of a map $f:V\to V$, the *eigenspace* for $\lambda$ and $f$.
 
 ### Kernels, Eigenspaces, and Geometric Multiplicity
 
@@ -398,7 +448,9 @@ Before finishing the harder direction, let's see the whole theorem in one numeri
 
 The strategy for the other half of the proof will be by induction on the dimension of the vector space. That is, given the fact that every $(n-1)\times(n-1)$ symmetric matrix has an orthonormal basis of eigenvectors, we'll show that every $n\times n$ symmetric matrix does as well.
 
-Induction suggests we should find a way to "peel off" one dimension from the matrix $A$ in a way that's independent of the rest of the argument. Given $A$, we'll find an eigenvector $v$ with corresponding eigenvalue $\lambda$, normalize it, and use it as the first vector in the basis. Then we'll decompose $\mathbb{R}^{n}$ into two subspaces, a one-dimensional space spanned by $v$, and an $(n-1)$-dimensional space, which we'll apply induction on. In particular, we will be able to rewrite $A$ in a "block" form like so:
+Induction suggests we should find a way to "peel off" one dimension from the matrix $A$ in a way that's independent of the rest of the argument. Given $A$, we'll find an eigenvector $v$ with corresponding eigenvalue $\lambda$, normalize it, and use it as the first vector in the basis.
+
+Then we'll decompose $\mathbb{R}^{n}$ into two subspaces, a one-dimensional space spanned by $v$, and an $(n-1)$-dimensional space, which we'll apply induction on. In particular, we will be able to rewrite $A$ in a "block" form like so:
 
 $$A\rightarrow\begin{pmatrix}\lambda&\mathbf{0}\\\mathbf{0}&A'\end{pmatrix}$$
 
@@ -422,7 +474,9 @@ To prove the block form is as we say it is, we just need to reason about the fir
 
 Finally, we can invoke the inductive hypothesis for the matrix $A'$ (which is symmetric because $B^{T}AB$ is) and the subspace $W$. I.e., $A'$ has an orthonormal basis of eigenvectors, call it $\{u_{2},\ldots,u_{n}\}$. Then the final basis is $\{v,u_{2},\ldots,u_{n}\}$.
 
-There is one more detail. We defined $u_{i}$ as an eigenvector of this sub-matrix $A'$, but can we be sure it's an eigenvector of the original $A$? Indeed it is, because of the way we decomposed $\mathbb{R}^{n}$ into $\text{span}(v)$ and the orthogonal complement $W$. Specifically, to compute $Ax$ for any vector $x$, we write it with respect to the basis, and apply $A$ to each piece. In this case, if $u_{i}$ is an eigenvector for $A'$ with eigenvalue $\lambda$, then $u_{i}=\langle u_{i},v\rangle v+y$ for some $y\in W$. But since $\langle u_{i},v\rangle=0$, we have $y=u_{i}$ and so $Au_{i}=A'u_{i}=\lambda u_{i}$, which proves $u_{i}$ is an eigenvector for $A$. $\blacksquare$
+There is one more detail. We defined $u_{i}$ as an eigenvector of this sub-matrix $A'$, but can we be sure it's an eigenvector of the original $A$? Indeed it is, because of the way we decomposed $\mathbb{R}^{n}$ into $\text{span}(v)$ and the orthogonal complement $W$. Specifically, to compute $Ax$ for any vector $x$, we write it with respect to the basis, and apply $A$ to each piece.
+
+In this case, if $u_{i}$ is an eigenvector for $A'$ with eigenvalue $\lambda$, then $u_{i}=\langle u_{i},v\rangle v+y$ for some $y\in W$. But since $\langle u_{i},v\rangle=0$, we have $y=u_{i}$ and so $Au_{i}=A'u_{i}=\lambda u_{i}$, which proves $u_{i}$ is an eigenvector for $A$. $\blacksquare$
 
 ## Application: Waves
 
@@ -430,7 +484,9 @@ As you can probably tell from the book to this point, my favorite applications o
 
 ![Figure 12.2: A system in which five beads are equidistantly spaced on a taut string fixed to a wall at each end.](07 - Eigenvectors and Eigenvalues_images/img-2.jpeg)
 
-As a demonstration, we consider vibrations (waves) on a string. The analysis we'll perform is a perfect post-hoc motivation for eigenvalues. The string system, with appropriate simplifications, results in a differential equation specified by a symmetric linear map. By the Spectral Theorem, that map has an orthonormal basis of eigenvectors. This allows us to decompose the system into independent components, and results in efficient computation and physical insight. We'll be able to easily compute the long-term behavior of the system—indeed, it will have a formula!—and the eigenvectors will correspond to the "fundamental frequencies" of the vibrating string. In addition to the pictures in this section, there is an interactive demo on the book's website.
+As a demonstration, we consider vibrations (waves) on a string. The analysis we'll perform is a perfect post-hoc motivation for eigenvalues. The string system, with appropriate simplifications, results in a differential equation specified by a symmetric linear map. By the Spectral Theorem, that map has an orthonormal basis of eigenvectors.
+
+This allows us to decompose the system into independent components, and results in efficient computation and physical insight. We'll be able to easily compute the long-term behavior of the system—indeed, it will have a formula!—and the eigenvectors will correspond to the "fundamental frequencies" of the vibrating string. In addition to the pictures in this section, there is an interactive demo on the book's website.
 
 The discrete analysis we're about to do also generalizes both in dimension (waves on a surface) and to a continuous setting (the wave equation). While we gave a taste of what linear algebra and eigenvectors look like in infinite dimensions, this application will hopefully motivate further study.
 
@@ -440,7 +496,9 @@ Consider the system depicted in Figure 12.2 in which a string is pulled tight th
 
 First, we need to write down a formal mathematical model in which we can describe the motion of a bead. We start by defining a function of time that represents an object's position. Ultimately, we'll only care about the vertical motion of the beads, but a priori we'll need two dimensions to describe the forces involved.
 
-Let $x: \mathbb{R} \to \mathbb{R}^2$ be a function describing the position of an object at a given time $t$. In particular, we choose a reference point in the universe to be $(0, 0)$ and a basis $\{e_1, e_2\}$ of $\mathbb{R}^2$ for measurement. Then the components of $x(t) = (x_1(t), x_2(t))$ represent the position of the object, in $e_1, e_2$ units, respectively, relative to $(0, 0)$. The obvious choices of coordinates are the standard basis vectors $(1,0)$ and $(0,1)$ representing horizontal and vertical, as aligned with the picture.
+Let $x: \mathbb{R} \to \mathbb{R}^2$ be a function describing the position of an object at a given time $t$. In particular, we choose a reference point in the universe to be $(0, 0)$ and a basis $\{e_1, e_2\}$ of $\mathbb{R}^2$ for measurement.
+
+Then the components of $x(t) = (x_1(t), x_2(t))$ represent the position of the object, in $e_1, e_2$ units, respectively, relative to $(0, 0)$. The obvious choices of coordinates are the standard basis vectors $(1,0)$ and $(0,1)$ representing horizontal and vertical, as aligned with the picture.
 
 **Model 12.24.** Let $x(t)=(x_{1}(t),x_{2}(t))$ be the position of an object at time $t$. Then its derivative, $x'(t)=(x'_{1}(t),x'_{2}(t))$, describes the object's velocity at time $t$, and the second derivative $x''(t)=(x''_{1}(t),x''_{2}(t))$ describes its acceleration at time $t$.
 
@@ -468,7 +526,11 @@ Now let's inspect our beaded string in the special case of a single bead in the 
 
 Our goal is to model the dynamics of this system as a linear system. At any given time $t$, we should be able to calculate the acceleration $x''(t)$ of the bead as a linear function of its current position. As we'll see, that's enough to compute the position $x(t)$ at any time. When we extend the model to include all five beads, it will depend linearly on the positions of multiple beads.
 
-We'll make a whole host of unrealistic assumptions to aid us. Let's pretend the string has no mass, the bead has no width, there is no friction or air resistance, and let's do away with gravity. More generously, we assume that all of these values are "negligibly small" compared to the forces we care about. These kinds of simplifying assumptions are the physics analogue of what mathematicians do when they encounter a hard problem: keep stripping out the difficult parts until you can solve it. If you simplify the problem in the right way, you'll be analyzing just the aspects of the problem that you really care about. After solving it, having hopefully gained useful intuition in the process, you can replace each removed bit and use your newfound intuition to find a solution of the harder problem. Or, if you cannot, you can see how the simpler solution breaks with the new assumption, and thus understand why the full problem is hard to solve. This process is by no means as easy as it sounds, but it's a powerful guide.
+We'll make a whole host of unrealistic assumptions to aid us. Let's pretend the string has no mass, the bead has no width, there is no friction or air resistance, and let's do away with gravity. More generously, we assume that all of these values are "negligibly small" compared to the forces we care about.
+
+These kinds of simplifying assumptions are the physics analogue of what mathematicians do when they encounter a hard problem: keep stripping out the difficult parts until you can solve it. If you simplify the problem in the right way, you'll be analyzing just the aspects of the problem that you really care about.
+
+After solving it, having hopefully gained useful intuition in the process, you can replace each removed bit and use your newfound intuition to find a solution of the harder problem. Or, if you cannot, you can see how the simpler solution breaks with the new assumption, and thus understand why the full problem is hard to solve. This process is by no means as easy as it sounds, but it's a powerful guide.
 
 The above assumptions are minor, but there are two crucial assumptions that we have to discuss in more detail. First, we assume the string is not stretched too far. This allows us to use a Taylor series approximation for the sine and tangent of a small angle. Second, assume the string is already stretched tightly when the beads are plucked. This is what allows us to ignore the horizontal motion of the bead. We'll discuss these in more detail when we employ them.
 
@@ -489,9 +551,13 @@ In our system the string is taut, and we'll suppose it's stretched to begin with
 ![Figure 12.6: The force $F_1$ pulling the bead rightward when the bead is displaced. The right segment has length $d(t)$, the horizontal gap to the wall is $l_{\mathrm{init}}$, and the bead sits at $(x_1(t), x_2(t))$.](07 - Eigenvectors and Eigenvalues_images/img-6.jpeg)
 <!-- endcarousel -->
 
-Let's focus on the right hand side of the bead (the left side is symmetric) in Figure 12.6. Choose the resting point of the bead, when the string is completely straight, to be $(0,0)$. Use the standard basis $\{(1,0),(0,1)\}$ and let $x(t) = (x_{1}(t),x_{2}(t))$ be the displacement of the bead at time $t$. Initially at time zero $x_{1}(t) = 0$ and $x_{2}(t) < 0$. Call $d(t)$ the length of the right string segment at time $t$, and $F_{1}(t)$ the force pulling on the bead by the string. The diagram in Figure 12.6 labels these values.
+Let's focus on the right hand side of the bead (the left side is symmetric) in Figure 12.6. Choose the resting point of the bead, when the string is completely straight, to be $(0,0)$. Use the standard basis $\{(1,0),(0,1)\}$ and let $x(t) = (x_{1}(t),x_{2}(t))$ be the displacement of the bead at time $t$.
 
-Now we compute. Our choice of basis and the Pythagorean theorem give $d(t) = \sqrt{l_{\mathrm{init}}^2 + x_2(t)^2}$. We construct $F_{1}(t)$ first by finding a unit vector in the correct direction, then scaling it so its length is the magnitude of the force. That magnitude is $T(d(t) - l)$, according to Hooke's law. The force vector starts at $x(t)$ and points toward $(l_{\mathrm{init}}, 0)$, so we can take $(l_{\mathrm{init}}, 0) - x(t) = (l_{\mathrm{init}}, -x_2(t))$ and normalize it by dividing by $d(t)$. So far we have
+Initially at time zero $x_{1}(t) = 0$ and $x_{2}(t) < 0$. Call $d(t)$ the length of the right string segment at time $t$, and $F_{1}(t)$ the force pulling on the bead by the string. The diagram in Figure 12.6 labels these values.
+
+Now we compute. Our choice of basis and the Pythagorean theorem give $d(t) = \sqrt{l_{\mathrm{init}}^2 + x_2(t)^2}$. We construct $F_{1}(t)$ first by finding a unit vector in the correct direction, then scaling it so its length is the magnitude of the force.
+
+That magnitude is $T(d(t) - l)$, according to Hooke's law. The force vector starts at $x(t)$ and points toward $(l_{\mathrm{init}}, 0)$, so we can take $(l_{\mathrm{init}}, 0) - x(t) = (l_{\mathrm{init}}, -x_2(t))$ and normalize it by dividing by $d(t)$. So far we have
 
 $$F_{1}(t)=T(d(t)-l)\frac{(l_{\text{init}},-x_{2}(t))}{d(t)}$$
 
@@ -518,9 +584,13 @@ Returning to the force of tension, minor algebra gives $T(d(t)-l_{\text{init}})=
 
 $$T\frac{x_{2}(t)^{2}}{2l_{\text{init}}}+T(l_{\text{init}}-l)$$
 
-The formula above is why we can assume, as most physics texts do without nearly as much fuss as we have displayed here, that the magnitude of tension in the string is constant. This Taylor series approximation is the first assumption showing up in the math: if the initial deviation $x_{2}(t)$ is small, say much less than 1 unit of measurement, then $x_{2}(t)^{2}$ is even smaller and can be ignored, as can all higher powers of $x_{2}(t)$. Our computation shows that the first power $x_{2}(t)$ does not show up anywhere in the Taylor series, so if we're committed to simplifying everything to be linear, the Taylor series assures us we're not accidentally ignoring terms we want to preserve.
+The formula above is why we can assume, as most physics texts do without nearly as much fuss as we have displayed here, that the magnitude of tension in the string is constant. This Taylor series approximation is the first assumption showing up in the math: if the initial deviation $x_{2}(t)$ is small, say much less than 1 unit of measurement, then $x_{2}(t)^{2}$ is even smaller and can be ignored, as can all higher powers of $x_{2}(t)$.
 
-I personally feel it's important to see how the math justifies the assumptions rather than relying entirely on "physical intuition." Once you state which forces you want to consider—and once you've formalized the mathematical rules governing those forces—the mathematics should stand on its own. In particular, many physics books say that the constant tension assumption rests on the fact that the bead is not displaced very far from rest. Strictly speaking, this is not enough information. What also matters is the relationship between the displacement of the bead and the initial stretch that holds the string taut at rest. The former must contribute an order of magnitude smaller force than the latter to be negligible. The Taylor series revealed this nuance, and further allows us to measure how big a displacement is too big to ignore.
+Our computation shows that the first power $x_{2}(t)$ does not show up anywhere in the Taylor series, so if we're committed to simplifying everything to be linear, the Taylor series assures us we're not accidentally ignoring terms we want to preserve.
+
+I personally feel it's important to see how the math justifies the assumptions rather than relying entirely on "physical intuition." Once you state which forces you want to consider—and once you've formalized the mathematical rules governing those forces—the mathematics should stand on its own. In particular, many physics books say that the constant tension assumption rests on the fact that the bead is not displaced very far from rest.
+
+Strictly speaking, this is not enough information. What also matters is the relationship between the displacement of the bead and the initial stretch that holds the string taut at rest. The former must contribute an order of magnitude smaller force than the latter to be negligible. The Taylor series revealed this nuance, and further allows us to measure how big a displacement is too big to ignore.
 
 We continue with the assumption, then, that the magnitude of the force of tension in the string is constant over the entire evolution of the system. From this point on we'll use $T$ in place of $T(l_{\text{init}}-l)$ to simplify the formulas (it's all just a constant anyway). Recalling that we formed the unit vector by scaling by $d(t)$, the force on the right string is the vector
 
@@ -542,7 +612,9 @@ Let's simplify the numbers by setting $m=1$ and $l_{\text{init}}=1$, a trick cal
 
 An equation like $f''=-f$, involving the derivatives of an unknown function, is called a *differential equation*. There is an analogous theorem for the cosine instead using $f(0)=1,f'(0)=0$. The restrictions on $f(0)$ and $f'(0)$ are called *initial conditions*, and as they change the solution changes. In the case of Theorem 12.28 the solution only changes by constants. In fact, the way these values vary hints at two independent dimensions which provide solutions to $f''=-f$.
 
-Indeed, the set of solutions to $f''=-f$ forms a two-dimensional vector space (a subspace of the space of all twice-differentiable functions $\mathbb{R}\to\mathbb{R}$), and $\sin(x)$ and $\cos(x)$ form a basis. As an aside, if we call this vector space $U$, then the "take a second derivative" function $d:U\to U$ mapping $f\mapsto f''$ is a linear map on $U$, and the sine and cosine functions are eigenvectors with eigenvalue $-1$. This hints at the deep truth that sine and cosine are special, in part explaining why we expect Theorem 12.28 to be true.
+Indeed, the set of solutions to $f''=-f$ forms a two-dimensional vector space (a subspace of the space of all twice-differentiable functions $\mathbb{R}\to\mathbb{R}$), and $\sin(x)$ and $\cos(x)$ form a basis.
+
+As an aside, if we call this vector space $U$, then the "take a second derivative" function $d:U\to U$ mapping $f\mapsto f''$ is a linear map on $U$, and the sine and cosine functions are eigenvectors with eigenvalue $-1$. This hints at the deep truth that sine and cosine are special, in part explaining why we expect Theorem 12.28 to be true.
 
 Despite how the initial conditions may vary, the solution is a linear combination $c_{1}\sin(x)+c_{2}\cos(x)$. With a bit of algebra, given the initial conditions you can solve for those coefficients. We will do this below.
 
@@ -565,11 +637,15 @@ Now we graduate to multiple beads, shown in Figure 12.7.
 
 ![Figure 12.7: Five beads starting from arbitrary initial vertical positions $y_1, \ldots, y_5$, fixed to a wall at each end.](07 - Eigenvectors and Eigenvalues_images/img-7.jpeg)
 
-Horizontal forces are a new concern. We want to retain our assumption of constant tension in the string. But because the angles are different on different sides of a bead, the fraction of that constant tension pulling the bead left and right can be different, resulting in horizontal motion. We know that the tension in the string will eventually pull the bead back to the center, but we want to feel secure that these violations of our assumptions are minor enough that we can justify ignoring them. We leave it as an exercise to the reader to adapt the setup for a single bead to this scenario, and to use Taylor series approximations to find the conditions under which horizontal motion can be ignored.
+Horizontal forces are a new concern. We want to retain our assumption of constant tension in the string. But because the angles are different on different sides of a bead, the fraction of that constant tension pulling the bead left and right can be different, resulting in horizontal motion.
+
+We know that the tension in the string will eventually pull the bead back to the center, but we want to feel secure that these violations of our assumptions are minor enough that we can justify ignoring them. We leave it as an exercise to the reader to adapt the setup for a single bead to this scenario, and to use Taylor series approximations to find the conditions under which horizontal motion can be ignored.
 
 ![Figure 12.8: A close up of $b_2$. The vertical gaps to its neighbors are $y_2 - y_1$ and $y_3 - y_2$, and $\theta_1, \theta_2$ are the angles each string segment makes with the horizontal.](07 - Eigenvectors and Eigenvalues_images/img-8.jpeg)
 
-Since we are ignoring horizontal motion, we'll simplify the notation so that the forces, displacements, velocities, and accelerations are 1-dimensional vectors, i.e., scalars representing vectors pointing in the vertical direction. Let $b_{1}, \ldots, b_{5}$ be the beads of mass $m_{i}$, and let $y_{i}$ be the displacement of $b_{i}$, with $y_{i}'$ and $y_{i}''$ the velocity and acceleration, as before. The natural resting point of the beads is zero. If we just think about position—and as we saw this completely determines the forces and the acceleration—then the state of this system is a vector $y = (y_{1}, y_{2}, y_{3}, y_{4}, y_{5}) \in \mathbb{R}^{5}$. The forces we're about to compute will form a linear map $A$ mapping $y \mapsto y''$.
+Since we are ignoring horizontal motion, we'll simplify the notation so that the forces, displacements, velocities, and accelerations are 1-dimensional vectors, i.e., scalars representing vectors pointing in the vertical direction. Let $b_{1}, \ldots, b_{5}$ be the beads of mass $m_{i}$, and let $y_{i}$ be the displacement of $b_{i}$, with $y_{i}'$ and $y_{i}''$ the velocity and acceleration, as before.
+
+The natural resting point of the beads is zero. If we just think about position—and as we saw this completely determines the forces and the acceleration—then the state of this system is a vector $y = (y_{1}, y_{2}, y_{3}, y_{4}, y_{5}) \in \mathbb{R}^{5}$. The forces we're about to compute will form a linear map $A$ mapping $y \mapsto y''$.
 
 Let's now focus on bead $b_{2}$ as a generic example, shown in Figure 12.8. In the figure, the vertical gap between $b_{1}$ and $b_{2}$ is $y_{2} - y_{1}$, and the angle $\theta_{1}$ is the angle between the string and the horizontal. Likewise for the corresponding data on the right hand side of the bead. The tension is a constant $T$. The projected tension in the vertical direction is $-T\sin(\theta_{1})+T\sin(\theta_{2})$, with the sign flip because the left side pulls the bead down.
 
@@ -621,7 +697,9 @@ After defining a helper function that shifts a list to the right or left, we def
 <!-- include: code/pim/07 - Eigenvectors and Eigenvalues/06_bead_eigensystem.py -->
 ```
 
-Plotting with five beads gives the plot in Figure 12.9. In case it's hard to see (there's a clearer, more obvious diagram at the end of the section), let's inspect it in detail. The top eigenvalue, $\lambda=-0.267\ldots$, corresponds to the eigenvector in the chart with circular markers. The eigenvector entry starts at $0.29$, increases gradually to $0.58$, and then back down to $0.29$, a sort of quarter-period of a full sine curve. The second largest eigenvalue, $\lambda=-1$ with triangular markers, has an eigenvector starting at $-0.5$ and increasing up to $0.5$, performing a half-period of sorts. The next eigenvector for $\lambda=-2$ performs a single full period, and so on. (Eigenvectors are only determined up to sign, so a solver may hand you $v$ or $-v$; the *shape* of each mode is what matters, and that is invariant.)
+Plotting with five beads gives the plot in Figure 12.9. In case it's hard to see (there's a clearer, more obvious diagram at the end of the section), let's inspect it in detail. The top eigenvalue, $\lambda=-0.267\ldots$, corresponds to the eigenvector in the chart with circular markers. The eigenvector entry starts at $0.29$, increases gradually to $0.58$, and then back down to $0.29$, a sort of quarter-period of a full sine curve.
+
+The second largest eigenvalue, $\lambda=-1$ with triangular markers, has an eigenvector starting at $-0.5$ and increasing up to $0.5$, performing a half-period of sorts. The next eigenvector for $\lambda=-2$ performs a single full period, and so on. (Eigenvectors are only determined up to sign, so a solver may hand you $v$ or $-v$; the *shape* of each mode is what matters, and that is invariant.)
 
 The rounded entries of the eigenvectors of the 5-bead system are tabulated below; each row pairs an eigenvalue $\lambda$ with its eigenvector $(y_1, \ldots, y_5)$.
 
@@ -637,11 +715,19 @@ The rounded entries of the eigenvectors of the 5-bead system are tabulated below
 
 Now this is something to behold! The eigenvectors have a structure that mirrors the waves in the vibrating string, and as the corresponding eigenvalue decreases, the "frequency" of the wave plotted by the eigenvector increases. That is, the wave exhibits faster oscillations.
 
-This wave is not a metaphor. If you simulate the beaded string with initial position set to one of these eigenvectors, you'd see a *standing wave* whose shape is exactly the plot of that eigenvector. In fact, I implemented a demo of this in Javascript, which you can explore for yourself at pimbook.org. The demo is a first-principles simulation of the system, so horizontal forces are not ignored, nor are Taylor series approximations used. Because of this, if you set the initial positions of the beads to be quite large, you'll see irregularities caused by horizontal motion. These are highlighted by how the demo draws the force vector acting on each bead at every instant. It's fun to watch, and it provides a hint as to what assumption allows one to ignore horizontal motion. Indeed, if you set the position to the top eigenvector $100v_{1}$ (scaled to account for the units being pixels), you can see the same shape as $v_{1}$ in the plot above. If you scale it even larger, you can see the horizontal forces come into play. For example, try setting the initial positions to $300v_{1} = (87, 150, 174, 150, 87)$.
+This wave is not a metaphor. If you simulate the beaded string with initial position set to one of these eigenvectors, you'd see a *standing wave* whose shape is exactly the plot of that eigenvector. In fact, I implemented a demo of this in Javascript, which you can explore for yourself at pimbook.org. The demo is a first-principles simulation of the system, so horizontal forces are not ignored, nor are Taylor series approximations used.
 
-Let's witness how the formulas work out for the first eigenvector $v_{1}$, when the positions start as that eigenvector $y = v_{1} \approx (0.29, 0.5, 0.58, 0.5, 0.29)$. In that case each bead's trajectory can be computed independently according to $y''=Ay=-0.27y$. So the second bead, say, evolves as $y_2''=-0.27y_2$ with initial position $y_{2}=0.5$. This is identical to the single-bead system we solved earlier, and the result is a simple cosine wave with a fixed period and amplitude. The same holds for each bead. The beads in the middle have longer periods and higher amplitudes, as expected.
+Because of this, if you set the initial positions of the beads to be quite large, you'll see irregularities caused by horizontal motion. These are highlighted by how the demo draws the force vector acting on each bead at every instant. It's fun to watch, and it provides a hint as to what assumption allows one to ignore horizontal motion.
 
-We have the tools to understand this eigenvector phenomenon beyond concrete computations. As we saw, the eigenvectors of the bead system form an orthonormal basis. The basis vectors are the independent components of the joint forces acting on all the beads. What's more, the proof of the Spectral Theorem explains why the eigenvectors have a natural ordering. The way we choose an eigenvector at each step is, according to Lemma 12.8, by maximizing $\|Av\|$ over unit vectors $v$. In the proof of the Spectral Theorem we then removed that vector, and its span, from consideration for the next vector. So the largest magnitude eigenvalue (in this case the most negative one) is the first one extracted, and that corresponds to the highest frequency. The next eigenvector chosen corresponds to the second largest magnitude eigenvalue, and so on, each having a smaller frequency than the last.
+Indeed, if you set the position to the top eigenvector $100v_{1}$ (scaled to account for the units being pixels), you can see the same shape as $v_{1}$ in the plot above. If you scale it even larger, you can see the horizontal forces come into play. For example, try setting the initial positions to $300v_{1} = (87, 150, 174, 150, 87)$.
+
+Let's witness how the formulas work out for the first eigenvector $v_{1}$, when the positions start as that eigenvector $y = v_{1} \approx (0.29, 0.5, 0.58, 0.5, 0.29)$. In that case each bead's trajectory can be computed independently according to $y''=Ay=-0.27y$.
+
+So the second bead, say, evolves as $y_2''=-0.27y_2$ with initial position $y_{2}=0.5$. This is identical to the single-bead system we solved earlier, and the result is a simple cosine wave with a fixed period and amplitude. The same holds for each bead. The beads in the middle have longer periods and higher amplitudes, as expected.
+
+We have the tools to understand this eigenvector phenomenon beyond concrete computations. As we saw, the eigenvectors of the bead system form an orthonormal basis. The basis vectors are the independent components of the joint forces acting on all the beads. What's more, the proof of the Spectral Theorem explains why the eigenvectors have a natural ordering. The way we choose an eigenvector at each step is, according to Lemma 12.8, by maximizing $\|Av\|$ over unit vectors $v$.
+
+In the proof of the Spectral Theorem we then removed that vector, and its span, from consideration for the next vector. So the largest magnitude eigenvalue (in this case the most negative one) is the first one extracted, and that corresponds to the highest frequency. The next eigenvector chosen corresponds to the second largest magnitude eigenvalue, and so on, each having a smaller frequency than the last.
 
 But wait, there's more! Because it's an orthonormal basis of eigenvectors, we can express any evolution of this system in terms of the eigenvectors, and do it as simply as taking inner products.
 
@@ -705,11 +791,17 @@ $$
 
 Fantastic! We started with a tightly coupled system, in which the position and motion of the different beads seem to depend heavily on each other. They do, it's true, but this eigensystem provides a perspective in which their motions can be computed independently! You don't have to know where bead 3 is to compute the future position of bead 2. That's the promise fulfilled by eigenvectors.
 
-Finally, as you may have guessed from the arbitrary choice of five beads, we can generalize this system to any number of beads. If we take even just a hundred beads, and plot the eigenvectors for the top few eigenvalues as we did above, we see smoother, more obvious waves. Figure 12.10 shows this. With such natural shapes of increasing complexity, it makes sense to give a name to these eigenvectors. They're called the *fundamental modes* of the system, and the frequencies of the "sinusoidal curve" of each eigenvector are called the *resonant frequencies* of the system.
+Finally, as you may have guessed from the arbitrary choice of five beads, we can generalize this system to any number of beads. If we take even just a hundred beads, and plot the eigenvectors for the top few eigenvalues as we did above, we see smoother, more obvious waves. Figure 12.10 shows this.
+
+With such natural shapes of increasing complexity, it makes sense to give a name to these eigenvectors. They're called the *fundamental modes* of the system, and the frequencies of the "sinusoidal curve" of each eigenvector are called the *resonant frequencies* of the system.
 
 ![Figure 12.10: The plot of the top five eigenvectors for a hundred-bead system. The discrete modes now trace out clean sine curves of increasing frequency.](07 - Eigenvectors and Eigenvalues_images/img-10.jpeg)
 
-If one decreases the distance between beads and increases the number of beads in the limit, the result is the *wave equation*. This is a differential equation (in both time and position along the string) that one can use to track the motion of a traveling wave through a string. See the exercises for more on that. But more importantly for us, the vector space for that continuous model has infinite dimension, it still has a basis of eigenvectors, and they correspond to proper sine curves instead of discrete approximations. In this case, since the "zero-width" beads are now at every position of the string, you can think of them as cross sections of molecules that make up the string itself, with atomic forces playing the role of Hooke's law. These eigenvectors then describe the intrinsic properties of the string itself.
+If one decreases the distance between beads and increases the number of beads in the limit, the result is the *wave equation*. This is a differential equation (in both time and position along the string) that one can use to track the motion of a traveling wave through a string.
+
+See the exercises for more on that. But more importantly for us, the vector space for that continuous model has infinite dimension, it still has a basis of eigenvectors, and they correspond to proper sine curves instead of discrete approximations.
+
+In this case, since the "zero-width" beads are now at every position of the string, you can think of them as cross sections of molecules that make up the string itself, with atomic forces playing the role of Hooke's law. These eigenvectors then describe the intrinsic properties of the string itself.
 
 So there you have it. Eigenvectors have revealed the secrets of waves on a string.
 
@@ -746,15 +838,21 @@ So there you have it. Eigenvectors have revealed the secrets of waves on a strin
 
 **12.6.** Look up a proof of Theorem 12.28, on the uniqueness of the sine function, that uses Taylor series. The analytical tool required to understand the standard proof is the concept of *absolute convergence*. The central difficulty is that if you're defining a function by an infinite series, you have to make sure that series converges with the properties needed to make it a valid Taylor series. Repeat the proof for $\sin(ax)$.
 
-**12.7.** In Definition 12.3 we defined the adjacency matrix $A(G)$ of a graph $G = (V, E)$. This matrix corresponds to some linear map $f: \mathbb{R}^n \to \mathbb{R}^n$, where $n = |V|$. How would you interpret this vector space in terms of $V$? What is a natural description of the basis of $\mathbb{R}^n$ that we're using to represent $A(G)$? What is a natural (English) description of the linear map $f$, if you restrict to input vectors whose entries are either 0 or 1? If this is hard to formulate abstractly, write down an example graph on 5 vertices. What happens to your description of $f$ when you allow for non-binary inputs?
+**12.7.** In Definition 12.3 we defined the adjacency matrix $A(G)$ of a graph $G = (V, E)$. This matrix corresponds to some linear map $f: \mathbb{R}^n \to \mathbb{R}^n$, where $n = |V|$. How would you interpret this vector space in terms of $V$? What is a natural description of the basis of $\mathbb{R}^n$ that we're using to represent $A(G)$?
+
+What is a natural (English) description of the linear map $f$, if you restrict to input vectors whose entries are either 0 or 1? If this is hard to formulate abstractly, write down an example graph on 5 vertices. What happens to your description of $f$ when you allow for non-binary inputs?
 
 **12.8.** Prove that a connected graph $G$ is bipartite if and only if it contains no cycles of odd length. Write a program to find cycles of odd length, and hence to decide whether a given graph is bipartite.
 
-**12.9.** Implement the algorithm presented in the chapter to generate a random graph on $n$ vertices with edge probability $1/2$, and a planted clique of size $k$. For the rest of this exercise fix $k = \lceil \sqrt{n \log n} \rceil$. Determine the average degree of a vertex that is in the plant, and the average degree of a vertex that is not in the plant, and use that to determine a rule for deciding if a vertex is in the clique. Implement this rule for finding planted cliques of size at least $\sqrt{n \log n}$ with high probability, where $n = 1000$.
+**12.9.** Implement the algorithm presented in the chapter to generate a random graph on $n$ vertices with edge probability $1/2$, and a planted clique of size $k$. For the rest of this exercise fix $k = \lceil \sqrt{n \log n} \rceil$.
+
+Determine the average degree of a vertex that is in the plant, and the average degree of a vertex that is not in the plant, and use that to determine a rule for deciding if a vertex is in the clique. Implement this rule for finding planted cliques of size at least $\sqrt{n \log n}$ with high probability, where $n = 1000$.
 
 **12.10.** As in the previous problem, implement the algorithm in this chapter for finding planted cliques of size $k = \lceil 10\sqrt{n} \rceil$ in random graphs with $n = 1000$. Use a library such as numpy to compute eigenvalues and eigenvectors for you.
 
-**12.11.** The *minimal polynomial* of a linear map $f: V \to V$ is the monic polynomial $p$ of smallest degree such that $p(f) = 0$. Since the space of all linear maps $V \to V$ is a vector space, we can interpret a "power" $f^k$ as the composition of $f$ with itself $k$ times. Likewise, $cf$ is the map $x \mapsto cf(x)$. So $p(f)$ is a linear map $V \to V$, and by $p(f) = 0$ we mean that $p(f)$ is the zero map. Look up a proof that $\lambda$ is a root of $p$ if and only if $\lambda$ is an eigenvalue of $f$.
+**12.11.** The *minimal polynomial* of a linear map $f: V \to V$ is the monic polynomial $p$ of smallest degree such that $p(f) = 0$. Since the space of all linear maps $V \to V$ is a vector space, we can interpret a "power" $f^k$ as the composition of $f$ with itself $k$ times.
+
+Likewise, $cf$ is the map $x \mapsto cf(x)$. So $p(f)$ is a linear map $V \to V$, and by $p(f) = 0$ we mean that $p(f)$ is the zero map. Look up a proof that $\lambda$ is a root of $p$ if and only if $\lambda$ is an eigenvalue of $f$.
 
 **12.12.** We proved that symmetric matrices have a full set of eigenvectors and eigenvalues. In this exercise we will see that to understand eigenvalues of non-symmetric matrices, we must necessarily prove the Fundamental Theorem of Algebra, which we remarked in Exercise 2.15 is quite hard. First prove that $r$ is a root of the polynomial $p(x) = x^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0$ if and only if $r$ is an eigenvalue of the matrix
 
@@ -772,7 +870,9 @@ Notice that this matrix is not symmetric. Because the roots of a polynomial migh
 
 **12.15.** Look up a proof that the singular values of a non-square real matrix $A$ are the square roots of the eigenvalues of the matrix $A^{T}A$. Use this to understand why we computed $A^{T}A$ in the SVD algorithm from Chapter 10.
 
-**12.16.** Generate a "random" symmetric $2000\times 2000$ matrix via the following scheme: pick a distribution (say, normal with a given mean and variance), and let the $i,j$ entry with $i\geq j$ be an independent draw from this distribution. Let the remaining $i<j$ entries be the symmetric mirror. Compute the eigenvalues of this matrix (which are all real) and plot them in a histogram. What does the result look like? How does this shape depend on the parameters of the distribution? On the choice of distribution?
+**12.16.** Generate a "random" symmetric $2000\times 2000$ matrix via the following scheme: pick a distribution (say, normal with a given mean and variance), and let the $i,j$ entry with $i\geq j$ be an independent draw from this distribution.
+
+Let the remaining $i<j$ entries be the symmetric mirror. Compute the eigenvalues of this matrix (which are all real) and plot them in a histogram. What does the result look like? How does this shape depend on the parameters of the distribution? On the choice of distribution?
 
 **12.17.** At the end of the chapter we converted the eigenvector-coefficient solution to $z''=Dz$ back to the bead basis by hand. Write a program that, given the initial position of the beads, sets up the independent differential equations in the eigenvector basis, solves those equations, and converts them back to the bead position basis.
 
@@ -790,17 +890,27 @@ Notice that this matrix is not symmetric. Because the roots of a polynomial migh
 
 If $f:V\to W$ is a linear map, and $A$ is a matrix representation of $f$, how does $A^{T}$, the operation of transposing the matrix, correspond to an operation on $f$? The answer requires some groundwork.
 
-A *linear functional* on a vector space with scalars in $\mathbb{R}$ is a linear map $V\to\mathbb{R}$. That is, it linearly maps vectors to scalars. This is the origin of the name of the subfield of mathematics called "functional analysis," which studies these mappings as a way to study the structure of the (usually infinite dimensional) vector space. We'll stick to finite dimensions. Fix a vector space $V$ over $\mathbb{R}$. The set of all linear functionals on $V$ forms a vector space (using the same point-wise addition and scalar multiplication we saw for $L^{2}$). This vector space is called the *dual vector space* of $V$, and I'll denote it by $V^{*}$.
+A *linear functional* on a vector space with scalars in $\mathbb{R}$ is a linear map $V\to\mathbb{R}$. That is, it linearly maps vectors to scalars. This is the origin of the name of the subfield of mathematics called "functional analysis," which studies these mappings as a way to study the structure of the (usually infinite dimensional) vector space.
 
-The standard basis $\{e_{1},\ldots,e_{n}\}$ for $\mathbb{R}^{n}$ corresponds to a standard dual basis for the dual space, which we'll denote $\{e_{1}^{*},\ldots,e_{n}^{*}\}$. Each $e_{i}^{*}$ is the projection onto the $i$-th coordinate (in the standard basis), i.e. $e_{i}^{*}(a_{1},\ldots,a_{n})=a_{i}$. The mapping $e_{i}\mapsto e_{i}^{*}$ is injective, and in fact every linear functional can be expressed as a linear combination of these dual basis vectors $e_{i}^{*}$. Hence, $\mathbb{R}^{n}$ is isomorphic to its dual. In particular, they have the same dimension.
+We'll stick to finite dimensions. Fix a vector space $V$ over $\mathbb{R}$. The set of all linear functionals on $V$ forms a vector space (using the same point-wise addition and scalar multiplication we saw for $L^{2}$). This vector space is called the *dual vector space* of $V$, and I'll denote it by $V^{*}$.
+
+The standard basis $\{e_{1},\ldots,e_{n}\}$ for $\mathbb{R}^{n}$ corresponds to a standard dual basis for the dual space, which we'll denote $\{e_{1}^{*},\ldots,e_{n}^{*}\}$. Each $e_{i}^{*}$ is the projection onto the $i$-th coordinate (in the standard basis), i.e. $e_{i}^{*}(a_{1},\ldots,a_{n})=a_{i}$.
+
+The mapping $e_{i}\mapsto e_{i}^{*}$ is injective, and in fact every linear functional can be expressed as a linear combination of these dual basis vectors $e_{i}^{*}$. Hence, $\mathbb{R}^{n}$ is isomorphic to its dual. In particular, they have the same dimension.
 
 This construction works without need for an inner product, but if you have an inner product, you get an obvious way to take a general basis $\{v_{1},\ldots,v_{n}\}$ of $V$ to a dual basis of $V^{*}$ by mapping $v$ to the function $x\mapsto\langle v,x\rangle$. If the $\{v_{i}\}$ were an orthonormal basis, this would be the same "coordinate picking" function as we did for the standard basis, due to Proposition 12.15.
 
-Moreover, every linear functional on $\mathbb{R}^{n}$ can be expressed as the inner product with a single vector (not necessarily a basis vector). Expressed in terms of matrices, the linear functional can be written as a $(1\times n)$-matrix—since it is a linear map from an $n$-dimensional vector space to a $1$-dimensional space. Say we call it $f_{v}(x)=\langle v,x\rangle$. If you start from the perspective that all vectors are columns, then the matrix representation of $f_{v}$ is $v^{T}$, and the "matrix multiplication" $v^{T}x$ is a scalar (and also another way to write the inner product, as we saw in this chapter).
+Moreover, every linear functional on $\mathbb{R}^{n}$ can be expressed as the inner product with a single vector (not necessarily a basis vector). Expressed in terms of matrices, the linear functional can be written as a $(1\times n)$-matrix—since it is a linear map from an $n$-dimensional vector space to a $1$-dimensional space.
 
-Now we finally get to the transpose, which just extends this linear functional picture to a finite number of independent functionals, the outputs of which are grouped together in a vector. Let $f:V\to W$ be a linear map with matrix representation $A$, an $(m\times n)$-matrix for $n$-dimensional $V$ and $m$-dimensional $W$. Define the *transpose* of $f$ (sometimes called the *adjoint*) as the linear map $f^{T}:W^{*}\to V^{*}$ which takes as input (a linear functional!) $g\in W^{*}$ and produces as output the linear functional $g\circ f\in V^{*}$, the composition of the two maps by first applying $f$ and then applying $g$. And indeed, the matrix representation of $f^{T}$ with respect to the dual bases for $V^{*},W^{*}$ is $A^{T}$.
+Say we call it $f_{v}(x)=\langle v,x\rangle$. If you start from the perspective that all vectors are columns, then the matrix representation of $f_{v}$ is $v^{T}$, and the "matrix multiplication" $v^{T}x$ is a scalar (and also another way to write the inner product, as we saw in this chapter).
 
-Since $W^{*}$ and $W$ are isomorphic, and $V^{*}$ and $V$ are isomorphic, you may wonder if you can apply this to realize the dual $f^{T}$ as a map $W\to V$ as well. Indeed you can, and it can even be defined without referring to dual vector spaces at all. Let $V,W$ be inner product spaces and $f:V\to W$ a linear map. Define the transpose $f^{T}:W\to V$ input-by-input as follows. Let $w\in W$, and define $f^{T}(w)$ to be the unique vector for which $\langle f(v),w\rangle=\langle v,f^{T}(w)\rangle$. One needs to prove this is well-defined, but it is. It comes from our discussion about symmetry in the "Limiting the Scope: Symmetric Matrices" section about how in $\mathbb{R}^{n}$ you get $\langle Ax,y\rangle=x^{T}A^{T}y$.
+Now we finally get to the transpose, which just extends this linear functional picture to a finite number of independent functionals, the outputs of which are grouped together in a vector. Let $f:V\to W$ be a linear map with matrix representation $A$, an $(m\times n)$-matrix for $n$-dimensional $V$ and $m$-dimensional $W$.
+
+Define the *transpose* of $f$ (sometimes called the *adjoint*) as the linear map $f^{T}:W^{*}\to V^{*}$ which takes as input (a linear functional!) $g\in W^{*}$ and produces as output the linear functional $g\circ f\in V^{*}$, the composition of the two maps by first applying $f$ and then applying $g$. And indeed, the matrix representation of $f^{T}$ with respect to the dual bases for $V^{*},W^{*}$ is $A^{T}$.
+
+Since $W^{*}$ and $W$ are isomorphic, and $V^{*}$ and $V$ are isomorphic, you may wonder if you can apply this to realize the dual $f^{T}$ as a map $W\to V$ as well. Indeed you can, and it can even be defined without referring to dual vector spaces at all. Let $V,W$ be inner product spaces and $f:V\to W$ a linear map. Define the transpose $f^{T}:W\to V$ input-by-input as follows.
+
+Let $w\in W$, and define $f^{T}(w)$ to be the unique vector for which $\langle f(v),w\rangle=\langle v,f^{T}(w)\rangle$. One needs to prove this is well-defined, but it is. It comes from our discussion about symmetry in the "Limiting the Scope: Symmetric Matrices" section about how in $\mathbb{R}^{n}$ you get $\langle Ax,y\rangle=x^{T}A^{T}y$.
 
 Note that these two definitions of the transpose can only be said to be the same in the case that the vector space has scalars in $\mathbb{R}$. If you allow for complex number scalars, things get a bit trickier.
 
@@ -818,7 +928,9 @@ $$J_{\lambda,3}=\begin{pmatrix}\lambda&1&0\\0&\lambda&1\\0&0&\lambda\end{pmatrix
 
 The *Jordan canonical form* theorem states that for any linear map $V\to V$ (with complex scalars) there is a basis for $V$, for which the matrix of that linear map consists entirely of Jordan blocks along the diagonal. There may be more than one Jordan block for a given eigenvalue, but the size and number of blocks are determined by the algebraic and geometric multiplicities of that eigenvalue, respectively.
 
-All of this is to note two things: it's possible to compute all of the eigenvalues and eigenvectors for a linear map, and these, along with some auxiliary data (some of which I've left out from this text), do in fact give a complete characterization of the map. However, it's a more nuanced characterization, and one whose benefits are not as easily displayed as when you have an orthonormal basis of eigenvectors. The Jordan canonical form is an important theorem that has generalizations and adaptations in other fields of mathematics.
+All of this is to note two things: it's possible to compute all of the eigenvalues and eigenvectors for a linear map, and these, along with some auxiliary data (some of which I've left out from this text), do in fact give a complete characterization of the map.
+
+However, it's a more nuanced characterization, and one whose benefits are not as easily displayed as when you have an orthonormal basis of eigenvectors. The Jordan canonical form is an important theorem that has generalizations and adaptations in other fields of mathematics.
 
 Finally, as a quick aside, the set of all eigenvalues together with their geometric multiplicities is called the *spectrum* of a linear map.
 

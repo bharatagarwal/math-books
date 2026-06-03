@@ -8,21 +8,29 @@
 >
 > – William Thurston
 
-Calculus is a difficult subject to introduce. It has a hundred different motivating angles, a thousand books you could read, and millions of applications. You can start with basic physics, where position is a function, and derivatives are velocity and acceleration, and work your way to Newtonian mechanics. You could aim for systems of differential equations and numerical simulations, tread the probability path and dabble in measure theory, or take a purely mathematical approach. Your ultimate goal might be machine learning, weather modeling, the frontiers of theoretical physics, economics, or operations research and optimization. These all rely on the fundamental idea of calculus: progressively better approximations ultimately produce the truth.
+Calculus is a difficult subject to introduce. It has a hundred different motivating angles, a thousand books you could read, and millions of applications. You can start with basic physics, where position is a function, and derivatives are velocity and acceleration, and work your way to Newtonian mechanics.
+
+You could aim for systems of differential equations and numerical simulations, tread the probability path and dabble in measure theory, or take a purely mathematical approach. Your ultimate goal might be machine learning, weather modeling, the frontiers of theoretical physics, economics, or operations research and optimization. These all rely on the fundamental idea of calculus: progressively better approximations ultimately produce the truth.
 
 Luckily, as a programmer you're familiar with the existence of these fantastic applications. You may have seen and played with programmed physics models before, or programmed a sprite jumping on a screen. You're probably aware at least in a vague sense that many widely-used algorithms involve calculus. This makes the job of learning calculus much easier, because I don't have to convince you it's worth learning.
 
 Much of the mastery of calculus (and any subject!) comes with practice. Even so, in this chapter and Chapter 14 we can survey many of the important features of a complete calculus course and do a bit of machine learning at the end. This chapter will be about calculus for functions with one input, while Chapter 14 will cover functions with many inputs.
 
-If you've seen a lot of calculus before, you can probably tell that I don't regard it as reverently as most other authors. While I can appreciate its place in history and its applications to physics and everything else, my esteem for calculus is essentially limited to "It's a great tool for computation." I avoid nonsense rhetoric about calculus like a plague ("With calculus you can hold infinity in the palm of your hand!"). I'd much rather use it to do something useful and draw divine inspiration from other areas of math. But that's a personal preference.
+If you've seen a lot of calculus before, you can probably tell that I don't regard it as reverently as most other authors. While I can appreciate its place in history and its applications to physics and everything else, my esteem for calculus is essentially limited to "It's a great tool for computation."
 
-Besides calculus, in this chapter we'll dive into more detail about the process of *designing* a good mathematical definition. In doing this we'll introduce the idea of a *quantifier*, which is the basis for compound (recursive) conditions and claims. We'll also come to understand the idea of *well-definition* in mathematics, which is how a mathematician proves (or asserts) that the definition of a concept doesn't depend on certain irrelevant details in its construction. Finally, we'll level up our proof skills by using multiple definitions in conjunction to prove theorems. The application for this chapter is an analysis of the classic Newton's method for finding roots of functions.
+I avoid nonsense rhetoric about calculus like a plague ("With calculus you can hold infinity in the palm of your hand!"). I'd much rather use it to do something useful and draw divine inspiration from other areas of math. But that's a personal preference.
+
+Besides calculus, in this chapter we'll dive into more detail about the process of *designing* a good mathematical definition. In doing this we'll introduce the idea of a *quantifier*, which is the basis for compound (recursive) conditions and claims.
+
+We'll also come to understand the idea of *well-definition* in mathematics, which is how a mathematician proves (or asserts) that the definition of a concept doesn't depend on certain irrelevant details in its construction. Finally, we'll level up our proof skills by using multiple definitions in conjunction to prove theorems. The application for this chapter is an analysis of the classic Newton's method for finding roots of functions.
 
 ## Lines and Curves
 
 ### Slope of a Line
 
-Let's start with something we know well. If you give me a line in the plane, with tick marks forming integer coordinates like in Figure 8.1, then I can tell you how "steep" the line is. That is, I can assign a number to the line, and larger numbers correspond to steeper lines while smaller numbers correspond to more gradual lines. Also recall that the picture with coordinate axes is just one representation of the line. Another might be as a set of points $\{(x,y)\in\mathbb{R}^{2}:2y-x=2\}$. How we choose to draw the line isn't as important as the set-with-equation definition, but a good drawing swiftly reveals qualitative facts about the line (such as whether its "steepness" goes up or down).
+Let's start with something we know well. If you give me a line in the plane, with tick marks forming integer coordinates like in Figure 8.1, then I can tell you how "steep" the line is. That is, I can assign a number to the line, and larger numbers correspond to steeper lines while smaller numbers correspond to more gradual lines.
+
+Also recall that the picture with coordinate axes is just one representation of the line. Another might be as a set of points $\{(x,y)\in\mathbb{R}^{2}:2y-x=2\}$. How we choose to draw the line isn't as important as the set-with-equation definition, but a good drawing swiftly reveals qualitative facts about the line (such as whether its "steepness" goes up or down).
 
 Assigning a steepness number is easy, something most students do when they're 11 or 12 years old. Just pick two different points on the line, *any two*, call them $(x_{1},y_{1}),(x_{2},y_{2})$, and then call the *slope* of the line
 
@@ -42,7 +50,9 @@ In this way, the concept of slope requires an orientation of the line and the co
 
 ### From Lines to Curves
 
-Now let's try to translate the concepts to the curved function $f(x)$ in Figure 8.2. It has a complicated formula we won't write down. The curve is steeper at some places (e.g., $A$) and less steep at others ($B$). Despite the self-evident fact that the line is steep at $A$ and gradual at $B$, if we were pressed to say numerically and consistently how the two steepnesses compare, we'd be at a loss. The picture gives only qualitative information. We must leave the picture behind to get useful quantitative data.
+Now let's try to translate the concepts to the curved function $f(x)$ in Figure 8.2. It has a complicated formula we won't write down. The curve is steeper at some places (e.g., $A$) and less steep at others ($B$).
+
+Despite the self-evident fact that the line is steep at $A$ and gradual at $B$, if we were pressed to say numerically and consistently how the two steepnesses compare, we'd be at a loss. The picture gives only qualitative information. We must leave the picture behind to get useful quantitative data.
 
 To motivate an exact answer, let's approximate steepness using tools we know. Focus on the point labeled $A$, and call it $A = (x, f(x))$. After a moment of thought, the idea naturally occurs to draw a line between $(x, f(x))$, and a nearby point $(x', f(x'))$, and have our approximation be the slope of that line, as in Figure 8.3.
 
@@ -58,7 +68,9 @@ As a reminder, we adorn a variable with the tick ' (called a "prime") to denote 
 
 We also use the $\approx$ symbol as a stand-in for the phrase "is approximately." I also went back to using the word "steepness" instead of slope because we're using the slope of a line to reason about this new kind of steepness.
 
-My choice of $x'$ isn't that close to $x$, but I chose it to illustrate a point. While imperfect, the approximation is good enough to distinguish it from a similarly bad approximation of the steepness of $f$ at $B$, as shown by Figure 8.4. Concrete numbers for the slopes of these two lines suggest that $f$ is twice as steep at $A$ as at $B$. Our brains itch to be more precise. Otherwise, how could we be certain we aren't fooling ourselves with inadequate picture-drawing skills? To that effort, let's improve our estimate.
+My choice of $x'$ isn't that close to $x$, but I chose it to illustrate a point. While imperfect, the approximation is good enough to distinguish it from a similarly bad approximation of the steepness of $f$ at $B$, as shown by Figure 8.4.
+
+Concrete numbers for the slopes of these two lines suggest that $f$ is twice as steep at $A$ as at $B$. Our brains itch to be more precise. Otherwise, how could we be certain we aren't fooling ourselves with inadequate picture-drawing skills? To that effort, let's improve our estimate.
 
 ### Iterating Toward the True Steepness
 
@@ -80,7 +92,9 @@ That is exactly what limits do. A limit is computational machinery that allows o
 
 In the last section we saw a strong motivation for inventing limits, and an intuitive understanding for what a limit should look like. It's the "end result" of iteratively improving an approximation forever. You have some quantity $a_{n}$ indexed by a positive integer $n$, and as $n$ grows, $a_{n}$ eventually gets closer and closer to some target. For example, if $a_{n} = 1 - 1/n$, the numbers in the sequence $0, \frac{1}{2}, \frac{2}{3}, \frac{3}{4}, \frac{4}{5}, \ldots$ seem to approach 1.
 
-But we need a definition. A definition is like the implementation of a program spec. From a specification standpoint, you care mostly about how one intends to use an interface. When actually writing the program you have to worry about people misusing your code, intentionally or not. You have to anticipate and defend against the edge case inputs which are syntactically allowed but semantically unnatural. Anyone who has spent time designing a software library has spent hours upon hours thinking about:
+But we need a definition. A definition is like the implementation of a program spec. From a specification standpoint, you care mostly about how one intends to use an interface. When actually writing the program you have to worry about people misusing your code, intentionally or not.
+
+You have to anticipate and defend against the edge case inputs which are syntactically allowed but semantically unnatural. Anyone who has spent time designing a software library has spent hours upon hours thinking about:
 
 - How to organize code to handle all inputs generically and elegantly.
 - How to reduce cognitive load by maintaining conceptual consistency.
@@ -88,31 +102,45 @@ But we need a definition. A definition is like the implementation of a program s
 
 Ideally a library author wants to meet all of these criteria at once! We have the same problem in mathematics.
 
-Most concepts in math—in this case limits—usually make intuitive sense in the overwhelming majority of cases you encounter in real life. However, 99% of the work in making the math rigorous is converting the concept into concrete definitions that can handle pathological counterexamples. By pathological, I mean examples that are mathematically valid, but which nobody would ever encounter in the wild. The best pathological examples are edge cases on steroids, and some mathematicians gain fame for constructing particularly vexing pathological examples. They're the penetration testers of mathematics. You have heard of a particularly famous one called the Cantor Set.
+Most concepts in math—in this case limits—usually make intuitive sense in the overwhelming majority of cases you encounter in real life. However, 99% of the work in making the math rigorous is converting the concept into concrete definitions that can handle pathological counterexamples.
+
+By pathological, I mean examples that are mathematically valid, but which nobody would ever encounter in the wild. The best pathological examples are edge cases on steroids, and some mathematicians gain fame for constructing particularly vexing pathological examples. They're the penetration testers of mathematics. You have heard of a particularly famous one called the Cantor Set.
 
 Indeed, much like a program, once a mathematical definition is written down it must be judged on its own merits. It must behave properly under any "input." Best practices also suggest definitions reduce cognitive load and avoid too many special cases. Achieving the right balance is a serious challenge.
 
-An unfortunate consequence of all this is that math books start with the final definition—the end result of this arduous design process—followed by many pages of theorems and proofs explaining why it doesn't succumb to edge cases. Calculus is no different, and in fact most of how Isaac Newton and Gottfried Leibniz originally did calculus was in an informal, intuitive setting, without much rigor at all. It was a less famous mathematician, Karl Weierstrass, who is considered to have finally "set calculus straight" (though it was really a team effort over decades). Modern calculus textbooks are a strange mix. They want to capture the informality of Leibniz, feel obliged to Weierstrass's rigor, but can't commit to either approach fully. Going full Leibniz would be error-prone. On the other hand, the cult of Weierstrass requires detailed proof-reading skills. Alas, mathematicians are usually the only ones who enjoy the elaborate tour of blunders and false starts that historically sculpted a modern definition. One could hardly cajole the average student to care, or even the brightest student, until after those blunders come to bear on their own work.
+An unfortunate consequence of all this is that math books start with the final definition—the end result of this arduous design process—followed by many pages of theorems and proofs explaining why it doesn't succumb to edge cases. Calculus is no different, and in fact most of how Isaac Newton and Gottfried Leibniz originally did calculus was in an informal, intuitive setting, without much rigor at all.
+
+It was a less famous mathematician, Karl Weierstrass, who is considered to have finally "set calculus straight" (though it was really a team effort over decades). Modern calculus textbooks are a strange mix. They want to capture the informality of Leibniz, feel obliged to Weierstrass's rigor, but can't commit to either approach fully. Going full Leibniz would be error-prone.
+
+On the other hand, the cult of Weierstrass requires detailed proof-reading skills. Alas, mathematicians are usually the only ones who enjoy the elaborate tour of blunders and false starts that historically sculpted a modern definition. One could hardly cajole the average student to care, or even the brightest student, until after those blunders come to bear on their own work.
 
 ### A Pathological Example
 
 To my delight, you're still reading. My goal for the rest of the chapter is to whet your appetite for definition crafting. Let's continue with the "steepness of a function" as our prototypical example of a limit. Here's one of those pathological examples that makes limits hard. I'm going to define a non-curve and not-even-connected function $f:\mathbb{R}\to\mathbb{R}$ as follows: if $x$ is $1/k$ for some integer $k$, then $f(x)=2x$, otherwise $f(x)=x$. Figure 8.6 sketches $f$.
 
-Now we can ask: what's the steepness of $f$ at $x=0$? We pick some starting $x_{1}$, compute the slope, pick an $x_{2}$, compute the slope, and keep going until we see convergence. But I dastardly chose $f$ in such a way that the limit changes depending on how you pick the sequence $x_{1},x_{2},\dots$. In fact, if you pick $x_{k}=1/k$, every slope in the sequence is $2$, implying the limit is $2$. There isn't even an approximation because the values in the sequence are constant. But if you choose $x_{k}=\frac{1}{k+0.5}$, the slopes are always $1$. So should
+Now we can ask: what's the steepness of $f$ at $x=0$? We pick some starting $x_{1}$, compute the slope, pick an $x_{2}$, compute the slope, and keep going until we see convergence. But I dastardly chose $f$ in such a way that the limit changes depending on how you pick the sequence $x_{1},x_{2},\dots$.
+
+In fact, if you pick $x_{k}=1/k$, every slope in the sequence is $2$, implying the limit is $2$. There isn't even an approximation because the values in the sequence are constant. But if you choose $x_{k}=\frac{1}{k+0.5}$, the slopes are always $1$. So should
 
 ![Figure 8.6: This pathological function admits two different possibilities for the derivative depending on the sequence of approach.](05 - Calculus with One Variable_images/img-5.jpeg)
 
 the limit be 1 or 2? Neither?
 
-This will be the last pathological example I inflict upon you, but it emphasizes an important point. However we choose to define derivatives, it should not depend on the arbitrary choice of which points you use to do the approximation. It should be a definition like "no matter how your $x$ values approach the target, the slope limit is the same." The generic mathematical term for this is that the derivative should be well-defined. Two of the definitions we scrutinize in this chapter—the limit of a function (Definition 8.4) and the derivative (Definition 8.6)—will encounter the issues above. The quality of Definition 8.1, which defines the limit of a sequence of numbers, and its subsequent analysis provide a foundation that ensures well-definition.
+This will be the last pathological example I inflict upon you, but it emphasizes an important point. However we choose to define derivatives, it should not depend on the arbitrary choice of which points you use to do the approximation. It should be a definition like "no matter how your $x$ values approach the target, the slope limit is the same."
+
+The generic mathematical term for this is that the derivative should be well-defined. Two of the definitions we scrutinize in this chapter—the limit of a function (Definition 8.4) and the derivative (Definition 8.6)—will encounter the issues above. The quality of Definition 8.1, which defines the limit of a sequence of numbers, and its subsequent analysis provide a foundation that ensures well-definition.
 
 ### The Limit of a Sequence
 
-With that thought, let's start with the limit of a sequence of numbers, which will be used to define limits for functions. Since sequences of numbers can have repetition, we won't use set notation (though some authors do). Instead we'll use a comma notation $x_{1}, x_{2}, \ldots$ which the strongly-typed programmer can think of as the output of an iterator which never terminates, or a tuple/array of infinite length $(x_{1}, x_{2}, \ldots)$. The $\varepsilon$ character is a lower-case Greek epsilon, contextually used across mathematics as a small positive real number.
+With that thought, let's start with the limit of a sequence of numbers, which will be used to define limits for functions. Since sequences of numbers can have repetition, we won't use set notation (though some authors do).
+
+Instead we'll use a comma notation $x_{1}, x_{2}, \ldots$ which the strongly-typed programmer can think of as the output of an iterator which never terminates, or a tuple/array of infinite length $(x_{1}, x_{2}, \ldots)$. The $\varepsilon$ character is a lower-case Greek epsilon, contextually used across mathematics as a small positive real number.
 
 **Definition 8.1.** Let $x_{1}, x_{2}, \ldots$ be a sequence of real numbers, one $x_{n}$ for each $n \in \mathbb{N}$, and let $L \in \mathbb{R}$ be fixed. We say that $x_{n}$ converges to $L$ if for every threshold $\varepsilon > 0$, there is a corresponding $k \in \mathbb{N}$ so that all the $x_{n}$ after $x_{k}$ are within distance $\varepsilon$ of $L$. We also equivalently say the limit of $x_{n}$ is $L$.
 
-This is the first time we've encountered a definition that relies heavily on alternating quantifiers (for every..., there is...), so let's discuss it in detail. A statement like "for every FOO there is a BAR," means there's a computational relationship. If you give me a FOO as input, I can produce a BAR with the desired property as output. In fact there may be many such BARs. Interpreting this for Definition 8.1, the input is a real number threshold $\varepsilon>0$, and the output is an integer $k$ with a special property. So the relationship is:
+This is the first time we've encountered a definition that relies heavily on alternating quantifiers (for every..., there is...), so let's discuss it in detail. A statement like "for every FOO there is a BAR," means there's a computational relationship.
+
+If you give me a FOO as input, I can produce a BAR with the desired property as output. In fact there may be many such BARs. Interpreting this for Definition 8.1, the input is a real number threshold $\varepsilon>0$, and the output is an integer $k$ with a special property. So the relationship is:
 
 ```java
 int sequence_index_from_threshold(float epsilon) {
@@ -127,7 +155,9 @@ The special property of $k$ is that all the sequence elements after $k$ are clos
 
 As a simple non-pathological example, let's take the sequence $x_{n}=1-\frac{1}{n}$. This is the sequence $0,\frac{1}{2},\frac{2}{3},\frac{3}{4},\frac{4}{5},\dots$. Our intuition tells us that the limit should be $L=1$, so let's prove it strictly by the letter of the definition.
 
-First let's see a concrete example of the threshold-to-sequence-index functional relationship. If you require $\varepsilon=1/4$, I need to find an index after which all $x_{n}$ are within $1/4$ of $1$. I.e., all these $x_{n}$'s should satisfy $1-1/4<x_{n}<1+1/4$. Another way to write this is with the absolute value: $|x_{n}-1|<1/4$. Since we already see that $3/4$, also known as $1-1/4$, is one of the sequence elements, it should be easy to guess that everything starting at $k=5$ will be close enough to $1$. Indeed, we can do the algebra.
+First let's see a concrete example of the threshold-to-sequence-index functional relationship. If you require $\varepsilon=1/4$, I need to find an index after which all $x_{n}$ are within $1/4$ of $1$. I.e., all these $x_{n}$'s should satisfy $1-1/4<x_{n}<1+1/4$.
+
+Another way to write this is with the absolute value: $|x_{n}-1|<1/4$. Since we already see that $3/4$, also known as $1-1/4$, is one of the sequence elements, it should be easy to guess that everything starting at $k=5$ will be close enough to $1$. Indeed, we can do the algebra.
 
 $$|x_{n}-1|=\left|\left(1-\frac{1}{n}\right)-1\right|=\left|-\frac{1}{n}\right|=\frac{1}{n},$$
 
@@ -149,7 +179,9 @@ $$|x_{n}-1|=\left|\left(1-\frac{1}{n}\right)-1\right|=\left|-\frac{1}{n}\right|=
 
 and because $n\geq k>1/\varepsilon$, we have $1/n\leq 1/k<\varepsilon$. $\blacksquare$
 
-You can think of this $\varepsilon$-to-$k$ process as a game. A skeptical contender doesn't believe $x_{n}$ converges to $L$, and challenges you to find the tail of the sequence that stays within $\varepsilon=1/2$ of $L$. You provide such a $k$, but the contender isn't happy and re-ups the challenge using $\varepsilon=1/100$. You comply with a bigger $k$. The contender retorts with $\varepsilon=(1/2)^{99}$. Unfazed, you still produce a working $k$. If there's any way for the contender to stump you in this game, then $x_{n}$ doesn't converge to $L$. But if you can always produce a good $k$ no matter what, the sequence converges to $L$.
+You can think of this $\varepsilon$-to-$k$ process as a game. A skeptical contender doesn't believe $x_{n}$ converges to $L$, and challenges you to find the tail of the sequence that stays within $\varepsilon=1/2$ of $L$. You provide such a $k$, but the contender isn't happy and re-ups the challenge using $\varepsilon=1/100$.
+
+You comply with a bigger $k$. The contender retorts with $\varepsilon=(1/2)^{99}$. Unfazed, you still produce a working $k$. If there's any way for the contender to stump you in this game, then $x_{n}$ doesn't converge to $L$. But if you can always produce a good $k$ no matter what, the sequence converges to $L$.
 
 We can play the contender's game in code. For each threshold the contender throws, we hand back the proof's index $k=\lceil 1/\varepsilon\rceil$ and then *verify* that every one of the next several thousand terms really does stay within $\varepsilon$ of $1$. The skeptic never wins.
 
@@ -159,7 +191,9 @@ We can play the contender's game in code. For each threshold the contender throw
 
 ### Quantifier Notation
 
-As a notational side note, the phrase "for every $x$ there is a $y$" can be long and annoying to write all the time. It also makes it difficult to study the *syntactic* structure of statements like this, since dependence among variables may be unclear. Mathematicians designed an unambiguous notation for this situation called *quantifiers*. We briefly introduced quantifiers in Chapter 4, and promised we wouldn't use them in this book. However, standard textbook definitions often use the symbols heavily, so this digression helps put what you might see elsewhere in context.
+As a notational side note, the phrase "for every $x$ there is a $y$" can be long and annoying to write all the time. It also makes it difficult to study the *syntactic* structure of statements like this, since dependence among variables may be unclear.
+
+Mathematicians designed an unambiguous notation for this situation called *quantifiers*. We briefly introduced quantifiers in Chapter 4, and promised we wouldn't use them in this book. However, standard textbook definitions often use the symbols heavily, so this digression helps put what you might see elsewhere in context.
 
 The first quantifier is the symbol $\forall$, which means "for all" (the upside-down A stands for All). The second is $\exists$, which stands for "there exists" (the backwards E in "Exists"). Quantifiers may appear in any order. If I claim
 
@@ -171,7 +205,11 @@ If I were to state the definition of the limit in its briefest form, I might say
 
 $$x_{n}\text{ converges to }L\text{ if: }\forall\varepsilon>0,\exists k>0,\forall n>k,|x_{n}-L|<\varepsilon.$$
 
-We've just packed the math like sardines in a tin box. That being said (and now we're really digressing), some situations benefit from writing logical statements in this form. Particularly in the realm of formal logic, it turns out that as you add more "alternating" quantifiers ($\forall x\exists y\forall z$), you get progressively more expressive power. In theoretical computer science this is formalized by the so-called *polynomial hierarchy*, which conjecturally asserts that the computational cost of deciding the truth of generic logical statements increases dramatically with the number of alternating quantifiers. That's why one might believe factoring integers ($\exists a,\exists b,ab=n$) is easier than deciding if one can force a win in a two player game like chess (there exists a move for me, such that for every move for my opponent, there exists a move for me, such that (…), such that I have a winning move).
+We've just packed the math like sardines in a tin box. That being said (and now we're really digressing), some situations benefit from writing logical statements in this form. Particularly in the realm of formal logic, it turns out that as you add more "alternating" quantifiers ($\forall x\exists y\forall z$), you get progressively more expressive power.
+
+In theoretical computer science this is formalized by the so-called *polynomial hierarchy*, which conjecturally asserts that the computational cost of deciding the truth of generic logical statements increases dramatically with the number of alternating quantifiers.
+
+That's why one might believe factoring integers ($\exists a,\exists b,ab=n$) is easier than deciding if one can force a win in a two player game like chess (there exists a move for me, such that for every move for my opponent, there exists a move for me, such that (…), such that I have a winning move).
 
 ### Convergence and Divergence
 
@@ -215,7 +253,9 @@ To achieve this, we need to reason about how much $x_{n}+2$ can grow as $x_{n}\t
 
 $$|(x_{n}+2)(x_{n}-2)|<5|x_{n}-2|.$$
 
-We are nearly victorious. Now we want to choose $\varepsilon^{\prime}$ smaller than 1, such that $5|x_{n}-2|<\varepsilon$. Since $\varepsilon^{\prime}$ also controls the size of $x_{n}-2$ (it's the threshold for the subroutine for $x_{n}\to 2$) we arrive at $5|x_{n}-2|<5\varepsilon^{\prime}$. Finally, we can solve: $5\varepsilon^{\prime}<\varepsilon$ when $\varepsilon^{\prime}<\varepsilon/5$. Combining the pieces together, we can start the proof from the beginning, explicitly invoking the subroutine this time.
+We are nearly victorious. Now we want to choose $\varepsilon^{\prime}$ smaller than 1, such that $5|x_{n}-2|<\varepsilon$. Since $\varepsilon^{\prime}$ also controls the size of $x_{n}-2$ (it's the threshold for the subroutine for $x_{n}\to 2$) we arrive at $5|x_{n}-2|<5\varepsilon^{\prime}$.
+
+Finally, we can solve: $5\varepsilon^{\prime}<\varepsilon$ when $\varepsilon^{\prime}<\varepsilon/5$. Combining the pieces together, we can start the proof from the beginning, explicitly invoking the subroutine this time.
 
 Let $\varepsilon>0$ be arbitrary. Choose $\varepsilon^{\prime}<\min(1,\varepsilon/5)$, and choose $k$ such that $|x_{n}-2|<\varepsilon^{\prime}$ for all $n>k$. In this range,
 
@@ -225,15 +265,25 @@ which proves that $f(x_{n})\to 3$. $\blacksquare$
 
 ### Analysis and Approximation Style
 
-All of this was a formal way of saying that to compute $\lim_{x\to 2}x^{2}-1$, you may "plug in" $2$ to the expression $x^{2}-1$. Indeed, in almost all cases where the expression inside the limit is defined (and continuous) at the limiting input (in this case $x=2$), you can do that. But there are non-pathological functions with useful limits (not just the derivative) for which you can't simply "plug the value in." See the exercises for a famous example. To reiterate from earlier, all of this hefty calculus machinery was invented to deal with those difficult functions.
+All of this was a formal way of saying that to compute $\lim_{x\to 2}x^{2}-1$, you may "plug in" $2$ to the expression $x^{2}-1$. Indeed, in almost all cases where the expression inside the limit is defined (and continuous) at the limiting input (in this case $x=2$), you can do that.
 
-This proof embraces a style of mathematics called analysis. The term "analysis" can refer to specific subfields of study, such as real analysis or complex analysis which are the formalizations of calculus for real and complex numbers. More broadly, an area of math called "analysis" stresses proof techniques that deal with bounds and approximations. The error in these approximations can be controlled to achieve the necessary goals: loosely when attempting to simplify complexity that is irrelevant to the goal, or tightly when that complexity needs to be understood to achieve the goal. As Weierstrass practiced in formalizing calculus, analysis aims to reduce problems to parts that can be independently understood with number sense. This is why, as we recalled in Chapter 7, Henri Poincaré calls the analytical approach a "prolongation of arithmetic." This also motivates the Taylor series that we'll see later in this chapter. They further prolong our arithmetic abilities to express things that finite sums cannot, giving us further tools to control the quality of an approximation.
+But there are non-pathological functions with useful limits (not just the derivative) for which you can't simply "plug the value in." See the exercises for a famous example. To reiterate from earlier, all of this hefty calculus machinery was invented to deal with those difficult functions.
 
-As we saw with our pathological "two lines" example from Figure 8.6, not every function has a limit at every point. For the "two lines" $f(x)$, we computed the slope as $\frac{f(x_{n})-f(0)}{x_{n}-0}$ where $x_{n}$ was part of a sequence tending to zero. I.e., we informally computed the limit $\lim_{x\to 0}\frac{f(x)-f(0)}{x-0}$. But then we found two sequences $a_{n},b_{n}$ that both converge to zero, but their slope-sequences $\frac{f(a_{n})-f(0)}{a_{n}-0}$, $\frac{f(b_{n})-f(0)}{b_{n}-0}$ gave different values. As a consequence, the limit cannot be equal to either value. So we've seen that this definition of the limit passes a litmus test: good functions have limits, and bad functions do not.
+This proof embraces a style of mathematics called analysis. The term "analysis" can refer to specific subfields of study, such as real analysis or complex analysis which are the formalizations of calculus for real and complex numbers. More broadly, an area of math called "analysis" stresses proof techniques that deal with bounds and approximations.
+
+The error in these approximations can be controlled to achieve the necessary goals: loosely when attempting to simplify complexity that is irrelevant to the goal, or tightly when that complexity needs to be understood to achieve the goal. As Weierstrass practiced in formalizing calculus, analysis aims to reduce problems to parts that can be independently understood with number sense.
+
+This is why, as we recalled in Chapter 7, Henri Poincaré calls the analytical approach a "prolongation of arithmetic." This also motivates the Taylor series that we'll see later in this chapter. They further prolong our arithmetic abilities to express things that finite sums cannot, giving us further tools to control the quality of an approximation.
+
+As we saw with our pathological "two lines" example from Figure 8.6, not every function has a limit at every point. For the "two lines" $f(x)$, we computed the slope as $\frac{f(x_{n})-f(0)}{x_{n}-0}$ where $x_{n}$ was part of a sequence tending to zero. I.e., we informally computed the limit $\lim_{x\to 0}\frac{f(x)-f(0)}{x-0}$.
+
+But then we found two sequences $a_{n},b_{n}$ that both converge to zero, but their slope-sequences $\frac{f(a_{n})-f(0)}{a_{n}-0}$, $\frac{f(b_{n})-f(0)}{b_{n}-0}$ gave different values. As a consequence, the limit cannot be equal to either value. So we've seen that this definition of the limit passes a litmus test: good functions have limits, and bad functions do not.
 
 ### Arithmetic Rules for Limits
 
-Before continuing, here are a few basic propositions for working with limits that will come in handy in the rest of the chapter and in the exercises. Most calculus or real analysis textbooks will contain a detailed proof. Basically, they say that most arithmetic operations are compatible with limits, provided the limits involved exist. These formalize the general rule that, absent of any strange function behavior, you can "plug in" the sequence limit to get a function limit, i.e., that $f(a)=\lim_{x\to a}f(x)$.
+Before continuing, here are a few basic propositions for working with limits that will come in handy in the rest of the chapter and in the exercises. Most calculus or real analysis textbooks will contain a detailed proof.
+
+Basically, they say that most arithmetic operations are compatible with limits, provided the limits involved exist. These formalize the general rule that, absent of any strange function behavior, you can "plug in" the sequence limit to get a function limit, i.e., that $f(a)=\lim_{x\to a}f(x)$.
 
 - For all constants $c$, $\lim_{x\to a}cf(x)=c\lim_{x\to a}f(x)$.
 - $\lim_{x\to a}(f(x)+g(x))=\lim_{x\to a}f(x)+\lim_{x\to a}g(x)$, provided that each limit on the right hand side exists.
@@ -282,7 +332,9 @@ The derivative is the *limit* of the difference quotient, so we can watch that l
 
 ### The Derivative as a Function
 
-This was a nice exercise, but it's tedious to compute derivatives over and over again for every input. It would be much more efficient to instead compute a compact representation of the derivative at all possible points. That is, we want a process which, when given a differentiable function $f:\mathbb{R}\to\mathbb{R}$ as input, produces another function $g:\mathbb{R}\to\mathbb{R}$ as output, such that $g(c)=f^{\prime}(c)$ for every $c$. While computing the limit may be tedious, our representation of $g$ should make subsequent derivative calculations as computationally easy as evaluating $f$.
+This was a nice exercise, but it's tedious to compute derivatives over and over again for every input. It would be much more efficient to instead compute a compact representation of the derivative at all possible points. That is, we want a process which, when given a differentiable function $f:\mathbb{R}\to\mathbb{R}$ as input, produces another function $g:\mathbb{R}\to\mathbb{R}$ as output, such that $g(c)=f^{\prime}(c)$ for every $c$.
+
+While computing the limit may be tedious, our representation of $g$ should make subsequent derivative calculations as computationally easy as evaluating $f$.
 
 If you ask a mathematician how to come up with such a $g$, you'd probably receive the reply, "You just do it." This means we can calculate directly from the definition. If, for example, $f(x)=x^{2}$,
 
@@ -368,9 +420,13 @@ The other crucial fact, which we'll use later, is the chain rule.
 
 Let $f,g:\mathbb{R}\to\mathbb{R}$ be two functions which have derivatives. Then the derivative of $f(g(x))$ is $f^{\prime}(g(x))g^{\prime}(x)$.
 
-In the chapter exercises you'll look up a proof of this theorem. The chain rule makes it easy to compute derivatives that would require a lot of algebra to compute, such as $\left(x^{2}-10\right)^{50}$. Here $f$ is $z\mapsto z^{50}$ and $g$ is $x\mapsto x^{2}-10$, so the derivative is $50(x^{2}-10)^{49}\cdot(2x)$. The chain rule also lets us compute derivatives that would otherwise be completely mysterious, such as that of $\sin(e^{x})$. If you're told what the derivatives of $\sin(x)$ and $e^{x}$ are separately, then you can compute the derivative of the composition.
+In the chapter exercises you'll look up a proof of this theorem. The chain rule makes it easy to compute derivatives that would require a lot of algebra to compute, such as $\left(x^{2}-10\right)^{50}$. Here $f$ is $z\mapsto z^{50}$ and $g$ is $x\mapsto x^{2}-10$, so the derivative is $50(x^{2}-10)^{49}\cdot(2x)$.
 
-As a notational side note, let me explain the "fractions make you guess the chain rule" remark. Call $h(x)=f(g(x))$. Then if we use the fraction notation $\frac{dh}{dx}$ for the derivative of $h$, the standard way to write the chain rule for this would be $\frac{dh}{dx}=\frac{dh}{dg}\cdot\frac{dg}{dx}$. The "hint" of the notation is that if you're a reckless miscreant, you might jump to the conclusion that the $dg$'s "cancel" like fractions do. Rest assured that is not how it works, but calculus students the world over are encouraged to do it this way because the resulting rule is correct. We'll return to this in Chapter 14.
+The chain rule also lets us compute derivatives that would otherwise be completely mysterious, such as that of $\sin(e^{x})$. If you're told what the derivatives of $\sin(x)$ and $e^{x}$ are separately, then you can compute the derivative of the composition.
+
+As a notational side note, let me explain the "fractions make you guess the chain rule" remark. Call $h(x)=f(g(x))$. Then if we use the fraction notation $\frac{dh}{dx}$ for the derivative of $h$, the standard way to write the chain rule for this would be $\frac{dh}{dx}=\frac{dh}{dg}\cdot\frac{dg}{dx}$.
+
+The "hint" of the notation is that if you're a reckless miscreant, you might jump to the conclusion that the $dg$'s "cancel" like fractions do. Rest assured that is not how it works, but calculus students the world over are encouraged to do it this way because the resulting rule is correct. We'll return to this in Chapter 14.
 
 Historically, symbols like $dx$ had no concrete mathematical meaning. They were called "infinitesimals" and regarded informally as quantities infinitely smaller than any fixed value. More recently, $dx$ was retroactively assigned a semantic meaning that allows one to work with it as the notation suggests. The formalism is beyond the scope of this book.
 
@@ -378,11 +434,15 @@ Historically, symbols like $dx$ had no concrete mathematical meaning. They were 
 
 ### Approximation by a Line
 
-If you got ten mathematicians in a room they'd come up with twenty different ways to motivate calculus. In this chapter we used, "generalize the slope of a line to curvy things," but here's another. One prevalent idea is to take a complicated thing and approximate it by simpler things. Without calculus, the simplest function we fully understand is a straight line. So we might ask, "Given a function $f:\mathbb{R}\to\mathbb{R}$ and a point $x\in\mathbb{R}$ at which $f$ is differentiable, what line best approximates $f$ at $x$?"
+If you got ten mathematicians in a room they'd come up with twenty different ways to motivate calculus. In this chapter we used, "generalize the slope of a line to curvy things," but here's another. One prevalent idea is to take a complicated thing and approximate it by simpler things.
+
+Without calculus, the simplest function we fully understand is a straight line. So we might ask, "Given a function $f:\mathbb{R}\to\mathbb{R}$ and a point $x\in\mathbb{R}$ at which $f$ is differentiable, what line best approximates $f$ at $x$?"
 
 If you define "best approximates" in a particular but reasonable way, the answer to this question uniquely defines the derivative. Call $L(x)$ the line approximation of $f$ we get using the derivative of $f$ at $x=c$. That is, $L(x)=f^{\prime}(c)(x-c)+f(c)$. This is just the line passing through $(c,f(c))$ with slope $f^{\prime}(c)$, often called the "tangent line" to $f$ at $c$.
 
-Before we state the "official" definition, let's try crafting an artisanal definition from a naive guess at what "best approximates" should mean. Let's say the line $L(x)$ "best approximates" $f(x)$ at $c$ if, for any other line $K(x)$ that passes through $(c,f(c))$, for every $x$ the line $L(x)$ is closer to $f(x)$ than $K(x)$. Note the two universal quantifiers in the statement. Sadly, this doesn't work. Take our example from earlier, replotted in Figure 8.8. There, the line between $A$ and $A'$ is not the tangent line at $A$, and it is also far closer to $f$ at $A'$ than the tangent line would be. However, for points close to $A$, the tangent line is a much better approximator. If we're trying to approximate $f$ "at" $A$, we care more about points closer to $A$ than points far from $A$. Here's how we make this clear in the math.
+Before we state the "official" definition, let's try crafting an artisanal definition from a naive guess at what "best approximates" should mean. Let's say the line $L(x)$ "best approximates" $f(x)$ at $c$ if, for any other line $K(x)$ that passes through $(c,f(c))$, for every $x$ the line $L(x)$ is closer to $f(x)$ than $K(x)$. Note the two universal quantifiers in the statement. Sadly, this doesn't work.
+
+Take our example from earlier, replotted in Figure 8.8. There, the line between $A$ and $A'$ is not the tangent line at $A$, and it is also far closer to $f$ at $A'$ than the tangent line would be. However, for points close to $A$, the tangent line is a much better approximator. If we're trying to approximate $f$ "at" $A$, we care more about points closer to $A$ than points far from $A$. Here's how we make this clear in the math.
 
 ![Figure 8.8: The line between $A$ and $A'$ does not approximate $f$ well close to $A$.](05 - Calculus with One Variable_images/img-7.jpeg)
 
@@ -392,7 +452,9 @@ Take any line $K(x)$ that is supposedly challenging the tangent line for the tit
 
 Let $f: \mathbb{R} \to \mathbb{R}$ be a function and $A = (c, f(c))$ be a point on $f$ at which $f$ is differentiable. Let $L(x)$ be the tangent line at $c$, i.e. $L(x) = f'(c)(x - c) + f(c)$. Then for every line $K(x)$ passing through $(c, f(c))$, there is a sufficiently small $\varepsilon > 0$ such that if $|x - c| < \varepsilon$, then $|L(x) - f(x)| \leq |K(x) - f(x)|$.
 
-Notation time: people often write the set of points $\{x\in \mathbb{R}:|x - c| < \varepsilon \}$ using the "open interval" notation $(c - \varepsilon ,c + \varepsilon)$. They also often call this an epsilon-ball around $c$. Using this, the last sentence of the theorem might read, "For all $x\in (c - \varepsilon ,c + \varepsilon)$, it holds that $|L(x) - f(x)|\leq |K(x) - f(x)|$." This makes the statement clearer. Instead of saying "if this then that," you're saying what you want to say outright, that "FOO is always true in my domain of interest."
+Notation time: people often write the set of points $\{x\in \mathbb{R}:|x - c| < \varepsilon \}$ using the "open interval" notation $(c - \varepsilon ,c + \varepsilon)$. They also often call this an epsilon-ball around $c$.
+
+Using this, the last sentence of the theorem might read, "For all $x\in (c - \varepsilon ,c + \varepsilon)$, it holds that $|L(x) - f(x)|\leq |K(x) - f(x)|$." This makes the statement clearer. Instead of saying "if this then that," you're saying what you want to say outright, that "FOO is always true in my domain of interest."
 
 ###### Proof.
 
@@ -412,7 +474,9 @@ Suppose to the contrary that no matter which $\varepsilon$ I choose, there is so
 
 $$(\varepsilon_{1},\varepsilon_{2},\varepsilon_{3},\dots)=(1,1/2,1/3,\dots)$$
 
-and let $x_{1},x_{2},x_{3},\dots$ be the corresponding $x$'s violating the inequality for each $\varepsilon_{i}$. Since each $x_{i}$ is in $(c-\varepsilon_{i},c+\varepsilon_{i})$, it follows that $x_{i}\to c$, but because (by assuming the contradictory hypothesis) the inequalities are false, the sequence $\frac{f(x_{i})-f(c)}{x_{i}-c}$ *does not* converge to $f^{\prime}(c)$. The contradictory hypothesis says it's closer to $m$ instead. This contradicts the definition of the derivative. $\blacksquare$
+and let $x_{1},x_{2},x_{3},\dots$ be the corresponding $x$'s violating the inequality for each $\varepsilon_{i}$. Since each $x_{i}$ is in $(c-\varepsilon_{i},c+\varepsilon_{i})$, it follows that $x_{i}\to c$, but because (by assuming the contradictory hypothesis) the inequalities are false, the sequence $\frac{f(x_{i})-f(c)}{x_{i}-c}$ *does not* converge to $f^{\prime}(c)$.
+
+The contradictory hypothesis says it's closer to $m$ instead. This contradicts the definition of the derivative. $\blacksquare$
 
 We have proved that derivatives provide the best linear approximation to a function at a point for a concrete sense of "best." This raises a natural question. Can we improve this approximation by using more complicated functions than lines? The answer is yes. The tool is called the Taylor polynomial.
 
@@ -428,9 +492,13 @@ We can't avoid using $f^{\prime}(a)$ for the coefficient of the $(x-a)$ term, be
 
 $$p^{\prime}(x)=2q^{*}(x-a)+f^{\prime}(a).$$
 
-Plugging in $x=a$ leaves only $f^{\prime}(a)$. In the same way, in Theorem 8.11 we couldn't avoid using $f(a)$ for the constant term because the line had to pass through $(a,f(a))$. And so if we want to optimize $p^{\prime}(x)$ by choosing $q^{*}$, it's almost *exactly* the same proof as Theorem 8.11, with the difference being an extra factor of $2$. We'll leave it as an exercise for the reader to redo the steps, but at the end you get $q^{*}=\frac{f^{\prime\prime}(a)}{2}$, where $f^{\prime\prime}$ is the derivative of the derivative of $f$ (the "second" derivative of $f$).
+Plugging in $x=a$ leaves only $f^{\prime}(a)$. In the same way, in Theorem 8.11 we couldn't avoid using $f(a)$ for the constant term because the line had to pass through $(a,f(a))$. And so if we want to optimize $p^{\prime}(x)$ by choosing $q^{*}$, it's almost *exactly* the same proof as Theorem 8.11, with the difference being an extra factor of $2$.
 
-Two quick asides. First, the attempt to use the second derivative only makes sense if $f$ has a first derivative at that point, and as we saw not all functions have derivatives at all points. Second, adding more and more primes to denote repeated applications of the derivative operation is cumbersome. Rather, it's customary to use a parenthetical superscript notation $f^{(n)}(x)$ for the $n$-th derivative of $f$. You call a function $n$-times differentiable if it has $n$ derivatives at every point. If $f$ has infinitely many derivatives (i.e., it is $n$-times differentiable for every $n\in\mathbb{N}$), $f$ is called *smooth*. The typical example of a smooth function is $\sin(x)$ or $2^{x}$. A default modeling assumption is that life is smooth, and when it's not you pay very close attention.
+We'll leave it as an exercise for the reader to redo the steps, but at the end you get $q^{*}=\frac{f^{\prime\prime}(a)}{2}$, where $f^{\prime\prime}$ is the derivative of the derivative of $f$ (the "second" derivative of $f$).
+
+Two quick asides. First, the attempt to use the second derivative only makes sense if $f$ has a first derivative at that point, and as we saw not all functions have derivatives at all points. Second, adding more and more primes to denote repeated applications of the derivative operation is cumbersome. Rather, it's customary to use a parenthetical superscript notation $f^{(n)}(x)$ for the $n$-th derivative of $f$.
+
+You call a function $n$-times differentiable if it has $n$ derivatives at every point. If $f$ has infinitely many derivatives (i.e., it is $n$-times differentiable for every $n\in\mathbb{N}$), $f$ is called *smooth*. The typical example of a smooth function is $\sin(x)$ or $2^{x}$. A default modeling assumption is that life is smooth, and when it's not you pay very close attention.
 
 Our exploration has led us to the Baby Taylor Theorem.
 
@@ -470,17 +538,25 @@ We can build these polynomials and watch the approximation improve. The demo bel
 <!-- include: code/pim/05 - Calculus with One Variable/04_taylor_remainder.py -->
 ```
 
-The Taylor polynomial is one of the most often used applications of mathematics to itself. The reason is because when you're analyzing a mathematical problem, it's easy to define functions with convoluted behavior. One example of this is in machine learning, when you analyze the probability that a classifier is wrong. You can often write down the probability as a massive product, but can't compute it exactly. Instead, one often uses a small-degree Taylor polynomial to approximate it. With knowledge of whether the Taylor polynomial is an over- or under-approximation of the truth, one can bound the complicated behavior enough to prove, for example, that the classification error decreases with more data.
+The Taylor polynomial is one of the most often used applications of mathematics to itself. The reason is because when you're analyzing a mathematical problem, it's easy to define functions with convoluted behavior. One example of this is in machine learning, when you analyze the probability that a classifier is wrong.
+
+You can often write down the probability as a massive product, but can't compute it exactly. Instead, one often uses a small-degree Taylor polynomial to approximate it. With knowledge of whether the Taylor polynomial is an over- or under-approximation of the truth, one can bound the complicated behavior enough to prove, for example, that the classification error decreases with more data.
 
 Theorem 8.13 seems to show us that every function can be approximated arbitrarily well using polynomials. As useful as polynomials are, it turns out this is not entirely true. Let's say we're working with a function where the polynomial approximation does get progressively better at higher degrees. If you're in the proper mindset for calculus, you naturally ask what happens in the limit? If I call $p_{k}$ the degree $k$ Taylor polynomial for $f$ at $a=0$, how can we make sense of the expression
 
 $$\lim_{k\to\infty}p_{k}(x)\ldots?$$
 
-Remember, we only defined what it means for a sequence of numbers to converge, but this is a sequence of functions $\mathbb{R}\to\mathbb{R}$. Convergence of functions requires a definition of what it means for two functions to be "close" together, which has subtleties beyond the scope of this chapter. But suppose we did that and we can make sense of this expression, we'd hope that this limit was also equal to $f$, at least when $x$ is sufficiently close to 0. This expression, the limit of Taylor polynomials, is called the Taylor series of $f$ at that point.
+Remember, we only defined what it means for a sequence of numbers to converge, but this is a sequence of functions $\mathbb{R}\to\mathbb{R}$. Convergence of functions requires a definition of what it means for two functions to be "close" together, which has subtleties beyond the scope of this chapter.
 
-Mathematics is not so kind to us here. There are certain simple functions for which the Taylor series breaks down in certain regions. In particular, if $f(x) = \log (1 + x)$ and you compute the limit at $a = 0$, the resulting function would only be equal to $f(x)$ between $x = -1$ and $x = 1$. When $x > 1$ the sequence does not converge, even though $\log (1 + x)$ exists for $x > 1$. In that case, you have to compute a different Taylor series at, say, $a = 2$. The complete function is then joined together piece-wise by enough Taylor series pieces until you get the whole function. The functions which can be reconstructed in this way (and aren't sensitive to which points you choose within a region, again in the interest of well-definition) are called analytic functions.
+But suppose we did that and we can make sense of this expression, we'd hope that this limit was also equal to $f$, at least when $x$ is sufficiently close to 0. This expression, the limit of Taylor polynomials, is called the Taylor series of $f$ at that point.
 
-There are somewhat natural functions that fail to accommodate Taylor series worse than the logarithm. Let $f(x) = 2^{-1 / x^2}$ when $x \neq 0$, and let $f(0) = 0$. Figure 8.10 contains a plot of this function. You will prove in Exercise 8.11 that $f^{(n)}(0) = 0$ for every $n \in \mathbb{N}$. As a consequence, all of its Taylor polynomials at $x = 0$ are the zero function, and the "limit function" should be the constant zero function. In this case, the Taylor series tells you nothing about the function except its value at $x = 0$. Polynomials aren't able to express what $f$ looks like near zero.
+Mathematics is not so kind to us here. There are certain simple functions for which the Taylor series breaks down in certain regions. In particular, if $f(x) = \log (1 + x)$ and you compute the limit at $a = 0$, the resulting function would only be equal to $f(x)$ between $x = -1$ and $x = 1$. When $x > 1$ the sequence does not converge, even though $\log (1 + x)$ exists for $x > 1$.
+
+In that case, you have to compute a different Taylor series at, say, $a = 2$. The complete function is then joined together piece-wise by enough Taylor series pieces until you get the whole function. The functions which can be reconstructed in this way (and aren't sensitive to which points you choose within a region, again in the interest of well-definition) are called analytic functions.
+
+There are somewhat natural functions that fail to accommodate Taylor series worse than the logarithm. Let $f(x) = 2^{-1 / x^2}$ when $x \neq 0$, and let $f(0) = 0$. Figure 8.10 contains a plot of this function. You will prove in Exercise 8.11 that $f^{(n)}(0) = 0$ for every $n \in \mathbb{N}$.
+
+As a consequence, all of its Taylor polynomials at $x = 0$ are the zero function, and the "limit function" should be the constant zero function. In this case, the Taylor series tells you nothing about the function except its value at $x = 0$. Polynomials aren't able to express what $f$ looks like near zero.
 
 ![Figure 8.10: A function $f(x) = 2^{-1 / x^2}$, all of whose derivatives are zero at $x = 0$.](05 - Calculus with One Variable_images/img-9.jpeg)
 
@@ -557,7 +633,9 @@ The tangent line at the point $(d,f(d))$ intersects the $x$-axis quite close to 
 
 ### Deriving the Newton Update
 
-If this isn't convincing enough, we can provide something much better: a proof. But first, we have to make the algorithm explicit. Phrased geometrically, start from some intermediary $x$-value guess, calling it $x_{n}$ for the $n$-th step in the algorithm. Draw the tangent line at $x_{n}$, which is $y=f(x_{n})+f^{\prime}(x_{n})(x-x_{n})$, and let $x_{n+1}$ be the intersection of this line with the $x$-axis. This is illustrated in Figure 8.13. To find the intersection point, set $y=0$ in the equation for the tangent line, and solve for $x$:
+If this isn't convincing enough, we can provide something much better: a proof. But first, we have to make the algorithm explicit. Phrased geometrically, start from some intermediary $x$-value guess, calling it $x_{n}$ for the $n$-th step in the algorithm.
+
+Draw the tangent line at $x_{n}$, which is $y=f(x_{n})+f^{\prime}(x_{n})(x-x_{n})$, and let $x_{n+1}$ be the intersection of this line with the $x$-axis. This is illustrated in Figure 8.13. To find the intersection point, set $y=0$ in the equation for the tangent line, and solve for $x$:
 
 $$
 \begin{aligned}
@@ -714,7 +792,9 @@ There are two obstacles: (a) this polynomial might not even hit the $x$ axis; it
 
 Admittedly, finding the root of a degree 2 polynomial isn't so hard (there's a formula with a sing-a-long mnemonic), but if you take this idea up to degree 3, 4, or higher, the formula approach eventually breaks down. For degree 5, the polynomial we want to approximate a root for is the Taylor polynomial, and we don't know how to find its roots.
 
-Nevertheless, there is a technique called Householder's method that generalizes Newton's method to higher degree Taylor polynomials. Higher degrees unlock order-of-magnitude better convergence. The tradeoff, as expected, is that it takes progressively more work to compute each step in the update (and existence and good behavior of higher derivatives). Moreover, there are additional requirements at each step on the suitability of a starting point to guarantee convergence. You will explore this in an exercise.
+Nevertheless, there is a technique called Householder's method that generalizes Newton's method to higher degree Taylor polynomials. Higher degrees unlock order-of-magnitude better convergence.
+
+The tradeoff, as expected, is that it takes progressively more work to compute each step in the update (and existence and good behavior of higher derivatives). Moreover, there are additional requirements at each step on the suitability of a starting point to guarantee convergence. You will explore this in an exercise.
 
 ## Cultural Review
 
@@ -744,7 +824,9 @@ $$\lim_{x\to a}[f(x)g(x)]=\left(\lim_{x\to a}f(x)\right)\left(\lim_{x\to a}g(x)\
 provided both of the limits on the right hand side exist.
 3. Prove that $a_{n}=\frac{2^{\sqrt{n}}}{n^{10}}$ diverges as $n\to\infty$.
 4. Prove that a function $f(x)$ which is differentiable at $a$ is also continuous at $a$.
-5. Let $x_{n}$ be a sequence of real numbers. Suppose that for every $\varepsilon>0$, there is an $N\in\mathbb{N}$ (depending on $\varepsilon$), such that for every $n, m>N$ it holds that $|x_{n}-x_{m}|<\varepsilon$. Such a sequence is called a Cauchy sequence. Look up the statement of the Bolzano-Weierstrass theorem and use it to prove that every Cauchy sequence converges.
+5. Let $x_{n}$ be a sequence of real numbers.
+
+Suppose that for every $\varepsilon>0$, there is an $N\in\mathbb{N}$ (depending on $\varepsilon$), such that for every $n, m>N$ it holds that $|x_{n}-x_{m}|<\varepsilon$. Such a sequence is called a Cauchy sequence. Look up the statement of the Bolzano-Weierstrass theorem and use it to prove that every Cauchy sequence converges.
 
 **8.3.** Prove that the numeric value for the slope of a line doesn't depend on the choice of points.
 
@@ -758,7 +840,9 @@ provided both of the limits on the right hand side exist.
 
 **8.7.** Compute the Taylor series for $f(x)=\sqrt{1+x^{2}}$ at $x=0$. We will use this in Chapter 12 to simplify a model for a physical system.
 
-**8.8.** Let $N\in\mathbb{N}$ and $0\leq P\in\mathbb{R}$ be constants. Compute the linear (degree-1) Taylor approximation for $C(r)=\frac{Pr(1+r)^{N}}{(1+r)^{N}-1}$ at $r=0$. This formula computes the monthly interest payment on a loan with compounding monthly interest rate $r$, total number of months $N$, and principal $P$. In the December 1996 issue of Mathematics Magazine, Peyman Milanfar described a slightly modified version of the linear Taylor approximation, $C^{*}(r)\approx\frac{1}{N}(P+\frac{1}{2}PNr)$, which has been used by Persian merchants for hundreds of years to compute monthly loan payments in their heads. Compare $C^{*}(r)$ with the exact degree-1 Taylor polynomial for $C(r)$. What is the error of the Persian method? Under what conditions on $N$ and $P$ is the Persian method accurate?
+**8.8.** Let $N\in\mathbb{N}$ and $0\leq P\in\mathbb{R}$ be constants. Compute the linear (degree-1) Taylor approximation for $C(r)=\frac{Pr(1+r)^{N}}{(1+r)^{N}-1}$ at $r=0$. This formula computes the monthly interest payment on a loan with compounding monthly interest rate $r$, total number of months $N$, and principal $P$.
+
+In the December 1996 issue of Mathematics Magazine, Peyman Milanfar described a slightly modified version of the linear Taylor approximation, $C^{*}(r)\approx\frac{1}{N}(P+\frac{1}{2}PNr)$, which has been used by Persian merchants for hundreds of years to compute monthly loan payments in their heads. Compare $C^{*}(r)$ with the exact degree-1 Taylor polynomial for $C(r)$. What is the error of the Persian method? Under what conditions on $N$ and $P$ is the Persian method accurate?
 
 **8.9.** There are some functions which are challenging to compute limits for, but they aren't considered "pathological." One particularly famous function is
 
