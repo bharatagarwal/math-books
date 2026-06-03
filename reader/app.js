@@ -400,6 +400,7 @@ async function loadChapter(idx) {
     buildCarousels(pane);
     styleExercises(pane);
     buildChapterNav(pane, idx);
+    applyReaderSettings();
 
     const headings = Array.from(pane.querySelectorAll('h2, h3'));
     headings.forEach((h, i) => { h.id = 'h-' + i; });
@@ -507,6 +508,50 @@ document.addEventListener('keydown', e => {
     e.preventDefault();
     loadChapter(currentChapter + 1);
   }
+});
+
+// Mobile reading controls — font size & line height (persisted per session)
+let readerFontSize = parseFloat(localStorage.getItem('mr-fs') || '15');
+let readerLineHeight = parseFloat(localStorage.getItem('mr-lh') || '1.7');
+
+function applyReaderSettings() {
+  const md = document.querySelector('.md');
+  if (!md) return;
+  md.style.fontSize = readerFontSize + 'px';
+  md.style.lineHeight = readerLineHeight;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('mtToast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 1200);
+}
+
+function changeFontSize(d) {
+  readerFontSize = Math.max(12, Math.min(22, +(readerFontSize + d).toFixed(1)));
+  localStorage.setItem('mr-fs', readerFontSize);
+  applyReaderSettings();
+  showToast(readerFontSize + 'px');
+}
+
+function changeLineHeight(d) {
+  readerLineHeight = Math.max(1.2, Math.min(2.4, +(readerLineHeight + d).toFixed(2)));
+  localStorage.setItem('mr-lh', readerLineHeight);
+  applyReaderSettings();
+  showToast(readerLineHeight + ' line height');
+}
+
+document.getElementById('mtFontDown').addEventListener('click', () => changeFontSize(-0.5));
+document.getElementById('mtFontUp').addEventListener('click', () => changeFontSize(0.5));
+document.getElementById('mtLhDown').addEventListener('click', () => changeLineHeight(-0.1));
+document.getElementById('mtLhUp').addEventListener('click', () => changeLineHeight(0.1));
+
+// Collapsible toolbar toggle
+const toolbar = document.getElementById('mobileToolbar');
+document.getElementById('mtToggle').addEventListener('click', () => {
+  toolbar.classList.toggle('expanded');
 });
 
 // Mobile zen toggle button

@@ -192,45 +192,99 @@ kbd {
   background: #fff; box-shadow: 0 1px 0 #d1d9e0;
 }
 
-/* Floating zen toggle — mobile only (shown via the media query below) */
-.mobile-zen-toggle {
+/* Floating mobile toolbar — collapsible pill (shown via media query below) */
+.mobile-toolbar {
   position: fixed;
   right: 16px;
   bottom: max(16px, env(safe-area-inset-bottom));
   z-index: 20;
   display: none;
   align-items: center;
-  justify-content: center;
-  min-width: 56px;
-  height: 36px;
-  padding: 0 14px;
+  height: 40px;
   border: 1px solid rgba(209, 217, 224, 0.95);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 24px rgba(31, 35, 40, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  overflow: hidden;
+}
+.mt-toggle {
+  flex-shrink: 0;
+}
+.mt-tray {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width 0.22s ease, opacity 0.18s ease, padding 0.22s ease;
+  padding: 0;
+}
+.mobile-toolbar.expanded .mt-tray {
+  max-width: 300px;
+  opacity: 1;
+  padding: 0 4px 0 0;
+}
+.mobile-toolbar.expanded .mt-toggle {
+  color: #0969da;
+}
+.mt-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 32px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 999px;
+  background: none;
   color: #57606a;
   font: inherit;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  box-shadow: 0 8px 24px rgba(31, 35, 40, 0.12);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: opacity 0.18s ease, transform 0.18s ease, color 0.18s ease,
-    background 0.18s ease, border-color 0.18s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.12s, color 0.12s;
 }
-.mobile-zen-toggle:active { transform: translateY(1px) scale(0.98); }
-body.zen .mobile-zen-toggle {
-  background: rgba(221, 244, 255, 0.95);
-  border-color: rgba(9, 105, 218, 0.2);
+.mt-btn:active { background: rgba(0, 0, 0, 0.06); }
+.mt-btn.mt-lh { min-width: 32px; padding: 0 6px; }
+.mt-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(209, 217, 224, 0.7);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+body.zen .mobile-toolbar .mt-btn#mobileZenToggle {
   color: #0969da;
 }
+.mt-toast {
+  position: fixed;
+  bottom: 68px;
+  right: 16px;
+  background: #1f2328;
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 21;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.mt-toast.show { opacity: 1; }
 
 @media (max-width: 900px) {
   .outline { display: none; }
   .sidebar { width: 220px; min-width: 220px; }
   .pane { padding: 24px 20px 96px; }
   .keyhint { display: none; }
-  .mobile-zen-toggle { display: inline-flex; }
+  .mobile-toolbar { display: flex; }
   body.zen .pane { padding: 24px 20px 96px; }
 
   /* Smooth-collapse the top bar; zen fully removes it (rule above). */
@@ -247,7 +301,7 @@ body.zen .mobile-zen-toggle {
     pointer-events: none;
   }
   body.mobile-chrome-hidden:not(.zen) .wrap { height: 100vh; }
-  body.mobile-chrome-hidden:not(.zen) .mobile-zen-toggle {
+  body.mobile-chrome-hidden:not(.zen) .mobile-toolbar {
     opacity: 0.55;
     transform: translateY(8px);
   }
