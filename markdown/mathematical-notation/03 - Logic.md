@@ -1,61 +1,94 @@
 # Logic
 
+George Boole had an audacious idea in 1854: thought itself could be reduced to algebra. His *Laws of Thought* showed that the words "and," "or," "not" obeyed precise algebraic rules, just like addition and multiplication. A century later, Claude Shannon realized that Boole's algebra was exactly what electrical switches computed — and the digital age was born.
+
+If you've written an `if` statement, you've done Boolean algebra. The notation below formalizes what you already know, and extends it with quantifiers ($\forall$, $\exists$) that let you make claims about entire collections at once.
+
 ## 1. Boolean operations and proof symbols
 
-The mathematical words and, or, not, implies, and so on are often abbreviated with special symbols.
+The mathematical words *and*, *or*, *not*, *implies*, and so on are abbreviated with special symbols. If you know Python's `and`, `or`, `not`, you already know the semantics — the notation just makes it more compact.
 
-- And. $p\land q$ is the customary notation for the sentence “$p$ and $q$.” Sometimes an ampersand & is used.
-- Or. $p\lor q$ is the customary notation for the sentence “$p$ or $q$.” Sometimes a vertical stroke | is used.
-- Not. The sentence “not $p$” is denoted $\sim p$ or $\neg p$.
+### Connectives
 
-Note that many math relation symbols may be “slashed” to mean that the relation does not hold. For example $\neq$ (not equal), $\notin$ (not an element of), $\not\subseteq$ (not a subset of), and so on.
-- Exclusive or. $p\not\supseteq q$ means “$p$ or $q$, but not ($p$ and $q$).” Sometimes a circled plus sign $\oplus$ is used. The word xor is often used as an abbreviation for exclusive or and sometimes is used as a notation for this operation: $p$ xor $q$.
-- Nand. $p\not\supset q$ means $\neg(p\lor q)$. The term nand is a contraction of not and.
-- Implies. The notation $a\Rightarrow b$ means “If $a$ then $b$” or “$a$ implies $b$.”
-- Implied by. The notation $a\Leftarrow b$ means “$a$ is implied by $b$” or “If $b$ then $a$.”
-- If and only if. The notation $a\iff b$ means “$a$ if and only if $b$.” In other words “If $a$ then $b$” and “If $b$ then $a$” are both true statements. The words if and only if are often abbreviated iff.
-- Therefore. A small triangle of three dots $\therefore$ is an abbreviation for the word therefore.
-- Because. An inverted triangle of three dots $\because$ is an abbreviation for the word because.
-- Contradiction. The notation $\Rightarrow\Leftarrow$ indicates a contradiction has been reached in a proof. It is an abbreviation for: “We have reached a contradiction. Therefore the supposition is false.”
-- End of proof. A square $\sqsupset$ (or a filled square $\blacksquare$) is often used to show the end of a mathematical proof. The letters QED are also used; they
+- **And.** $p \land q$ means "$p$ and $q$." True only when both are true. In Python: `p and q`.
 
+- **Or.** $p \lor q$ means "$p$ or $q$." True when at least one is true (inclusive or). In Python: `p or q`.
 
-stand for *Quod Erat Demonstrandum* [thus it has been demonstrated]. In class, I use this symbol: $\odot$.
+- **Not.** $\neg p$ (or $\sim p$) means "not $p$." In Python: `not p`.
+
+- **Exclusive or.** $p \oplus q$ means "$p$ or $q$, but not both." In Python: `p ^ q`. This is the XOR you know from bitwise operations.
+
+- **Implies.** $a \Rightarrow b$ means "if $a$ then $b$." The only way this is false is when $a$ is true but $b$ is false. Equivalently, $a \Rightarrow b \;\equiv\; \neg a \lor b$.
+
+  This is the one that trips people up: "false implies anything" is true. A promise you never have to keep isn't a broken promise.
+
+- **If and only if.** $a \iff b$ means "$a$ implies $b$" and "$b$ implies $a$." Often abbreviated *iff*.
+
+- **Implied by.** $a \Leftarrow b$ means "$a$ is implied by $b$" (equivalently, $b \Rightarrow a$).
+
+We can generate the full truth table for implication — the result matches the equivalence $p \Rightarrow q \;\equiv\; \neg p \lor q$:
+
+<!-- include: code/mathematical-notation/03 - Logic/01_python.py -->
+
+Note: many math relation symbols can be "slashed" to negate them: $\neq$ (not equal), $\notin$ (not an element of), $\not\subseteq$ (not a subset of), and so on.
+
+### Proof markers
+
+A few symbols appear specifically in the context of writing proofs:
+
+- **Therefore.** $\therefore$ abbreviates the word "therefore."
+- **Because.** $\because$ abbreviates the word "because."
+- **Contradiction.** $\Rightarrow\!\Leftarrow$ indicates a contradiction has been reached.
+- **End of proof.** $\square$ (or $\blacksquare$) marks the end of a proof. The letters QED are also used, from the Latin *Quod Erat Demonstrandum* ("thus it has been demonstrated").
 
 ## 2. Quantifiers
 
-The mathematical symbols $\forall$ and $\exists$ are abbreviations that loosely translate to *always* and *sometimes*.
+The symbols $\forall$ and $\exists$ are the most powerful notation in logic. They let you make claims about every element or some element of a set — the mathematical equivalent of `all()` and `any()` in Python.
 
-The symbol $\forall$ is called the *universal quantifier* and means *for all*. For example,
+### Universal quantifier
 
-$\forall x\in\mathbb{R},\ x^{2}\geq 0.$
+The symbol $\forall$ means *for all*:
 
-This translates to: Every real number $x$ has the property that $x^{2}$ is nonnegative. Or, more colloquially, the square of a real number must be zero or larger.
+$$
+\forall x \in \mathbb{R},\; x^2 \geq 0
+$$
 
-The symbol $\exists$ is called the *existential quantifier* and means *there exists*. For example,
+This says: every real number $x$ has the property that $x^2$ is nonnegative.
 
-$\exists x\in\mathbb{R},\ x^{2}=2.$
+### Existential quantifier
 
-This sentence asserts that there is a real number whose square equals $2$. (And, of course, $\sqrt{2}$ is such a number.)
+The symbol $\exists$ means *there exists*:
 
-To make this notation a bit more pronounceable, some people insert the words “such that” (typically abbreviated s.t. or notated $\ni$) into quantifier notation:
+$$
+\exists x \in \mathbb{R},\; x^2 = 2
+$$
 
-$\exists x\in\mathbb{R}\ \text{s.t.}\ x^{2}=2$
+This asserts that there is a real number whose square equals 2. (And $\sqrt{2}$ is such a number.)
 
-reads “there is a real number $x$ such that $x^{2}=2$.”
+When $\exists$ is followed by an exclamation point, it means *uniquely exists*: $\exists!\, x \in \mathbb{R},\; x^2 = 0$ asserts there is exactly one real number whose square is zero.
 
-When an $\exists$ is followed by an exclamation point it means there is a *unique* object that satisfies the property. For example, $\exists!x\in\mathbb{R},\ x^{2}=0$. This means there is a real number whose square is zero, and there is only one such number.
+### Quantifier order matters
 
-Quantifiers may be combined to form more complex statements. For example, the property that addition is commutative can be written like this:
+Quantifiers may be combined. When they alternate, the order changes the meaning dramatically:
 
-$\forall x\in\mathbb{R},\ \forall y\in\mathbb{R},\ x+y=y+x.$
+$$
+\forall x \in \mathbb{R},\; \exists y \in \mathbb{R},\; x + y = 0
+$$
 
-However, when quantifiers alternate the meaning becomes more difficult to parse. For example,
+This is true: for every $x$, we can pick $y = -x$. But swap the quantifiers:
 
-$\forall x\in\mathbb{R},\exists y\in\mathbb{R},\ x+y=0$
+$$
+\exists y \in \mathbb{R},\; \forall x \in \mathbb{R},\; x + y = 0
+$$
 
-asserts that whenever we pick a number $x$, we can find a number $y$ so that $x+y=0$. Of course, we should pick $y=-x$. But
+This claims there is a single "magic" number $y$ that, when added to *any* $x$, gives zero. That's false — no such $y$ exists.
 
-$\exists y\in\mathbb{R},\forall x\in\mathbb{R},\ x+y=0$
+The difference is exactly the difference between "every thread has its own lock" ($\forall$ thread $\exists$ lock) and "there is one global lock for all threads" ($\exists$ lock $\forall$ thread). Same words, very different architecture.
 
-makes the false assertion that there’s a “magic” number $y$ with the property that no matter what number $x$ you add to it, the result must be zero.
+### Quantifiers in Z3
+
+Z3 can verify or refute quantified claims directly. We can ask: "Is there a counterexample to $\forall x,\; x^2 \geq 0$?" If Z3 says `unsat`, no counterexample exists and the universal claim holds. We can also verify the existential claim, and confirm the false "magic $y$" claim fails:
+
+<!-- include: code/mathematical-notation/03 - Logic/02_python.py -->
+
+The key technique: to check $\forall x,\; P(x)$, ask Z3 to find an $x$ where $\neg P(x)$. If it can't (`unsat`), the universal holds. This is proof by contradiction — automated.
