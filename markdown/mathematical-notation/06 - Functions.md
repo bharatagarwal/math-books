@@ -25,7 +25,7 @@ The notation $f(x)$ indicates the value returned by the function $f$ when evalua
 An alternative notation for function evaluation uses the "evaluation bar":
 
 $$
-\text{(some expression involving }x)\Big{|}_{x=a}
+\text{(some expression involving }x)\Big|_{x=a}
 $$
 
 This means: substitute the value $a$ for the variable $x$. This notation is especially common with Leibniz-notation derivatives (see page 50).
@@ -244,7 +244,7 @@ The following functions are defined only for integer values.
 
   $$f(x) = f(a) + \frac{(x - a)}{\lfloor 1 \rfloor} f^{\prime}(a) + \frac{(x - a)^{2}}{\lfloor 2 \rfloor} f^{\prime\prime}(a) + \frac{(x - a)^{3}}{\lfloor 3 \rfloor} f^{\prime\prime\prime}(a) + \dots$$
 
-  ![Figure 6.1: The formula for the Taylor series of a function as it appears in [4]. Note the notation for $n!$.](06 - Functions_images/img-0.jpeg)
+  ![Figure 6.1: The formula for the Taylor series of a function as it appears in \[4\]. Note the notation for n!.](06 - Functions_images/img-0.jpeg)
 
   The notation $n!!$ is the **double factorial**; the factors descend by two. For example, $7!! = 7 \times 5 \times 3 \times 1$.
 

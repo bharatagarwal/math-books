@@ -241,8 +241,24 @@ async function processMarkdown(md) {
   });
 
   const results = await Promise.all(fetches);
+  // Map file extensions to markdown language hints for syntax highlighting.
+  const extLang = { py: 'python', js: 'javascript', ts: 'typescript', lean: 'lean',
+    dfy: 'dafny', rs: 'rust', hs: 'haskell', rb: 'ruby', sh: 'bash', zsh: 'bash' };
   for (const { match, code } of results.reverse()) {
-    md = md.slice(0, match.index) + code + md.slice(match.index + match[0].length);
+    // If the include is already inside a fenced code block, just replace it.
+    // Otherwise, auto-wrap in a fence with the right language hint.
+    const before = md.slice(0, match.index);
+    const after = md.slice(match.index + match[0].length);
+    const lastFence = before.lastIndexOf('```');
+    const insideFence = lastFence >= 0 &&
+      (before.slice(lastFence).match(/^```/gm) || []).length % 2 === 1;
+    if (insideFence) {
+      md = before + code + after;
+    } else {
+      const ext = match[1].split('.').pop();
+      const lang = extLang[ext] || ext;
+      md = before + '```' + lang + '\n' + code + '\n```' + after;
+    }
   }
   return md;
 }

@@ -81,7 +81,7 @@ Python supports all of these:
 
 Some real numbers are expressed using continued fractions. For example:
 
-![img-0.jpeg](04 - Numbers_images/img-0.jpeg)
+![A continued fraction: $1 + \cfrac{1}{2 + \cfrac{1}{3 + \cfrac{1}{4 + \cdots}}}$](04 - Numbers_images/img-0.jpeg)
 
 This may be written compactly like this:
 
@@ -243,7 +243,7 @@ The abbreviations $\text{Re}$ and $\text{Im}$ are also used. In Python: `z.real`
 
 | Math | Python | Example for $z = 2+3i$ |
 | --- | --- | --- |
-| $\|z\|$ | `abs(z)` | `3.6056` |
+| $\lvert z \rvert$ | `abs(z)` | `3.6056` |
 | $\overline{z}$ | `z.conjugate()` | `(2-3j)` |
 | $\Re z$ | `z.real` | `2.0` |
 | $\Im z$ | `z.imag` | `3.0` |
@@ -305,7 +305,7 @@ Two operations that matter enormously in discrete math and computer science:
 | $17 \bmod 5$ | `17 % 5` | $2$ |
 | $a \equiv b \pmod{n}$ | `a % n == b % n` | $17 \equiv 2 \pmod{5}$ |
 
-See the discussion of $\sum$ and $\prod$ notation on page 8.
+See the discussion of $\sum$ and $\prod$ notation in the Collections chapter.
 
 ## 6. Other number systems
 
@@ -367,7 +367,7 @@ An exotic extension of the real numbers is ${}^*\mathbb{R}$, the nonstandard rea
 
 ### Transfinite cardinals
 
-As discussed on page 7, given a set $A$, the notation $|A|$ gives the cardinality (size) of the set $A$. This is an integer for finite sets. There is, however, special notation for infinite sets.
+As discussed in the Collections chapter, given a set $A$, the notation $|A|$ gives the cardinality (size) of the set $A$. This is an integer for finite sets. There is, however, special notation for infinite sets.
 
 The symbol $\aleph_{0}$ denotes the cardinality of the integers: $\aleph_{0}=|\mathbb{Z}|$. It is the smallest transfinite cardinal number. The symbol $\aleph$ is the Hebrew letter aleph and the notation $\aleph_{0}$ is usually spoken "aleph null" or "aleph naught." Sets with cardinality $\aleph_{0}$ are called *countable*.
 

@@ -10,6 +10,11 @@ os.chdir(Path(__file__).parent.parent)
 print("\n  http://localhost:8765/reader/\n")
 webbrowser.open("http://localhost:8765/reader/")
 
-with http.server.HTTPServer(("", 8765), http.server.SimpleHTTPRequestHandler) as s:
+class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+        super().end_headers()
+
+with http.server.HTTPServer(("", 8765), NoCacheHandler) as s:
     try: s.serve_forever()
     except KeyboardInterrupt: print("\nStopped")

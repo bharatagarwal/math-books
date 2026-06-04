@@ -394,11 +394,15 @@ denotes the line integral of $f$ along the curve $\gamma$.
 
 If the curve is closed (i.e., it begins and ends at the same point) then we write
 
-$\oint_{\gamma}f\,ds$
+$$
+\oint_{\gamma}f\,ds
+$$
 
 for the line integral. (The subscript indicating the name of the curve may be omitted if it is clear from context.) In this case, the line integral may also be called a contour integral. When the contour is the boundary of a domain $D$, the following notation may be used:
 
-$\int_{\partial D}f\,ds\quad\text{or}\quad\oint_{\partial D}f\,ds$
+$$
+\int_{\partial D}f\,ds\quad\text{or}\quad\oint_{\partial D}f\,ds
+$$
 
 where $\partial D$ indicates the boundary of $D$.
 
@@ -408,25 +412,35 @@ where $\partial D$ indicates the boundary of $D$.
 
 If $f$ and $g$ are functions from $\mathbb{R}$ to $\mathbb{R}$, we define their convolution $f*g$ as a new function with
 
-$(f*g)(x)=\int_{-\infty}^{\infty}f(t)g(x-t)\,dt.$
+$$
+(f*g)(x)=\int_{-\infty}^{\infty}f(t)g(x-t)\,dt.
+$$
 
 The convolution integral need not be computed over the entire real line. Sometimes, it is computed just on an interval especially if the functions $f$ and $g$ are periodic. The interval over which we integrate can be arbitrary:
 
-$(f*g)(x)=\int_{a}^{b}f(t)g(x-t)\,dt.$
+$$
+(f*g)(x)=\int_{a}^{b}f(t)g(x-t)\,dt.
+$$
 
 Common intervals include $[0,1]$, $[-\pi,\pi]$, and $[0,2\pi]$.
 
 In some cases, we normalize the integral by dividing by the length of the interval:
 
-$(f*g)(x)=\frac{1}{b-a}\int_{a}^{b}f(t)g(x-t)\,dt.$
+$$
+(f*g)(x)=\frac{1}{b-a}\int_{a}^{b}f(t)g(x-t)\,dt.
+$$
 
 The notion of convolution (and the use of the symbol $*$) extends to other realms. For example, given sequences $a=(a_{0},a_{1},a_{2},\ldots)$ and $b=(b_{0},b_{1},b_{2},\ldots)$, their convolution is a new sequence $c=a*b$ with
 
-$c_{n}=\sum_{k=0}^{n}a_{k}b_{n-k}.$
+$$
+c_{n}=\sum_{k=0}^{n}a_{k}b_{n-k}.
+$$
 
 Similarly, in number theory, the convolution of two functions $f,g:\mathbb{Z}^{+}\to\mathbb{R}$ is $f*g$ with
 
-$(f*g)(n)=\sum_{d|n}f(d)g(n/d).$
+$$
+(f*g)(n)=\sum_{d|n}f(d)g(n/d).
+$$
 
 If you've used a convolutional neural network, the operation is the same idea: slide one function across another, multiplying and summing at each position. The $*$ in `nn.Conv2d` is literally this $*$.
 
