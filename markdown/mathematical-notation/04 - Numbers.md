@@ -153,7 +153,9 @@ Python's `int` has arbitrary precision (no overflow), which is better than $\mat
 
 We can explore this tower and complex arithmetic directly:
 
+```python
 <!-- include: code/mathematical-notation/04 - Numbers/01_python.py -->
+```
 
 ### Superscript conventions
 
@@ -377,4 +379,6 @@ Python has `float('inf')` and `float('-inf')` for the extended reals, and `math.
 
 SymPy knows all the standard number sets and can do exact arithmetic with intervals, floor/ceiling, modular arithmetic, and the famous constants. This demo shows the notation-to-code mapping:
 
+```python
 <!-- include: code/mathematical-notation/04 - Numbers/02_python.py -->
+```

@@ -109,7 +109,9 @@ SymPy lets you declare random variables symbolically and compute $E(X)$, $\opera
 | $\operatorname{Var}(X)$ | `variance(X)` |
 | $P(X > 130)$ | `P(X > 130)` |
 
+```python
 <!-- include: code/mathematical-notation/09 - Probability and Statistics/01_python.py -->
+```
 
 ### Entropy
 

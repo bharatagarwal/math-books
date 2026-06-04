@@ -34,7 +34,9 @@ The use of different styles of letters is especially useful to distinguish diffe
 
 Descartes' split — $a, b, c$ for knowns, $x, y, z$ for unknowns — maps directly to how symbolic math libraries work. In SymPy, you declare unknowns as `Symbol` objects; everything else is a concrete value:
 
+```python
 <!-- include: code/mathematical-notation/01 - Letters/01_python.py -->
+```
 
 The convention matters: when you read $ax^2 + bx + c = 0$, you immediately know $a$, $b$, $c$ are given and $x$ is what you're solving for. Four hundred years of muscle memory.
 
@@ -77,7 +79,9 @@ Letters from other alphabets (such as German $\mathfrak{G}$ or Hebrew $\aleph$) 
 
 SymPy knows all of these — you can work with Greek letters symbolically, and they print as their names:
 
+```python
 <!-- include: code/mathematical-notation/01 - Letters/02_python.py -->
+```
 
 ## 3. Decorations
 

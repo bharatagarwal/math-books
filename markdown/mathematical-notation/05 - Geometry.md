@@ -65,7 +65,9 @@ Here $c$ is the length of segment $AB$ and $\cos C$ is the cosine of the (measur
 
 Every piece of notation above has a direct counterpart in SymPy's geometry module. Points become `Point` objects, distances are method calls, and relations like $\parallel$ and $\perp$ are boolean checks:
 
+```python
 <!-- include: code/mathematical-notation/05 - Geometry/01_python.py -->
+```
 
 The mapping is almost one-to-one: $\lvert AB \rvert$ becomes `A.distance(B)`, $\triangle ABC$ becomes `Triangle(A, B, C)`, $\overleftrightarrow{AB} \perp \overleftrightarrow{CD}$ becomes `line_AB.is_perpendicular(line_CD)`. Notation is a compression of operations you can run.
 

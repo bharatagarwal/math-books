@@ -139,7 +139,9 @@ $$
 
 Every operation above has a direct NumPy equivalent. NumPy arrays *are* vectors — there's no wrapper class, no abstraction layer. The `@` operator is the dot product, `np.linalg.norm` computes any $p$-norm, and `np.cross` handles the cross product:
 
+```python
 <!-- include: code/mathematical-notation/07 - Linear Algebra/01_python.py -->
+```
 
 ## 2. Matrices
 
@@ -272,7 +274,9 @@ $$
 
 Matrix multiplication, determinant, inverse, eigenvalues, singular values — each notation symbol maps directly to a NumPy call. The `@` operator is matrix multiplication, `np.linalg` holds the decompositions:
 
+```python
 <!-- include: code/mathematical-notation/07 - Linear Algebra/02_python.py -->
+```
 
 ### Matrix powers and exponential
 

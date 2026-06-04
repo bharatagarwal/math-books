@@ -121,7 +121,9 @@ Every notation variant maps to the same SymPy function — `diff`. The integral 
 | $\int_0^\infty e^{-x}\, dx$ | `integrate(exp(-x), (x, 0, oo))` | $1$ |
 | $\frac{\partial f}{\partial x}$ | `diff(f, x)` | partial derivative |
 
+```python
 <!-- include: code/mathematical-notation/08 - Calculus/01_python.py -->
+```
 
 ### Vector-valued functions
 
@@ -187,7 +189,9 @@ $$
 
 JAX's `grad` function computes $\nabla f$ by automatic differentiation — it traces the computation graph and applies the chain rule mechanically. No symbolic algebra, just numerical derivatives at machine precision. `jax.hessian` computes the full matrix of second partials:
 
+```python
 <!-- include: code/mathematical-notation/08 - Calculus/02_python.py -->
+```
 
 The SymPy demo above computed $\frac{\partial f}{\partial x} = 2xy$ as a symbolic expression. JAX computes the same derivative *numerically* at a specific point: at $(1, 2)$, $2 \cdot 1 \cdot 2 = 4$... wait, that's $\frac{\partial}{\partial x}[x^2 y + y^3]$. The JAX demo uses a different function ($x^3 + 2xy + y^2$), giving $\nabla f = [3x^2 + 2y,\; 2x + 2y] = [7, 6]$ at $(1, 2)$. Two tools, same notation, complementary strengths: SymPy gives you the formula, JAX gives you the number.
 

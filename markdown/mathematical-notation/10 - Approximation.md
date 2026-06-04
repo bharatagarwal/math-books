@@ -88,7 +88,9 @@ Some people use a fancy, calligraphic $\mathcal{O}$ for the big-$O$ notation.
 
 SymPy's `series()` function produces big-$O$ terms automatically -- the same notation, made computational. When you expand $\sin(x)$ as a Taylor series, the truncation error is an `O(x^n)` object you can inspect, manipulate, and strip away:
 
+```python
 <!-- include: code/mathematical-notation/10 - Approximation/01_python.py -->
+```
 
 This is exactly the $e^x = 1 + x + O(x^2)$ from the definition above, but now the computer carries the error bound for you.
 

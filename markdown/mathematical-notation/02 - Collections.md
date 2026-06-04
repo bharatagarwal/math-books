@@ -42,7 +42,9 @@ If you've written a Python set comprehension, you've written set-builder notatio
 
 There are a variety of relations and operations involving sets. Python's `set` type implements all of them:
 
+```python
 <!-- include: code/mathematical-notation/02 - Collections/01_python.py -->
+```
 
 Here is the full catalogue of standard set operations:
 
@@ -98,7 +100,9 @@ The notation $2^A$ makes sense because $|\mathcal{P}(A)| = 2^{|A|}$: each elemen
 
 We can verify this computationally — and see the set-builder / comprehension parallel in action:
 
+```python
 <!-- include: code/mathematical-notation/02 - Collections/02_python.py -->
+```
 
 ### Set exponentiation
 
@@ -158,7 +162,9 @@ $$
 
 SymPy handles all of these — finite products, infinite sums, and symbolic evaluation:
 
+```python
 <!-- include: code/mathematical-notation/02 - Collections/03_python.py -->
+```
 
 ### Einstein summation
 

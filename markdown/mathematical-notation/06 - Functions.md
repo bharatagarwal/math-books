@@ -87,7 +87,9 @@ The notation $f^2(x)$ sometimes means $[f(x)]^2$; this is especially common with
 
 Here is how all of this looks in Python and SymPy — type signatures as domain/codomain, composition as nesting, and the inverse as a `solve` call:
 
+```python
 <!-- include: code/mathematical-notation/06 - Functions/01_python.py -->
+```
 
 
 ## 2. Standard functions
@@ -115,7 +117,9 @@ There is a vast array of functions defined on the real numbers. The table below 
 
 Here they are in action:
 
+```python
 <!-- include: code/mathematical-notation/06 - Functions/02_python.py -->
+```
 
 Now the details on each:
 

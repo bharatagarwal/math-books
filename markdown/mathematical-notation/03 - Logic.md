@@ -28,7 +28,9 @@ The mathematical words *and*, *or*, *not*, *implies*, and so on are abbreviated 
 
 We can generate the full truth table for implication — the result matches the equivalence $p \Rightarrow q \;\equiv\; \neg p \lor q$:
 
+```python
 <!-- include: code/mathematical-notation/03 - Logic/01_python.py -->
+```
 
 Note: many math relation symbols can be "slashed" to negate them: $\neq$ (not equal), $\notin$ (not an element of), $\not\subseteq$ (not a subset of), and so on.
 
@@ -89,6 +91,8 @@ The difference is exactly the difference between "every thread has its own lock"
 
 Z3 can verify or refute quantified claims directly. We can ask: "Is there a counterexample to $\forall x,\; x^2 \geq 0$?" If Z3 says `unsat`, no counterexample exists and the universal claim holds. We can also verify the existential claim, and confirm the false "magic $y$" claim fails:
 
+```python
 <!-- include: code/mathematical-notation/03 - Logic/02_python.py -->
+```
 
 The key technique: to check $\forall x,\; P(x)$, ask Z3 to find an $x$ where $\neg P(x)$. If it can't (`unsat`), the universal holds. This is proof by contradiction — automated.
