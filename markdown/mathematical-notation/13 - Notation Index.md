@@ -1,6 +1,6 @@
 # Alphabetical Notation Index
 
-Use this index to find notation that is based on a Latin letter (e.g., $\mathcal{L}$ or $\mathbb{R}^n$) or a word formed by Latin letters (e.g., det). Use the Greek index (page 77) to find notation based on Greek letters and use the Chart (page 69) to find other notation. Finally, use the Topic Index (page 79) to find concepts by keyword.
+Use this index to find notation that is based on a Latin letter (e.g., $\mathcal{L}$ or $\mathbb{R}^n$) or a word formed by Latin letters (e.g., det). Use the Greek Notation Index below to find notation based on Greek letters, the Chart chapter to find other notation, and the Topic Index to find concepts by keyword.
 
 $\forall$, 12
 a.s., 61
@@ -179,7 +179,7 @@ $\mathbb{Z}_n$, $\mathbb{Z}/n\mathbb{Z}$, $\mathbb{Z}/(n)$, 18
 
 ## Greek Notation Index
 
-Use this index to find notation that is based on Greek letters. See also Figure 1.1 (on page 2) for a table of the Greek alphabet in its entirety.
+Use this index to find notation that is based on Greek letters. See also the Greek alphabet table in the Letters chapter.
 
 $\alpha ,62$ $\varphi ,33$
 

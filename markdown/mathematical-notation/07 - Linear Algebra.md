@@ -93,7 +93,7 @@ $$
 \langle \mathbf {x}, \mathbf {y} \rangle = \sum_ {k = 1} ^ {n} x _ {k} \overline {{y _ {k}}}
 $$
 
-but some authors define this as $\sum_{k=1}^{n} \overline{x_k} y_k$. (Here $\overline{x}$ denotes complex conjugate; see page 17.)
+but some authors define this as $\sum_{k=1}^{n} \overline{x_k} y_k$. (Here $\overline{x}$ denotes complex conjugate; see the Numbers chapter.)
 
 Physicists denote inner products like this: $\langle \mathbf{x} \mid \mathbf{y} \rangle$. This is known as bra-ket (or bracket) notation. They also write $\langle x \mid$ and $|y\rangle$ for row and column vectors which they call bra-vectors and ket-vectors.
 

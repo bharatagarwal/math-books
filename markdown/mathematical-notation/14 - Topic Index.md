@@ -1,6 +1,6 @@
 # Topic Index
 
-Use this index to find specific topics. To find notation based on Latin letters, use the Alphabetical Notation Index (page 73). To find notation based on Greek letters, use the Greek Index (page 77). To find other notation, use the Chart (page 69).
+Use this index to find specific topics. To find notation based on Latin letters, use the Notation Index. To find notation based on Greek letters, use the Greek Notation Index. To find other notation, use the Chart.
 
 absolute value
 complex numbers, 17, 27

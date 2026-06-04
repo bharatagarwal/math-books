@@ -28,7 +28,7 @@ $$
 \text{(some expression involving }x)\Big|_{x=a}
 $$
 
-This means: substitute the value $a$ for the variable $x$. This notation is especially common with Leibniz-notation derivatives (see page 50).
+This means: substitute the value $a$ for the variable $x$. This notation is especially common with Leibniz-notation derivatives (see the Calculus chapter).
 
 The notation $y=f(x)$ is sometimes abbreviated to $x\mapsto y$, pronounced "$x$ maps to $y$." This is Python's `lambda`: the expression $x \mapsto x^2 + 1$ is exactly `lambda x: x**2 + 1`. One may also write $x\xmapsto{f}y$ to make the function explicit.
 
@@ -434,7 +434,7 @@ Here are a few additional notations concerning functions.
 
   $$A_{0} \xrightarrow{f_{1}} A_{1} \xrightarrow{f_{2}} A_{2} \xrightarrow{f_{3}} \cdots \xrightarrow{f_{n}} A_{n}.$$
 
-  To say this sequence is **exact** means $\operatorname{Im} f_i = \ker f_{i+1}$ for all $1 \leq i < n$. (The kernel: $\ker f = \{x : f(x) = 0\}$; see page 43.)
+  To say this sequence is **exact** means $\operatorname{Im} f_i = \ker f_{i+1}$ for all $1 \leq i < n$. (The kernel: $\ker f = \{x : f(x) = 0\}$; see the Linear Algebra chapter.)
 
   Two important special cases:
 

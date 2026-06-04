@@ -97,7 +97,7 @@ $$
 
 This is the mathematical version of array indexing. Where a programmer writes `x[1]`, a mathematician writes $x_1$. The convention is universal: subscripts index into families of related objects.
 
-Superscripts are usually reserved for exponentiation; that is, $x^{2}$ means $x$-squared. But sometimes superscripts are also used to denote members of a series; see, for example, the discussion on page 47 about tensors.
+Superscripts are usually reserved for exponentiation; that is, $x^{2}$ means $x$-squared. But sometimes superscripts are also used to denote members of a series; see, for example, the discussion of tensors in the Linear Algebra chapter.
 
 ### Primes and other marks
 

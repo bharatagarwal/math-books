@@ -207,7 +207,7 @@ The following are among the best-known distributions, each with their own notati
   \phi(x) = \frac{1}{\sqrt{2\pi}} \exp\left\{-\frac{x^2}{2}\right\}.
   $$
 
-  The corresponding CDF is often denoted $\Phi(x)$ which is closely related to the error function $\operatorname{erf}(x)$ (see page 28).
+  The corresponding CDF is often denoted $\Phi(x)$ which is closely related to the error function $\operatorname{erf}(x)$ (see the Functions chapter).
 
   More generally, if $\mu$ is a real number and $\sigma^2$ is a positive real number, then $N(\mu, \sigma^2)$, or sometimes $\mathcal{N}(\mu, \sigma^2)$, is the distribution of a normal random variable $X$ with mean $\mu$ and variance $\sigma^2$. Its probability density function is
 
@@ -225,7 +225,7 @@ The following are among the best-known distributions, each with their own notati
   \frac{1}{2^{k/2} \Gamma(k/2)} x^{\frac{k}{2} - 1} e^{-x/2}
   $$
 
-  where $\Gamma$ is the gamma function described on page 28.
+  where $\Gamma$ is the gamma function described in the Functions chapter.
 
 - **Student's $t$-distribution.** This distribution is denoted $t_\nu$ where $\nu$ is a positive integer. It is given by $Z / \sqrt{V / \nu}$ where $Z$ and $V$ are independent random variables, $Z$ is a standard normal, and $V$ is $\chi_\nu^2$. William Sealy Gosset published it in 1908 under the pseudonym "Student" because his employer (the Guinness brewery) forbade employees from publishing.
 
