@@ -109,7 +109,7 @@ const BOOKS = [
   {
     id: 'mathematical-notation',
     title: 'Mathematical Notation',
-    meta: 'Fork of Scheinerman · Johns Hopkins, 2011',
+    meta: 'Fork of Scheinerman, 2011',
     basePath: 'mathematical-notation',
     chapters: [
       { file: '00 - Preface.md', title: 'Preface' },
