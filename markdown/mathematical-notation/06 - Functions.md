@@ -240,7 +240,7 @@ The following functions are defined only for integer values.
 
   It is closely related to the gamma function: $n! = \Gamma(n + 1)$.
 
-  The use of the exclamation point for factorial is universally accepted, but it was not always the case; see Figure 6.1. For more historical tidbits on notation see [1] (and also [10]).
+  The use of the exclamation point for factorial is universally accepted, but it was not always the case; see Figure 6.1. For more historical tidbits on notation see Cajori's *A History of Mathematical Notations* and Jeff Miller's [Earliest Uses of Various Mathematical Symbols](http://jeff560.tripod.com/mathsym.html).
 
   $$f(x) = f(a) + \frac{(x - a)}{\lfloor 1 \rfloor} f^{\prime}(a) + \frac{(x - a)^{2}}{\lfloor 2 \rfloor} f^{\prime\prime}(a) + \frac{(x - a)^{3}}{\lfloor 3 \rfloor} f^{\prime\prime\prime}(a) + \dots$$
 
