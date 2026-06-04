@@ -26,9 +26,11 @@ Software engineer learning mathematics through programming. Instead of manual co
 
 ## Curriculum
 
-Canonical plan: **`docs/learning-plan.md`** (stages, calibration gates, resources, productization paths).
+Two curriculum docs with **different destinations**:
+- **`docs/learning-plan.md`** — stage-gated plan (calibration gates, no skipping) toward formal verification → distributed systems (TLA+)
+- **`wsjf.md`** — WSJF-ranked backlog (Value ÷ Job Size) toward AGI/ML systems math (linear algebra, probability, MDPs, dynamical systems)
 
-High-level arc: discrete math foundations → formal verification → distributed systems (TLA+).
+**The destination fork (formal-verification career vs AGI engineering) is deliberately deferred — the current focus is the shared foundations only:** graphs, probability, state machines, proof literacy, linear-algebra intuition, and the verify-with-code habit. When the two docs' destinations conflict, foundations win; don't push for a fork decision or frame work as serving one career path over the other. Full analysis: `docs/notes/fv-vs-agi-fork.md`.
 
 Source materials in this repo:
 - `mcs/` — MIT 6.042J Mathematics for Computer Science (primary text). **Prefer the per-chapter PDFs in `mcs/01 - Proofs/`, `mcs/02 - Structures/`, `mcs/03 - Counting/`, `mcs/04 - Probability/`** over the full `mcs-2018-06-06.pdf` — never OCR the whole book; process chapters as needed.
@@ -36,8 +38,11 @@ Source materials in this repo:
 - `dmbook.pdf` / `dm/` — Lovász & Vesztergombi *Discrete Mathematics* (Yale lecture notes, 1999). Split into per-chapter PDFs under `dm/`, OCR'd to `markdown/dm/`, code in `code/dm/`, registered in the reader as the **Discrete Mathematics** book. Programmatic-exploration demos are woven inline per chapter; figures live in `markdown/dm/<chapter>_images/` with raw-OCR backup in `markdown/dm/.raw/`.
 - `aops-*/` — Art of Problem Solving books (03 counting & 05 number theory are load-bearing for this curriculum)
 - `a-programmers-introduction-to-mathematics.pdf` / `pim/` — Jeremy Kun (programming-first math); `pim/` holds the per-chapter PDFs to OCR.
+- `mathematical-notation.pdf` / `mathematical-notation/` — Scheinerman *Mathematical Notation: A Guide for Engineers and Scientists*. Per-chapter PDFs in `mathematical-notation/`, OCR'd + enriched fork in `markdown/mathematical-notation/` (preface rewritten for the fork; history/code/bridge sections woven in), code in `code/mathematical-notation/`, registered in the reader as **Mathematical Notation**.
+- `math-2020-06-outline.pdf` — Bradfield course outline (the original inspiration). Built out into the **Bradfield Math Course** web-book: 13 authored chapters in `markdown/bradfield/`, demos in `code/bradfield/`, registered in the reader.
+- `3b1b/` — 3Blue1Brown *Essence of Linear Algebra* subtitle files (`.srt`), raw material for a prose track via `scripts/srt_to_prose.py` (same model as `mcs-lectures`).
+- `intro-to-linear-algebra.pdf` — Strang (linear algebra reference; not yet processed)
 - `deep-learning.pdf` — Goodfellow et al. (deferred until after DM foundation)
-- `math-2020-06-outline.pdf` — Bradfield course outline (the original inspiration)
 
 ## Verification Toolchain
 
@@ -87,8 +92,10 @@ print(np.einsum('i,i->', [1,2,3], [4,5,6]))"   # 32
 
 ## Repo Layout
 
-- `docs/learning-plan.md` — Canonical curriculum (stage-based with calibration gates)
-- `scripts/` — Tooling. Each script declares deps via PEP 723 inline metadata.
+- `docs/learning-plan.md` — Stage-gated curriculum (see Curriculum above for how it relates to `wsjf.md`)
+- `wsjf.md` — WSJF-ranked math backlog for AGI/ML systems
+- `docs/notes/` — discovery-phase notes: learning-discourse landscape, per-resource status, Hungarian school, the FV-vs-AGI fork analysis
+- `scripts/` — Tooling. Each script declares deps via PEP 723 inline metadata. Includes per-book cleanup/normalization helpers (`cleanup_notation.py`, `normalize_dm_exercises.py`, `normalize_mcs_problems.py`, `pim_para_split.py`, …) — check here before writing a new one-off pass.
 - `scripts/.env` — Holds `MISTRAL_API_KEY` (gitignored)
 - `scripts/pdf_to_markdown.py` — Mistral OCR pipeline with high-res image extraction
 - `scripts/code_embed.py` — extract fenced code ↔ inline via `<!-- include: -->` directives
@@ -166,7 +173,7 @@ Required by `scripts/pdf_to_markdown.py`:
 
 ## Typical Session
 
-1. Pick current stage from `docs/learning-plan.md`
+1. Pick the current foundations topic (stage from `docs/learning-plan.md` or a Tier 1 item from `wsjf.md` — see Curriculum)
 2. Read source: PDF or OCR'd markdown in `markdown/`
 3. Practice in stage-appropriate tool (Lean4 for proofs, Z3 for constraints, Python + deal/crosshair for verified code)
 4. Verify before advancing — pass the stage's calibration gate
