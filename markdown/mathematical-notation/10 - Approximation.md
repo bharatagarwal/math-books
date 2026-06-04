@@ -2,7 +2,7 @@
 
 In 1894, Paul Bachmann introduced a notation in his *Analytische Zahlentheorie* for bounding the error in number-theoretic estimates: big-$O$. Edmund Landau adopted and systematized it, and it became the standard language of analytic number theory. Seventy years later, Donald Knuth brought it into computer science, where it became *the* way programmers talk about algorithmic efficiency. If you've ever said "this algorithm is $O(n \log n)$," you're using Bachmann-Landau notation. This chapter covers the full family of symbols that let you talk precisely about approximation.
 
-## 1. Approximate equality of numbers
+## Approximate equality of numbers
 
 There are many notations used to capture the concept of being approximately equal. The simplest, and in our opinion the best, is $\approx$. For example, $\pi\approx 3.14$. People use a variety of other symbols for approximate equality including $\doteq$, $\cong$, $\sim$, and $\simeq$.
 
@@ -10,7 +10,7 @@ A more precise way to express approximate equality is to write $\pi=3.14\pm 0.00
 
 $$3.14-0.002\leq\pi\leq 3.14+0.002.$$
 
-## 2. Asymptotic relations
+## Asymptotic relations
 
 A variety of notations exist to show the approximate equality of algebraic expressions (functions), to abbreviate "unimportant" terms, and to measure the quality of the approximation.
 
@@ -42,7 +42,7 @@ This can also be expressed: when $x$ is sufficiently large, $a \leq \frac{f(x)}{
 
 In some cases, the expression $f(x) \asymp g(x)$ may be applied to functions that return negative values. In that case, we mean that $a \leq |f(x) / g(x)| \leq b$ when $x$ is sufficiently large.
 
-## 3. Big-$O$ notation and its relatives
+## Big-$O$ notation and its relatives
 
 This is the notation that every programmer knows, even if they don't realize it has a formal mathematical definition. When you say "binary search is $O(\log n)$," you are making a precise asymptotic claim: the number of comparisons grows no faster than some constant times $\log n$ for sufficiently large $n$.
 

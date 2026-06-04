@@ -1,8 +1,8 @@
-## 4 Counting subsets
+## Counting subsets
 
 ![Figure 6: A chapter-opening illustration — a slab dissected by lines, with one shaded triangle, standing on two legs.](04 - Counting subsets_images/img-0.jpeg)
 
-## 4.1 The number of ordered subsets
+## The number of ordered subsets
 
 At a competition of 100 athletes, only the order of the first 10 is recorded. How many different outcomes does the competition have?
 
@@ -32,7 +32,7 @@ Check that this is the same number as given in theorem 4.1.
 
 > **4.4** Explain the similarity and the difference between the counting questions answered by theorem 4.1 and theorem 2.2.
 
-## 4.2 The number of subsets of a given size
+## The number of subsets of a given size
 
 From here, we can easily derive one of the most important counting results.
 
@@ -88,7 +88,7 @@ These identities are *universally quantified* claims — they must hold for ever
 
 Running it prints `4 passed`, confirming the concrete case $\binom{90}{5}=43949268$ and that Pascal's recurrence plus both identities hold across every generated example.
 
-## 4.3 The Binomial Theorem
+## The Binomial Theorem
 
 The numbers $\binom{n}{k}$ also have a name, binomial coefficients, which comes from a very important formula in algebra involving them. We are now going to discuss this theorem.
 
@@ -149,7 +149,7 @@ Later on we are going to see trickier applications of this idea. For the time be
 
 > **4.14** Prove identity 4, using a combinatorial interpretation of the two sides (recall exercise 4.2).
 
-## 4.4 Distributing presents
+## Distributing presents
 
 Suppose we have $n$ different presents, which we want to distribute to $k$ children. For some reason, we are told how many presents should each child get; so Adam should get $n_{\text{Adam}}$ presents, Barbara, $n_{\text{Barbara}}$ presents etc. In a mathematically convenient (though not very friendly) way, we call the children $1,2,\ldots,k$; thus we are given the numbers (non-negative integers) $n_{1},n_{2},\ldots,n_{k}$. We assume that $n_{1}+n_{2}+\ldots+n_{k}=n$, else there is no way to distribute the presents.
 
@@ -191,7 +191,7 @@ Complete this argument and show that it leads to the same result as the previous
 > (b) How many ways can you do this if you have 4 black and 4 white rooks?
 > (c) How many ways can you do this if all the 8 rooks are different?
 
-## 4.5 Anagrams
+## Anagrams
 
 Have you played with anagrams? One selects a word (say, COMBINATORICS) and tries to compose from its letters meaningful, often funny words or expressions.
 
@@ -235,7 +235,7 @@ Running it prints `STATUS: ... -> anagrams = 180`, `LETTER: ... -> anagrams = 18
 
 (d) Try to find a general answer to question (c) (that is, how many "essentially different" words are there on  $n$  letters?). If you can't find it, read the following section and return to this exercise after it.
 
-## 4.6 Distributing money
+## Distributing money
 
 Instead of distributing presents, let's distribute money. Let us formulate the question in general: we have  $n$  pennies that we want to distribute among  $k$  kids. Each child must get at least one penny (and, of course, an integer number of pennies). How many ways can we distribute the money?
 

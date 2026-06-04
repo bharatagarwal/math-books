@@ -1,8 +1,8 @@
-## 8 Integers, divisors, and primes
+## Integers, divisors, and primes
 
 In this chapter we discuss properties of integers. This area of mathematics is called *number theory*, and it is a truly venerable field: its roots go back about 2500 years, to the very beginning of Greek mathematics. One might think that after 2500 years of research, one would know essentially everything about the subject. But we shall see that this is not the case: there are very simple, natural questions which we cannot answer; and there are other simple, natural questions to which an answer has only been found in the last years!
 
-## 8.1 Divisibility of integers
+## Divisibility of integers
 
 We start with some very basic notions concerning integers. Let $a$ and $b$ be two integers. We say that $a$ *divides* $b$, or $a$ *is a divisor of* $b$, or $b$ *is a multiple of* $a$ (these phrases mean the same thing), if there exists an integer $m$ such that $b=am$. In notation: $a|b$. If $a$ is not a divisor of $b$, then we write $a\not|b$. If $a\neq 0$, then this means that the ratio $b/a$ is an integer.
 
@@ -33,7 +33,7 @@ You have probably seen these notions before; the following exercises should help
 
 $a-1|a^{n}-1.$
 
-## 8.2 Primes and their history
+## Primes and their history
 
 An integer $p>1$ is called a prime if it is not divisible by any integer other than $1,-1,p$ and $-p$. Another way of saying this is that an integer $p>1$ is a prime if it cannot be written as the product of two smaller positive integers. An integer $n>1$ that is not a prime is called composite (the number $1$ is considered neither prime, nor composite). Thus $2,3,5,7,11$ are primes, but $4=2\cdot 2$, $6=2\cdot 3$, $8=2\cdot 4$, $9=3\cdot 3$, $10=2\cdot 5$ are not primes. Table 1 contains the first $500$ primes.
 
@@ -59,7 +59,7 @@ It is really surprising that, even today, no efficient way is known to find such
 
 find the prime decomposition of a number with 400 digits, by any of the known methods, is way beyond the possibilities of computers in the foreseeable future.
 
-## 8.3 Factorization into primes
+## Factorization into primes
 
 We have seen that every integer larger than 1 that is not a prime itself can be written as a product of primes. We can even say that every positive integer can be written as a product of primes: primes can be considered as “products with one factor”, and the integer 1 can be thought of as the “empty product”. With this in mind, we can state and prove the following theorem, announced above, sometimes called the “Fundamental Theorem of Number Theory”.
 
@@ -119,7 +119,7 @@ Now consider the prime factorization of both sides, and in particular, the prime
 
 > **8.12** Try to formulate and prove an even more general theorem about the irrationality of the numbers $\sqrt[8]{n}$.
 
-## 8.4 On the set of primes
+## On the set of primes
 
 The following theorem was also known to Euclid.
 
@@ -198,7 +198,7 @@ Suppose that we have an integer  $n$  and want to know how soon after  $n$  can 
 
 > **8.13** Show that among k-digit numbers, one in about every  $2.3k$  is a prime.
 
-## 8.5 Fermat's "Little" Theorem
+## Fermat's "Little" Theorem
 
 Primes are important because we can compose every integer from them; but it turns out that they also have many other, often surprising properties. One of these was discovered by the French mathematician Pierre de Fermat (1601-1655), now called the "Little" Theorem of Fermat.
 
@@ -256,7 +256,7 @@ Wiles (in one part with the help of Robert Taylor) finally proved it.
 
 [Hint: consider the product $a(2a)(3a)\ldots ((p - 1)a)$.]
 
-## 8.6 The Euclidean Algorithm
+## The Euclidean Algorithm
 
 So far, we have discussed several notions and results concerning integers. Now we turn our attention to the question of how to do computations in connection with these results. How to decide whether or not a given number is a prime? How to find the prime factorization of a number?
 
@@ -414,7 +414,7 @@ The book states Euclid's algorithm and Theorems 8.7 and 8.8 but verifies them on
 
 Running it prints `4 passed` and (from the main block) `ext_gcd(300,18): d=6, m=-1, n=17  ->  300*-1+18*17 = 6`, confirming the algorithm matches `math.gcd` on every generated input and that Bézout's identity $300\cdot(-1)+18\cdot 17=6$ holds.
 
-## 8.7 Testing for primality
+## Testing for primality
 
 Returning to a question proposed in the introduction of this chapter: how do you decide about a positive integer $n$ whether it is a prime? You can try to see if $n$ can be divided, without remainder, by any of the smaller integers (other than 1). This is, however, a very clumsy and inefficient procedure! To determine this way whether a number with 20 digits is a prime would take astronomical time.
 

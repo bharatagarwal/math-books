@@ -4,7 +4,7 @@ The concept of "function" took centuries to settle. Euler (1748) thought of a fu
 
 If you can write `def f(x: float) -> float`, you already understand $f \colon \mathbb{R} \to \mathbb{R}$. The notation below makes that intuition precise, and extends it to composition, inversion, and the vast library of named functions that recur across mathematics.
 
-## 1. Fundamentals
+## Fundamentals
 
 ### Function notation
 
@@ -92,7 +92,7 @@ Here is how all of this looks in Python and SymPy — type signatures as domain/
 ```
 
 
-## 2. Standard functions
+## Standard functions
 
 ### Functions of real numbers
 
@@ -331,7 +331,7 @@ The following functions are defined only for integer values.
 
   Some people write $\mathbf{1}_A$ for this. In programming terms, this is `1 if x in A else 0`.
 
-## 3. Classes of functions
+## Classes of functions
 
 The notation $C^k$ denotes those functions whose $k^{\mathrm{th}}$ derivative is defined and continuous. Thus $C^0$ is the class of continuous functions, $C^1$ the class of differentiable functions with continuous derivatives, and so on:
 
@@ -351,7 +351,7 @@ Closely related is $\ell^p$, the class of sequences $a_0, a_1, a_2, \ldots$ for 
 
 $$\sum_{k=0}^{\infty} |a_k|^p < \infty.$$
 
-## 4. Polynomials, power series, and rational functions
+## Polynomials, power series, and rational functions
 
 ### Polynomials
 
@@ -400,7 +400,7 @@ The set of all rational functions with real coefficients is denoted $\mathbb{R}(
 
 Note the bracket convention: $R[x]$ for polynomials (square brackets), $R[[x]]$ for power series (double square), $F(x)$ for rational functions (parentheses).
 
-## 5. Miscellany
+## Miscellany
 
 Here are a few additional notations concerning functions.
 

@@ -6,7 +6,7 @@ Cantor also showed that some infinities are bigger than others (the reals outnum
 
 If you've used Python's `set` type, you already know the basics. The notation is almost identical.
 
-## 1. Sets
+## Sets
 
 A set is an unordered collection of things in which repetition is forbidden. The simplest way to specify a set is to list its objects between curly braces: $\{1, 2, 7\}$. This is a set containing exactly three objects: the numbers $1$, $2$, and $7$. Order and repetition do not matter, so $\{2, 1, 7\}$ and $\{7, 1, 1, 2\}$ are the same set with precisely the same three elements.
 
@@ -124,13 +124,13 @@ $$
 
 Not all sets contain a maximum or minimum element. A related pair of notions are the *supremum* ($\sup A$, the least upper bound) and *infimum* ($\inf A$, the greatest lower bound).
 
-## 2. Lists
+## Lists
 
 A *list* (or *tuple*) is an ordered collection in which repetition is permitted. Lists are enclosed in round parentheses: $(1, 2, 2, 3)$. Unlike sets, order matters and elements may be repeated, so $(1, 2, 2, 3)$, $(1, 2, 3)$, and $(2, 1, 2, 3)$ are all different lists.
 
 A list of $n$ elements is called an *$n$-tuple*. When a list is named by a letter (e.g., $a$), the elements are typically named $a_1, a_2$, etc.
 
-## 3. Big sums, products, and so on
+## Big sums, products, and so on
 
 The symbols $\sum$ and $\prod$ are used for the sum and product of a collection of numbers. They are the mathematical equivalent of `reduce`: take a binary operation and fold it over a sequence.
 

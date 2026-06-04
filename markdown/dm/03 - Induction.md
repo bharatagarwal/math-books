@@ -1,6 +1,6 @@
-## 3 Induction
+## Induction
 
-## 3.1 The sum of odd numbers
+## The sum of odd numbers
 
 It is time to learn one of the most important tools in discrete mathematics. We start with a question: We add up the first $n$ odd numbers. What do we get?
 
@@ -102,7 +102,7 @@ you get  $2 + 999 = 1001$ ; going on in a similar way, combining the first remai
 > **3.8** Prove that the sum of the first  $n$  squares  $(1 + 4 + 9 + \ldots + n^2)$  is  $n(n + 1)(2n + 1) / 6$ .
 > **3.9** Prove that the sum of the first  $n$  powers of 2 (starting with  $1 = 2^0$ ) is  $2^n - 1$ .
 
-## 3.2 Subset counting revisited
+## Subset counting revisited
 
 In chapter 2 we often relied on the convenience of saying "etc.": we described some argument that had to be repeated  $n$  times to give the result we wanted to get, but after giving the argument once or twice, we said "etc." instead of further repetition. There is nothing wrong with this, if the argument is sufficiently simple so that we can intuitively see where the repetition leads. But it would be nice to have some tool at hand which could be used instead of "etc." in cases when the outcome of the repetition is not so transparent.
 
@@ -154,7 +154,7 @@ Running it prints `5 passed`, confirming the identities and the inductive step h
 >
 > But the assertion we proved is clearly wrong; where is the error?
 
-## 3.3 Counting regions
+## Counting regions
 
 Let us draw $n$ lines in the plane. These lines divide the plane into some number of regions. How many regions do we get?
 

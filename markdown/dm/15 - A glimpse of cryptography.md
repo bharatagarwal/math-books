@@ -1,6 +1,6 @@
-## 15 A glimpse of cryptography
+## A glimpse of cryptography
 
-## 15.1 Classical cryptography
+## Classical cryptography
 
 Ever since writing was invented, people have been interested not only in using it to communicate with their partners, but also in trying to conceal the content of their message from their adversaries. This leads to cryptography (or cryptology), the science of secret communication.
 

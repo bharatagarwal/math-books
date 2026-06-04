@@ -1,8 +1,8 @@
-## 13 Graph coloring
+## Graph coloring
 
 ![Figure 40: Two-coloring the regions formed by a set of circles](13 - Graph coloring_images/img-0.jpeg)
 
-## 13.1 Coloring regions: an easy case
+## Coloring regions: an easy case
 
 We draw some circles on the plane (say,  $n$  in number). These divide the plane into a number of regions. Figure 40 shows such a set of circles, and also an "alternating" coloring of the regions with two colors; it gives a nice pattern. Now our question is: can we always color these regions this way? We'll show that the answer is yes; to state this more exactly:
 

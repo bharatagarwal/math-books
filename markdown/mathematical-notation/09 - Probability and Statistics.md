@@ -4,7 +4,7 @@ In the summer of 1654, the Chevalier de Mere posed a gambling question to Blaise
 
 Three and a half centuries later, the notation they seeded — refined by Bernoulli, Laplace, Kolmogorov, and Fisher — is how we write everything from A/B test results to machine learning loss functions. If you've used `random.random()` or `scipy.stats`, you've been speaking this language already. The notation just makes the grammar explicit.
 
-## 1. Probability
+## Probability
 
 ### Sample space and events
 
@@ -135,7 +135,7 @@ Extensions of this notation include the joint entropy $H(X,Y)$ and the condition
 
 In code: `scipy.stats.entropy(pk)` computes $H$ from a probability vector, defaulting to natural log.
 
-## 2. Distributions
+## Distributions
 
 Random variables are often best described by their distribution. Distributions, in turn, can be described in one of three principal ways, each with its own acronym.
 
@@ -279,7 +279,7 @@ $$
 
 Some authors place the notation as a subscript to the arrow rather than above, like this: $X_n \to_d X$.
 
-## 3. Statistics
+## Statistics
 
 The following is a potpourri of notation one encounters in statistics. Where probability theory builds models of uncertainty, statistics uses data to *infer* those models. The notation shifts accordingly: from $P$ and $E$ to $\bar{X}$ and $\hat{\theta}$.
 

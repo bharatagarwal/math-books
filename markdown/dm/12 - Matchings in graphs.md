@@ -1,11 +1,11 @@
-## 12 Matchings in graphs
+## Matchings in graphs
 
 <!-- carousel -->
 ![Figure 29 (left): The cheapest tree connecting 15 given towns, with the walk around it shown dashed. Costs are proportional to distances.](12 - Matchings in graphs_images/img-0.jpeg)
 ![Figure 29 (right): The travelling salesman tour produced by taking shortcuts along the walk around the cheapest tree.](12 - Matchings in graphs_images/img-1.jpeg)
 <!-- endcarousel -->
 
-## 12.1 A dancing problem
+## A dancing problem
 
 At the prom, 300 students took part. They did not all know each other; in fact, every girl knew exactly 50 boys and every boy knew exactly 50 girls (we assume, as before, that acquaintance is mutual).
 
@@ -49,7 +49,7 @@ Before proving the theorem, it will be useful to solve some exercises, and discu
 
 ![Figure 31: Six tribes and six tortoises on an island. Solid lines show the borders between tribes; dashed lines show the borders between tortoise species.](12 - Matchings in graphs_images/img-3.jpeg)
 
-## 12.2 Another matching problem
+## Another matching problem
 
 An island is inhabited by six tribes. They are on good terms and split up the island between them, so that each tribe has a hunting territory of 100 square miles. The whole island has an area of 600 square miles.
 
@@ -83,7 +83,7 @@ We can check this directly on the graph of Figure 32. Encoding the bipartite gra
 
 Running it prints `Hall's condition holds for all 2^6 subsets: True` and a totem assignment with all six species distinct — the "if and only if" of the Marriage Theorem playing out on this instance.
 
-## 12.3 The main theorem
+## The main theorem
 
 Now we state and prove a fundamental theorem about perfect matchings. This will complete the solution of the problem about tribes and tortoises, and (with some additional work) of the problem about dancing at the prom.
 
@@ -117,7 +117,7 @@ We still have to prove Theorem 12.1. This is now quite easy and is left to the r
 
 > **12.4** Prove that if in a bipartite graph every node has the same degree  $d \neq 0$ , then the bipartite graph is "good" (and hence contains a perfect matching; this proves theorem 12.1).
 
-## 12.4 How to find a perfect matching?
+## How to find a perfect matching?
 
 We have a condition for the existence of a perfect matching in a graph that is necessary and sufficient. Does this condition settle this issue once and forever? To be more precise: suppose that somebody gives us a bipartite graph; what is a good way to decide whether or not it contains a perfect matching? and how to find a perfect matching if there is one?
 
@@ -188,7 +188,7 @@ Remark. In this chapter, we restricted our attention to matchings in bipartite g
 
 > **12.8** Show how the description of algorithm above contains a new proof of theorem 12.2.
 
-## 12.5 Hamiltonian cycles
+## Hamiltonian cycles
 
 A Hamiltonian cycle is a cycle that contains all nodes of a graph. We have met a similar notion before: travelling salesman tours. Indeed, travelling salesman tours can be viewed as Hamiltonian cycles in the complete graph on the given set of nodes.
 

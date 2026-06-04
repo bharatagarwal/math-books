@@ -6,7 +6,7 @@ Then in 1637, Descartes had an insight that changed everything: geometry and alg
 
 The notation below is the language that makes geometric reasoning compact. If you've worked with coordinate tuples, distance functions, or vector math in code, most of it will feel familiar -- the symbols just formalize what you already do.
 
-## 1. Fundamentals
+## Fundamentals
 
 The most basic geometric object is a point, denoted with upper case letters: $A$, $B$, $C$. Points in the plane can also be represented as 2-tuples $(x,y)$ or as vectors $\begin{bmatrix} x \\ y \end{bmatrix}$; in that case they may be named with lower case bold letters, $\mathbf{x}$, $\mathbf{y}$, and so on.
 
@@ -71,7 +71,7 @@ Every piece of notation above has a direct counterpart in SymPy's geometry modul
 
 The mapping is almost one-to-one: $\lvert AB \rvert$ becomes `A.distance(B)`, $\triangle ABC$ becomes `Triangle(A, B, C)`, $\overleftrightarrow{AB} \perp \overleftrightarrow{CD}$ becomes `line_AB.is_perpendicular(line_CD)`. Notation is a compression of operations you can run.
 
-## 2. Coordinates
+## Coordinates
 
 In analytic geometry, points are specified by a list of numbers. The most common system is **Cartesian coordinates** (rectangular coordinates), named for Descartes. Points are written as $d$-tuples: $(x, y)$ in 2D, $(x, y, z)$ in 3D. In higher dimensions, subscripts are the natural choice: $(x_1, x_2, x_3, x_4)$.
 
@@ -116,7 +116,7 @@ $$
 | Spherical | $(r, \theta, \phi)$ | distance, azimuth, inclination | radial symmetry in 3D |
 | Cylindrical | $(r, \theta, z)$ | distance, angle, height | axial symmetry (pipes, columns) |
 
-## 3. Differential geometry
+## Differential geometry
 
 ### Curves
 

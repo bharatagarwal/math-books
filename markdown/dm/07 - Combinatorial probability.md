@@ -1,6 +1,6 @@
-## 7 Combinatorial probability
+## Combinatorial probability
 
-## 7.1 Events and probabilities
+## Events and probabilities
 
 Probability theory is one of the most important areas of mathematics from the point of view of applications. In this book, we do not attempt to introduce even the most basic notions of probability theory; our only goal is to illustrate the importance of combinatorial results about the Pascal Triangle by explaining a key result in probability theory, the Law of Large Numbers. To do so, we have to talk a little about what probability is.
 
@@ -50,7 +50,7 @@ These axioms and exercises are really claims about *every* uniform space, so rat
 
 Running it prints `5 passed`, meaning Hypothesis found no counterexample to any axiom or identity across all generated spaces, and the worked dice independence example holds exactly.
 
-## 7.2 Independent repetition of an experiment
+## Independent repetition of an experiment
 
 Let us repeat our experiment $n$ times. We can consider this as a single big experiment, and a possible outcome of this repeated experiment is a sequence of length $n$, consisting of elements of $S$. Thus the sample space corresponding to this repeated experiment is the set $S^{n}$ of such sequences. Thus the number of outcomes of this “big” experiment is $k^{n}$. We consider every sequence equally likely, which means that we consider it a uniform probability space. Thus if $(a_{1},a_{2},\ldots,a_{n})$ is an outcome of the “big” experiment, then we have
 
@@ -72,7 +72,7 @@ Consider again the experiment of tossing a coin twice. Let $A$ be the event that
 
 > **7.8** Consider an experiment with sample space $S$ repeated $n$ times ($n\geq 2$). Let $s\in S$. Let $A$ be the event that the first outcome is $s$, and let $B$ be the event that the last outcome is $s$. Prove that $A$ and $B$ are independent.
 
-## 7.3 The Law of Large Numbers
+## The Law of Large Numbers
 
 In this section we study an experiment that consists of $n$ independent coin tosses. For simplicity, assume that $n$ is even, so that $n=2m$ for some integer $m$. Every outcome is a sequence of length $n$, in which each element is either $H$ or $T$. A typical outcome would look like this:
 

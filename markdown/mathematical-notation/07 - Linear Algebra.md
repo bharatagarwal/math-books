@@ -6,7 +6,7 @@ The payoff was enormous. Systems of linear equations, which had required pages o
 
 For a software engineer, the notation below maps almost one-to-one onto NumPy. A vector $\mathbf{x}$ is `np.array(...)`. The dot product $\mathbf{x} \cdot \mathbf{y}$ is `x @ y`. The transpose $A^T$ is `A.T`. The eigenvalues $\lambda_1, \ldots, \lambda_n$ come from `np.linalg.eig`. The notation is the API specification; NumPy is the implementation.
 
-## 1. Vectors
+## Vectors
 
 A (real) vector is an $n$-long column$^{1}$ of real numbers:
 
@@ -143,7 +143,7 @@ Every operation above has a direct NumPy equivalent. NumPy arrays *are* vectors 
 <!-- include: code/mathematical-notation/07 - Linear Algebra/01_python.py -->
 ```
 
-## 2. Matrices
+## Matrices
 
 A matrix is a rectangular array of numbers. A matrix with $m$ rows and $n$ columns is called an $m \times n$-matrix; the number of rows is always given first and then the number of columns. The set of all real $m \times n$-matrices is denoted $\mathbb{R}^{m \times n}$ and for complex matrices we write $\mathbb{C}^{m \times n}$. An alternative notation is $M_n(\mathbb{R})$ for real $n \times n$-matrices and $M_{a,b}(\mathbb{R})$ for real $a \times b$-matrices. Likewise for complex matrices, we write $M_n(\mathbb{C})$ and $M_{a,b}(\mathbb{C})$.
 
@@ -421,7 +421,7 @@ The notation $\mathrm{O}(n, \mathbb{C})$ is the set of all complex $n \times n$-
 
 These groups are not just abstract algebra — $\mathrm{SO}(3)$ is the group of 3D rotations, fundamental to computer graphics, robotics, and physics. Every time you rotate a 3D model on screen, you're multiplying by an element of $\mathrm{SO}(3)$.
 
-## 3. Tensors
+## Tensors
 
 In its simplest form, a tensor is a multidimensional array of numbers. As such, an entry of, say, an order-3 tensor $T$ is $T_{i,j,k}$ or $T_{ijk}$. (Some authors use the word rank instead of order.) Thus scalars are order-0 tensors, vectors are order-1, and matrices are order-2. Higher order tensors are typically written with capital letters in either italics $T$ or boldface $\mathbf{T}$.
 

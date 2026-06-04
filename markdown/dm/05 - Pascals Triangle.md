@@ -1,4 +1,4 @@
-## 5 Pascal's Triangle
+## Pascal's Triangle
 
 To study various properties of binomial coefficients, the following picture is very useful. We arrange all binomial coefficients into a triangular scheme: in the "zeroeth" row we put  $\binom{0}{0}$ , in the first row, we put  $\binom{1}{0}$  and  $\binom{1}{1}$ , in the second row,  $\binom{2}{0}$ ,  $\binom{2}{1}$  and  $\binom{2}{2}$  etc. In general, the  $n$ -th row contains the numbers  $\binom{n}{0}, \binom{n}{1}, \ldots, \binom{n}{n}$ . We shift these rows so that their midpoints match; this way we get a pyramid-like scheme, called the Pascal Triangle (named after the French mathematician and philosopher Blaise Pascal, 1623-1662). The Figure below shows only a finite piece of the Pascal Triangle.
 
@@ -12,7 +12,7 @@ We can replace each binomial coefficient by its numerical value, to get another 
 > **5.1** Prove that the Pascal Triangle is symmetric with respect to the vertical line through its apex.
 > **5.2** Prove that each row in the Pascal Triangle starts and ends with 1.
 
-## 5.1 Identities in the Pascal Triangle
+## Identities in the Pascal Triangle
 
 Looking at the Pascal Triangle, it is not hard to notice its most important property: every number in it (other than the 1's on the boundary) is the sum of the two numbers immediately above it. This in fact is a property of the binomial coefficients you have already met: it translates into the relation
 
@@ -141,7 +141,7 @@ Running it prints `6 passed`, confirming all six identities survive randomized t
 
 > **5.6** Suppose that you want to choose a $(k+1)$-element subset of the $(n+k+1)$-element set $\{1,2,\ldots,n+k+1\}$. You decide to do this by choosing first the largest element, then the rest. Show that counting the number of ways to choose the subset this way, you get a combinatorial proof of identity (7).
 
-## 5.2 A bird’s eye view at the Pascal Triangle
+## A bird’s eye view at the Pascal Triangle
 
 Let’s imagine that we are looking at the Pascal Triangle from a distance. Or, to put it differently, we are not interested in the exact numerical value of the entries, but rather in their order of magnitude, rise and fall, and other global properties. The first such property of the Pascal Triangle is its symmetry (with respect to the vertical line through its apex), which we already know.
 

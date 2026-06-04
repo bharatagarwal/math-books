@@ -1,6 +1,6 @@
-## 9 Graphs
+## Graphs
 
-## 9.1 Even and odd degrees
+## Even and odd degrees
 
 We start with the following exercise (admittedly of no practical significance).
 
@@ -120,7 +120,7 @@ This second proof hinges on a single arithmetic fact — "the sum of an odd numb
 
 Running it prints `unsat` for every case (e.g. `N=5: unsat (unsat => # odd-degree nodes must be even)`), meaning Z3 found no counterexample at any tested size — the parity step, and with it Theorem 9.1, holds.
 
-## 9.2 Paths, cycles, and connectivity
+## Paths, cycles, and connectivity
 
 Let us get acquainted with some special kinds of graphs. The simplest graphs are the empty graphs, having any number of nodes but no edges.
 

@@ -1,6 +1,6 @@
 ## Answers to Exercises
 
-### 2 Let us count!
+### Let us count!
 
 **2.1 A party**
 
@@ -80,7 +80,7 @@
 
 2.5. (a) This is true for $n \geq 10$. (b) $2^n / n^2 > n$ for $n \geq 10$.
 
-### 3 Induction
+### Induction
 
 **3.1 The sum of odd numbers**
 
@@ -142,7 +142,7 @@ $$
 
 $$\frac{(n-1)n}{2}+1+n=\frac{n(n+1)}{2}+1.$$
 
-### 4 Counting subsets
+### Counting subsets
 
 **4.1 The number of ordered subsets**
 
@@ -248,7 +248,7 @@ which makes 11 possibilities.
 
 4.6. $\binom{kp+k-1}{k-1}$.
 
-### 5 Pascal's Triangle
+### Pascal's Triangle
 
 5. This is the same as $\binom{n}{k} = \binom{n}{n-k}$.
 
@@ -377,7 +377,7 @@ $$
 \end{array}
 $$
 
-### 7 Combinatorial probability
+### Combinatorial probability
 
 **7.1 Events and probabilities**
 
@@ -399,7 +399,7 @@ $$
 
 7.2. $P(A) = \frac{|S|^{n-1}}{|S|^n} = \frac{1}{|S|}$, $P(B) = \frac{|S|^{n-1}}{|S|^n} = \frac{1}{|S|}$, $P(A \cap B) = \frac{|S|^{n-2}}{|S|^n} = \frac{1}{|S|^2} = P(A)P(B)$.
 
-### 6 Fibonacci numbers
+### Fibonacci numbers
 
 **6.1 Fibonacci's exercise**
 
@@ -479,7 +479,7 @@ $$
 I_n = \frac{1}{2\sqrt{5}} \left( (2 + \sqrt{5})^n - (2 - \sqrt{5})^n \right).
 $$
 
-### 8 Integers, divisors, and primes
+### Integers, divisors, and primes
 
 **8.1 Divisibility of integers**
 
@@ -553,7 +553,7 @@ $$
 
 8.7. If $3|a$ then clearly $3|a^{561} - a$. If $3 \nmid a$, then $3|a^2 - 1$ by Fermat, hence $3|(a^2)^{280} - 1 = a^{560} - 1$. Similarly, if $11 \nmid a$, then $11|a^{10} - 1$ and hence $11|(a^{10})^{56} - 1 = a^{560} - 1$. Finally, if $17 \nmid a$, then $17|a^{16} - 1$ and hence $17|(a^{16})^{35} - 1 = a^{560} - 1$.
 
-### 9 Graphs
+### Graphs
 
 **9.1 Even and odd degrees**
 
@@ -597,7 +597,7 @@ $$
 
 $$\binom{k}{2}+\binom{n-k}{2}=\binom{n-1}{2}-(k-1)(n-k-1)\leq\binom{n-1}{2}.$$
 
-### 10 Trees
+### Trees
 
 10. If $G$ is a tree than it contains no cycles (by definition), but adding any new edge creates a cycle (with the path in the tree connecting the endpoints of the new edge). Conversely, if a graph has no cycles but adding any edge creates a cycle, then it is connected (two nodes $u$ and $v$ are either connected by an edge, or else adding an edge connecting them creates a cycle, which contains a path between $u$ and $v$ in the old graph), and therefore it is a tree.
 
@@ -631,7 +631,7 @@ Conversely, assume that there is a unique path between each pair of nodes. Then 
 
 10.4. (a) encodes a path; (b) encodes a star; (c) does not encode any tree (there are more 0’s than 1’s among the first 5 elements, which is impossible in the planar code of any tree).
 
-### 11 Finding the optimum
+### Finding the optimum
 
 **11.1 Finding the best tree**
 
@@ -649,7 +649,7 @@ Conversely, assume that there is a unique path between each pair of nodes. Then 
 
 11.2. Replacing two intersecting edges by two other edges pairing up the same 4 nodes, just differently, gives a shorter tour by the triangle inequality.
 
-### 12 Matchings in graphs
+### Matchings in graphs
 
 **12.1 A dancing problem**
 

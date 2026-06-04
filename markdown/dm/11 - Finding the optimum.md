@@ -1,6 +1,6 @@
-## 11 Finding the optimum
+## Finding the optimum
 
-## 11.1 Finding the best tree
+## Finding the best tree
 
 A country with a $n$ towns wants to construct a new telephone network to connect all towns. Of course, they don’t have to build a separate line between every pair of towns; but they do need to build a connected network; in our terms, this means that the graph of direct connections must form a connected graph. Let’s assume that they don’t want to build a direct line between town that can be reached otherwise (there may be good reasons for doing so, as we shall see later, but at the moment let’s assume their only goal is to get a connected network). Thus they want to build a minimal connected graph with these nodes, i.e., a tree.
 
@@ -74,7 +74,7 @@ Prove that the pessimistic government will have the same total cost as the optim
 > **11.3** If the seat of the government is town $r$, then quite likely the first line constructed will be the cheapest line out of $r$ (to some town $s$, say), then the cheapest line that connects either $r$ or $s$ to a new town etc. In general, there will be a connected graph of telephone lines constructed on a subset $S$ of the towns including the capital, and the next line will be the cheapest among all lines that connect $S$ to a node outside $S$. Prove that the lucky government still obtains a cheapest possible tree.
 > **11.4** Formulate how the pessimistic government will construct a cycle through all towns. Show by an example that they don’t always get the cheapest solution.
 
-## 11.2 Traveling Salesman
+## Traveling Salesman
 
 Let us return to the question of finding a cheapest possible cycle through all the given towns: we have $n$ towns (points) in the plane, and for any two of them we are given the “cost” of connecting them directly. We have to find a cycle with these nodes so that the cost of the cycle (the sum of the costs of its edges) is as small as possible.
 

@@ -1,4 +1,4 @@
-## 14 A Connecticut class in King Arthur's court
+## A Connecticut class in King Arthur's court
 
 <!-- carousel -->
 ![Figure 47: Two non-3-colorable graphs (first graph)](14 - A Connecticut class in King Arthurs court_images/img-0.jpeg)

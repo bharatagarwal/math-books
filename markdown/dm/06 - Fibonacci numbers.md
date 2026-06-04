@@ -1,6 +1,6 @@
-## 6 Fibonacci numbers
+## Fibonacci numbers
 
-## 6.1 Fibonacci’s exercise
+## Fibonacci’s exercise
 
 In the $13^{\text{th}}$ century, the Italian mathematician Leonardo Fibonacci studied the following (not too realistic) exercise:
 
@@ -42,7 +42,7 @@ This is valid for $n=1,2$, and then of course it is valid for every $n$ since th
 
 > **6.2** We have $n$ dollars to spend. Every day we either buy a candy for $1$ dollar, or an icecream for $2$ dollars. In how many ways can we spend the money?
 
-## 6.2 Lots of identities
+## Lots of identities
 
 There are many interesting relations valid for the Fibonacci numbers. For example, what is the sum of the first $n$ Fibonacci numbers? We have
 
@@ -111,7 +111,7 @@ so by repeated multiplication $\begin{pmatrix}1&1\\1&0\end{pmatrix}^n=\begin{pma
 
 Running it prints the sequence `[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597]`, the Cassini table (e.g. `n= 4:  2*5 - 3^2 =  1   (-1)^4 =  1`), and `F_100 = 354224848179261915075`, confirming the matrix recurrence reproduces the book's numbers and that the determinant yields Cassini exactly.
 
-## 6.3 A formula for the Fibonacci numbers
+## A formula for the Fibonacci numbers
 
 How large are the Fibonacci numbers? Is there a simple formula that expresses $F_{n}$ as a function of $n$?
 

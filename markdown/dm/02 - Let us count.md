@@ -1,6 +1,6 @@
-## 2 Let us count!
+## Let us count!
 
-## 2.1 A party
+## A party
 
 Alice invites six guests to her birthday party: Bob, Carl, Diane, Eve, Frank and George. When they arrive, they shake hands with each other (strange European custom). This group is strange anyway, because one of them asks: “How many handshakes does this mean?”
 
@@ -104,7 +104,7 @@ Running it prints `seatings of 6 guests (Alice fixed) = 720`, `handshakes among 
 
 > **2.2** What is the number of “matchings” in Carl’s sense (when it matters who sits on which side of the board, but the boards are all alike), and in Diane’s sense (when it is the other way around)?
 
-## 2.2 Sets and the like
+## Sets and the like
 
 We want to formalize assertions like “the problem of counting the number of hands in bridge is essentially the same as the problem of counting tickets in the lottery”. The usual tool in mathematics to do so is the notion of a *set*. Any collection of things, called *elements*, is a set. The deck of cards is a set, whose elements are the cards. The participants of the party form a set, whose elements are Alice, Bob, Carl, Diane, Eve, Frank and George (let us denote this set by $P$). Every lottery ticket contains a set of 5 numbers.
 
@@ -200,7 +200,7 @@ The intersection of two sets is the set consisting of those elements that are el
 >
 > (b) Form the symmetric difference of $A$ and $B$, to get a set $C$. Form the symmetric difference of $A$ and $C$. What did you get? Give a proof of the answer.
 
-## 2.3 The number of subsets
+## The number of subsets
 
 Now that we have introduced the notion of subsets, we can formulate our first general combinatorial problem: what is the number of all subsets of a set with $n$ elements?
 
@@ -335,7 +335,7 @@ Using any scientific calculator (or table of logarithms), we see that $\lg 2\app
 
 > **2.25** Find a formula for the number of digits of $2^{n}$.
 
-## 2.4 Sequences
+## Sequences
 
 Motivated by the “encoding” of subsets as strings of 0’s and 1’s, we may want to determine the number of strings of length $n$ composed of some other set of symbols, for example, $a$, $b$ and $c$. The argument we gave for the case of 0’s and 1’s can be carried over to this case without any essential change. We can observe that for the first element of the string, we can choose any of $a$, $b$ and $c$, that is, we have 3 choices. No matter what we choose, there are 3 choices for the second of the string, so the number of ways to choose the first two elements is $3^{2}=9$. Going on in a similar manner, we get that the number of ways to choose the whole string is $3^{n}$.
 
@@ -364,7 +364,7 @@ As another special case, consider the problem: how many non-negative integers ha
 - 2.30 We have 20 different presents that we want to distribute to 12 children. It is not required that every child gets something; it could even happen that we give all the presents to the same child. In how many ways can we distribute the presents?
 - 2.31 We have 20 kinds of presents; this time, we have a large supply from each. We want to give presents to 12 children. Again, it is not required that every child gets something; but no child can get two copies of the same present. In how many ways can we give presents?
 
-## 2.5 Permutations
+## Permutations
 
 During the party, we have already encountered the problem: how many ways can we seat $n$ people on $n$ chairs (well, we have encountered it for $n=6$ and $n=7$, but the question is natural enough for any $n$). If we imagine that the seats are numbered, then a finding a seating for these people is the same as assigning them to the numbers $1,2,\ldots,n$ (or $0,1,\ldots,n-1$ if we want to please the logicians). Yet another way of saying this is to order the people in a single line, or write down an (ordered) list of their names.
 

@@ -4,7 +4,7 @@ Before the sixteenth century, mathematics was written in words. To say "the squa
 
 This chapter is about the raw material of notation: the letters themselves. Which alphabets, which styles, and which decorations mathematicians reach for, and why.
 
-## 1. The Latin alphabet
+## The Latin alphabet
 
 In mathematics we use letters to name mathematical objects. These objects are often numbers, but they may also be functions, vectors, matrices, sets, and so forth.
 
@@ -40,7 +40,7 @@ Descartes' split — $a, b, c$ for knowns, $x, y, z$ for unknowns — maps direc
 
 The convention matters: when you read $ax^2 + bx + c = 0$, you immediately know $a$, $b$, $c$ are given and $x$ is what you're solving for. Four hundred years of muscle memory.
 
-## 2. The Greek alphabet
+## The Greek alphabet
 
 Somehow the 52 upper and lower case Latin letters, in various font styles (italic, bold, script) are just not sufficient, and for this reason letters from other alphabets are brought into service. The most common choice after the Latin alphabet is the Greek alphabet.
 
@@ -83,7 +83,7 @@ SymPy knows all of these — you can work with Greek letters symbolically, and t
 <!-- include: code/mathematical-notation/01 - Letters/02_python.py -->
 ```
 
-## 3. Decorations
+## Decorations
 
 The repertoire provided by the dozens of letters available from the Latin and Greek alphabets (in their various cases and type styles) is often expanded by various decorations attached to these letters. As we noted earlier, one often places a small arrow above a letter to denote a vector: $\vec{v}$.
 
@@ -116,7 +116,7 @@ Other decorations are attached to letters to create additional names:
 
 The hat and dot conventions come from physics. Newton wrote $\dot{x}$ for velocity and $\ddot{x}$ for acceleration — his "fluxion" notation — while Leibniz wrote $dx/dt$ and $d^2x/dt^2$. Both notations survive to this day, used in different contexts. The hat $\hat{x}$ comes from statistics, where it denotes an estimator of the true value $x$.
 
-## 4. Traditional uses
+## Traditional uses
 
 In principle, any letter can be used to stand for any mathematical object. However, in certain disciplines there are strong traditions to reserve certain letters for specific purposes. For example, in much of science and engineering the Greek letter $\pi$ stands for the familiar ratio of a circle's circumference to its diameter, approximately 3.14159. However, in other branches of mathematics, the symbol $\pi$ can have other meanings. In general, of course, it is best to use symbols in a discipline's conventional manner.
 

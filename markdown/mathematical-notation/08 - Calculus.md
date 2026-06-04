@@ -8,7 +8,7 @@ The remarkable outcome: *both notations survived*. Physicists still write $\dot{
 
 This chapter catalogs the notation for limits, derivatives, integrals, and transforms — the four pillars of calculus — with the programming bridges that make each symbol executable.
 
-## 1. Limits
+## Limits
 
 The principal notation for limits is
 
@@ -54,7 +54,7 @@ $$
 
 We may also write $\varlimsup$ for $\limsup$ and $\varliminf$ for $\liminf$.
 
-## 2. Derivatives (single variable)
+## Derivatives (single variable)
 
 Given a function $f$, we have three standard notations for the derivative — each born from the priority dispute:
 
@@ -129,7 +129,7 @@ Every notation variant maps to the same SymPy function — `diff`. The integral 
 
 The notations for the derivative of a vector-valued function of a single variable are the same as for that of a single-valued function. Let $f\colon \mathbb{R}\to \mathbb{R}^n$. Then the derivative of $f$ is denoted either $f'$ or $df/dt$ (or $df/dx$). Higher order derivatives are, likewise, $f''$ and $d^2 f/dt^2$, and so forth.
 
-## 3. Derivatives (multiple variables, scalar-valued)
+## Derivatives (multiple variables, scalar-valued)
 
 When a function depends on two or more variables, the ordinary $d$ becomes the "curly $d$" — the partial derivative symbol $\partial$, introduced by Adrien-Marie Legendre in 1786.
 
@@ -221,7 +221,7 @@ $$
 
 The Hessian tells you about curvature. If the Hessian is positive definite at a critical point ($\nabla f = 0$), you're at a local minimum — this is the second-derivative test generalized to $n$ dimensions. In machine learning, the Hessian of the loss function characterizes the local geometry of the optimization landscape.
 
-## 4. Derivatives (multiple variables, vector-valued)
+## Derivatives (multiple variables, vector-valued)
 
 In this section we consider derivatives of functions $\mathbf{f}:\mathbb{R}^m\to \mathbb{R}^n$. We denote vector-valued functions with bold letters (though this is not mandatory).
 
@@ -322,7 +322,7 @@ which is the Laplacian of $f$. Thus $\nabla \cdot (\nabla f) = \nabla^2 f = \Del
 | Curl | $\nabla \times \mathbf{f}$ | vector field ($\mathbb{R}^3$) | vector field | $\nabla$ cross vector |
 | Laplacian | $\nabla^2 f$ | scalar field | scalar field | $\nabla \cdot \nabla f$ |
 
-## 5. Integration
+## Integration
 
 The integral sign $\int$ was introduced by Leibniz in 1675 — it's a stylized elongated S, for *summa* (sum). And that's exactly what integration is: a limit of sums.
 
@@ -406,7 +406,7 @@ $$
 
 where $\partial D$ indicates the boundary of $D$.
 
-## 6. Convolution and transforms
+## Convolution and transforms
 
 ### Convolution
 

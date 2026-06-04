@@ -1,4 +1,4 @@
-## 16 One-time pads
+## One-time pads
 
 There is another simple, frequently used method, which is much more secure: the use of “one-time pads”. This method is very safe; it was used e.g. during World War II for communication between the American President and the British Prime Minister. Its disadvantage is that it requires a very long key, which can only be used once.
 
@@ -34,7 +34,7 @@ We can reproduce King Arthur's encryption bit-for-bit in a few lines of Python. 
 
 Running it prints `encrypt reproduces book ciphertext: True`, `decrypt round-trips to plaintext: True`, and `c1 XOR c2 == m1 XOR m2 (pad gone): True`, confirming both the book's arithmetic and the catastrophic leakage from pad reuse.
 
-## 16.1 How to save the last move in chess?
+## How to save the last move in chess?
 
 Modern cryptography started in the late 1970’s with the idea that it is not only lack of information that can protect our message against an unauthorized eavesdropper, but also the computational complexity of processing it. The idea can is illustrated by the following simple example.
 
@@ -62,7 +62,7 @@ All the information about Alice’s move is encoded in the first 4 digits of the
 
 With the spread of electronic communication in business, many solutions of traditional correspondence and trade must be replaced by electronic versions. We have seen an electronic “deposit box” above. Other schemes (similar or more involved) can be found for electronic passwords, authorization, authentication, signatures, watermarking, etc. These schemes are extremely important in computer security, cryptography, automatic teller machines, and many other fields. The protocols are often based on simple number theory; in the next section we discuss (a very simplified version of) one of them.
 
-## 16.2 How to verify a password—without learning it?
+## How to verify a password—without learning it?
 
 In a bank, a cash machine works by name and password. This system is safe as long as the password is kept in secret. But there is one week point in security: the computer of the bank must store the password, and the administrator of this computer may learn it and later misuse it.
 
@@ -72,7 +72,7 @@ Suppose that the password is a 100-digit prime number $p$ (this is, of course, t
 
 Let us assume that the system administrator learns the number $N$ stored along with the files of our customer. To use this in order to impersonate the customer, he has to find a 100-digit number that is a divisor of $N$; but this is essentially the same problem as finding the prime factorization of $N$, and this is hopelessly difficult. So—even though all the necessary information is contained in the number $N$—the computational complexity of the factoring problem protects the password of the customer!
 
-## 16.3 How to find these primes?
+## How to find these primes?
 
 In our two simple examples of “modern cryptography”, as well as in almost all the others, one needs large prime numbers. We know that there are arbitrarily large primes (Theorem 8.3), but are there any with 200 digits, starting with 1163 (or any other 4 given digits)? Maple found (in a few seconds on a laptop!) the smallest such prime number:
 
@@ -114,7 +114,7 @@ Running it prints `book's random p: 200 digits, 1163.., prime: True True True`, 
 
 > **16.5** Alice modifies her suggestion as follows: instead of the random 0-1 sequence, she offers to use a random, but meaningful text as the key. For whom would this be advantageous?
 
-## 16.4 Public key cryptography
+## Public key cryptography
 
 Cryptographic systems used in real life are more complex than those described in the previous section—but they are based on similar principles. In this section we sketch the math behind the most commonly used system, the RSA code (named after its inventors, Rivest, Shamir and Adleman).
 

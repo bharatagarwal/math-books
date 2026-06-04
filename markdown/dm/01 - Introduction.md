@@ -1,4 +1,4 @@
-## 1 Introduction
+## Introduction
 
 For most students, the first and often only area of mathematics in college is calculus. And it is true that calculus is the single most important field of mathematics, whose emergence in the 17th century signalled the birth of modern mathematics and was the key to the successful applications of mathematics in the sciences.
 

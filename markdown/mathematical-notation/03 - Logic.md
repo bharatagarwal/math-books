@@ -4,7 +4,7 @@ George Boole had an audacious idea in 1854: thought itself could be reduced to a
 
 If you've written an `if` statement, you've done Boolean algebra. The notation below formalizes what you already know, and extends it with quantifiers ($\forall$, $\exists$) that let you make claims about entire collections at once.
 
-## 1. Boolean operations and proof symbols
+## Boolean operations and proof symbols
 
 The mathematical words *and*, *or*, *not*, *implies*, and so on are abbreviated with special symbols. If you know Python's `and`, `or`, `not`, you already know the semantics — the notation just makes it more compact.
 
@@ -43,7 +43,7 @@ A few symbols appear specifically in the context of writing proofs:
 - **Contradiction.** $\Rightarrow\!\Leftarrow$ indicates a contradiction has been reached.
 - **End of proof.** $\square$ (or $\blacksquare$) marks the end of a proof. The letters QED are also used, from the Latin *Quod Erat Demonstrandum* ("thus it has been demonstrated").
 
-## 2. Quantifiers
+## Quantifiers
 
 The symbols $\forall$ and $\exists$ are the most powerful notation in logic. They let you make claims about every element or some element of a set — the mathematical equivalent of `all()` and `any()` in Python.
 

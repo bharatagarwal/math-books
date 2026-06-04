@@ -10,7 +10,7 @@ $$
 
 This chapter covers the notation for these number systems — how to write them, name their parts, and operate on them. If you've used Python's `int`, `float`, `complex`, and `fractions.Fraction`, you've already worked with the first four levels of this tower.
 
-## 1. Real numbers
+## Real numbers
 
 ### Writing numbers
 
@@ -115,7 +115,7 @@ A triple line equal sign $\equiv$ is used to mean *identically equal to*. For ex
 | $\approx$ | approximately equal | `math.isclose(a, b)` |
 | $\neq$ | not equal | `!=` |
 
-## 2. Subsets of the reals
+## Subsets of the reals
 
 The integers are the real numbers that can be expressed without any digits after the decimal point. The set of integers is denoted $\mathbb{Z}$ (from German *Zahlen*, "numbers"):
 
@@ -194,7 +194,7 @@ Although one could write $(-\infty, \infty)$, this indicates all real numbers an
 
 Python's `range(a, b)` is the discrete analogue of $[a, b)$ — half-open on the right.
 
-## 3. "Famous" real numbers
+## "Famous" real numbers
 
 Some real numbers have their own special notation. Here are the ones you will encounter most often:
 
@@ -215,7 +215,7 @@ $$
 e^{i\pi} + 1 = 0
 $$
 
-## 4. Complex numbers
+## Complex numbers
 
 The complex numbers are created by appending a new object, $i$, to the real numbers and following the natural consequence of algebraic steps. Here, $i$ stands for a number with the property $i^{2}=-1$. The result is a collection of numbers of the form $a+bi$ where $a,b\in\mathbb{R}$. The set of complex numbers is denoted $\mathbb{C}$.
 
@@ -274,7 +274,7 @@ In Python: `cmath.polar(z)` returns $(r, \theta)$ and `cmath.rect(r, theta)` con
 
 ![Figure 1: Rectangular and polar representation of a complex number $a + bi = re^{i\theta}$.](04 - Numbers_images/img-1.jpeg)
 
-## 5. Basic operations
+## Basic operations
 
 For two numbers $a$ and $b$ their sum is written $a + b$ and their difference is $a - b$.
 
@@ -307,7 +307,7 @@ Two operations that matter enormously in discrete math and computer science:
 
 See the discussion of $\sum$ and $\prod$ notation in the Collections chapter.
 
-## 6. Other number systems
+## Other number systems
 
 There are other number systems used by mathematicians that are useful in engineering and science applications. We list here some of the more common ones.
 
@@ -355,7 +355,7 @@ This generalizes to any ring and any auxiliary element $\alpha$. The notation $R
 
 For a field $F$, the notation $F(\alpha)$ is the extension created by including $\alpha$ with all four basic operations. Thus $\mathbb{Q}(\pi)$ includes numbers such as $\frac{2 + 5\pi}{1/2 - \pi^2}$.
 
-## 7. To infinity and beyond
+## To infinity and beyond
 
 It is often useful to append the concept of infinity to the real or complex number systems.
 
@@ -375,7 +375,7 @@ The cardinality of the real numbers, $|\mathbb{R}|$, is denoted $\mathfrak{c}$. 
 
 Python has `float('inf')` and `float('-inf')` for the extended reals, and `math.inf` as a named constant. NumPy adds `np.inf`. These follow IEEE 754 rules: `inf + 1 == inf`, `inf - inf` is `nan`.
 
-## 8. Number notation in SymPy
+## Number notation in SymPy
 
 SymPy knows all the standard number sets and can do exact arithmetic with intervals, floor/ceiling, modular arithmetic, and the famous constants. This demo shows the notation-to-code mapping:
 

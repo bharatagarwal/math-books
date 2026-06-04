@@ -1,4 +1,4 @@
-## 10 Trees
+## Trees
 
 ![Figure 21: Five trees](10 - Trees_images/img-0.jpeg)
 
@@ -21,7 +21,7 @@ Second, we have to prove that if  $G$  satisfies the condition given in the theo
 > **10.2** Prove that connecting two nodes $u$ and $v$ in a graph $G$ by a new edge creates a new cycle if and only if $u$ and $v$ are in the same connected component of $G$.
 > **10.3** Prove that in a tree, every two nodes can be connected by a unique path. Conversely, prove that if a graph $G$ has the property that every two nodes can be connected by a path, and there is only one connecting path for each pair, then the graph is a tree.
 
-## 10.1 How to grow a tree?
+## How to grow a tree?
 
 The following is one of the most important properties of trees.
 
@@ -68,7 +68,7 @@ Indeed, we start with one more node (1) than edge (0), and at each step, one new
 
 > **10.6** If we delete a node $v$ from a tree (together with all edges that end there), we get a graph whose connected components are trees. We call these connected components the branches at node $v$. Prove that every tree has a node such that every branch at this node contains at most half the nodes of the tree.
 
-## 10.2 Rooted trees
+## Rooted trees
 
 Often we use trees that have a special node, which we call the root. For example, trees that occured in counting subsets or permutations were built starting with a given node.
 
@@ -80,7 +80,7 @@ Now a basic genealogical assertion: every node is the father of its sons. Indeed
 
 We have seen that every node different from the root has exactly one father. A node can have any number of sons, including zero. A node with no sons is called a leaf. In other words, a leaf is a node with degree 1, different from $r$. (To be precise, if the tree consists of a single node $r$, then this is a leaf.)
 
-## 10.3 How many trees are there?
+## How many trees are there?
 
 We have counted all sorts of things in the first part of this book; now that we are familiar with trees, it is natural to ask: how many trees are there on $n$ nodes?
 
@@ -126,7 +126,7 @@ Running it prints `n= 5 | 125 | 125 | True` (and `1296` for $n=6$), giving an in
 
 The formula is elegant, but the surprising fact about it is that it is quite difficult to prove! It is substantially deeper than any of the previous formulas for the number of this and that. There are various ways to prove it, but each uses some deeper tool from mathematics or a deeper idea. We'll give a proof that is perhaps best understood by first discussing a quite different question in computer science: how to store a tree?
 
-## 10.4 How to store a tree?
+## How to store a tree?
 
 Suppose that you want to store a labelled tree, say the tree in Figure 24, in a computer. How would you do this? Of course, the answer depends on what you need to store the tree for, what information about it you want to retrieve and how often, etc. Right now, we are
 
