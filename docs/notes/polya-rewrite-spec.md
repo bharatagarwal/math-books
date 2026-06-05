@@ -7,10 +7,42 @@ rewrite of `markdown/polya/`.
 
 ## Purpose
 
-Turn the faithful port into a personal edition that serves one reader: a
-software engineer learning mathematics through programming and formal
-verification, who wants (a) the problem-solving methodology and (b) the
-philosophical underpinnings — and does not want the 1945 classroom packaging.
+Turn the faithful port into a personal, low-friction edition for one reader: a
+software engineer learning mathematics who wants Pólya's problem-solving
+method, his psychology of discovery, and his philosophical distinction between
+guessing and proving — without the 1945 classroom packaging.
+
+The dominant design goal is readability and transfer. The rewrite should reduce
+the cognitive load of reading the whole book while preserving the reusable
+questions and habits that make Pólya valuable. Programming, symbolic
+calculation, and formal tools may appear, but only as instruments that make an
+idea easier to see. They are not the subject of the book.
+
+## Handoff directive
+
+This file is the handoff artifact for a new rewrite session. A new agent should
+be able to start from this spec, the faithful port in `markdown/polya/`, and the
+house rules in `CLAUDE.md` without needing prior conversation.
+
+The chosen table-of-contents theme is **Conceptual Themes**. Do not revert to an
+alphabetical dictionary, a classroom sequence, or a purely workflow/question-led
+TOC. The reader should be able to glance at the sidebar and see the conceptual
+territory of Pólya's method:
+
+1. The Method
+2. Understanding
+3. Discovery
+4. Variation
+5. Auxiliary Problems
+6. Signs of Progress
+7. Plausible Reasoning
+8. Proof and Review
+9. Style, Judgment, and Practice
+10. Problems
+
+The page names and subheadings below are starting commitments, not decorative
+labels. A writer may adjust wording while drafting, but the final structure
+should keep this thematic shape.
 
 ## Problems with the original (the user's words)
 
@@ -36,6 +68,15 @@ philosophical underpinnings — and does not want the 1945 classroom packaging.
   inventor's paradox, problems to find vs problems to prove…), his honesty
   about failure and morale, his aphoristic warmth. Modern, direct prose; no
   corporate self-help register.
+- **Readability outranks instrumentation.** A worked example should first make
+  the heuristic move clear to the reader. Add code, symbolic checks, brute-force
+  enumeration, Z3, Lean, or other tools only when they reduce confusion,
+  strengthen a natural check, or make a hidden structure visible. Do not turn
+  the rewrite into a formal-verification book or an AGI/math-tools book.
+- **The thematic TOC is part of the rewrite.** The current port's alphabetic
+  dictionary and general part titles are hard to scan. The rewrite uses the
+  Conceptual Themes table of contents from this spec, with clear page titles and
+  subheadings.
 - **Schoenfeld is additive, not the narrative.** See "Heuristic entries" below.
 - **House authoring rules apply** (CLAUDE.md → Authoring Reader Pages): one H1
   per page, LaTeX-only math, code in `code/polya/<chapter>/` woven inline via
@@ -59,18 +100,26 @@ where natural):
 
 | Original | Replacement domain |
 |---|---|
-| Parallelepiped diagonal (§8, §10, §12) | One worked thread reused across the phases: a counting or graph problem solved end-to-end (candidate: handshake/degree-sum, or counting subsets via bijection) |
-| Construction problem (§18) | A constraint-satisfaction problem (natural z3 demo) |
-| Problem to prove (§19) | An induction proof (sum of cubes — already in the book's own Induction entry — or a graph invariant), carried to Lean |
+| Parallelepiped diagonal (§8, §10, §12) | One worked thread reused across the phases: preferably counting subsets by binary strings; handshake/degree-sum is the backup |
+| Construction problem (§18) | A small constraint or arrangement problem solved by hand first; Z3 only if it clarifies the same reasoning |
+| Problem to prove (§19) | An induction proof (sum of cubes — already in the book's own Induction entry — or a graph invariant); Lean is optional, not the point |
 | Rate problem (§20) | A recurrence / growth problem (Fibonacci-flavored, ties to dm ch. 6) |
 | Dictionary-entry mini-examples | Discrete-math or programming equivalents per entry; keep domain-neutral classics (bear puzzle, bottles) |
 
 Rules: every replacement must genuinely exercise the same heuristic the
-original example existed to teach. Each worked example gets its verification
-woven in at the moment of the guess or the proof (sympy/hypothesis for the
-plausible side, z3/Lean for the demonstrative side) — never a trailing code
-section. Programming analogies (debugging ↔ understanding the problem, etc.)
-are allowed as brief asides, not as the spine.
+original example existed to teach. Each worked example should include a natural
+check at the moment the guess, plan, or proof appears. That check may be mental,
+numerical, diagrammatic, small-case enumeration, symbolic calculation,
+property-based testing, Z3, Lean, or another tool. Use the lightest check that
+helps the reader. Never add a trailing "code section" merely to satisfy the
+tooling habit. Programming analogies (debugging ↔ understanding the problem,
+etc.) are allowed as brief asides, not as the spine.
+
+The recurring four-phase example should be deliberately low-overhead. Counting
+subsets by binary strings is the current preferred thread because it naturally
+supports: identifying unknown/data/condition; choosing notation; solving small
+cases; finding an auxiliary representation; checking by enumeration; proving by
+bijection or induction; and looking back to reuse the method.
 
 ## Heuristic entries (the dictionary rebuild)
 
@@ -82,28 +131,44 @@ Each kept entry follows this internal shape:
    corrective: "solve an easier related problem" is a family — set n=1,2,3;
    drop a constraint; lower the dimension; specialize the type). Compact list.
 3. **When to reach for it** — one or two lines.
+4. **Questions to keep** — 2–4 reusable self-questions, when the entry is long
+   enough to need them. These are the main cognitive-load reducers.
 
 Schoenfeld himself is named once: in the Monitoring & psychology group, a
 short section on control/metacognition (monitoring progress, deciding to
 persist vs switch — the descriptive-vs-prescriptive finding). Not a drumbeat.
 
-## Target structure (replaces current 14-page layout)
+## Target structure (replaces current 17-page layout)
 
-| Page | Content | Built from (current pages) |
-|---|---|---|
-| 00 Preface | What this edition is, how it differs from the 1945 text, how to read it | new; absorbs Foreword/Introduction's useful matter |
-| 01 The Four Phases | The method as a solver's protocol; one problem thread worked through all four phases with woven verification | 02, 03 (§1–14, classroom material recast as self-practice) |
-| 02 Inside a Solution | The self-dialogue demonstrated: a solver thinking aloud through one problem from the new example set (modernized Part II) | 05 |
-| 03 Understanding Moves | Dictionary group: what is the unknown / data / condition; restating; notation; figures; separating the condition; did you use all the data… | entries from 06–10 |
-| 04 Plan-Finding Moves | analogy; specialization & generalization; decomposing & recombining; working backwards; auxiliary elements & problems; variation; inventor's paradox; related problems… | entries from 06–10 |
-| 05 Monitoring & the Psychology of Solving | signs of progress; examine your guess; determination/hope/success; subconscious work; bright idea; + the control section (Schoenfeld named here) | entries from 06–10 |
-| 06 Style & Wisdom | pedantry & mastery; rules of discovery/style/teaching→self-teaching; routine problems; the future mathematician → the developing solver; proverbs; terms old & new | entries from 06–10 |
-| 07 Guessing and Proving | Closing chapter part 1, purely philosophical: demonstrative vs plausible reasoning; finished math as scrubbed guessing; Euler showing his work (π²/6 as narrative); Lakatos & proofs-refutations co-evolution; Hungarian heuristic line; the four phases as guess-then-prove made procedural | new |
-| 08 The Solver's Instruments | Part 2, grounding part 1 for the programmer: economics of guessing (instruments change cost, cost changes temperament); symbolic REPL as lab bench (sums-of-cubes session); counterexample hunting as mechanized refutation (Euler's sum-of-powers conjecture as cautionary tale); OEIS as "have you seen it before?"; visual instruments as continuous specialization; proof assistant as demonstrative court — incl. the honest gap (no tool guesses the proof idea); ends pointing back at 07 | new |
-| 09 Problems | Curated Part IV: keep domain-neutral classics, drop pure geometry, splice equivalents from Lovász/AoPS where they exercise a dictionary move | 11, 12, 13 (hints folded into problems or kept as a section) |
-| 10 Reading Guide | Rewritten last, against the new structure | 00 |
+Use these page titles in `reader/app.js` and these filenames in
+`markdown/polya/`.
+
+| Page file | Reader title | Job | Suggested subheadings | Built from |
+|---|---|---|---|---|
+| `00 - The Method.md` | The Method | Introduce the edition, the four phases, and the recurring problem thread. This replaces a separate preface/reading-guide page. | What this edition is; The four phases; The questions are the method; The recurring example; How to read this edition | 01, 02, 03, 04, 05, 06 |
+| `01 - Understanding.md` | Understanding | Make the first phase concrete: before solving, make the problem graspable. | Start from the statement; Unknown, data, condition; Problems to find vs problems to prove; Restating and definitions; Notation and figures; Is the condition possible?; Questions to keep | 02, 05, 06, 08, 10, 11, 12, 13 |
+| `02 - Discovery.md` | Discovery | Explain how ideas are found: memory, analogy, the unknown, and the first useful plan. | Look at the unknown; Have you seen it before?; Related problems and theorems; Analogy; Generalization; Specialization; The bright idea; Questions to keep | 06, 07, 09, 10, 11, 12, 13 |
+| `03 - Variation.md` | Variation | Show how to change the problem when the direct attack stalls. This is a central chapter, not a side tactic. | Change the problem deliberately; Drop part of the condition; Keep the unknown and change the rest; Keep the data and derive something useful; Extreme cases; The inventor's paradox; Questions to keep | 07, 09, 10, 11, 12, 13 |
+| `04 - Auxiliary Problems.md` | Auxiliary Problems | Teach the main indirect route: solve another problem, introduce another object, or work backwards. | Why auxiliary problems help; Auxiliary elements; Auxiliary unknowns and lemmas; Equivalent reductions; Working backwards and Pappus; When the detour is worth it; Questions to keep | 06, 07, 09, 10, 11, 12, 13 |
+| `05 - Signs of Progress.md` | Signs of Progress | Give the reader a way to monitor whether work is moving, stalling, or drifting. | What progress feels like; Clear signs; Misleading signs; Examine your guess; Persist, switch, or rest; Subconscious work; Questions to keep | 08, 10, 11, 12, 13 |
+| `06 - Plausible Reasoning.md` | Plausible Reasoning | Preserve Pólya's philosophical core: guessing is not proof, but it is how discovery starts. | Heuristic reasoning; Induction before proof; Analogy as evidence; Why plausible is not certain; Euler showing his work; Lakatos and proofs/refutations; Questions to keep | 09, 10, 11, 12, 13 plus researched sources |
+| `07 - Proof and Review.md` | Proof and Review | Connect carrying out, proving, checking, and looking back. | Carrying out the plan; Can you see it? Can you prove it?; Problems to prove; Mathematical induction; Reductio and indirect proof; Check the result; Derive it differently; Use the result elsewhere; Questions to keep | 02, 06, 07, 10, 11, 12, 13 |
+| `08 - Style Judgment and Practice.md` | Style, Judgment, and Practice | Recast the wisdom and pedagogy entries as self-training for a solver. | Pedantry and mastery; Rules of discovery; Rules of style; Routine problems; The developing solver; Proverbs worth keeping; Training the self-dialogue; Questions to keep | 05, 08, 11, 12, 13 |
+| `09 - Problems.md` | Problems | Curate practice around the new thematic chapters. Keep problems that exercise a named move; remove pure geometry unless it is unusually clarifying. | How to use these problems; Problems by heuristic move; First hints; Solutions or solution sketches; Where each problem points back | 14, 15, 16 plus selected replacements from Lovász/AoPS |
 
 Notes:
+- The four phases remain the spine inside the thematic TOC. Every major page
+  should make clear which part of the solver's protocol it strengthens.
+- Do not create a standalone `Reading Guide` unless the rewrite unexpectedly
+  needs it. Fold the "how to read this edition" material into `00 - The
+  Method.md`.
+- Do not create a standalone "Solver's Instruments" chapter by default. Fold
+  tool notes into the relevant examples: small-case search in Discovery or
+  Variation, symbolic scratch work in Plausible Reasoning, formal checking in
+  Proof and Review.
+- Long pages should end with a compact "questions to keep" recap. The goal is
+  not to summarize content for its own sake, but to leave the reader with the
+  next question to ask when stuck.
 - Biographical entries (Bolzano, Descartes, Leibnitz, Pappus) compress into
   sidebars/asides inside the relevant thematic entry (Pappus → working
   backwards; Descartes → setting up equations/universal method).
@@ -128,20 +193,30 @@ Notes:
 
 ## Process (when the go-ahead comes)
 
-1. Commit the faithful port first (baseline in git history).
-2. Background workflow, one author agent per target page consuming this spec +
-   the relevant faithful-port pages; adversarial review per page against this
-   spec (voice, constraints, example policy, entry shape) + house authoring
-   rules; fix loop.
-3. All woven code actually run before inclusion; Lean/Dafny files type-checked.
-4. Update `reader/app.js`, `make build`, rendered-page verification
-   (screenshots assessed editorially, console/404 sweep).
-5. Reading Guide rewritten last, after the rest has settled.
+1. Preserve the faithful port first. If it is not already committed, stop and
+   commit it or ask the user before deleting/replacing pages.
+2. Draft against the thematic TOC in this spec. Do not preserve the old
+   alphabetical dictionary as a reader-facing structure.
+3. For each page: read the source pages listed in "Built from"; extract the
+   Pólya ideas; choose or adapt examples that exercise the same heuristic; write
+   in second person; end with "Questions to keep" when the page is long enough.
+4. Use subset-counting by binary strings as the default recurring example
+   across `00 - The Method.md` and the early chapters. Switch to
+   handshake/degree-sum only if the prose is clearly better after drafting.
+5. Keep code optional. Any woven code actually run before inclusion; any formal
+   proof files type-checked. Unchecked code is not allowed.
+6. Fold tool notes into relevant pages by default. Do not create extra chapters
+   unless the existing thematic TOC demonstrably cannot hold the material.
+7. Update `reader/app.js` to the 10-page thematic TOC, delete old pages only
+   after the new pages exist, run `make build`, and verify rendered pages
+   editorially: screenshots, console/404 sweep, math/figure/code readability.
 
-## Open items
+## Defaults for the rewrite
 
-- Which single problem threads the Four Phases chapter (handshake vs subset
-  counting) — author's call at write time, optimizing for how naturally all
-  four phases and the verification weave land on it.
-- Whether Hints survive as a separate section or fold per-problem — author's
-  call.
+- TOC: use the **Conceptual Themes** structure exactly unless drafting exposes a
+  concrete readability failure.
+- Recurring example: subset-counting by binary strings.
+- Reading guide: folded into `00 - The Method.md`.
+- Solver instruments: folded into examples, not standalone.
+- Hints and solutions: fold hints into `09 - Problems.md` unless separate
+  sections make the practice page easier to use.
