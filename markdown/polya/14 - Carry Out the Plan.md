@@ -17,9 +17,9 @@ Proofs serve you on three levels.
 
 **As a memory device.** Connected facts are more interesting and better retained than isolated ones. Even when your goal is just to remember results, proofs help. Any sort of connection that unites facts simply, naturally, and durably is welcome.
 
-What about incomplete proofs? For a strict logician, an incomplete proof is no proof at all. But in practice, incomplete proofs can be valuable --- provided you know they are incomplete and do not pretend otherwise. If you present a heuristic argument with frankness, stating openly that it is not a proof, it may prepare the ground for the rigorous argument. If you present it ambiguously, with visible hesitation between shame and pretension, it does harm.
+What about incomplete proofs? For a strict logician, an incomplete proof is no proof at all. But in practice, incomplete proofs can be valuable—provided you know they are incomplete and do not pretend otherwise. If you present a heuristic argument with frankness, stating openly that it is not a proof, it may prepare the ground for the rigorous argument. If you present it ambiguously, with visible hesitation between shame and pretension, it does harm.
 
-Without any proofs at all, a subject reduces to what Polya called the "cookbook system" --- a collection of recipes with no reasons, no connections, no understanding. Rules given without reasons are quickly forgotten.
+Without any proofs at all, a subject reduces to what Polya called the "cookbook system"—a collection of recipes with no reasons, no connections, no understanding. Rules given without reasons are quickly forgotten.
 
 
 ## Carrying out the plan
@@ -103,7 +103,7 @@ $$
 \end{aligned}
 $$
 
-The bases of the squares are $1, 3, 6, 10$ --- the triangular numbers. Pattern-spotting discovers the formula:
+The bases of the squares are $1, 3, 6, 10$—the triangular numbers. Pattern-spotting discovers the formula:
 
 $$1^3 + 2^3 + \cdots + n^3 = \left(\frac{n(n+1)}{2}\right)^2.$$
 
@@ -146,7 +146,7 @@ But the reductio can be rearranged. Given any finite set of primes, the number $
 
 ### A note on taste
 
-A long reductio can become unbearable --- the words "hypothetically," "supposedly," "allegedly" must recur, and the inner discord between examining an impossible situation and wanting to reject it grows painful. Yet it would be foolish to repudiate reductio as a tool of discovery. Use it to find the argument. Then rearrange the argument for clarity.
+A long reductio can become unbearable—the words "hypothetically," "supposedly," "allegedly" must recur, and the inner discord between examining an impossible situation and wanting to reject it grows painful. Yet it would be foolish to repudiate reductio as a tool of discovery. Use it to find the argument. Then rearrange the argument for clarity.
 
 Polya gave the reason plainly: listening to a reductio, you are obliged to focus your attention all the time upon a false assumption which you should forget, not upon the true theorem which you should retain. The direct proof retains truth. The reductio stores falsehoods that you must eventually discard.
 
@@ -156,4 +156,4 @@ Polya gave the reason plainly: listening to a reductio, you are obliged to focus
 - *Can you see clearly that the step is correct? Can you also prove it?*
 - *Did you use the whole hypothesis? Did you use all the data?*
 - *If you found it by reductio, can you rearrange the argument into a direct proof?*
-- *Is your inductive hypothesis precise enough --- or does the inventor's paradox apply?*
+- *Is your inductive hypothesis precise enough—or does the inventor's paradox apply?*

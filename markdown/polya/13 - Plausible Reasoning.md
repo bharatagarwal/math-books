@@ -20,22 +20,22 @@ Here is the classic example. You compute a few sums of consecutive cubes:
 
 $$1 = 1^2, \quad 1 + 8 = 9 = 3^2, \quad 1 + 8 + 27 = 36 = 6^2.$$
 
-It is hard to believe all these sums are perfect squares by mere chance. You look at the bases: $1, 3, 6$. The differences are $2, 3$. The pattern is unmistakable -- these are triangular numbers. You conjecture:
+It is hard to believe all these sums are perfect squares by mere chance. You look at the bases: $1, 3, 6$. The differences are $2, 3$. The pattern is unmistakable—these are triangular numbers. You conjecture:
 
 $$1^3 + 2^3 + \cdots + n^3 = (1 + 2 + \cdots + n)^2.$$
 
-Notice what happened. "The sums seem to be squares" is vague. "The sum of the first $n$ cubes equals the square of the $n$-th triangular number" is precise. The precise statement is stronger, yet easier to prove -- it gives you something definite to grab hold of. This is the inventor's paradox applied to conjectures: a more ambitious, more precise conjecture is often easier to prove than a vague one.
+Notice what happened. "The sums seem to be squares" is vague. "The sum of the first $n$ cubes equals the square of the $n$-th triangular number" is precise. The precise statement is stronger, yet easier to prove—it gives you something definite to grab hold of. This is the inventor's paradox applied to conjectures: a more ambitious, more precise conjecture is often easier to prove than a vague one.
 
 The same pattern appears in counting. Suppose you enumerate the subsets of an $n$-element set:
 
 | $n$ | Subsets | Count |
-|-----|---------|-------|
+|---|---|---|
 | 0   | $\{\emptyset\}$ | 1 |
 | 1   | $\emptyset, \{a\}$ | 2 |
 | 2   | $\emptyset, \{a\}, \{b\}, \{a,b\}$ | 4 |
 | 3   | all eight | 8 |
 
-You conjecture that the count is $2^n$. This is induction. The proof -- by bijection with binary strings, or by mathematical induction on $n$ -- comes later. But the conjecture came first, and the conjecture came from looking at cases.
+You conjecture that the count is $2^n$. This is induction. The proof—by bijection with binary strings, or by mathematical induction on $n$—comes later. But the conjecture came first, and the conjecture came from looking at cases.
 
 In mathematics as in the physical sciences, you may use observation and induction to discover general laws. But there is a difference. In the physical sciences, there is no higher authority than observation and induction. In mathematics there is such an authority: rigorous proof.
 
@@ -47,7 +47,7 @@ The danger is to confuse the stages. To present the finished product as if it we
 
 Analogy is a sort of similarity. Similar objects agree with each other in some respect; analogous objects agree in certain relations of their respective parts.
 
-You know that the number of binary strings of length $n$ is $2^n$. You suspect a bijection between subsets of an $n$-element set and binary strings of length $n$ -- the $i$-th bit indicates whether element $i$ is in the subset. If such a bijection exists, the two counts must agree. They do. The analogy between subsets and binary strings is not vague resemblance; it is an isomorphism. It pushes the conjecture toward certainty. And the bijection itself, once made explicit, becomes the proof.
+You know that the number of binary strings of length $n$ is $2^n$. You suspect a bijection between subsets of an $n$-element set and binary strings of length $n$—the $i$-th bit indicates whether element $i$ is in the subset. If such a bijection exists, the two counts must agree. They do. The analogy between subsets and binary strings is not vague resemblance; it is an isomorphism. It pushes the conjecture toward certainty. And the bijection itself, once made explicit, becomes the proof.
 
 This is the strongest kind of analogy: a precise structural correspondence. But weaker analogies also have evidential force. If you have proved a result about trees and wonder whether something similar holds for forests, you are reasoning by analogy. The analogy does not prove anything. But it tells you where to look.
 
@@ -71,11 +71,11 @@ $$
 
 The demonstrative pattern is watertight: if $A$ implies $B$ and $B$ is false, then $A$ is false. This is modus tollens.
 
-The heuristic pattern is not watertight. If $A$ implies $B$ and $B$ turns out to be true, that does not prove $A$. It only makes $A$ more credible. The direction is determined by the premises: $A$ becomes more credible, certainly not less. But the magnitude -- how much more credible -- depends on context, on what else you know, on how surprising $B$ was.
+The heuristic pattern is not watertight. If $A$ implies $B$ and $B$ turns out to be true, that does not prove $A$. It only makes $A$ more credible. The direction is determined by the premises: $A$ becomes more credible, certainly not less. But the magnitude—how much more credible—depends on context, on what else you know, on how surprising $B$ was.
 
 This is the deepest difference. In a demonstrative syllogism, the premises constitute a full basis for the conclusion. New information that leaves the premises intact cannot shake the conclusion.
 
-In a heuristic syllogism, the premises constitute only part of the basis -- the visible part. There is also an invisible part: your background knowledge, your unstated reasons. It can happen that you receive new information that leaves both premises intact but makes $A$ appear less plausible, or even definitively refutes it. The conclusion may be overturned by commotions in the invisible parts of its foundation, even though the visible premises stand firm.
+In a heuristic syllogism, the premises constitute only part of the basis—the visible part. There is also an invisible part: your background knowledge, your unstated reasons. It can happen that you receive new information that leaves both premises intact but makes $A$ appear less plausible, or even definitively refutes it. The conclusion may be overturned by commotions in the invisible parts of its foundation, even though the visible premises stand firm.
 
 Two reasonable people can honestly disagree about how much more credible $A$ becomes, since their backgrounds, temperaments, and unstated reasons differ. This is fundamentally unlike demonstrative reasoning, where the premises leave no room for disagreement about the conclusion.
 
@@ -87,7 +87,7 @@ You use the heuristic syllogism constantly, whether you name it or not.
 
 **Verification of consequences.** You conjecture that the number of subsets of $\{1, 2, \ldots, n\}$ is $2^n$. If true, the number of subsets of $\{1, 2, 3, 4, 5\}$ should be $32$. You enumerate and find $32$. More credible. You check whether the formula satisfies the recurrence $f(n) = 2f(n-1)$. It does. More credible still. Nothing is proved, but the ground is prepared for proof.
 
-**Analogy as heuristic evidence.** You know the number of binary strings of length $n$ is $2^n$. You suspect a bijection between subsets and binary strings. If such a bijection exists, the counts must agree. They do. This pushes the conjecture toward certainty -- and the bijection, once explicit, becomes the proof.
+**Analogy as heuristic evidence.** You know the number of binary strings of length $n$ is $2^n$. You suspect a bijection between subsets and binary strings. If such a bijection exists, the counts must agree. They do. This pushes the conjecture toward certainty—and the bijection, once explicit, becomes the proof.
 
 **The pattern that breaks.** You conjecture that every prime $p$ satisfies $2^p - 2 \equiv 0 \pmod{p}$. You check $p = 2, 3, 5, 7, 11, 13$. All work. Then you ask the converse: is every $n$ with $2^n - 2 \equiv 0 \pmod{n}$ necessarily prime? You find $n = 341 = 11 \times 31$ passes the test but is composite. The converse is false. This does not destroy Fermat's little theorem, but it destroys a plausible extension of it.
 
@@ -99,7 +99,7 @@ Euler was the great mathematician who most freely showed how he found his result
 
 What Polya learned from Euler was not a technique but a stance: compute, tabulate, conjecture, test, prove. In that order.
 
-Lakatos pushed this further. In *Proofs and Refutations*, he traced how Euler's polyhedron formula $V - E + F = 2$ evolved through counterexamples and refinements -- the proof and the theorem developed together. Counterexamples did not kill the theorem; they sharpened it. Definitions evolved alongside proofs. "Polyhedron" did not have a fixed meaning that preceded the investigation. The meaning was partly determined by which theorem you wanted to prove.
+Lakatos pushed this further. In *Proofs and Refutations*, he traced how Euler's polyhedron formula $V - E + F = 2$ evolved through counterexamples and refinements—the proof and the theorem developed together. Counterexamples did not kill the theorem; they sharpened it. Definitions evolved alongside proofs. "Polyhedron" did not have a fixed meaning that preceded the investigation. The meaning was partly determined by which theorem you wanted to prove.
 
 This demolishes the textbook myth that mathematics proceeds by stating a definition, then a theorem, then a proof, in one clean pass. The real process is:
 
