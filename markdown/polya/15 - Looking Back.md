@@ -4,14 +4,14 @@ You have solved the problem. You have checked each step, written the argument, r
 
 Do not do this. You are about to miss the most instructive phase of the work.
 
-By looking back at the completed solution — reconsidering the result and the path that led to it — you consolidate your knowledge and develop your ability to solve problems. No problem is completely exhausted. There remains always something to do; with sufficient study and penetration, you could improve any solution, and in any case you can always improve your understanding of the solution.
+By looking back at the completed solution, reconsidering the result and the path that led to it, you consolidate your knowledge and develop your ability to solve problems. No problem is completely exhausted. There remains always something to do; with sufficient study and penetration, you could improve any solution, and in any case you can always improve your understanding of the solution.
 
 This is the fourth phase. It asks three questions.
 
 
 ## Can you check the result?
 
-Each check gives you what Polya called "experimental evidence" — confidence from a *different source* than the derivation itself. You were convinced before because you derived it carefully. After checking, your gain in confidence comes from independent verification, "like perceiving an object through two different senses."
+Each check gives you what Polya called "experimental evidence": confidence from a *different source* than the derivation itself. You were convinced before because you derived it carefully. After checking, your gain in confidence comes from independent verification, "like perceiving an object through two different senses."
 
 **Test special cases.** Substitute simple values. For the subset formula $2^n$: does $n = 0$ give $1$? Does $n = 1$ give $2$? Does $n = 3$ give $8$?
 
@@ -79,6 +79,6 @@ Problems are not isolated. The connections between them are where mathematical u
 
 ## Questions to keep
 
-- *Can you check the result?* — special cases, boundary cases, symmetry, types.
-- *Can you derive the result differently?* — a second proof from a different direction.
-- *Can you use the result, or the method, for some other problem?* — the mushroom principle.
+- *Can you check the result?* Special cases, boundary cases, symmetry, types.
+- *Can you derive the result differently?* A second proof from a different direction.
+- *Can you use the result, or the method, for some other problem?* The mushroom principle.

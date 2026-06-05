@@ -111,7 +111,7 @@ These are historical biographies, pure-math-specific techniques, or purely pedag
 
 ## TL;DR Reading Strategy
 
-**Read thoroughly**: the four phases — Four phases, Understanding the problem, Devising a plan, Carrying out the plan, Looking back (all in "The Four Phases (§6–14)") — then cherry-pick ~15 entries from Part III based on what resonates (Working Backwards, Inventor's Paradox, Decomposing & Recombining, Look at the Unknown, Draw a Figure, Can You Check the Result). That's ~20% of the book for 80% of the value.
+**Read thoroughly**: the four phases (Four phases, Understanding the problem, Devising a plan, Carrying out the plan, Looking back, all in "The Four Phases (§6–14)"), then cherry-pick ~15 entries from Part III based on what resonates (Working Backwards, Inventor's Paradox, Decomposing & Recombining, Look at the Unknown, Draw a Figure, Can You Check the Result). That's ~20% of the book for 80% of the value.
 
 **Skim**: the Example chapters (in "The Four Phases (§6–14)") and the Dialogue (in "Part II: A Dialogue") just to see the method in action.
 

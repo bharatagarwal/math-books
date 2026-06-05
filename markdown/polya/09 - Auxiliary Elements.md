@@ -13,7 +13,7 @@ It helps to be conscious of *why* you are adding something. The reasons are diff
 
 ### To use a known result
 
-You have recalled a theorem or a previously solved problem that seems relevant. But it does not quite apply — your problem is missing a piece the theorem needs. You introduce that piece to bridge the gap. You want to use a bijection argument, so you need two sets to biject between. That forces you to define the second set.
+You have recalled a theorem or a previously solved problem that seems relevant. But it does not quite apply: your problem is missing a piece the theorem needs. You introduce that piece to bridge the gap. You want to use a bijection argument, so you need two sets to biject between. That forces you to define the second set.
 
 ### To unpack a definition
 
@@ -40,7 +40,7 @@ If you observe that $x^4 = (x^2)^2$, you may introduce $y = x^2$. The equation b
 
 The choice matters. A good auxiliary unknown is both *accessible* (easier to obtain from the data than the original unknown) and *useful* (capable of rendering definite service in the search for the original unknown). In the quartic example, $y = x^2$ satisfies both: it simplifies the equation (accessible) and immediately yields $x$ once known (useful). If you introduce a variable that has no clear relation to the original unknown, you have created a stepping stone that does not bridge the creek.
 
-In practice, you must often settle for less — a variable that seems accessible even if you cannot yet see how it will help, or one that would clearly help if only you could find it. Both are worth trying, as long as you know which kind of gamble you are making.
+In practice, you must often settle for less: a variable that seems accessible even if you cannot yet see how it will help, or one that would clearly help if only you could find it. Both are worth trying, as long as you know which kind of gamble you are making.
 
 
 ## New representations
@@ -55,7 +55,7 @@ Introduce a new representation. Encode each subset as a binary string $b_1 b_2 \
 
 Now the question "how many subsets?" becomes "how many binary strings of length $n$?" Each position has $2$ choices, the choices are independent, so there are $2^n$ strings. Done.
 
-The representation did the work. You did not change the problem, the unknown, or the data. You changed how you *looked at* the objects — and in the new encoding, the answer was immediate.
+The representation did the work. You did not change the problem, the unknown, or the data. You changed how you *looked at* the objects, and in the new encoding, the answer was immediate.
 
 ### Even-sum subsets
 
@@ -69,7 +69,7 @@ Consider what happens when you toggle the bit $b_1$ (include or exclude element 
 
 Three auxiliary elements made this work: the binary encoding, the auxiliary unknown $O(n)$, and the toggle bijection. None were in the original statement. Each was motivated: the encoding to make sums visible, $O(n)$ to set up a bijection, the toggle to execute it.
 
-Sanity check for $n = 3$: the subsets are $\emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\}$ with sums $0, 1, 2, 3, 3, 4, 5, 6$. Even sums: $0, 2, 4, 6$ — that is $4 = 2^2$. Correct.
+Sanity check for $n = 3$: the subsets are $\emptyset, \{1\}, \{2\}, \{3\}, \{1,2\}, \{1,3\}, \{2,3\}, \{1,2,3\}$ with sums $0, 1, 2, 3, 3, 4, 5, 6$. Even sums: $0, 2, 4, 6$, that is $4 = 2^2$. Correct.
 
 
 ## Lemmas
@@ -87,9 +87,9 @@ Note the parallel: auxiliary unknowns serve "problems to find" the way lemmas se
 
 If a tricky auxiliary element appears abruptly, without any motivation, and solves the problem surprisingly, you feel cheated. Mathematics is interesting insofar as it occupies your reasoning and inventive powers. But there is nothing to learn about reasoning and invention if the motive and purpose of the most conspicuous step remain incomprehensible.
 
-The introduction of an auxiliary element should be *motivated* — by a known result you want to apply, by a definition you want to unpack, or by an analogy you want to pursue. When you read a proof where an auxiliary element appears from nowhere and works by magic, ask yourself: *what would have led me to introduce it?* If you cannot answer that, the proof has taught you a fact but not a method.
+The introduction of an auxiliary element should be *motivated*: by a known result you want to apply, by a definition you want to unpack, or by an analogy you want to pursue. When you read a proof where an auxiliary element appears from nowhere and works by magic, ask yourself: *what would have led me to introduce it?* If you cannot answer that, the proof has taught you a fact but not a method.
 
-This is not a complaint about elegance. Elegant proofs can be well-motivated. The complaint is about proofs that present the auxiliary element as a rabbit pulled from a hat — no preparation, no trail of thought, just a mysterious object that happens to work. Such proofs are useful as reference; they are useless as instruction.
+This is not a complaint about elegance. Elegant proofs can be well-motivated. The complaint is about proofs that present the auxiliary element as a rabbit pulled from a hat: no preparation, no trail of thought, just a mysterious object that happens to work. Such proofs are useful as reference; they are useless as instruction.
 
 When you introduce an auxiliary element yourself, leave a trail. Say why. "I need a bijection, so I need a second set" is a reason. "Define $y = x^2$ because the equation is quadratic in $x^2$" is a reason. The reason need not be deep. It must exist.
 

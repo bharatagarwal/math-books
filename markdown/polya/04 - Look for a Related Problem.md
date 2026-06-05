@@ -2,7 +2,7 @@
 
 You understand the problem. You know the unknown, the data, the condition. Now you need a plan. Where do you look?
 
-The answer is deceptively simple: look at the unknown. What kind of thing are you trying to find? A count, a formula, a proof, an object satisfying constraints? Strip the problem to its schematic form — "given $\ldots$, find a count" — and let that schema direct your search.
+The answer is deceptively simple: look at the unknown. What kind of thing are you trying to find? A count, a formula, a proof, an object satisfying constraints? Strip the problem to its schematic form, "given $\ldots$, find a count," and let that schema direct your search.
 
 This creates an economy of search. Instead of rummaging through every problem you have ever solved, you search only among problems with the same kind of unknown. The schema narrows the field. If you are looking for a count, you recall counting problems. If you are looking for a proof of an identity, you recall proof techniques for identities. The problem appears schematically, and that schematic form tells you where to look.
 
@@ -32,15 +32,15 @@ The difficulty is that there are usually too many problems somewhat related to y
 
 Here is Polya's suggestion, which puts your finger on an essential common point: *try to think of a familiar problem having the same or a similar unknown*.
 
-Suppose you are trying to count the subsets of an $n$-element set. The unknown is a count. You have seen counts before. Which counting problems do you know well? Perhaps you recall that the number of binary strings of length $n$ is $2^n$ — each position has two choices, multiply. That is a problem with the same kind of unknown, solved by a clean argument. Could you use it?
+Suppose you are trying to count the subsets of an $n$-element set. The unknown is a count. You have seen counts before. Which counting problems do you know well? Perhaps you recall that the number of binary strings of length $n$ is $2^n$: each position has two choices, multiply. That is a problem with the same kind of unknown, solved by a clean argument. Could you use it?
 
 You can. There is a bijection between subsets of $\{1, 2, \ldots, n\}$ and binary strings of length $n$: the $k$-th bit is $1$ if element $k$ is in the subset, $0$ if not. So the number of subsets is $2^n$.
 
-The key step was connecting the new problem to a solved one through the unknown. You did not search randomly. You searched among problems with the same unknown — a count — and found one whose method could be transferred.
+The key step was connecting the new problem to a solved one through the unknown. You did not search randomly. You searched among problems with the same unknown, a count, and found one whose method could be transferred.
 
 *Here is a problem related to yours and solved before. Could you use it?* This is the moment the plan begins to crystallise. You know the solution of the related problem but not yet how to use it. So you press further: *Could you use its result? Could you use its method? Should you introduce some auxiliary element in order to make its use possible?*
 
-Sometimes you use the result directly. Sometimes you imitate the method, applying it step by step to the new setting. Sometimes you need to introduce an auxiliary element — a new representation, a relabelling, a bridge concept — to make the connection. The binary-string bijection is exactly such a bridge: an auxiliary representation that lets you transfer a known count to a new setting.
+Sometimes you use the result directly. Sometimes you imitate the method, applying it step by step to the new setting. Sometimes you need to introduce an auxiliary element (a new representation, a relabelling, a bridge concept) to make the connection. The binary-string bijection is exactly such a bridge, an auxiliary representation that lets you transfer a known count to a new setting.
 
 If no problem with the same unknown comes to mind, widen the search: a problem with a similar unknown, or one that shares a key piece of data or condition. But start narrow. The economy of search depends on it.
 
@@ -58,7 +58,7 @@ Consider counting the edges of the complete graph $K_n$. The general formula is 
 
 **When analogies are strong.** An analogical conclusion from many parallel cases is stronger than one from fewer. But quality matters more than quantity. Clear-cut analogies weigh more heavily than vague similarities; systematically arranged instances count for more than random collections of cases.
 
-At the most informal level, two problems "feel alike." At a more precise level, there is a one-to-one correspondence between objects of two systems that preserves certain relations — this is *isomorphism*, the strongest possible analogy. At a still more general level, the correspondence may be many-to-one and still preserve structure — this is *homomorphism*, weaker but still useful. The feeling that two problems are alike is the vaguest form, and even it can be productive. But making the analogy precise is what turns a hunch into a plan.
+At the most informal level, two problems "feel alike." At a more precise level, there is a one-to-one correspondence between objects of two systems that preserves certain relations; this is *isomorphism*, the strongest possible analogy. At a still more general level, the correspondence may be many-to-one and still preserve structure; this is *homomorphism*, weaker but still useful. The feeling that two problems are alike is the vaguest form, and even it can be productive. But making the analogy precise is what turns a hunch into a plan.
 
 > *Simplex sigillum veri* — simplicity is the seal of truth.
 
@@ -71,7 +71,7 @@ Trace the search through the recurring example. You want to prove that the numbe
 1. **Look at the unknown.** It is a count.
 2. **Have you seen it before?** You recall that binary strings of length $n$ number $2^n$.
 3. **Related problem.** There it is: a solved problem with the same unknown. Could you use it?
-4. **Auxiliary element.** You need a bridge — a bijection between subsets and binary strings. Associate to each subset $S$ the string $b_1 b_2 \cdots b_n$ where $b_k = 1$ if $k \in S$, $0$ otherwise. One-to-one correspondence.
+4. **Auxiliary element.** You need a bridge: a bijection between subsets and binary strings. Associate to each subset $S$ the string $b_1 b_2 \cdots b_n$ where $b_k = 1$ if $k \in S$, $0$ otherwise. One-to-one correspondence.
 5. **The plan.** Subsets biject with binary strings; binary strings number $2^n$; therefore subsets number $2^n$.
 
 The discovery happened because you connected *look at the unknown* (a count) with *a related problem* (binary strings) through *an auxiliary element* (the bijection). Each move was simple. The combination produced the plan.
