@@ -1,4 +1,7 @@
-.PHONY: serve build deploy
+.PHONY: serve build deploy repl
+
+repl:
+	uv run --with sympy --with ipython isympy
 
 serve:
 	uv run reader/serve.py
