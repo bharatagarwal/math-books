@@ -19,7 +19,7 @@ Proofs serve you on three levels.
 
 What about incomplete proofs? For a strict logician, an incomplete proof is no proof at all. But in practice, incomplete proofs can be valuable — provided you know they are incomplete and do not pretend otherwise. If you present a heuristic argument with frankness, stating openly that it is not a proof, it may prepare the ground for the rigorous argument. If you present it ambiguously, with visible hesitation between shame and pretension, it does harm.
 
-Without any proofs at all, a subject reduces to what Polya called the "cookbook system" — a collection of recipes with no reasons, no connections, no understanding. Rules given without reasons are quickly forgotten.
+Without any proofs at all, a subject reduces to what Polya called the "cookbook system": a collection of recipes with no reasons, no connections, no understanding. Rules given without reasons are quickly forgotten.
 
 
 ## Carrying out the plan

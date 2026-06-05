@@ -24,7 +24,7 @@ It is hard to believe all these sums are perfect squares by mere chance. You loo
 
 $$1^3 + 2^3 + \cdots + n^3 = (1 + 2 + \cdots + n)^2.$$
 
-Notice what happened. "The sums seem to be squares" is vague. "The sum of the first $n$ cubes equals the square of the $n$-th triangular number" is precise. The precise statement is stronger, yet easier to prove — it gives you something definite to grab hold of. This is the inventor's paradox applied to conjectures: a more ambitious, more precise conjecture is often easier to prove than a vague one.
+Notice what happened. "The sums seem to be squares" is vague. "The sum of the first $n$ cubes equals the square of the $n$-th triangular number" is precise. The precise statement is stronger, yet easier to prove: it gives you something definite to grab hold of. This is the inventor's paradox applied to conjectures: a more ambitious, more precise conjecture is often easier to prove than a vague one.
 
 The same pattern appears in counting. Suppose you enumerate the subsets of an $n$-element set:
 
@@ -35,7 +35,7 @@ The same pattern appears in counting. Suppose you enumerate the subsets of an $n
 | 2   | $\emptyset, \{a\}, \{b\}, \{a,b\}$ | 4 |
 | 3   | all eight | 8 |
 
-You conjecture that the count is $2^n$. This is induction. The proof — by bijection with binary strings, or by mathematical induction on $n$ — comes later. But the conjecture came first, and the conjecture came from looking at cases.
+You conjecture that the count is $2^n$. This is induction. The proof (by bijection with binary strings, or by mathematical induction on $n$) comes later. But the conjecture came first, and the conjecture came from looking at cases.
 
 In mathematics as in the physical sciences, you may use observation and induction to discover general laws. But there is a difference. In the physical sciences, there is no higher authority than observation and induction. In mathematics there is such an authority: rigorous proof.
 
@@ -75,7 +75,7 @@ The heuristic pattern is not watertight. If $A$ implies $B$ and $B$ turns out to
 
 This is the deepest difference. In a demonstrative syllogism, the premises constitute a full basis for the conclusion. New information that leaves the premises intact cannot shake the conclusion.
 
-In a heuristic syllogism, the premises constitute only part of the basis — the visible part. There is also an invisible part: your background knowledge, your unstated reasons. It can happen that you receive new information that leaves both premises intact but makes $A$ appear less plausible, or even definitively refutes it. The conclusion may be overturned by commotions in the invisible parts of its foundation, even though the visible premises stand firm.
+In a heuristic syllogism, the premises constitute only part of the basis, the visible part. There is also an invisible part: your background knowledge, your unstated reasons. It can happen that you receive new information that leaves both premises intact but makes $A$ appear less plausible, or even definitively refutes it. The conclusion may be overturned by commotions in the invisible parts of its foundation, even though the visible premises stand firm.
 
 Two reasonable people can honestly disagree about how much more credible $A$ becomes, since their backgrounds, temperaments, and unstated reasons differ. This is fundamentally unlike demonstrative reasoning, where the premises leave no room for disagreement about the conclusion.
 

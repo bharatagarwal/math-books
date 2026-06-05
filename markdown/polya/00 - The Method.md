@@ -6,13 +6,13 @@
 
 Polya saw mathematics as having two faces. "Mathematics presented in the Euclidean way appears as a systematic, deductive science; but mathematics in the making appears as an experimental, inductive science." The finished proof is one face. The groping, guessing, testing process that produced it is the other. Most books show you the first face. This one is about the second.
 
-The study of that second face has a name: *heuristic*. It is the study of methods and rules of discovery — not a theory that guarantees solutions, but a collection of questions, mental operations, and habits of attention that make discovery more likely. The questions are general enough to apply across subject matter. Their power is in that generality; their difficulty is that generality makes them feel obvious until you watch yourself fail to use them.
+The study of that second face has a name: *heuristic*. It is the study of methods and rules of discovery, not a theory that guarantees solutions, but a collection of questions, mental operations, and habits of attention that make discovery more likely. The questions are general enough to apply across subject matter. Their power is in that generality; their difficulty is that generality makes them feel obvious until you watch yourself fail to use them.
 
 Polya himself pursued this line further in *Mathematics and Plausible Reasoning*, where he showed Euler at work — not presenting finished proofs, but explaining how he found his results, guessing from numerical evidence, testing by analogy, strengthening conjectures incrementally. Of the great mathematicians, Polya said, Euler was the one who influenced him most, precisely because Euler showed his work.
 
-This edition re-voices *How to Solve It* for a software engineer learning mathematics. The examples come from discrete mathematics rather than solid geometry. The alphabetical dictionary has been reorganized into thematic chapters. But the concepts — heuristic, plausible reasoning, the inventor's paradox, problems to find versus problems to prove — are his. Where his sentences still land, they appear verbatim.
+This edition re-voices *How to Solve It* for a software engineer learning mathematics. The examples come from discrete mathematics rather than solid geometry. The alphabetical dictionary has been reorganized into thematic chapters. But the concepts (heuristic, plausible reasoning, the inventor's paradox, problems to find versus problems to prove) are his. Where his sentences still land, they appear verbatim.
 
-> *George Polya* (1887–1985) came to mathematics late — his undergraduate studies began in law, moved through languages and philosophy, and arrived at mathematics on a professor's advice. "I wasn't good enough for physics, and was too good for philosophy — mathematics is in between." His contributions range across probability, combinatorics, and analysis. He is most remembered for this book and its successors, which pursue the question of how mathematical ideas are actually found.
+> *George Polya* (1887–1985) came to mathematics late. His undergraduate studies began in law, moved through languages and philosophy, and arrived at mathematics on a professor's advice. "I wasn't good enough for physics, and was too good for philosophy — mathematics is in between." His contributions range across probability, combinatorics, and analysis. He is most remembered for this book and its successors, which pursue the question of how mathematical ideas are actually found.
 
 
 ## The four phases
@@ -21,7 +21,7 @@ Polya distinguishes four phases of work:
 
 1. **Understanding the problem.** See clearly what is required. What is the unknown? What are the data? What is the condition? Can you state the problem in your own words? Can you draw a figure, introduce notation, separate the parts of the condition?
 
-2. **Devising a plan.** Find the connection between the data and the unknown. This is the hardest phase and the most interesting one. Have you seen a related problem? Can you use its method? Should you introduce an auxiliary element? If the direct attack fails, can you change the problem — generalize, specialize, drop a constraint, work backwards?
+2. **Devising a plan.** Find the connection between the data and the unknown. This is the hardest phase and the most interesting one. Have you seen a related problem? Can you use its method? Should you introduce an auxiliary element? If the direct attack fails, can you change the problem: generalize, specialize, drop a constraint, work backwards?
 
 3. **Carrying out the plan.** Execute each step and check it. Can you see clearly that the step is correct? Can you prove it is correct? The plan gives a general outline; carrying it out means convincing yourself that every detail fits.
 
