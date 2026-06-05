@@ -58,7 +58,7 @@ problem. The corresponding problem in the plane occurs here naturally:
 *Find the center of gravity of a homogeneous triangle*.
 
 Now, we have two questions instead of one. But two questions may be easier to
-answer than just one question—provided that the two questions are intelligently
+answer than just one question — provided that the two questions are intelligently
 connected.
 
 4. Laying aside, for the moment, our original problem concerning the
@@ -1125,7 +1125,7 @@ angles involved by this definition.
 
 The figure, as it is plotted, is still "too empty." The unknown straight line is
 still unsatisfactorily connected with the data $A$, $B$, and $C$. The figure
-needs some auxiliary line, some addition—but what? A fairly good student can get
+needs some auxiliary line, some addition — but what? A fairly good student can get
 stranded here. There are, of course, various things to try, but the best question
 to refloat him is: *Could you derive something useful from the data?*
 

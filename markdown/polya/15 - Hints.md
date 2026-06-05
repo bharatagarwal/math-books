@@ -1,6 +1,6 @@
 # Hints
 
-1. *What is the unknown?* The color of a bear—but how could we find the color of a bear from mathematical data? *What is given?* A geometrical situation—but it seems self-contradictory: how could the bear, after walking three miles in the manner described, return to his *starting* point?
+1. *What is the unknown?* The color of a bear — but how could we find the color of a bear from mathematical data? *What is given?* A geometrical situation — but it seems self-contradictory: how could the bear, after walking three miles in the manner described, return to his *starting* point?
 
 2. *Do you know a related problem?*
 
@@ -14,13 +14,13 @@
 
 7. *Do you know a related problem?* The locus of the points from which a given segment of a straight line is seen under a given angle consists of two circular arcs, ending in the extreme points of the segment, and symmetric to each other with respect to the segment.
 
-8. I assume that the reader is familiar with the shape of the cube and has found certain axes just by inspection—but are they *all* the axes? *Can you prove* that your list of axes is exhaustive? Has your list a clear principle of classification?
+8. I assume that the reader is familiar with the shape of the cube and has found certain axes just by inspection — but are they *all* the axes? *Can you prove* that your list of axes is exhaustive? Has your list a clear principle of classification?
 
-9. *Look at the unknown!* The unknown is the volume of a tetrahedron—yes, I know, the volume of any pyramid can be computed when the base and the height are given (product of both, divided by 3) but in the present case neither the base nor the height is given. *Could you imagine a more accessible related problem?* (Don't you see a more accessible tetrahedron which is an aliquot part of the given one?)
+9. *Look at the unknown!* The unknown is the volume of a tetrahedron — yes, I know, the volume of any pyramid can be computed when the base and the height are given (product of both, divided by 3) but in the present case neither the base nor the height is given. *Could you imagine a more accessible related problem?* (Don't you see a more accessible tetrahedron which is an aliquot part of the given one?)
 
 10. *Do you know a related theorem?* Do you know a related . . . simpler . . . *analogous theorem?* Yes: the foot of the altitude is the mid-point of the base in an isosceles triangle. Here is a *theorem related to yours and proved before. Could you use* . . . *its method?* The theorem on the isosceles triangle is proved from congruent right triangles of which the altitude is a common side.
 
-11. It is assumed that the reader is somewhat familiar with systems of linear equations. To solve such a system, we have to combine its equations in some way—look out for relations between the equations which could indicate a particularly advantageous combination.
+11. It is assumed that the reader is somewhat familiar with systems of linear equations. To solve such a system, we have to combine its equations in some way — look out for relations between the equations which could indicate a particularly advantageous combination.
 
 12. *Separate the various parts of the condition. Can you write them down?* Between the start and the point where the three friends meet again there are three different phases:
 

@@ -4,11 +4,11 @@ This last part offers you additional opportunity for practice. The problems requ
 
 ## How to use these problems
 
-Pick a problem. Work it seriously before looking at the hint. If you are stuck after a genuine effort, read the hint—it names the move, usually as a question. If the hint is not enough, read the solution sketch, but stop as soon as you see the key idea, close the page, and finish it yourself.
+Pick a problem. Work it seriously before looking at the hint. If you are stuck after a genuine effort, read the hint — it names the move, usually as a question. If the hint is not enough, read the solution sketch, but stop as soon as you see the key idea, close the page, and finish it yourself.
 
 If you solve a problem by your own means, you can still learn something by comparing your method with the one printed here. The reader who has earnestly tried to solve a problem has the best chance to profit from the hint and the solution. If, after a serious effort, you are inclined to give up, the hint may supply the missing idea. If even the hint does not help, look at the solution, isolate the key idea, put the book aside, and try to work out the solution from that idea alone.
 
-Every problem below exercises at least one named heuristic move. The tag after each problem tells you which move is central. This is not a spoiler—knowing that a problem is about specialization does not tell you *how* to specialize. But after you solve it (or fail), the tag helps you file the experience: next time you are stuck, you have one more memory of what that move looks like in action.
+Every problem below exercises at least one named heuristic move. The tag after each problem tells you which move is central. This is not a spoiler — knowing that a problem is about specialization does not tell you *how* to specialize. But after you solve it (or fail), the tag helps you file the experience: next time you are stuck, you have one more memory of what that move looks like in action.
 
 Work with pencil and paper first. Code is a verification tool, not a discovery tool. If you want to check a conjecture by brute force, do it after you have the conjecture, not before.
 
@@ -117,19 +117,19 @@ This may look long and boring: look for a short cut.
 
 ### The inventor's paradox and generalization
 
-**Problem 13.** In how many ways can you change one dollar? (A "way of changing" is determined by how many coins of each kind—cents, nickels, dimes, quarters, half dollars—are used.)
+**Problem 13.** In how many ways can you change one dollar? (A "way of changing" is determined by how many coins of each kind — cents, nickels, dimes, quarters, half dollars — are used.)
 
-*Move: the direct problem is isolated and hard. Generalize: define $E_n$ as the number of ways to pay $n$ cents. Build a family of simpler analogous problems ($A_n$ using only cents, $B_n$ using cents and nickels, ...). The general problem is easier than the special one—the inventor's paradox.*
+*Move: the direct problem is isolated and hard. Generalize: define $E_n$ as the number of ways to pay $n$ cents. Build a family of simpler analogous problems ($A_n$ using only cents, $B_n$ using cents and nickels, ...). The general problem is easier than the special one — the inventor's paradox.*
 
 **Problem 14.** A point and a convex polygon with a center of symmetry are given in the plane. Draw a straight line through the given point that divides the polygon into two parts of equal area.
 
-*Move: the specific shape distracts. Generalize: any figure with a center of symmetry is bisected by any line through that center. The general statement is obvious; the special case looked hard. This is the inventor's paradox again—"the more ambitious plan may have more chances of success."*
+*Move: the specific shape distracts. Generalize: any figure with a center of symmetry is bisected by any line through that center. The general statement is obvious; the special case looked hard. This is the inventor's paradox again — "the more ambitious plan may have more chances of success."*
 
 ### Separating the condition: algebraic decomposition
 
 **Problem 15.** The sides of a right triangle are positive integers that sum to 60, and the altitude to the hypotenuse is 12. Find the sides.
 
-*Move: separate the condition into parts. The perimeter gives $a + b + c = 60$. The right angle gives $a^2 + b^2 = c^2$. The altitude gives $ab = 12c$ (from the area). Use the identity $(a + b)^2 = a^2 + b^2 + 2ab$ to connect the parts—the algebraic identity trick collapses three equations into one.*
+*Move: separate the condition into parts. The perimeter gives $a + b + c = 60$. The right angle gives $a^2 + b^2 = c^2$. The altitude gives $ab = 12c$ (from the area). Use the identity $(a + b)^2 = a^2 + b^2 + 2ab$ to connect the parts — the algebraic identity trick collapses three equations into one.*
 
 ### Counting and combinatorial reasoning
 
@@ -147,9 +147,9 @@ This may look long and boring: look for a short cut.
 
 ## First hints
 
-**1.** *What is the unknown?* The color of a bear—but how could you find a bear's color from mathematical data? *What is given?* A geometric situation that seems self-contradictory: how could the bear return to $P$?
+**1.** *What is the unknown?* The color of a bear — but how could you find a bear's color from mathematical data? *What is given?* A geometric situation that seems self-contradictory: how could the bear return to $P$?
 
-**2.** *Do you know a related problem?* Think about Problem 1. On a sphere, parallel lines of latitude are not straight—the east-west boundary lines of Bob's land lie on circles whose radius shrinks away from the equator. Where must the center of such a plot lie for all four sides to be truly 100 feet?
+**2.** *Do you know a related problem?* Think about Problem 1. On a sphere, parallel lines of latitude are not straight — the east-west boundary lines of Bob's land lie on circles whose radius shrinks away from the equator. Where must the center of such a plot lie for all four sides to be truly 100 feet?
 
 **3.** If Bob had very many dollars, he would obviously have no difficulty. *Could you restate the problem?* What is the *minimum* number of dollars needed to fill $10$ pockets with distinct amounts?
 
@@ -179,7 +179,7 @@ This may look long and boring: look for a short cut.
 
 **16.** *Draw a figure.* Compute $T$, $V$, $L$ for $n = 1, 2, 3$. Look at how each quantity grows. The perimeter contributes $6n$ vertices and $6n$ edges at each step.
 
-**17.** Each person's acquaintance count is a number between $0$ and $n - 1$. That gives $n$ possible values for $n$ people—not enough for the pigeonhole principle *yet*. Look at $0$ and $n - 1$ together.
+**17.** Each person's acquaintance count is a number between $0$ and $n - 1$. That gives $n$ possible values for $n$ people — not enough for the pigeonhole principle *yet*. Look at $0$ and $n - 1$ together.
 
 **18.** Call $f(n)$ the number of tilings. A vertical domino at the right end leaves a $2 \times (n-1)$ grid. Two horizontal dominoes at the right end leave a $2 \times (n-2)$ grid. No other placement is possible.
 
@@ -187,7 +187,7 @@ This may look long and boring: look for a short cut.
 
 ### Solution 1
 
-The situation seems impossible on a flat plane. On a sphere it works: if $P$ is the North Pole, walking south, then east, then north returns you to $P$. The bear is white—a polar bear.
+The situation seems impossible on a flat plane. On a sphere it works: if $P$ is the North Pole, walking south, then east, then north returns you to $P$. The bear is white — a polar bear.
 
 There is a subtlety. The bear could also start near the South Pole, at a latitude where the parallel circle has circumference exactly $1/k$ miles for some positive integer $k$, so that walking one mile east traverses the circle exactly $k$ times. But bears do not live near the South Pole. The answer is white.
 
@@ -197,7 +197,7 @@ There is a subtlety. The bear could also start near the South Pole, at a latitud
 
 Represent the globe as in Solution 1. The land Bob wants is bounded by two meridians and two parallel circles. On a sphere, the arc of a parallel circle intercepted between two fixed meridians gets shorter as you move away from the equator. For all four sides to be 100 feet, the center of the plot must sit on the equator. Bob cannot get it in the U.S.
 
-*Looking back:* the key was connecting this problem to Problem 1's insight—reasoning about the sphere. Polya paired these problems deliberately: "Do you know a related problem?" pointed back to the bear.
+*Looking back:* the key was connecting this problem to Problem 1's insight — reasoning about the sphere. Polya paired these problems deliberately: "Do you know a related problem?" pointed back to the bear.
 
 ### Solution 3
 
@@ -211,7 +211,7 @@ Bob has only $44$ dollars. He cannot do it.
 
 Pages $1$–$9$ use $9$ digits. Pages $10$–$99$ use $2 \times 90 = 180$ digits. Pages $100$–$999$ use $3 \times 900 = 2700$ digits. Total through page $999$: $9 + 180 + 2700 = 2889$ digits. The remaining $2989 - 2889 = 100$ digits number $100/4 = 25$ four-digit pages. The volume has $999 + 25 = 1024$ pages.
 
-*Looking back:* the key move was solving related, simpler problems first (how many digits for $9$ pages? for $99$? for $999$?) to build up to the answer. This problem teaches that a preliminary estimate of the unknown may be useful—or even necessary, as in the present case. Without estimating that the volume has roughly 1000 pages, you would not know whether to count three-digit or four-digit page numbers.
+*Looking back:* the key move was solving related, simpler problems first (how many digits for $9$ pages? for $99$? for $999$?) to build up to the answer. This problem teaches that a preliminary estimate of the unknown may be useful — or even necessary, as in the present case. Without estimating that the volume has roughly 1000 pages, you would not know whether to count three-digit or four-digit page numbers.
 
 ### Solution 5
 
@@ -310,7 +310,7 @@ $$10a^2 = 3m + 2, \qquad 9a^4 = m^2.$$
 
 Eliminating $a$: $19m^2 - 108m - 36 = 0$. Hence $m = 6$ or $m = -6/19$.
 
-*Looking back:* the decisive step was working backwards—asking what form the roots must take before trying to solve the equation. The symmetry of even powers forced roots into opposite pairs, which determined the arithmetic progression up to a single parameter. Working backwards from the answer's structure often cuts through what looks like a wall of algebra.
+*Looking back:* the decisive step was working backwards — asking what form the roots must take before trying to solve the equation. The symmetry of even powers forced roots into opposite pairs, which determined the arithmetic progression up to a single parameter. Working backwards from the answer's structure often cuts through what looks like a wall of algebra.
 
 ### Solution 12
 
@@ -324,7 +324,7 @@ $$-4x + 4y = 16, \qquad 6x - 2y = -16.$$
 
 Solving: $x = -2, y = 2, u = 2, v = -2$.
 
-*Looking back:* brute-force elimination would have worked but taken much longer. The shortcut came from looking at the structure—the symmetry between equations—before computing. This is the difference between pedantry and mastery: the pedant reaches for Gaussian elimination; the solver looks first.
+*Looking back:* brute-force elimination would have worked but taken much longer. The shortcut came from looking at the structure — the symmetry between equations — before computing. This is the difference between pedantry and mastery: the pedant reaches for Gaussian elimination; the solver looks first.
 
 ### Solution 13
 
@@ -354,7 +354,7 @@ Since $A_n = 1$ for all $n \geq 0$, you can build up the table:
 
 Continuing to $n = 100$: $E_{100} = 292$. You can change a dollar in $292$ different ways.
 
-*Looking back:* the original question—"how many ways to change a dollar?"—was isolated and hard. The move was the inventor's paradox: solve the *more general* problem (arbitrary $n$, arbitrary coin sets) and it becomes easier, because you can build recursively from simpler cases. The general problem has structure that the special case hides.
+*Looking back:* the original question — "how many ways to change a dollar?" — was isolated and hard. The move was the inventor's paradox: solve the *more general* problem (arbitrary $n$, arbitrary coin sets) and it becomes easier, because you can build recursively from simpler cases. The general problem has structure that the special case hides.
 
 ### Solution 14
 
@@ -378,7 +378,7 @@ The third equation comes from the area: the area is $\frac{1}{2}ab$ (from the le
 
 Now observe that $(a + b)^2 = a^2 + b^2 + 2ab$. Substituting: $(60 - c)^2 = c^2 + 24c$. This simplifies to $3600 - 120c = 24c$, giving $c = 25$. Then $a + b = 35$ and $ab = 300$, so $a$ and $b$ are the roots of $t^2 - 35t + 300 = 0$: the sides are $15, 20, 25$.
 
-*Looking back:* three separate conditions became one equation in one unknown through the algebraic identity $(a+b)^2 = a^2 + b^2 + 2ab$. The identity connected all three parts. When you have several equations involving sums and products of the same variables, look for identities that link them—especially symmetric ones.
+*Looking back:* three separate conditions became one equation in one unknown through the algebraic identity $(a+b)^2 = a^2 + b^2 + 2ab$. The identity connected all three parts. When you have several equations involving sums and products of the same variables, look for identities that link them — especially symmetric ones.
 
 ### Solution 16
 
@@ -398,7 +398,7 @@ $$L = \frac{3T + 6n}{2} = 9n^2 + 3n.$$
 
 ### Solution 17
 
-Each person has between $0$ and $n - 1$ acquaintances. That is $n$ possible values for $n$ people—not enough for the pigeonhole principle *yet*. But notice: if someone knows everybody ($n - 1$ acquaintances), then nobody knows nobody (the value $0$ is impossible). If someone knows nobody, then the value $n - 1$ is impossible. Either way, only $n - 1$ distinct values are actually available for $n$ people. By the pigeonhole principle, two people share the same count. $\square$
+Each person has between $0$ and $n - 1$ acquaintances. That is $n$ possible values for $n$ people — not enough for the pigeonhole principle *yet*. But notice: if someone knows everybody ($n - 1$ acquaintances), then nobody knows nobody (the value $0$ is impossible). If someone knows nobody, then the value $n - 1$ is impossible. Either way, only $n - 1$ distinct values are actually available for $n$ people. By the pigeonhole principle, two people share the same count. $\square$
 
 *Looking back:* the key was not just counting slots and items (the mechanical pigeonhole step) but noticing that the extreme values $0$ and $n - 1$ cannot coexist. That observation reduced the number of slots by one. The pigeonhole principle rarely works on its first application; you almost always need a preliminary insight to shrink the number of slots.
 
@@ -410,32 +410,32 @@ $$f(n) = f(n-1) + f(n-2).$$
 
 This is the Fibonacci recurrence. With $f(1) = 1, f(2) = 2$: $f(3) = 3, f(4) = 5, f(5) = 8$. The number of tilings of a $2 \times n$ grid is $F_{n+1}$, the $(n+1)$st Fibonacci number.
 
-*Looking back:* the recurrence appeared because we asked "what happens at the boundary?"—a form of working backwards from the last piece placed. Recognizing the Fibonacci sequence was a bonus; the real work was seeing that only two cases arise at the right edge.
+*Looking back:* the recurrence appeared because we asked "what happens at the boundary?" — a form of working backwards from the last piece placed. Recognizing the Fibonacci sequence was a bonus; the real work was seeing that only two cases arise at the right edge.
 
 ## Where each problem points back
 
-If you failed a problem, revisit its chapter. If you solved it but your method differs from the one here, the difference itself is worth studying—it may reveal a move you used unconsciously, or one you missed.
+If you failed a problem, revisit its chapter. If you solved it but your method differs from the one here, the difference itself is worth studying — it may reveal a move you used unconsciously, or one you missed.
 
 | Problem | Primary move | Chapter |
 |---|---|---|
-| 1 | Examine the condition; question hidden assumptions | 1—Make the Problem Yours |
-| 2 | Do you know a related problem? Reasoning about the sphere | 1, 4—Make the Problem Yours, Look for a Related Problem |
-| 3 | Restate the problem; find the extremal constraint | 2—Restate and Represent |
-| 4 | Solve related simpler problems; preliminary estimate | 4—Look for a Related Problem |
-| 5 | Specialize; guess from small cases; induction | 5—Try Small Cases, 13—Proof and Review |
-| 6 | Observe; name the pattern; prove directly | 5—Try Small Cases, 13—Proof and Review |
-| 7 | Auxiliary representation (bijection); two proof methods | 8—Auxiliary Problems, 13—Proof and Review |
-| 8 | Separate the condition; divisibility decomposition | 3—Is the Condition Possible?, 7—Vary the Problem |
-| 9 | Introduce notation; decompose conditions into equations | 2—Restate and Represent |
-| 10 | Decompose into phases; check extreme cases | 7—Vary the Problem, 11—Signs of Progress |
-| 11 | Exploit symmetry; work backwards from the answer's form | 8—Auxiliary Problems |
-| 12 | Look for structure before computing; combine equations | 4—Look for a Related Problem, 16—Style, Judgment, and Practice |
-| 13 | The inventor's paradox; generalize to make it easier | 6—Generalize |
-| 14 | The inventor's paradox; generalize the figure | 6—Generalize |
-| 15 | Separate the condition; algebraic identity trick | 7—Vary the Problem, 4—Look for a Related Problem |
-| 16 | Draw a figure; compute cases; verify with Euler's formula | 5—Try Small Cases, 13—Proof and Review |
-| 17 | Pigeonhole; notice which extremes coexist | 12—Plausible Reasoning, 13—Proof and Review |
-| 18 | Recurrence from boundary analysis; recognize a known sequence | 5—Try Small Cases, 8—Auxiliary Problems |
+| 1 | Examine the condition; question hidden assumptions | 1 — Make the Problem Yours |
+| 2 | Do you know a related problem? Reasoning about the sphere | 1, 4 — Make the Problem Yours, Look for a Related Problem |
+| 3 | Restate the problem; find the extremal constraint | 2 — Restate and Represent |
+| 4 | Solve related simpler problems; preliminary estimate | 4 — Look for a Related Problem |
+| 5 | Specialize; guess from small cases; induction | 5 — Try Small Cases, 13 — Proof and Review |
+| 6 | Observe; name the pattern; prove directly | 5 — Try Small Cases, 13 — Proof and Review |
+| 7 | Auxiliary representation (bijection); two proof methods | 8 — Auxiliary Problems, 13 — Proof and Review |
+| 8 | Separate the condition; divisibility decomposition | 3 — Is the Condition Possible?, 7 — Vary the Problem |
+| 9 | Introduce notation; decompose conditions into equations | 2 — Restate and Represent |
+| 10 | Decompose into phases; check extreme cases | 7 — Vary the Problem, 11 — Signs of Progress |
+| 11 | Exploit symmetry; work backwards from the answer's form | 8 — Auxiliary Problems |
+| 12 | Look for structure before computing; combine equations | 4 — Look for a Related Problem, 16 — Style, Judgment, and Practice |
+| 13 | The inventor's paradox; generalize to make it easier | 6 — Generalize |
+| 14 | The inventor's paradox; generalize the figure | 6 — Generalize |
+| 15 | Separate the condition; algebraic identity trick | 7 — Vary the Problem, 4 — Look for a Related Problem |
+| 16 | Draw a figure; compute cases; verify with Euler's formula | 5 — Try Small Cases, 13 — Proof and Review |
+| 17 | Pigeonhole; notice which extremes coexist | 12 — Plausible Reasoning, 13 — Proof and Review |
+| 18 | Recurrence from boundary analysis; recognize a known sequence | 5 — Try Small Cases, 8 — Auxiliary Problems |
 
 ## Questions to keep
 

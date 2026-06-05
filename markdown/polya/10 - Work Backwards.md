@@ -22,9 +22,9 @@ The restriction of this method to geometry textbooks alone shows a persistent la
 
 Pappus's instruction sounds like self-deception. It is not. You are not claiming the problem is solved. You are examining the *hypothetical situation* in which the condition is fully satisfied, to discover what must be true in that situation.
 
-Is this legitimate? A judge does not act incorrectly when, questioning a defendant, he considers the hypothesis that the defendant committed the crime—provided he does not commit himself to this hypothesis before the evidence is in. Both the mathematician and the judge may examine a possibility without prejudice, postponing judgment until the examination yields a definite result.
+Is this legitimate? A judge does not act incorrectly when, questioning a defendant, he considers the hypothesis that the defendant committed the crime — provided he does not commit himself to this hypothesis before the evidence is in. Both the mathematician and the judge may examine a possibility without prejudice, postponing judgment until the examination yields a definite result.
 
-In a "problem to find," to "assume the problem as solved" means to assume there exists an object $x$ satisfying the condition—having the relations to the data which the condition prescribes. This assumption is provisional and harmless. If no such object exists and the analysis leads anywhere, it will lead to a final problem with no solution, making it clear that the original problem has no solution either.
+In a "problem to find," to "assume the problem as solved" means to assume there exists an object $x$ satisfying the condition — having the relations to the data which the condition prescribes. This assumption is provisional and harmless. If no such object exists and the analysis leads anywhere, it will lead to a final problem with no solution, making it clear that the original problem has no solution either.
 
 The provisional assumption is what gives you a foothold. Without it, you cannot start the backward chain. The general recommendation: *examine the hypothetical situation in which the condition of the problem is supposed to be fully satisfied.*
 
@@ -35,7 +35,7 @@ There is a psychological difficulty in going *away* from the goal, in proceeding
 
 A fence forms three sides of a rectangle, the fourth side open. A dog is placed at point $D$ on one side, food at point $F$ on the other, close to the fence. To reach the food, the dog must first move *away* from it, go around the end, and approach from the open side.
 
-A chimpanzee or a four-year-old child solves this almost instantly. The dog may lose time barking and scratching before conceiving the bright idea of going around. A hen, placed in the same situation, runs back and forth excitedly on her side and may spend considerable time before reaching the food—if she gets there at all.
+A chimpanzee or a four-year-old child solves this almost instantly. The dog may lose time barking and scratching before conceiving the bright idea of going around. A hen, placed in the same situation, runs back and forth excitedly on her side and may spend considerable time before reaching the food — if she gets there at all.
 
 The hen's difficulty is the difficulty of turning around. It is the same difficulty you face when working backwards. You must accept that the first steps take you *away* from the answer, toward antecedents and preconditions. The dog who scratched and jumped before turning around solved his problem about as well as most of us solve ours.
 
@@ -46,7 +46,7 @@ You should not blame the hen. But recognizing the repugnance to the reverse orde
 
 You have two containers: one holds $9$ quarts, the other $4$ quarts. You need exactly $6$ quarts. No markings on the containers.
 
-Working forwards—filling, pouring, guessing—you may stumble on the answer eventually, like the hen running back and forth. But turn around. "Assume what is required as already done." Visualize the desired final situation: the large container holding exactly $6$ quarts, the small container empty.
+Working forwards — filling, pouring, guessing — you may stumble on the answer eventually, like the hen running back and forth. But turn around. "Assume what is required as already done." Visualize the desired final situation: the large container holding exactly $6$ quarts, the small container empty.
 
 *From what antecedent could this result be derived?* Fill the large container to $9$ and pour off exactly $3$. To pour off exactly $3$, the small container must already hold exactly $1$ quart (since $4 - 1 = 3$ leaves room for exactly $3$). That is the key idea.
 
@@ -68,7 +68,7 @@ The analysis consisted in thoughts; the synthesis in acts. The finishing act of 
 
 You want to prove that the number of subsets of an $n$-element set is $2^n$. You know the answer you want. Work backwards: what would establish it?
 
-If you could show a bijection between subsets and binary strings of length $n$, you would be done, because there are $2^n$ such strings. So the problem reduces to: construct a bijection between subsets of $\{1, 2, \ldots, n\}$ and elements of $\{0,1\}^n$. That bijection is immediate—a subset corresponds to its characteristic function. Done.
+If you could show a bijection between subsets and binary strings of length $n$, you would be done, because there are $2^n$ such strings. So the problem reduces to: construct a bijection between subsets of $\{1, 2, \ldots, n\}$ and elements of $\{0,1\}^n$. That bijection is immediate — a subset corresponds to its characteristic function. Done.
 
 The plan was found by working backwards from the desired conclusion to a sufficient condition, then verifying that condition directly. This is a short chain: goal $\to$ bijection $\to$ characteristic function. In harder counting problems, you might work backwards through several intermediate representations before reaching one you know how to handle.
 
@@ -81,9 +81,9 @@ Convertible reductions are especially clean. You lose nothing by switching from 
 
 ### Chains of equivalent problems
 
-You need to solve problem $A$ but cannot see the solution. You find that $A$ is equivalent to $B$. Considering $B$, you find it equivalent to $C$. You continue—$C$ to $D$, and so on—until you reach a problem $L$ whose solution is known or immediate. Each problem being equivalent to the preceding, $L$ is equivalent to $A$. You infer the solution of $A$ from $L$.
+You need to solve problem $A$ but cannot see the solution. You find that $A$ is equivalent to $B$. Considering $B$, you find it equivalent to $C$. You continue — $C$ to $D$, and so on — until you reach a problem $L$ whose solution is known or immediate. Each problem being equivalent to the preceding, $L$ is equivalent to $A$. You infer the solution of $A$ from $L$.
 
-This pattern was noticed by the Greek mathematicians, as we see from Pappus. The key property: *every link is convertible*. If even one step is not an equivalent reduction—if you pass from a condition to a narrower or wider one—the chain breaks. You may lose solutions, admit spurious ones, or lose track of the original problem entirely.
+This pattern was noticed by the Greek mathematicians, as we see from Pappus. The key property: *every link is convertible*. If even one step is not an equivalent reduction — if you pass from a condition to a narrower or wider one — the chain breaks. You may lose solutions, admit spurious ones, or lose track of the original problem entirely.
 
 ### The quartic chain
 
@@ -111,7 +111,7 @@ The discipline of checking convertibility at each step is the discipline of keep
 
 ### Pappus's proviso
 
-Pappus's method works cleanly only when each step is reversible. Modern paraphrases include the phrase "provided that all our derivations are convertible." But this phrase is an interpolation—Pappus's *original text* contains nothing of the sort.
+Pappus's method works cleanly only when each step is reversible. Modern paraphrases include the phrase "provided that all our derivations are convertible." But this phrase is an interpolation — Pappus's *original text* contains nothing of the sort.
 
 The absence is significant. Without the convertibility proviso, the method can appear to prove things that are not true. You derive $B$ from $A$, then $C$ from $B$, until you reach $L$, which you find to be true. You claim $A$ is true. But if any step was a one-way implication, the truth of $L$ says nothing about $A$. You have shown that $A$ implies $L$, not that $L$ implies $A$.
 
@@ -122,5 +122,5 @@ Check the direction of each implication. Every step backwards must be a step you
 
 - *From what antecedent could this result be derived?* Can I work backwards from the goal to known ground?
 - *Is each step in my chain convertible?* If I reverse the analysis into a synthesis, does every link hold in both directions?
-- *Am I running back and forth on one side of the fence?* Would turning around—moving temporarily away from the goal—open a path?
+- *Am I running back and forth on one side of the fence?* Would turning around — moving temporarily away from the goal — open a path?
 - *Have I assumed the problem as solved?* What does the hypothetical solution look like, and what must be true just before it?

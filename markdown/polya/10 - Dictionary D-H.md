@@ -104,7 +104,7 @@ But a certain step of this procedure has a still more general interest; solving 
 
 *Is the condition sufficient to determine the unknown?* No. Or, rather, the condition may be sufficient but that part of the condition which is clear by now is certainly insufficient. There are too many words satisfying it, as "lever," or "screw," or what not.
 
-The condition is ambiguously expressed—on purpose, of course. If nothing can be found that could be plausibly described as a "forward part" of a machine and would be a "backward part" too, we may suspect that forward and backward *reading* might be meant. It may be a good idea to examine this interpretation of the clue.
+The condition is ambiguously expressed — on purpose, of course. If nothing can be found that could be plausibly described as a "forward part" of a machine and would be a "backward part" too, we may suspect that forward and backward *reading* might be meant. It may be a good idea to examine this interpretation of the clue.
 
 *Separate the various parts of the condition*. The condition has two parts, one concerned with the meaning of the word, the other with its spelling. The unknown word is required to be
 
@@ -234,7 +234,7 @@ Therefore, it is a sound tendency to seek meaning and facts behind the words. Go
 
 ## Descartes, René
 
-**Descartes, René** (1596–1650), great mathematician and philosopher, planned to give a universal method to solve problems but he left unfinished his *Rules for the Direction of the Mind*. The fragments of this treatise, found in his manuscripts and printed after his death, contain more—and more interesting—materials concerning the solution of problems than his better known work *Discours de la Méthode* although the "Discours" was very likely written after the "Rules." The following lines of Descartes seem to describe the origin of the "Rules": "As a young man, when I heard about ingenious inventions, I tried to invent them by myself, even without reading the author. In doing so, I perceived, by degrees, that I was making use of certain rules."
+**Descartes, René** (1596–1650), great mathematician and philosopher, planned to give a universal method to solve problems but he left unfinished his *Rules for the Direction of the Mind*. The fragments of this treatise, found in his manuscripts and printed after his death, contain more — and more interesting — materials concerning the solution of problems than his better known work *Discours de la Méthode* although the "Discours" was very likely written after the "Rules." The following lines of Descartes seem to describe the origin of the "Rules": "As a young man, when I heard about ingenious inventions, I tried to invent them by myself, even without reading the author. In doing so, I perceived, by degrees, that I was making use of certain rules."
 
 ## Determination, hope, success
 
@@ -268,7 +268,7 @@ The questions we discuss here are very important. Their use in constructing the 
 
 2. The questions we discussed are helpful not only in constructing an argument but also in checking it. In order to be more concrete, let us assume that we have to check the proof of a theorem whose hypothesis consists of three parts, all three essential to the truth of the theorem. That is, if we discard any part of the hypothesis, the theorem ceases to be true. Therefore, if the proof neglects to use any part of the hypothesis, the proof must be wrong. Does the proof *use the whole hypothesis?* Does it use the first part of the hypothesis? Where does it use the first part of the hypothesis? Where does it use the second part? Where the third? Answering to all these questions we check the proof.
 
-This sort of checking is effective, instructive, and almost necessary for thorough understanding if the argument is long and heavy—as *The intelligent reader* should know.
+This sort of checking is effective, instructive, and almost necessary for thorough understanding if the argument is long and heavy — as *The intelligent reader* should know.
 
 3. The questions we discussed aim at examining the completeness of our conception of the problem. Our conception is certainly incomplete if we fail to take into account any essential datum or condition or hypothesis. But it is also incomplete if we fail to realize the meaning of some essential term. Therefore, in order to examine our conception, we should also ask: *Have you taken into account all essential notions involved in the problem?* See *Definition*, 7.
 
@@ -300,7 +300,7 @@ The question we discuss here aims at the mobilization of our formerly acquired k
 
 ## Examine your guess
 
-**Examine your guess.** Your guess may be right, but it is foolish to accept a vivid guess as a proven truth—as primitive people often do. Your guess may be wrong. But it is also foolish to disregard a vivid guess altogether—as pedantic people sometimes do. Guesses of a certain kind deserve to be examined and taken seriously: those which occur to us after we have attentively considered and really understood a problem in which we are genuinely interested. Such guesses usually contain at least a fragment of the truth although, of course, they very seldom show the whole truth. Yet there is a chance to extract the whole truth if we examine such a guess appropriately.
+**Examine your guess.** Your guess may be right, but it is foolish to accept a vivid guess as a proven truth — as primitive people often do. Your guess may be wrong. But it is also foolish to disregard a vivid guess altogether — as pedantic people sometimes do. Guesses of a certain kind deserve to be examined and taken seriously: those which occur to us after we have attentively considered and really understood a problem in which we are genuinely interested. Such guesses usually contain at least a fragment of the truth although, of course, they very seldom show the whole truth. Yet there is a chance to extract the whole truth if we examine such a guess appropriately.
 
 Many a guess has turned out to be wrong but nevertheless useful in leading to a better one.
 
@@ -310,7 +310,7 @@ No idea is really bad, unless we are uncritical. What is really bad is to have n
 
 We cannot blame Mr. Jones for having conceived such a suspicion. There were indeed some signs pointing to Director Brown. The real mistake was that, after having conceived that suspicion, Mr. Jones became blind to all signs pointing in the opposite direction. He worried himself into firmly believing that Director Brown was his personal enemy and behaved so stupidly that he almost succeeded in making a real enemy of the director.
 
-The trouble with Mr. John Jones is that he behaves like most of us. He never changes his major opinions. He changes his minor opinions not infrequently and quite suddenly; but he never doubts any of his opinions, major or minor, as long as he has them. He never doubts them, or questions them, or examines them critically—he would especially hate critical examination, if he understood what that meant.
+The trouble with Mr. John Jones is that he behaves like most of us. He never changes his major opinions. He changes his minor opinions not infrequently and quite suddenly; but he never doubts any of his opinions, major or minor, as long as he has them. He never doubts them, or questions them, or examines them critically — he would especially hate critical examination, if he understood what that meant.
 
 Let us concede that Mr. John Jones is right to a certain extent. He is a busy man; he has his duties at the office and at home. He has little time for doubt or examination. At best, he could examine only a few of his convictions and why should he doubt one if he has no time to examine that doubt?
 

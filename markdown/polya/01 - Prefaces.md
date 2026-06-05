@@ -32,7 +32,7 @@ I am glad to say that I have now succeeded in fulfilling, at least in part, a pr
 
 The present second edition adds, besides a few minor improvements, a new fourth part, “Problems, Hints, Solutions.”
 
-As this edition was being prepared for print, a study appeared (Educational Testing Service, Princeton, N.J.; *cf. Time*, June 18, 1956) which seems to have formulated a few pertinent observations—they are not new to the people in the know, but it was high time to formulate them for the general public—: “. . . mathematics has the dubious honor of being the least popular subject in the curriculum . . . Future teachers pass through the elementary schools learning to detest mathematics . . . They return to the elementary school to teach a new generation to detest it.”
+As this edition was being prepared for print, a study appeared (Educational Testing Service, Princeton, N.J.; *cf. Time*, June 18, 1956) which seems to have formulated a few pertinent observations — they are not new to the people in the know, but it was high time to formulate them for the general public — : “. . . mathematics has the dubious honor of being the least popular subject in the curriculum . . . Future teachers pass through the elementary schools learning to detest mathematics . . . They return to the elementary school to teach a new generation to detest it.”
 
 I hope that the present edition, designed for wider diffusion, will convince some of its readers that mathematics, besides being a necessary avenue to engineering jobs and scientific knowledge, may be fun and may also open up a vista of mental activity on the highest level.
 

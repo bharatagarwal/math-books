@@ -10,7 +10,7 @@ Let us still retain, for a while, the problem we considered in the foregoing sec
 
 "You see, the proposed problem is a problem of solid geometry. Could you think of a simpler analogous problem of plane geometry?"
 
-"You see, the proposed problem is about a figure in space, it is concerned with the diagonal of a rectangular parallelepiped. What might be an analogous problem about a figure in the plane? It should be concerned with—the diagonal—of—a rectangular—"
+"You see, the proposed problem is about a figure in space, it is concerned with the diagonal of a rectangular parallelepiped. What might be an analogous problem about a figure in the plane? It should be concerned with — the diagonal — of — a rectangular — "
 
 "Parallelogram."
 
@@ -88,7 +88,7 @@ None of these objections can be raised against the procedure described in sectio
 
 "A part of the condition would be concerned with less than four vertices. **Keep only a part of the condition, drop the other part**. What part of the condition is easy to satisfy?"
 
-"It is easy to draw a square with two vertices on the perimeter of the triangle—or even one with three vertices on the perimeter!"
+"It is easy to draw a square with two vertices on the perimeter of the triangle — or even one with three vertices on the perimeter!"
 
 **"Draw a figure!"**
 
@@ -178,7 +178,7 @@ The student draws the lines of Fig. 4 and chooses, helped more or less by the te
 
 "Fine! You have a new aim, you aim at a new conclusion. *Look at the conclusion! And try to think of a familiar theorem having the same or a similar conclusion."*
 
-"Two triangles are congruent if—if the three sides of the one are equal respectively to the three sides of the other."
+"Two triangles are congruent if — if the three sides of the one are equal respectively to the three sides of the other."
 
 "Well done. You could have chosen a worse one. Now *here is a theorem related to yours and proved before. Could you use it?"*
 
@@ -206,7 +206,7 @@ The student draws the lines of Fig. 4 and chooses, helped more or less by the te
 
 "No; $AB$ is also equal to $A'B'$, by construction. They are parallel and equal to each other. And so are $AC$ and $A'C'$."
 
-"Two parallel lines of equal length—it is an interesting configuration. *Have you seen it before?"*
+"Two parallel lines of equal length — it is an interesting configuration. *Have you seen it before?"*
 
 "Of course! Yes! Parallelogram! Let me join $A$ to $A'$, $B$ to $B'$, and $C$ to $C'$."
 
