@@ -157,7 +157,29 @@ const BOOKS = [
   }
 ];
 
-let currentBook = Math.floor(Math.random() * BOOKS.length);
+function bookIndexFromHash() {
+  const h = location.hash.replace(/^#/, '');
+  if (!h) return -1;
+  const parts = h.split('/');
+  const bookId = parts[0];
+  return BOOKS.findIndex(b => b.id === bookId);
+}
+function chapterIndexFromHash() {
+  const h = location.hash.replace(/^#/, '');
+  const parts = h.split('/');
+  return parts.length > 1 ? parseInt(parts[1], 10) || 0 : 0;
+}
+function updateHash() {
+  const book = BOOKS[currentBook];
+  const newHash = '#' + book.id + '/' + currentChapter;
+  if (location.hash !== newHash) {
+    history.replaceState(null, '', newHash);
+  }
+}
+
+let currentBook = bookIndexFromHash() >= 0
+  ? bookIndexFromHash()
+  : Math.floor(Math.random() * BOOKS.length);
 let currentChapter = -1;
 
 // Custom renderer for figures with captions
@@ -419,6 +441,7 @@ function buildChapterNav(pane, idx) {
 
 async function loadChapter(idx) {
   currentChapter = idx;
+  updateHash();
   const book = BOOKS[currentBook];
   const ch = book.chapters[idx];
   const fullPath = getFullPath(book, ch.file);
@@ -509,7 +532,9 @@ function renderBook() {
     el.onclick = () => loadChapter(+el.dataset.idx);
   });
 
-  loadChapter(0);
+  const hashCh = chapterIndexFromHash();
+  const startCh = (hashCh >= 0 && hashCh < book.chapters.length) ? hashCh : 0;
+  loadChapter(startCh);
 }
 
 // Zen mode + mobile chrome (auto-hiding top bar, floating toggle)
@@ -650,6 +675,6 @@ window.addEventListener('resize', () => {
 const sel = document.getElementById('bookSelect');
 sel.innerHTML = BOOKS.map((b, i) => '<option value="' + i + '">' + b.title + '</option>').join('');
 sel.value = currentBook;
-sel.onchange = () => { currentBook = +sel.value; renderBook(); };
+sel.onchange = () => { currentBook = +sel.value; currentChapter = 0; updateHash(); renderBook(); };
 renderBook();
 updateMobileZenToggle();
