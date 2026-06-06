@@ -36,8 +36,6 @@ Mathematics** book in this reader.
 > 1999 Knuth Prize for his contributions to computer science, and the 2021 Abel
 > Prize.
 
-![Figure: Portrait of László Lovász, the author of the course's main text (LL).](math-2020-06-outline_images/img-0.jpeg)
-
 The course also makes use of **Mathematics for Computer Science** (**MCS**), the
 book-length lecture notes for a course of the same name at MIT (also the
 **Mathematics for Computer Science** book in this reader). It is somewhat more
@@ -47,12 +45,6 @@ that course (MIT 6.042J) are freely available and referenced below.
 For those who would prefer a traditional discrete-mathematics textbook, the
 course suggests Rosen's *Discrete Mathematics and its Applications* (7th
 edition), referenced below as **Rosen**.
-
-<!-- carousel -->
-![Figure: *Discrete Mathematics and its Applications* (Rosen) — the traditional-textbook reference.](math-2020-06-outline_images/img-1.jpeg)
-![Figure: *Naïve Set Theory* (Paul R. Halmos) — a very short companion for the set-theory underpinnings of counting.](math-2020-06-outline_images/img-2.jpeg)
-![Figure: *Introduction to Probability* (Bertsekas & Tsitsiklis) — the recommended deeper text for probability and Bayes' rule.](math-2020-06-outline_images/img-3.jpeg)
-<!-- endcarousel -->
 
 ## 1. Counting — Mon 15 June
 
@@ -105,14 +97,10 @@ mathematical formalisms of logic.
 > most consequential master's thesis of all time; he went on to invent
 > Information Theory.
 
-![Figure: Claude Shannon with Theseus, his maze-solving electromechanical mouse — one of the first experiments in machine learning.](math-2020-06-outline_images/img-4.jpeg)
-
 - **Pre-class:** MCS chapter 3 (not covered in LL).
 - **Post-class:** MCS problems 3.1, 3.2, 3.5 (p. 68).
 - **Further:** Rosen ch. 1; for a theoretical but approachable treatment,
   *Introduction to Logic* by Patrick Suppes.
-
-![Figure: *Introduction to Logic* (Patrick Suppes).](math-2020-06-outline_images/img-5.jpeg)
 
 ## 5. Proofs — Mon 29 June
 
@@ -132,8 +120,6 @@ habit imparts rigor to how we reason about software.
 > format that is excellent for self-teaching. In *The Reasoned Schemer* you
 > implement the embedded logic-programming language miniKanren — a kind of
 > simplified modern Prolog — by answering its questions.
-
-![Figure: *The Reasoned Schemer* — logic programming from a functional-programming perspective.](math-2020-06-outline_images/img-6.jpeg)
 
 ## 6. Induction and Recursive Data Types — Thu 2 July
 
@@ -163,8 +149,6 @@ the basis of computer graphics and machine learning, among other applications.
 > The *Essence of Linear Algebra* series is by Grant Sanderson, whose channel
 > 3Blue1Brown builds strong geometric intuition for ideas usually presented
 > symbolically. The *Essence of Calculus* series is similarly excellent.
-
-![Figure: *Introduction to Linear Algebra* (Gilbert Strang) — the classic, traditional reference.](math-2020-06-outline_images/img-7.jpeg)
 
 ## 8. Linear Algebra 2 — Thu 9 July
 
