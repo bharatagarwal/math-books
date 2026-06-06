@@ -250,6 +250,17 @@ You have:
 - TLA+ - Distributed systems specification
 - Practical TLA+ (Hillel Wayne) - Applied TLA+
 
+### Stage-gated book candidates (do not acquire/OCR early — Goldratt)
+From the Bradfield outline's bibliography; each waits for its gate to open
+rather than building reading inventory ahead of the pace:
+- **Coding the Matrix** (Klein) - Linear algebra through programming. Gate:
+  when the LA work actually starts (wsjf Tier 1 linear-algebra item / the
+  deferred LA stage) - candidate for OCR into the reader at that point.
+- **The Reasoned Schemer** - miniKanren/logic programming via the Little
+  Schemer Q&A format. Gate: if the logic-programming itch arrives (Stage 1
+  adjacency). Note: a typing-along REPL book - likely better experienced
+  live than flattened into reader pages.
+
 ---
 
 ## Interview Prep Sprint (When Needed)
