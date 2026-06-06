@@ -25,3 +25,4 @@ lecture-videos/*.webm
 
 # ── Tool caches ────────────────────────────────────────────────────
 .wrangler/
+.playwright-mcp/

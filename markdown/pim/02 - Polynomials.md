@@ -14,18 +14,20 @@ We start with the definition of a polynomial. The problem, if you're the sort of
 
 The reason I'm so confident is that I'm certain you've overcome the same obstacle in the context of programming. For example, my first programming language was Java. And my first program, which I didn't write but rather copied verbatim, was likely similar to this monstrosity.
 
-/***
-* Compilation: javac HelloWorld.java
-* Execution: java HelloWorld
-*
-* Prints "Hello, World".
-***/
+```java
+/******************************************
+ * Compilation: javac HelloWorld.java
+ * Execution: java HelloWorld
+ *
+ * Prints "Hello, World".
+ ******************************************/
 public class HelloWorld {
-public static void main(String[] args) {
-// Prints "Hello, World" to stdout on the terminal.
-System.out.println("Hello, World");
+    public static void main(String[] args) {
+        // Prints "Hello, World" to stdout on the terminal.
+        System.out.println("Hello, World");
+    }
 }
-}
+```
 
 It was roughly six months before I understood what all the different pieces of this program did, despite the fact that I had written 'public static void main' so many times I had committed it to memory. Computers don't generally require you to understand a code snippet to run.
 
@@ -162,12 +164,13 @@ In any case, examples are the primary method to clarify the features of a defini
 
 It is a bit strange that mathematicians choose to write definitions with variable names by example, rather than using the sort of notation one might use to define a programming language syntax. Using a loose version of Backus-Naur form (BNF), which is used in parsers to define syntax, I might define a polynomial as:
 
-⬇
+```text
 coefficient = number
 variable = 'x'
-term = coefficient * variable ~ int
+term = coefficient * variable ^ int
 polynomial = term
-| term + polynomial
+           | term + polynomial
+```
 
 The problem is that this definition doesn't tell you what polynomials are all about. While Definition 2.1 isn't perfect, it signals that a polynomial is a function of a single input. BNF only provides a sequence of named tokens.
 
@@ -201,10 +204,11 @@ In any case, the point is that we will fluidly convert between the many ways of 
 
 When defining a function, one often uses the compact arrow notation $f:A\to B$ to describe the allowed inputs and outputs. All possible inputs are collectively called the *domain*, and all possible outputs are called the *range*. There is one caveat I'll explain via programming. Say you have a function that doubles the input, such as
 
-⬇
+```c
 int f(int x) {
-return 2*x;
+    return 2*x;
 }
+```
 
 The inputs are integers, and the *type* of the output is also integer, but 3 is not a possible output of this particular function.
 
@@ -338,15 +342,16 @@ $$f(x)=\sum_{i=1}^{n}y_{i}\cdot\left(\prod_{j\neq i}\frac{x-x_{j}}{x_{i}-x_{j}}\
 
 What a mouthful! I'll assume the $\sum$, $\prod$ symbols are new to you. They are read semantically as "sum" and "product," or typographically as "sigma" and "pi". They essentially represent loops of arithmetic. That is, the statement $\sum_{i=1}^{n}(\text{expr})$ is equivalent to the following code snippet.
 
-⬇
+```c
 int i;
 sometype theSum = defaultValue;
 
 for (i = 1; i <= n; i++) {
-theSum += expr(i);
+    theSum += expr(i);
 }
 
 return theSum;
+```
 
 Note by indexing from 1 and including the upper limit of the for loop condition, we are deviating from the standard programming style. Indexing from zero, like $\sum_{i=0}^{n}$, produces $n+1$ terms in the resulting sum.
 
@@ -368,25 +373,26 @@ The best default assumption is that the author is far smarter than we are, and i
 
 Finally, the $j\neq i$ part is an implied filter on the range of $j$. Inside the for loop you add an extra if statement to skip that iteration if $j=i$. Read out loud, $\prod_{j\neq i}$ would be "the product over $j$ not equal to $i$." If we wanted to write out the product-nested-in-a-sum as a nested loop, it would look like this:
 
-⬇
+```c
 int i, j;
 sometype theSum = defaultSumValue;
 
 for (i = 1; i <= n; i++) {
-othertype product = defaultProductValue;
+    othertype product = defaultProductValue;
 
-for (j = 1; j <= n; j++) {
-if (j != i) {
-product *= foo(i, j);
-}
-}
+    for (j = 1; j <= n; j++) {
+        if (j != i) {
+            product *= foo(i, j);
+        }
+    }
 
-theSum += bar(i) * product;
+    theSum += bar(i) * product;
 }
 
 return theSum;
+```
 
-$f(x)=\sum_{i=1}^{n}\text{bar}(i)\left(\prod_{j\neq i}\text{foo}(i,j)\right)$
+$$f(x)=\sum_{i=1}^{n}\text{bar}(i)\left(\prod_{j\neq i}\text{foo}(i,j)\right)$$
 
 Compare the math and code, and make sure you can connect the structural pieces. Often the inner parentheses are omitted, with the default assumption that everything to the right of a $\sum$ or $\prod$ is in the body of that loop.
 
@@ -497,48 +503,49 @@ output_list
 
 Now the interpolate function:
 
-⬇
-
+```python
 def interpolate(points):
-""" Return the unique polynomial of degree at most n passing
-through the given n+1 points.
-"""
-if len(points) == 0:
-raise ValueError('Must provide at least one point.')
+    """ Return the unique polynomial of degree at most n passing
+        through the given n+1 points.
+    """
+    if len(points) == 0:
+        raise ValueError('Must provide at least one point.')
 
-x_values = [p[0] for p in points]
-if len(set(x_values)) < len(x_values):
-raise ValueError('Not all x values are distinct.')
+    x_values = [p[0] for p in points]
+    if len(set(x_values)) < len(x_values):
+        raise ValueError('Not all x values are distinct.')
 
-terms = [single_term(points, i) for i in range(0, len(points))]
-return sum(terms, ZERO)
+    terms = [single_term(points, i) for i in range(0, len(points))]
+    return sum(terms, ZERO)
+```
 
 The first two blocks check for the edge cases: an empty input or repeating $x$-values. The last block creates a list of terms of the sum from the proof of Theorem 2.2. The return statement sums all the terms, using the zero polynomial as the starting value. Now for the single_term function.
 
-⬇
+```python
 def single_term(points, i):
-""" Return one term of an interpolated polynomial.
+    """ Return one term of an interpolated polynomial.
 
-Arguments:
-- points: a list of (float, float)
-- i: an integer indexing a specific point
-"""
-the_term = Polynomial([1.])
-xi, yi = points[i]
+    Arguments:
+      - points: a list of (float, float)
+      - i: an integer indexing a specific point
+    """
+    the_term = Polynomial([1.])
+    xi, yi = points[i]
 
-for j, p in enumerate(points):
-if j == i:
-continue
-xj = p[0]
-the_term = the_term * Polynomial(
-[-xj / (xi - xj), 1.0 / (xi - xj)]
-)
+    for j, p in enumerate(points):
+        if j == i:
+            continue
+        xj = p[0]
+        the_term = the_term * Polynomial(
+            [-xj / (xi - xj), 1.0 / (xi - xj)]
+        )
 
-return the_term * Polynomial([yi])
+    return the_term * Polynomial([yi])
+```
 
 We had to break up the degree-1 polynomial $(x-x_{j})/(x_{i}-x_{j})$ into its coefficients, which are $a_{0}=-x_{j}/(x_{i}-x_{j})$ and $a_{1}=1/(x_{i}-x_{j})$. The rest computes the product over the relevant terms. Some examples:
 
-⬇
+```python
 >>> points1 = [(1, 1)]
 >>> points2 = [(1, 1), (2, 0)]
 >>> points3 = [(1, 1), (2, 4), (7, 9)]
@@ -551,6 +558,7 @@ We had to break up the degree-1 polynomial $(x-x_{j})/(x_{i}-x_{j})$ into its co
 -2.666666666666666 + 3.9999999999999996 x^1 + -0.3333333333333334 x^2
 >>> [f(xi) for (xi, yi) in points3]
 [1.0, 3.999999999999999, 8.999999999999993]
+```
 
 Ignoring the rounding errors, we can see the interpolation is correct.
 
@@ -582,32 +590,33 @@ This is where we pick $d$, to control how many shares are needed. If we want $k$
 
 Let's be more explicit and write down an example. Say we have $n=5$ daughters, and we want any $k=3$ of them to be able to reconstruct the secret. Pick a polynomial $f(x)$ of degree $d=k-1=2$. If the secret is $109$, we generate $f$ as
 
-$f(x)=109+\text{random}\cdot x+\text{random}\cdot x^{2}$
+$$f(x)=109+\text{random}\cdot x+\text{random}\cdot x^{2}$$
 
 Note that if you're going to actually use this to distribute secrets that matter, you need to be a bit more careful about the range of these random numbers. For the sake of this example let's say they're random 10-bit integers, but in reality you'd want to do everything with modular arithmetic. See the Chapter Notes for further discussion.
 
 Next, we distribute one point to each daughter as their share.
 
-$(1,f(1)),(2,f(2)),(3,f(3)),(4,f(4)),(5,f(5))$
+$$(1,f(1)),(2,f(2)),(3,f(3)),(4,f(4)),(5,f(5))$$
 
 To give concrete numbers to the examples, if
 
-$f(x)=109-55x+271x^{2},$
+$$f(x)=109-55x+271x^{2},$$
 
 then the secret is $f(0)=109$ and the shares are
 
-$(1,325),(2,1083),(3,2383),(4,4225),(5,6609).$
+$$(1,325),(2,1083),(3,2383),(4,4225),(5,6609).$$
 
 The polynomial interpolation theorem tells us that with any three points we can completely reconstruct $f(x)$, and then plug in zero to get the secret.
 
 For example, using our polynomial interpolation algorithm, if we feed in the first, third, and fifth shares we reconstruct the polynomial exactly:
 
-⬇
+```python
 >>> points = [(1, 325), (3, 2383), (5, 6609)]
 >>> interpolate(points)
 109.0 + -55.0 x^1 + 271.0 x^2
 >>> f = interpolate(points); int(f(0))
 109
+```
 
 ### Why Fewer Than $k$ Shares Reveal Nothing
 
@@ -625,16 +634,17 @@ In other words, your knowledge of the $10$ points gives you no information to di
 
 To drive this point home, let's go back to our small example secret $109$ and encoded polynomial
 
-$f(x)=109-55x+271x^{2}$
+$$f(x)=109-55x+271x^{2}$$
 
 I give you just two points, $(2,1083)$, $(5,6609)$, and a desired "fake" decrypted message, $533$. The claim is that I can come up with a polynomial that has $f(2)=1083$ and $f(5)=6609$, and also $f(0)=533$. Indeed, we already wrote the code to do this! Figure 2.3 demonstrates this with four different "decoded secrets."
 
-⬇
+```python
 >>> points = [(2, 1083), (5, 6609)]
 >>> interpolate(points + [(0, 533)])
 533.0 + -351.7999999999999 x^1 + 313.4 x^2
 >>> f = interpolate(points + [(0, 533)]); int(f(0))
-533.0
+533
+```
 
 Note that the coefficients of the fake secret polynomial are no longer integers, but this problem is fixed when you do everything with modular arithmetic instead of floating point numbers (again, see the Chapter Notes).
 
