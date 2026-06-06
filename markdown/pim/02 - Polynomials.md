@@ -760,7 +760,6 @@ A clustering algorithm is a program $f$ that takes as input:
 
 - A list of points $S$,
 - A distance function $d$ that describes the distance between two points $d(x,y)$ where $x,y$ are in $S$,
--
 
 and produces as output a *clustering* of $S$, i.e., a choice of how to split $S$ into non-overlapping subsets. The individual subsets are called "clusters."
 
@@ -786,7 +785,7 @@ The secret sharing scheme presented in this chapter was originally devised by Ad
 
 He does, however, mention that in order to make this scheme secure, the coefficients of the polynomial must be computed using modular arithmetic. Here's what is meant by that, and note that we'll return to understand this in Chapter 16 from a much more general perspective.
 
-Given an integer $n$ and a modulus $p$ (in our case a prime integer), we represent $n$ "modulo" $p$ by replacing it with its remainder when dividing by $p$. Most programming languages use the $\mathchar 1406\relax$ operator for this, so that $a=n\%p$ means $a$ is the remainder of $n/p$. Note that if $n<p$, then $n\%p=n$ is its own remainder. The standard notation in mathematics is to use the word "mod" and the $\equiv$ symbol (read "is equivalent to" or "is congruent to"), as in
+Given an integer $n$ and a modulus $p$ (in our case a prime integer), we represent $n$ "modulo" $p$ by replacing it with its remainder when dividing by $p$. Most programming languages use the `%` operator for this, so that $a=n\%p$ means $a$ is the remainder of $n/p$. Note that if $n < p$, then $n\%p=n$ is its own remainder. The standard notation in mathematics is to use the word "mod" and the $\equiv$ symbol (read "is equivalent to" or "is congruent to"), as in
 
 $$a\equiv n\bmod p.$$
 
