@@ -34,23 +34,32 @@ html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; ba
 
 .outline { width: 200px; min-width: 200px; border-left: 1px solid #d1d9e0; overflow-y: auto; padding: 16px 0; position: relative; overscroll-behavior: none; }
 .outline-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #8b949e; padding: 0 16px 10px; }
-.outline-item { display: block; padding: 4px 16px; font-size: 12px; color: #656d76; cursor: pointer; }
+.outline-item { display: block; padding: 6px 16px; font-size: 12px; color: #656d76; cursor: pointer; }
 .outline-item:hover { color: #1f2328; background: #f6f8fa; }
-.outline-item.l3 { padding-left: 32px; }
+.outline-item.l2 { padding-left: 32px; text-indent: -16px; }
+.outline-item.l3 { padding-left: 36px; position: relative; }
 .outline-item.hidden { display: none; }
+/* Collapsible outline: parents get a rotating caret; leaf children keep a
+   small Workflowy-style dot. */
 .outline-item .outline-caret {
-  display: inline-block; width: 14px; color: #8b949e;
-  transition: transform 0.12s; transform: rotate(90deg);
+  display: inline-block; width: 16px; color: #8b949e; text-indent: 0;
+  text-align: center;
+  transition: transform 0.12s; transform: rotate(90deg) translateZ(0);
 }
 .outline-item.collapsed .outline-caret { transform: rotate(0deg); }
-.outline-item .outline-caret.none { visibility: hidden; }
 .outline-item .outline-caret:hover { color: #1f2328; }
+.outline-item .outline-caret.none { visibility: hidden; pointer-events: none; }
 
 .md { max-width: var(--content-width); margin: 0 auto; line-height: 1.7; font-size: 15px; }
 .md h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
 .md h2 { font-size: 20px; font-weight: 600; margin-top: 32px; margin-bottom: 8px; }
 .md h2:first-child { margin-top: 0; }
 .md h3 { font-size: 16px; font-weight: 600; color: #656d76; margin-top: 24px; margin-bottom: 8px; }
+/* Every section block (any heading level) ends with a hairline: draw it as a
+   top rule on the next same-or-higher heading. */
+.md h2:not(:first-of-type), .md h3 { border-top: 1px solid #d8dee4; padding-top: 22px; }
+.md h2:not(:first-of-type) { margin-top: 40px; }
+.md h3 { margin-top: 32px; }
 .md p { margin-bottom: 14px; }
 .md blockquote { border-left: 2px solid #1f2328; padding: 0 12px; margin: 14px 0; color: #1f2328; font-style: italic; }
 /* Chapter-opening epigraph (blockquote right after the H1): right-aligned,
