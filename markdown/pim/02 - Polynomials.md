@@ -112,14 +112,13 @@ OR(x,y) = 1 - (1 - x)(1 - y)
 
 Any logical condition can be represented using a combination of these polynomials. Polynomials are expressive enough to capture all of boolean logic. This suggests that even single-variable polynomials should have strikingly complex behavior. The rest of the chapter will display bits of that dazzling performance.
 
-![img-1.jpeg](02 - Polynomials_images/img-1.jpeg)
-
-![img-2.jpeg](02 - Polynomials_images/img-2.jpeg)
-
-![img-3.jpeg](02 - Polynomials_images/img-3.jpeg)
-Figure 2.2: Polynomials of varying degrees.
-
-![img-4.jpeg](02 - Polynomials_images/img-4.jpeg)
+<!-- carousel -->
+![Figure 2.2 (degree 3): $y = \frac{1}{4}(x^3 + 3x^2 - 6x - 8)$](02 - Polynomials_images/img-1.jpeg)
+![Figure 2.2 (degree 4): $y = \frac{1}{14}(x^4 + x^3 - 13x^2 - x + 7)$](02 - Polynomials_images/img-2.jpeg)
+![Figure 2.2 (degree 5): $y = \frac{1}{20}(x^5 + 3x^4 - 11x^3 - 27x^2 + 10x + 64)$](02 - Polynomials_images/img-3.jpeg)
+![Figure 2.2 (degree 6): $y = \frac{1}{100}(x^6 - 2x^5 - 26x^4 + 28x^3 + 145x^2 - 26x - 80)$](02 - Polynomials_images/img-4.jpeg)
+<!-- endcarousel -->
+Figure 2.2: Polynomials of varying degrees. As the degree goes up, so does the number of times the curve changes direction.
 
 ## Culture
 
