@@ -366,6 +366,34 @@ function styleEpigraphs(root) {
   });
 }
 
+// Exercise text for the clipboard: clone the card and swap each rendered KaTeX
+// span back to its TeX source ($…$) so the copied text is chat-pasteable.
+function exerciseCopyText(card, num) {
+  const clone = card.cloneNode(true);
+  clone.querySelectorAll('.exercise-copy, .exercise-num').forEach(e => e.remove());
+  clone.querySelectorAll('.katex').forEach(k => {
+    const tex = k.querySelector('annotation[encoding="application/x-tex"]');
+    k.replaceWith(document.createTextNode(tex ? '$' + tex.textContent + '$' : k.textContent));
+  });
+  return ('Exercise ' + num + ': ' + clone.textContent.trim()).replace(/\n{3,}/g, '\n\n');
+}
+
+// Small copy-to-clipboard affordance in the top-right corner of each card.
+function addExerciseCopy(card, num) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'exercise-copy';
+  btn.title = 'Copy exercise';
+  btn.setAttribute('aria-label', 'Copy exercise ' + num);
+  btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg>';
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText(exerciseCopyText(card, num))
+      .then(() => showToast('Exercise ' + num + ' copied'))
+      .catch(() => showToast('Copy failed'));
+  });
+  card.appendChild(btn);
+}
+
 // Mark up exercise/problem blocks as first-class "exercise cards". Runs after
 // KaTeX so any math inside the exercise stays rendered. Two shapes are handled:
 //   1. dm blockquotes whose first text token is a bold exercise number, e.g.
@@ -407,6 +435,7 @@ function styleExercises(root) {
     if (after && after.nodeType === Node.TEXT_NODE) {
       after.textContent = after.textContent.replace(/^\s+/, ' ');
     }
+    addExerciseCopy(bq, badge.textContent);
   });
 
   // 2) MCS-style problem headings ("Problem N.M.").
