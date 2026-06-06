@@ -46,12 +46,13 @@ html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; ba
 .outline-item .outline-caret {
   display: inline-block; width: 18px; height: 12px;
   position: relative; text-indent: 0; color: #57606a;
+  vertical-align: -1px;
 }
 .outline-item .outline-caret::before {
-  content: ''; position: absolute; left: 4px; top: 1px;
-  width: 7px; height: 7px;
-  border-right: 1.6px solid currentColor;
-  border-bottom: 1.6px solid currentColor;
+  content: ''; position: absolute; left: 5px; top: 3px;
+  width: 5.5px; height: 5.5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
   transform: rotate(45deg);
   transition: transform 0.12s;
 }
