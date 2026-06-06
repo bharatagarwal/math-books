@@ -551,7 +551,7 @@ async function loadChapter(idx) {
       if (h.tagName === 'H2') {
         const hasKids = headings[i + 1] && headings[i + 1].tagName === 'H3';
         oHtml += '<div class="outline-item l2 collapsed" data-target="' + h.id + '">' +
-          (hasKids ? '<span class="outline-caret">▸</span>' : '<span class="outline-caret none"></span>') +
+          (hasKids ? '<span class="outline-caret"></span>' : '<span class="outline-caret none"></span>') +
           '<span class="outline-text">' + outlineLabel(h) + '</span></div>';
       } else {
         oHtml += '<div class="outline-item l3 hidden" data-target="' + h.id + '">' + outlineLabel(h) + '</div>';

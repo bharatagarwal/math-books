@@ -41,13 +41,24 @@ html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; ba
 .outline-item.hidden { display: none; }
 /* Collapsible outline: parents get a rotating caret; leaf children keep a
    small Workflowy-style dot. */
+/* Code-editor style chevron: thin angle stroke, right when collapsed,
+   down when expanded. */
 .outline-item .outline-caret {
-  display: inline-block; width: 16px; color: #8b949e; text-indent: 0;
-  text-align: center;
-  transition: transform 0.12s; transform: rotate(90deg) translateZ(0);
+  display: inline-block; width: 18px; height: 12px;
+  position: relative; text-indent: 0; color: #57606a;
 }
-.outline-item.collapsed .outline-caret { transform: rotate(0deg); }
-.outline-item .outline-caret:hover { color: #1f2328; }
+.outline-item .outline-caret::before {
+  content: ''; position: absolute; left: 4px; top: 1px;
+  width: 7px; height: 7px;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.12s;
+}
+.outline-item.collapsed .outline-caret::before {
+  transform: rotate(-45deg) translate(-1px, 1px);
+}
+.outline-item .outline-caret:hover { color: #0969da; }
 .outline-item .outline-caret.none { visibility: hidden; pointer-events: none; }
 
 .md { max-width: var(--content-width); margin: 0 auto; line-height: 1.7; font-size: 15px; }
@@ -55,11 +66,8 @@ html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; ba
 .md h2 { font-size: 20px; font-weight: 600; margin-top: 32px; margin-bottom: 8px; }
 .md h2:first-child { margin-top: 0; }
 .md h3 { font-size: 16px; font-weight: 600; color: #656d76; margin-top: 24px; margin-bottom: 8px; }
-/* Every section block (any heading level) ends with a hairline: draw it as a
-   top rule on the next same-or-higher heading. */
-.md h2:not(:first-of-type), .md h3 { border-top: 1px solid #d8dee4; padding-top: 22px; }
-.md h2:not(:first-of-type) { margin-top: 40px; }
-.md h3 { margin-top: 32px; }
+/* Each h2 section ends with a hairline: drawn as a top rule on the next h2. */
+.md h2:not(:first-of-type) { border-top: 1px solid #d8dee4; padding-top: 22px; margin-top: 40px; }
 .md p { margin-bottom: 14px; }
 .md blockquote { border-left: 2px solid #1f2328; padding: 0 12px; margin: 14px 0; color: #1f2328; font-style: italic; }
 /* Chapter-opening epigraph (blockquote right after the H1): right-aligned,
