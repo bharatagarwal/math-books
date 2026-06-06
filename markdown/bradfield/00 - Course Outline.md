@@ -46,7 +46,7 @@ For those who would prefer a traditional discrete-mathematics textbook, the
 course suggests Rosen's *Discrete Mathematics and its Applications* (7th
 edition), referenced below as **Rosen**.
 
-## 1. Counting — Mon 15 June
+## 1. Counting
 
 We start gently, by ensuring we know how to count things correctly. We will see
 that it is worth employing more rigor here than we might otherwise have imagined.
@@ -58,7 +58,7 @@ that it is worth employing more rigor here than we might otherwise have imagined
   *Counting Rules 1 & 2*. Counting benefits from set theory — see the very short
   *Naïve Set Theory* (Halmos).
 
-## 2. Probability — Thu 18 June
+## 2. Probability
 
 One of the most common applications of "counting things" is to count the possible
 states from which a choice is randomly made. This brings us to probability, which
@@ -70,7 +70,7 @@ we explore in a little more depth.
   superb interactive exposition, see [Seeing Theory](https://seeing-theory.brown.edu/)
   ("A visual introduction to probability and statistics").
 
-## 3. Bayes' Rule — Mon 22 June
+## 3. Bayes' Rule
 
 We continue our coverage of probability, focusing on conditional probability and
 Bayes' rule.
@@ -81,7 +81,7 @@ Bayes' rule.
 - **Further:** to dive deeper, *Introduction to Probability* by Bertsekas &
   Tsitsiklis.
 
-## 4. Logic — Thu 25 June
+## 4. Logic
 
 Logic is literally at the core of computing, from transistors up through many
 layers of abstraction to our languages and interfaces. This class gives us the
@@ -102,7 +102,7 @@ mathematical formalisms of logic.
 - **Further:** Rosen ch. 1; for a theoretical but approachable treatment,
   *Introduction to Logic* by Patrick Suppes.
 
-## 5. Proofs — Mon 29 June
+## 5. Proofs
 
 Using our understanding of propositional logic, we can begin to construct formal
 proofs. Even when we do not use proofs to *guarantee* program correctness, the
@@ -121,7 +121,7 @@ habit imparts rigor to how we reason about software.
 > implement the embedded logic-programming language miniKanren — a kind of
 > simplified modern Prolog — by answering its questions.
 
-## 6. Induction and Recursive Data Types — Thu 2 July
+## 6. Induction and Recursive Data Types
 
 In this class we cover the mathematical basis of recursion, used for both proofs
 and calculations.
@@ -133,7 +133,7 @@ and calculations.
   and Conquer Recurrences*, *Linear Recurrences*. For a programmer's perspective,
   *The Little Prover*.
 
-## 7. Linear Algebra — Mon 6 July
+## 7. Linear Algebra
 
 In a single class we attempt to get to the root of a vast field: linear algebra,
 the basis of computer graphics and machine learning, among other applications.
@@ -150,14 +150,14 @@ the basis of computer graphics and machine learning, among other applications.
 > 3Blue1Brown builds strong geometric intuition for ideas usually presented
 > symbolically. The *Essence of Calculus* series is similarly excellent.
 
-## 8. Linear Algebra 2 — Thu 9 July
+## 8. Linear Algebra 2
 
 We continue our study of linear algebra, with a focus on applications.
 
 - **Pre-class:** depends on how much the prior class covered — check with your
   instructor.
 
-## 9. Graph Theory — Mon 13 July
+## 9. Graph Theory
 
 We cover the mathematical foundation of the trees and graphs you know from
 algorithms and data structures. Beyond the traversal algorithms of day-to-day
@@ -167,7 +167,7 @@ properties and substructures of graphs.
 - **Pre-class:** LL chapters 9 and 12.
 - **Further:** Rosen ch. 10; MCS ch. 10–13; 6.042J videos *Graph Theory 1, 2, 3*.
 
-## 10. Number Theory — Thu 16 July
+## 10. Number Theory
 
 We dip our toes into number theory — a branch of pure mathematics that has found
 remarkable applications in computing. Our objective is to build the foundation we
@@ -177,7 +177,7 @@ need to understand public-key cryptography.
 - **Further:** Rosen ch. 4; MCS ch. 9; 6.042J videos *Number Theory 1 & 2*. For a
   traditional treatment, *A Course in Number Theory and Cryptography* (Koblitz).
 
-## 11. Cryptography — Mon 20 July
+## 11. Cryptography
 
 Now that we have a basic understanding of number theory, we explore one of its
 most famous applications: public-key cryptography.
@@ -189,7 +189,7 @@ most famous applications: public-key cryptography.
   Cegłowski's ringing endorsement); and, traditionally, *A Course in Number
   Theory and Cryptography*.
 
-## 12. Revision and Problem-Solving Practice — Thu 23 July
+## 12. Revision and Problem-Solving Practice
 
 Our final lesson is an opportunity to revise content covered throughout the
 course and reinforce our understanding with further problem solving.
