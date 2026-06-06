@@ -1,0 +1,55 @@
+# Tooling Mix, Deluxe Edition: B-sides, skits, and a diss track
+
+This is the extended cut of the [Tooling Mix](#python-tooling). The original sixteen tracks are all here, in the same order and for the same reasons; threaded among them are seven additions, each marked with a ✦ — a skit, some ancestry, two deep cuts, a book of puzzles, a master's études, and one hostile closer. The original is the version to actually follow when you want the shortest good path through the stack. This one is for when you have time to enjoy the ride.
+
+## Side A — notation becomes computation
+
+1. ✦ **[xkcd 1987: Python Environment](https://xkcd.com/1987/)** *(skit)* — Ten seconds, before anything else: the famous tangle of pip, conda, homebrew, and forgotten PATH entries, rendered as the superfund site it was. Every mixtape needs a skit, and this one exists so that the next track lands as the punchline it deserves to be.
+
+2. **[Running scripts](https://docs.astral.sh/uv/guides/scripts/)** (uv docs) — The substrate comes first. Everything in this repo runs through uv, and this is the page that documents the whole arrangement: `uv run`, the inline `# /// script` dependency block, and `--with` for one-off imports. The command lines scattered through these chapters stop looking magical after a single read — and the comic above stops being your life.
+
+3. **[Building Python tools with a one-shot prompt](https://simonwillison.net/2024/Dec/19/one-shot-python-tools/)** (Simon Willison) — The previous track showed the mechanics; this one supplies the philosophy. A script that declares its own dependencies is a different kind of artifact from a project — disposable yet reproducible — and every demo in this library is that kind of artifact.
+
+4. **[SymPy: the introductory tutorial](https://docs.sympy.org/latest/tutorials/intro-tutorial/intro.html)** — With the substrate in place, the first real instrument. SymPy makes the most direct version of this repo's claim, that notation can be executed: it opens with exact computation, $\sqrt{8}$ becoming $2\sqrt{2}$ rather than $2.828$, which is the whole idea of the library in miniature.
+
+5. **[SymPy: Gotchas and Pitfalls](https://docs.sympy.org/latest/tutorials/intro-tutorial/gotchas.html)** — Read this immediately after, because it is really a lesson in representation: a `Symbol` is not a Python variable, `==` is not equality of expressions, and `1/2` is consumed by Python before SymPy ever sees it. Understanding why these trip people up teaches more than the happy path does.
+
+6. **[A basic introduction to einsum](https://ajcr.net/Basic-guide-to-einsum/)** (Alex Riley) — SymPy executes the calculus notation; the summation notation belongs to einsum, and the bridge is the same — a compact written form expanding into loops. This is the gentlest way to learn the subscript-string reading rules, one operation at a time.
+
+7. **[Einsum is All You Need](https://rockt.ai/2018/04/30/einsum)** (Tim Rocktäschel) — The payoff for track 6: dot product, outer product, matrix multiplication, and transpose all collapse into one uniform notation, which is exactly the fluency that makes $\Sigma_i a_i b_i$ readable at a glance. Keep Eli Bendersky's [careful derivation](https://eli.thegreenplace.net/2025/understanding-numpys-einsum/) and the [reference page](https://numpy.org/doc/stable/reference/generated/numpy.einsum.html) on hand for when a subscript string misbehaves.
+
+8. ✦ **[Notation as a Tool of Thought](https://www.jsoftware.com/papers/tot.htm)** (Kenneth Iverson, 1979) — And now the ancestry. Two tracks ago you learned to read subscript strings as executable index notation; forty-five years ago, Iverson's Turing Award lecture made the full argument — that notation should be executable, unambiguous, and an instrument for thinking rather than a code to be deciphered — and built APL to prove it. einsum is a small APL that snuck into NumPy. Reading this after learning einsum is like hearing the original after years of knowing only the cover.
+
+9. **[JAX: automatic differentiation](https://docs.jax.dev/en/latest/automatic-differentiation.html)** — Side A's working close: `jax.grad` differentiates *programs*, not symbols, and $\nabla f$ becomes a function you can call. When you want the machinery — Jacobians forward and reverse, Hessians as forward-over-reverse — [The Autodiff Cookbook](https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html) goes as deep as this library will ever need.
+
+10. ✦ **[Yes you should understand backprop](https://karpathy.medium.com/yes-you-should-understand-backprop-e2f06eab496b)** (Andrej Karpathy) — The dark side of the previous track. Autodiff is exact mathematics, and yet things still go wrong inside it — saturated sigmoids killing gradients, dead ReLUs, exploding products — and Karpathy tells the war stories that explain why "the framework handles it" is a leaky abstraction. This is the reading that turns the Cookbook from optional to obviously worth it.
+
+11. ✦ **[Autodidax: JAX core from scratch](https://docs.jax.dev/en/latest/autodidax.html)** — The deepest cut on Side A, hiding in JAX's own documentation: the entire tracing-and-transformation core, rebuilt from nothing in one readable notebook. For the programmer who does not fully trust a thing until they have implemented it, this is where `grad` stops being someone else's magic.
+
+## Side B — computation becomes proof
+
+12. **[The Z3Py guide](https://ericpony.github.io/z3py-tutorial/guide-examples.htm)** — Side B turns the direction around: Side A computed what notation describes, Side B checks what notation claims. The standard hands-on walkthrough carries you from arithmetic puzzles up to `ForAll` and `Exists` — the point where $\forall x\, \exists y$ stops being philosophy and becomes a query.
+
+13. **[Satisfiability Modulo Theories: A Beginner's Tutorial](https://hanielbarbosa.com/papers/fm2024.pdf)** (Barrett, Tinelli, et al.) — Once the API is in your hands, the conceptual question arrives on schedule: what is the solver actually doing? Written by the people who build Z3 and cvc5, this is the best single answer — a SAT solver consulting theory solvers, explained from the ground up.
+
+14. **[Programming Z3](https://theory.stanford.edu/~nikolaj/programmingz3.html)** (Bjørner, de Moura, Nachmanson) — The long-form treatment sitting between the two previous tracks and beyond them, connecting the API to the decision procedures underneath. Read it slowly and in pieces, the way one reads a textbook rather than a blog post.
+
+15. ✦ **[SAT/SMT by Example](https://smt.st/)** (Dennis Yurichev) — After three tracks of rigor, the counterweight: an enormous, free, gleefully unpolished [book](https://yurichev.com/writings/SAT_SMT_by_example.pdf) of Z3 solving things no textbook would dignify — Minesweeper, regex crosswords, crackmes, recreational number puzzles by the hundred. Play is also pedagogy, and nothing makes the case that a solver is a *toy in the best sense* better than watching it cheerfully demolish a puzzle page. Dip in anywhere; it has no plot to lose.
+
+16. **[Property Tests + Contracts = Integration Tests](https://www.hillelwayne.com/pbt-contracts/)** (Hillel Wayne) — The keystone of the verification triad that closes this side. Once your functions carry contracts, "no input can violate any contract" becomes a single universal property, and your contracts quietly become test oracles. Read this before any of the triad's docs and the three tools stop looking like separate choices.
+
+17. **[Hypothesis: the tutorial introduction](https://hypothesis.readthedocs.io/en/latest/tutorial/introduction.html)** — The triad in order of increasing ambition, starting with testing by generated example: `@given`, strategies, and shrinking. The [quickstart](https://hypothesis.readthedocs.io/en/latest/quickstart.html) exists if you would rather be running in five minutes, and Wayne's [Property Testing with Complex Inputs](https://www.hillelwayne.com/post/property-testing-complex-inputs/) takes on the two genuinely hard parts — finding good properties and generating structured inputs.
+
+18. **[Deal: intro](https://deal.readthedocs.io/basic/intro.html)** — The contracts themselves: pre- and postconditions as decorators, framed as "typing on steroids." This is where the properties from track 16 move into the code they describe.
+
+19. **[CrossHair: introduction](https://crosshair.readthedocs.io/en/latest/introduction.html)** — The most ambitious of the three: where Hypothesis approximates by example, CrossHair attempts proof. [How Does It Work?](https://crosshair.readthedocs.io/en/latest/how_does_it_work.html) reveals the trick that closes Side B's loop — your function is called with symbolic values backed by Z3, so the solver from track 12 is now exploring execution paths no example generator would find.
+
+20. **[Programming and Interactive Proving With Z3Py](https://www.philipzucker.com/programming-and-interactive-proving-with-z3py/)** (Philip Zucker) — Side B's last word: Z3 bent toward genuine theorem proving, for when the basics have settled and you want to see how far the engine underneath everything on this side can be pushed.
+
+## Bonus tracks
+
+21. ✦ **[pytudes](https://github.com/norvig/pytudes)** (Peter Norvig) — Études for Python programmers: small mathematical puzzles solved in notebooks with almost unsettling elegance. This track is not about any one tool in the stack; it is about the craft the whole stack serves. Start with [Cheryl's Birthday](https://github.com/norvig/pytudes/blob/main/ipynb/Cheryl.ipynb) — a logic puzzle the rest of the internet solved with essays, dispatched in a page of clean Python — and notice, on the way out, that your own demos want to be written better.
+
+22. **[NetworkX: tutorial](https://networkx.org/documentation/stable/tutorial.html)** — The hidden track keeps its place. NetworkX neither executes notation nor checks claims; it is simply the graph chapters' workbench. The tutorial is short, and the reference [introduction](https://networkx.org/documentation/stable/reference/introduction.html) is the better conceptual read for the one design decision that explains the whole API: a node can be any hashable Python object. Save both for the week a graphs chapter is open in the other tab.
+
+23. ✦ **[Kill Math](https://worrydream.com/KillMath/)** (Bret Victor) *(diss track)* — The closer is an attack on the premise of this entire library. Victor argues that symbol manipulation is not the essence of mathematics but a historical accident — paper-era technology we mistake for the thing itself — and that it should be replaced by dynamic, manipulable representations. Every track above treats notation as something to be learned, executed, and verified; this one says the notation should not exist. Read it last, and read it seriously: a mix that cannot survive one hostile track was not well-argued, and where Victor is right, the tools in this stack — live, executable, interactive — are quietly conceding the point.

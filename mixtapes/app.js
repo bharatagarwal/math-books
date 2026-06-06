@@ -5,6 +5,12 @@
 const POSTS = [
   // newest first
   {
+    file: 'python-tooling-deluxe.md',
+    title: 'Tooling Mix, Deluxe Edition: B-sides, skits, and a diss track',
+    date: '2026-06-06',
+    blurb: 'The extended cut of the Tooling Mix: all sixteen original tracks plus seven additions — an xkcd skit, Iverson’s Turing lecture, Karpathy on backprop, Autodidax, Yurichev’s puzzle book, Norvig’s études, and Bret Victor as the hostile closer.',
+  },
+  {
     file: 'python-tooling.md',
     title: 'Tooling Mix: the Python stack behind the demos',
     date: '2026-06-06',
