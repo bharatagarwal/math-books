@@ -28,7 +28,7 @@ html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; ba
 .nav-num {
   flex: 0 0 22px; text-align: right;
   font-family: 'SF Mono', Menlo, monospace; font-size: 11px;
-  color: #8b949e; line-height: 1.6;
+  font-weight: 300; color: #b3bac1; line-height: 1.6;
 }
 .nav-item.active .nav-num { color: #0969da; }
 .nav-item:hover { background: #eaeef2; color: #1f2328; }
