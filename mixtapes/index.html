@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mixtapes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+  <link rel="stylesheet" href="../reader/styles.css">
+  <style>
+    /* Blog layout on top of the reader's typography (.md). */
+    body { background: #fff; }
+    .mx-wrap { max-width: 720px; margin: 0 auto; padding: 32px 24px 80px; }
+    .mx-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 36px; }
+    .mx-top h1 { font-size: 20px; font-weight: 700; color: #1f2328; margin: 0; }
+    .mx-top a { font-size: 13px; color: #0969da; text-decoration: none; }
+    .mx-top a:hover { text-decoration: underline; }
+    /* Index list: hairline-separated entries, small-caps date. */
+    .mx-post { padding: 20px 0; border-bottom: 1px solid #d8dee4; }
+    .mx-date { font-size: 11px; font-weight: 600; color: #8b949e; text-transform: uppercase; letter-spacing: 0.06em; }
+    .mx-title { display: block; font-size: 17px; font-weight: 600; color: #0969da; text-decoration: none; margin: 4px 0 6px; }
+    .mx-title:hover { text-decoration: underline; }
+    .mx-blurb { font-size: 14px; color: #656d76; line-height: 1.55; }
+    .mx-back { display: inline-block; font-size: 13px; color: #0969da; text-decoration: none; margin-bottom: 24px; }
+    .mx-back:hover { text-decoration: underline; }
+    .mx-meta { font-size: 12px; color: #8b949e; margin-bottom: 28px; }
+  </style>
+</head>
+<body>
+  <div class="mx-wrap">
+    <div class="mx-top">
+      <h1><a href="./" style="color:inherit;text-decoration:none;font-size:inherit">Mixtapes</a></h1>
+      <a href="../reader/">Reader →</a>
+    </div>
+    <div id="content"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
