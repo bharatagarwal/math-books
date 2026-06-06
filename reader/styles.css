@@ -47,7 +47,7 @@ html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; ba
 .md blockquote { border-left: 2px solid #1f2328; padding: 0 12px; margin: 14px 0; color: #1f2328; font-style: italic; }
 /* Chapter-opening epigraph (blockquote right after the H1): right-aligned,
    pushed toward the right edge, no quote bar — book-style. */
-.md blockquote.epigraph { border-left: none; padding: 0; margin: 22px 0 26px 28%; text-align: right; color: #57606a; }
+.md blockquote.epigraph { border-left: none; border-right: 2px solid #1f2328; padding: 0 12px; margin: 22px 0 26px 18%; text-align: right; color: #57606a; }
 /* Exercise / problem cards: first-class, distinct from prose AND from the
    ordinary (italic, black-bar) blockquote above. Tinted card, blue accent. */
 .md blockquote.exercise {
