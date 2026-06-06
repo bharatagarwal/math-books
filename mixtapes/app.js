@@ -5,6 +5,12 @@
 const POSTS = [
   // newest first
   {
+    file: 'python-tooling.md',
+    title: 'Tooling Mix: the Python stack behind the demos',
+    date: '2026-06-06',
+    blurb: 'The readings worth your time for uv, sympy, einsum, jax, z3, the hypothesis–deal–crosshair triad, and networkx — official tutorials and the blog posts that explain the ideas.',
+  },
+  {
     file: 'foundations.md',
     title: 'Foundations Mix: pimbook × Mathematical Notation',
     date: '2026-06-06',
