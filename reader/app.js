@@ -357,6 +357,15 @@ function buildCarousels(root) {
   });
 }
 
+// Chapter-opening epigraphs: a blockquote that directly follows the page's H1
+// (the chapter title) is an epigraph quote, rendered right-aligned without the
+// usual quote bar. Ordinary blockquotes elsewhere are untouched.
+function styleEpigraphs(root) {
+  root.querySelectorAll('h1 + blockquote').forEach(bq => {
+    bq.classList.add('epigraph');
+  });
+}
+
 // Mark up exercise/problem blocks as first-class "exercise cards". Runs after
 // KaTeX so any math inside the exercise stays rendered. Two shapes are handled:
 //   1. dm blockquotes whose first text token is a bold exercise number, e.g.
@@ -489,6 +498,7 @@ async function loadChapter(idx) {
     }
 
     buildCarousels(pane);
+    styleEpigraphs(pane);
     styleExercises(pane);
     buildChapterNav(pane, idx);
     applyReaderSettings();
