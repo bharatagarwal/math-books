@@ -257,7 +257,12 @@ function protectMath(md) {
 
 function restoreMath(html) {
   for (const { key, content } of mathStore) {
-    html = html.split(key).join(content);
+    // The restored text lands in an innerHTML assignment, so raw < > & in
+    // math source (e.g. $r<s$) would parse as markup — `<s` starts a tag and
+    // swallows everything to the next `>`. Escape them; KaTeX reads the text
+    // back through textContent, which un-escapes.
+    const safe = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    html = html.split(key).join(safe);
   }
   return html;
 }
