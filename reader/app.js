@@ -762,5 +762,19 @@ const sel = document.getElementById('bookSelect');
 sel.innerHTML = BOOKS.map((b, i) => '<option value="' + i + '">' + b.title + '</option>').join('');
 sel.value = currentBook;
 sel.onchange = () => { currentBook = +sel.value; currentChapter = 0; updateHash(); renderBook(); };
+
+// React to external hash changes (in-content links like [Graphs](#dm/8) and
+// browser back/forward). updateHash() uses replaceState, which doesn't fire
+// hashchange, so this only catches genuine navigation.
+window.addEventListener('hashchange', () => {
+  const b = bookIndexFromHash();
+  if (b < 0) return;
+  const c = chapterIndexFromHash();
+  if (b === currentBook && c === currentChapter) return;
+  currentBook = b;
+  sel.value = String(b);
+  renderBook();
+});
+
 renderBook();
 updateMobileZenToggle();
