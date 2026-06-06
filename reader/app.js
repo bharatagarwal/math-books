@@ -534,14 +534,42 @@ async function loadChapter(idx) {
 
     const outlineEl = document.getElementById('outline');
     const keyhint = '<div class="keyhint"><kbd>j</kbd>/<kbd>k</kbd> prev/next · <kbd>z</kbd> zen · <kbd>f</kbd> fullscreen</div>';
-    const items = headings.slice(1);
-    outlineEl.innerHTML = (items.length > 0
-      ? '<div class="outline-label">On this page</div>' +
-        items.map(h => '<div class="outline-item' + (h.tagName === 'H3' ? ' l3' : '') + '" data-target="' + h.id + '">' + h.textContent + '</div>').join('')
-      : '') + keyhint;
+    // Heading label for the outline: use the KaTeX TeX source for any math so
+    // rendered duplicates (mathml + html spans) don't leak in (e.g. "kkk").
+    const outlineLabel = h => {
+      const c = h.cloneNode(true);
+      c.querySelectorAll('.katex').forEach(k => {
+        const tex = k.querySelector('annotation[encoding="application/x-tex"]');
+        k.replaceWith(document.createTextNode(tex ? tex.textContent : k.textContent));
+      });
+      return c.textContent.trim();
+    };
+    // Group H3s under their parent H2 so sections collapse. H2 rows with
+    // children get a caret; only the caret toggles, the text still navigates.
+    let oHtml = headings.length > 0 ? '<div class="outline-label">On this page</div>' : '';
+    headings.forEach((h, i) => {
+      if (h.tagName === 'H2') {
+        const hasKids = headings[i + 1] && headings[i + 1].tagName === 'H3';
+        oHtml += '<div class="outline-item l2 collapsed" data-target="' + h.id + '">' +
+          (hasKids ? '<span class="outline-caret">▸</span>' : '<span class="outline-caret none"></span>') +
+          '<span class="outline-text">' + outlineLabel(h) + '</span></div>';
+      } else {
+        oHtml += '<div class="outline-item l3 hidden" data-target="' + h.id + '">' + outlineLabel(h) + '</div>';
+      }
+    });
+    outlineEl.innerHTML = oHtml + keyhint;
 
     outlineEl.querySelectorAll('.outline-item').forEach(el => {
-      el.onclick = () => {
+      el.onclick = (ev) => {
+        if (ev.target.classList.contains('outline-caret')) {
+          const open = el.classList.toggle('collapsed');
+          let sib = el.nextElementSibling;
+          while (sib && sib.classList.contains('l3')) {
+            sib.classList.toggle('hidden', open);
+            sib = sib.nextElementSibling;
+          }
+          return;
+        }
         const target = pane.querySelector('#' + el.dataset.target);
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
