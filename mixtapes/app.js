@@ -8,7 +8,7 @@ const POSTS = [
     file: 'foundations.md',
     title: 'Foundations Mix: pimbook × Mathematical Notation',
     date: '2026-06-06',
-    blurb: 'Weaving Kun’s course with Scheinerman’s phrasebook — a short notation chapter as preflight before each pimbook chapter.',
+    blurb: 'Kun’s course and Scheinerman’s phrasebook, read together: each notation chapter taken as a short preparation for the pimbook chapter that depends on it.',
   },
 ];
 
