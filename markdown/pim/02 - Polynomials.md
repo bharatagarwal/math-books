@@ -95,8 +95,7 @@ For example, the degree gives some information about the shape of the curve. Fig
 
 Finally, polynomials can be thought of as "building blocks" for complicated structures. That is, polynomials are a family of increasingly expressive objects, which get more complex as the degree increases. This idea is the foundation of the application for this chapter (sharing secrets), and it will guide us to use Taylor polynomials to approximate things in Chapters 8 and 14.
 
-![img-0.jpeg](02 - Polynomials_images/img-0.jpeg)
-Figure 2.1: A polynomial as a curve in the plane.
+![Figure 2.1: A polynomial as a curve in the plane.](02 - Polynomials_images/img-0.jpeg)
 
 ### Polynomials and Boolean Logic
 
@@ -639,8 +638,7 @@ I give you just two points, $(2,1083)$, $(5,6609)$, and a desired "fake" decrypt
 
 Note that the coefficients of the fake secret polynomial are no longer integers, but this problem is fixed when you do everything with modular arithmetic instead of floating point numbers (again, see the Chapter Notes).
 
-![img-5.jpeg](02 - Polynomials_images/img-5.jpeg)
-Figure 2.3: A plot of four different curves that agree on the two points (2, 1083), (5, 6609), but have a variety of different "decoded secret" values.
+![Figure 2.3: A plot of four different curves that agree on the two points $(2, 1083)$, $(5, 6609)$, but have a variety of different "decoded secret" values.](02 - Polynomials_images/img-5.jpeg)
 
 The property of being able to "decode" to any possible plaintext given an encrypted text is called perfect secrecy, and it's an early topic on a long journey through mathematical cryptography.
 
