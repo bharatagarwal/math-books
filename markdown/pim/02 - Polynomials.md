@@ -41,7 +41,7 @@ This is not an idle exercise. Taking notes by hand uses a part of your brain tha
 
 A single variable *polynomial with real coefficients* is a function $f$ that takes a real number as input, produces a real number as output, and has the form
 
-$f(x)=a_{0}+a_{1}x+a_{2}x^{2}+\cdots+a_{n}x^{n},$
+$$f(x)=a_{0}+a_{1}x+a_{2}x^{2}+\cdots+a_{n}x^{n},$$
 
 where the $a_{i}$ are real numbers. The $a_{i}$ are called *coefficients* of $f$. The *degree* of the polynomial is the integer $n$.
 
@@ -105,11 +105,13 @@ Polynomials occur with stunning ubiquity across mathematics. It makes one wonder
 
 Those three operations yield the full gamut of algorithms. Polynomials fill a similar role for arithmetic. Indeed, polynomials with multiple variables can represent AND, OR, and NOT, if you restrict the values of the variables to be zero and one (interpreted as false and true, respectively).
 
-AND(x,y) = xy
-
-NOT(x) = 1 - x
-
-OR(x,y) = 1 - (1 - x)(1 - y)
+$$
+\begin{aligned}
+\mathrm{AND}(x,y) &= xy \\
+\mathrm{NOT}(x) &= 1 - x \\
+\mathrm{OR}(x,y) &= 1 - (1 - x)(1 - y)
+\end{aligned}
+$$
 
 Any logical condition can be represented using a combination of these polynomials. Polynomials are expressive enough to capture all of boolean logic. This suggests that even single-variable polynomials should have strikingly complex behavior. The rest of the chapter will display bits of that dazzling performance.
 
@@ -133,14 +135,18 @@ So let's write down some examples of polynomials according to Definition 2.1, st
 
 polynomials and your job is to check them against the definition. Take your time, and you can check your answers in the Chapter Notes.
 
-$f(x)=0$
-$g(x)=12$
-$h(x)=1+x+x^{2}+x^{3}$
-$i(x)=x^{1/2}$
-$j(x)=\frac{1}{2}+x^{2}-2x^{4}+8x^{8}$
-$k(x)=4.5+\frac{1}{x}-\frac{5}{x^{2}}$
-$l(x)=\pi-\frac{1}{e}x^{5}+e\pi^{3}x^{10}$
-$m(x)=x+x^{2}-x^{\pi}+x^{e}$
+$$
+\begin{aligned}
+f(x) &= 0 \\
+g(x) &= 12 \\
+h(x) &= 1+x+x^{2}+x^{3} \\
+i(x) &= x^{1/2} \\
+j(x) &= \frac{1}{2}+x^{2}-2x^{4}+8x^{8} \\
+k(x) &= 4.5+\frac{1}{x}-\frac{5}{x^{2}} \\
+l(x) &= \pi-\frac{1}{e}x^{5}+e\pi^{3}x^{10} \\
+m(x) &= x+x^{2}-x^{\pi}+x^{e}
+\end{aligned}
+$$
 
 ### Edge Cases and the Zero Polynomial
 
@@ -260,16 +266,20 @@ Let's move on to a slightly larger example which I'll allow you to work out for 
 
 Alright. A degree 1 polynomial has the form
 
-$f(x)=a_{0}+a_{1}x.$
+$$f(x)=a_{0}+a_{1}x.$$
 
 Writing down the two equations $f(2)=3,f(7)=4$, we must simultaneously solve:
 
-$a_{0}+a_{1}\cdot 2=3$
-$a_{0}+a_{1}\cdot 7=4$
+$$
+\begin{aligned}
+a_{0}+a_{1}\cdot 2 &= 3 \\
+a_{0}+a_{1}\cdot 7 &= 4
+\end{aligned}
+$$
 
 If we solve for $a_{0}$ in the first equation, we get $a_{0}=3-2a_{1}$. Substituting that into the second equation we get $(3-2a_{1})+a_{1}\cdot 7=4$, which solves for $a_{1}=1/5$. Plugging this back into the first equation gives $a_{0}=3-2/5$. This has forced the polynomial to be exactly
 
-$f(x)=\left(3-\frac{2}{5}\right)+\frac{1}{5}x=\frac{13}{5}+\frac{1}{5}x.$
+$$f(x)=\left(3-\frac{2}{5}\right)+\frac{1}{5}x=\frac{13}{5}+\frac{1}{5}x.$$
 
 ### What Happens When Points Collide?
 
@@ -281,8 +291,12 @@ The problem could be that there is no degree 1 polynomial passing through those 
 
 In case you're stuck, let's follow our pattern from before. If we call $a_{0}+a_{1}x$ our polynomial, saying it passes through these two points is equivalent to saying that there is a simultaneous solution to the following two equations $f(2)=3$ and $f(2)=5$.
 
-$a_{0}+a_{1}\cdot 2=3$
-$a_{0}+a_{1}\cdot 2=5$
+$$
+\begin{aligned}
+a_{0}+a_{1}\cdot 2 &= 3 \\
+a_{0}+a_{1}\cdot 2 &= 5
+\end{aligned}
+$$
 
 What happens when you try to solve these equations like we did before? Try it.
 
@@ -476,7 +490,6 @@ All of this code, including the polynomial class, is available at this book's Gi
 
 Here are some examples of constructing polynomials.
 
-⬇
 ```python
 # special syntax for the zero polynomial
 ZERO = Polynomial([])
@@ -490,7 +503,6 @@ f(1) == 6
 
 Now we write the main interpolate function. It uses the yet-to-be-defined function single_term that computes a single term of the interpolating polynomial for a given degree. Note we use Python list comprehensions, for which [EXPRESSION for x in my_list] is a shorthand expression for the following.
 
-⬇
 ```python
 output_list = []
 
@@ -698,8 +710,12 @@ $e$ are not algebraic, it is not known whether $\pi+e$ or $\pi e$ are algebraic.
 
 Let $f(x)=a_{0}+a_{1}x+\cdots+a_{n}x^{n}$ be a degree $n$ polynomial, and suppose it has $n$ real roots $r_{1},\ldots,r_{n}$. Prove Vieta's formulas, which are
 
-$\sum_{i=1}^{n}r_{i}$ $=-\frac{a_{n-1}}{a_{n}}$
-$\prod_{i=1}^{n}r_{i}$ $=(-1)^{n}\frac{a_{0}}{a_{n}}.$
+$$
+\begin{aligned}
+\sum_{i=1}^{n}r_{i} &= -\frac{a_{n-1}}{a_{n}} \\
+\prod_{i=1}^{n}r_{i} &= (-1)^{n}\frac{a_{0}}{a_{n}}.
+\end{aligned}
+$$
 
 Hint: if $r$ is a root, then $f(x)$ can be written as $f(x)=(x-r)g(x)$ for some smaller degree $g(x)$. This formula shows one way the coefficients of a polynomial encode information about the roots.
 
@@ -721,7 +737,7 @@ Look up the definition of quadratic and cubic Bézier curves, and understand how
 
 It is a natural question to ask whether the roots of a polynomial $f$ are sensitive to changes in the coefficients of $f$. Wilkinson's polynomial, defined below, shows that they are
 
-$w(x)=\prod_{i=1}^{20}(x-i)$
+$$w(x)=\prod_{i=1}^{20}(x-i)$$
 
 This also works for possibly complex roots.
 
@@ -747,7 +763,7 @@ Perhaps the biggest disservice in this chapter is ignoring the so-called Fundame
 
 In fact, one litmus test for the "intellectual potency" of a new mathematical theory is whether it provides a new proof of the Fundamental Theorem of Algebra! There is an entire book dedicated to these often-repeated proofs. Sadly, we avoid complex numbers in this book. Luckily, there is a "baby" fundamental theorem, which says that every single-variable polynomial with real coefficients can be factored into a product of linear and degree-2 terms
 
-$p(x)=(x-a_{1})(x-a_{2})\cdots(x-a_{m})(x^{2}+b_{m+1}x+a_{m+1})\cdots(x^{2}+b_{k}x+a_{k}),$
+$$p(x)=(x-a_{1})(x-a_{2})\cdots(x-a_{m})(x^{2}+b_{m+1}x+a_{m+1})\cdots(x^{2}+b_{k}x+a_{k}),$$
 
 where none of the quadratic terms can be factored into smaller degree-1 terms. One of history's most famous mathematicians, Carl Friedrich Gauss, provided the first proof as his doctoral thesis in 1799. As part of this exercise, look up some different proofs of the Fundamental Theorem, but instead of trying to understand them, take note of the different areas of math that are used in the proofs.
 
@@ -807,7 +823,7 @@ He does, however, mention that in order to make this scheme secure, the coeffici
 
 Given an integer $n$ and a modulus $p$ (in our case a prime integer), we represent $n$ "modulo" $p$ by replacing it with its remainder when dividing by $p$. Most programming languages use the $\mathchar 1406\relax$ operator for this, so that $a=n\%p$ means $a$ is the remainder of $n/p$. Note that if $n<p$, then $n\%p=n$ is its own remainder. The standard notation in mathematics is to use the word "mod" and the $\equiv$ symbol (read "is equivalent to" or "is congruent to"), as in
 
-$a\equiv n\mod p.$
+$$a\equiv n\bmod p.$$
 
 The syntactical operator precedence is a bit weird here: "mod" is not a binary operation, but rather describes the entire equation, as if to say, "everything here is considered modulo $p$."
 
