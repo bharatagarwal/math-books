@@ -21,9 +21,16 @@ html, body { height: 100%; font-family: system-ui, -apple-system, sans-serif; ba
   overscroll-behavior: none;
 }
 .nav-item {
-  display: block; padding: 8px 16px; font-size: 13px; color: #656d76;
+  display: flex; gap: 8px; padding: 8px 16px; font-size: 13px; color: #656d76;
   cursor: pointer; transition: background 0.1s;
 }
+/* Render-time chapter number column; empty for front matter/appendices. */
+.nav-num {
+  flex: 0 0 22px; text-align: right;
+  font-family: 'SF Mono', Menlo, monospace; font-size: 11px;
+  color: #8b949e; line-height: 1.6;
+}
+.nav-item.active .nav-num { color: #0969da; }
 .nav-item:hover { background: #eaeef2; color: #1f2328; }
 .nav-item.active { background: #ddf4ff; color: #0969da; font-weight: 600; }
 

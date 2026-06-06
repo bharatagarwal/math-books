@@ -1,6 +1,7 @@
 const BOOKS = [
   {
     id: 'mcs-lectures',
+    numbering: 'none',
     title: 'MCS Lectures',
     meta: 'MIT 6.042J Fall 2010',
     basePath: 'mcs-lectures',
@@ -39,6 +40,7 @@ const BOOKS = [
   },
   {
     id: 'mcs',
+    numbering: 'none',
     title: 'Mathematics for Computer Science',
     meta: 'MIT 6.042J',
     basePath: 'mcs/01 - Proofs',
@@ -58,6 +60,7 @@ const BOOKS = [
   },
   {
     id: 'pim',
+    numbering: 'index',
     title: "Programmer's Intro to Mathematics",
     meta: 'Jeremy Kun',
     basePath: 'pim',
@@ -87,6 +90,7 @@ const BOOKS = [
   },
   {
     id: 'bradfield',
+    numbering: 'none',
     title: 'Bradfield Math Course',
     meta: 'Mathematics for Computing · Tom Alcorn, 2020',
     basePath: 'bradfield',
@@ -582,6 +586,23 @@ async function loadChapter(idx) {
   }
 }
 
+// Chapter number for the sidebar, derived at render time (never stored in
+// the chapter title). Modes per book:
+//   'none'  — titles already carry their numbers (mcs, lectures, bradfield)
+//   'index' — array index IS the book's chapter number (pim: Kun counts
+//             interludes as chapters, so Sets at index 4 is his Chapter 4)
+//   default — numeric file prefix ("03 - Foo.md" → 3, "02a - Bar.md" → 2a);
+//             a 00 prefix is front matter and stays unnumbered.
+// Appendices and unprefixed files stay unnumbered in every mode.
+function chapterNumber(book, ch, i) {
+  if (book.numbering === 'none' || /^Appendix/i.test(ch.title)) return '';
+  if (book.numbering === 'index') return i > 0 ? String(i) : '';
+  const m = ch.file.match(/^(\d+)([a-z]?)\s+-/);
+  if (!m) return '';
+  const n = parseInt(m[1], 10);
+  return n > 0 ? n + m[2] : '';
+}
+
 function renderBook() {
   const book = BOOKS[currentBook];
   document.getElementById('title').textContent = book.title;
@@ -589,7 +610,10 @@ function renderBook() {
 
   const sidebar = document.getElementById('sidebar');
   sidebar.innerHTML = book.chapters.map((ch, i) =>
-    '<div class="nav-item" data-idx="' + i + '">' + ch.title + '</div>'
+    '<div class="nav-item" data-idx="' + i + '">' +
+      '<span class="nav-num">' + chapterNumber(book, ch, i) + '</span>' +
+      '<span class="nav-title">' + ch.title + '</span>' +
+    '</div>'
   ).join('');
 
   sidebar.querySelectorAll('.nav-item').forEach(el => {
