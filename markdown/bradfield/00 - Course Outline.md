@@ -51,12 +51,17 @@ edition), referenced below as **Rosen**.
 We start gently, by ensuring we know how to count things correctly. We will see
 that it is worth employing more rigor here than we might otherwise have imagined.
 
-- **Pre-class:** LL chapters 2 and 4, doing as many exercises as you need.
-- **Post-class:** MCS Chapter 15 (p. 661): problems 15.1–4, 15.21, 15.34, 15.38;
-  a few subproblems from 15.26. Stretch: 15.9, 15.11.
-- **Further:** Rosen ch. 2, 6.1–6.6, 8.4–8.6; MCS ch. 14–16; 6.042J videos
-  *Counting Rules 1 & 2*. Counting benefits from set theory — see the very short
-  *Naïve Set Theory* (Halmos).
+- **Pre-class:** LL chapter 2, [*Let us count!*](#dm/1), and chapter 4,
+  [*Counting subsets*](#dm/3), doing as many exercises as you need.
+- **Post-class:** from MCS chapter 15, *Cardinality Rules*: problems 15.1–4,
+  15.21, 15.34, 15.38; a few subproblems from 15.26. Stretch: 15.9, 15.11.
+- **Further:** Rosen chapter 2, *Basic Structures: Sets, Functions, Sequences,
+  Sums, and Matrices*; the first six sections of his chapter 6, *Counting*; and
+  sections 8.4–8.6 (*Generating Functions*, *Inclusion–Exclusion* and its
+  applications). In MCS, chapters 14–16: *Sums and Asymptotics*, *Cardinality
+  Rules*, and *Generating Functions*. The 6.042J videos *Counting Rules 1 & 2*.
+  Counting benefits from set theory — see the very short *Naïve Set Theory*
+  (Halmos).
 
 ## 2. Probability
 
@@ -64,9 +69,13 @@ One of the most common applications of "counting things" is to count the possibl
 states from which a choice is randomly made. This brings us to probability, which
 we explore in a little more depth.
 
-- **Pre-class:** LL chapter 7; MCS problems 17.2 and 17.3 (p. 755).
-- **Post-class:** MCS problems 17.3 and 17.4 (p. 755).
-- **Further:** Rosen ch. 7; MCS ch. 17–21; 6.042J probability videos. For a
+- **Pre-class:** LL chapter 7, [*Combinatorial probability*](#dm/6); MCS
+  problems 17.2 and 17.3, from chapter 17, *Events and Probability Spaces*.
+- **Post-class:** MCS problems 17.3 and 17.4.
+- **Further:** Rosen chapter 7, *Discrete Probability*. In MCS, the full
+  probability run of chapters 17–21: *Events and Probability Spaces*,
+  *Conditional Probability*, *Random Variables*, *Deviation from the Mean*,
+  and *Random Walks*. The 6.042J probability videos. For a
   superb interactive exposition, see [Seeing Theory](https://seeing-theory.brown.edu/)
   ("A visual introduction to probability and statistics").
 
@@ -76,7 +85,8 @@ We continue our coverage of probability, focusing on conditional probability and
 Bayes' rule.
 
 - **Pre-class:** check with your instructor; in the absence of guidance, enough
-  of MCS chapter 18 to attempt problems 18.2, 18.7, 18.26.
+  of MCS chapter 18, *Conditional Probability*, to attempt problems 18.2, 18.7,
+  18.26.
 - **Post-class:** MCS problem 18.37 (c)(d)(e).
 - **Further:** to dive deeper, *Introduction to Probability* by Bertsekas &
   Tsitsiklis.
@@ -97,10 +107,12 @@ mathematical formalisms of logic.
 > most consequential master's thesis of all time; he went on to invent
 > Information Theory.
 
-- **Pre-class:** MCS chapter 3 (not covered in LL).
-- **Post-class:** MCS problems 3.1, 3.2, 3.5 (p. 68).
-- **Further:** Rosen ch. 1; for a theoretical but approachable treatment,
-  *Introduction to Logic* by Patrick Suppes.
+- **Pre-class:** MCS chapter 3, [*Logical Formulas*](#mcs/3) (this topic is not
+  covered in LL).
+- **Post-class:** MCS problems 3.1, 3.2, 3.5.
+- **Further:** Rosen chapter 1, *The Foundations: Logic and Proofs*; for a
+  theoretical but approachable treatment, *Introduction to Logic* by Patrick
+  Suppes.
 
 ## 5. Proofs
 
@@ -108,8 +120,9 @@ Using our understanding of propositional logic, we can begin to construct formal
 proofs. Even when we do not use proofs to *guarantee* program correctness, the
 habit imparts rigor to how we reason about software.
 
-- **Pre-class:** MCS chapter 1 (not covered in LL).
-- **Post-class:** MCS Chapter 1 (p. 20): problem 1.3 (hint: assume
+- **Pre-class:** MCS chapter 1, [*What is a Proof?*](#mcs/0) (not covered in
+  LL).
+- **Post-class:** from the same chapter: problem 1.3 (hint: assume
   $\sqrt{x}^{2}=x$); problem 1.8 (hint: cases $r<s$, $r>s$, $r=s$); and show that
   if $a^{3}>a$ then $a^{5}>a$.
 - **Further:** 6.042J video *Introduction and Proofs*; the excellent *How to
@@ -126,12 +139,14 @@ habit imparts rigor to how we reason about software.
 In this class we cover the mathematical basis of recursion, used for both proofs
 and calculations.
 
-- **Pre-class:** LL chapter 3.
-- **Post-class:** MCS Chapter 5 (p. 148): problems 5.1, 5.4, 5.7, 5.8, 5.13.
-  Stretch: 5.21.
-- **Further:** Rosen ch. 5; MCS ch. 5, 7, 22; 6.042J videos *Induction*, *Divide
-  and Conquer Recurrences*, *Linear Recurrences*. For a programmer's perspective,
-  *The Little Prover*.
+- **Pre-class:** LL chapter 3, [*Induction*](#dm/2).
+- **Post-class:** from MCS chapter 5, [*Induction*](#mcs/7): problems 5.1, 5.4,
+  5.7, 5.8, 5.13. Stretch: 5.21.
+- **Further:** Rosen chapter 5, *Induction and Recursion*. In MCS, chapter 5,
+  [*Induction*](#mcs/7), chapter 7, [*Recursive Data Types*](#mcs/9), and
+  chapter 22, *Recurrences*. The 6.042J videos *Induction*, *Divide and Conquer
+  Recurrences*, and *Linear Recurrences*. For a programmer's perspective, *The
+  Little Prover*.
 
 ## 7. Linear Algebra
 
@@ -164,8 +179,11 @@ algorithms and data structures. Beyond the traversal algorithms of day-to-day
 work, graph theory takes a more analytical approach, identifying interesting
 properties and substructures of graphs.
 
-- **Pre-class:** LL chapters 9 and 12.
-- **Further:** Rosen ch. 10; MCS ch. 10–13; 6.042J videos *Graph Theory 1, 2, 3*.
+- **Pre-class:** LL chapter 9, [*Graphs*](#dm/8), and chapter 12, [*Matchings
+  in graphs*](#dm/11).
+- **Further:** Rosen chapter 10, *Graphs*. In MCS, chapters 10–13: *Directed
+  Graphs & Partial Orders*, *Communication Networks*, *Simple Graphs*, and
+  *Planar Graphs*. The 6.042J videos *Graph Theory 1, 2, 3*.
 
 ## 10. Number Theory
 
@@ -173,17 +191,19 @@ We dip our toes into number theory — a branch of pure mathematics that has fou
 remarkable applications in computing. Our objective is to build the foundation we
 need to understand public-key cryptography.
 
-- **Pre-class:** LL chapter 8.
-- **Further:** Rosen ch. 4; MCS ch. 9; 6.042J videos *Number Theory 1 & 2*. For a
-  traditional treatment, *A Course in Number Theory and Cryptography* (Koblitz).
+- **Pre-class:** LL chapter 8, [*Integers, divisors, and primes*](#dm/7).
+- **Further:** Rosen chapter 4, *Number Theory and Cryptography*; MCS chapter 9,
+  *Number Theory*; the 6.042J videos *Number Theory 1 & 2*. For a traditional
+  treatment, *A Course in Number Theory and Cryptography* (Koblitz).
 
 ## 11. Cryptography
 
 Now that we have a basic understanding of number theory, we explore one of its
 most famous applications: public-key cryptography.
 
-- **Pre-class:** LL chapters 15 and 16, aiming to understand the RSA scheme
-  (section 16.4) and its dependencies.
+- **Pre-class:** LL chapter 15, [*A glimpse of cryptography*](#dm/14), and
+  chapter 16, [*One-time pads*](#dm/15), aiming to understand the RSA scheme —
+  the *Public key cryptography* section of chapter 16 — and its dependencies.
 - **Further:** Brit Cruise's Khan Academy course *Journey into Cryptography*; the
   [Cryptopals Crypto Challenges](https://cryptopals.com/) (with Maciej
   Cegłowski's ringing endorsement); and, traditionally, *A Course in Number
