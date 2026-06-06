@@ -672,110 +672,75 @@ The property of being able to "decode" to any possible plaintext given an encryp
 
 ## Exercises
 
-### Prove the following:
+> **2.1** Prove the following:
+>
+> 1. If $f$ is a degree-$2$ polynomial and $g$ is a degree-$1$ polynomial, then their product $f\cdot g$ is a degree-$3$ polynomial.
+> 2. Generalize the above: if $f$ is a degree-$n$ polynomial and $g$ is a degree-$m$ polynomial, then their product $f\cdot g$ has degree $n+m$.
+> 3. Does the above fact work when $f$ or $g$ are the zero polynomial, using our convention that the zero polynomial has degree $-1$? If not, can you think of a better convention?
+> 4. Prove that two polynomial formulas with different degrees cannot be equal as functions. That is, there must be some input on which they disagree.
 
-1. If $f$ is a degree-$2$ polynomial and $g$ is a degree-$1$ polynomial, then their product $f\cdot g$ is a degree-$3$ polynomial.
-2. Generalize the above: if $f$ is a degree-$n$ polynomial and $g$ is a degree-$m$ polynomial, then their product $f\cdot g$ has degree $n+m$.
-3. Does the above fact work when $f$ or $g$ are the zero polynomial, using our convention that the zero polynomial has degree $-1$? If not, can you think of a better convention?
-4. Prove that two polynomial formulas with different degrees cannot be equal as functions. That is, there must be some input on which they disagree.
+> **2.2** Write down examples for the following definitions:
+>
+> 1. Two integers $a,b$ are said to be relatively prime if their only common divisor is $1$. Let $n$ be a positive integer, and define by $\varphi(n)$ (for $n>1$) the number of positive integers less than $n$ that are relatively prime to $n$. Describe why one might reasonably add the restriction $n>1$.
+> 2. A polynomial is called monic if its leading coefficient $a_{n}$ is $1$.
+> 3. A factor of a polynomial $f$ is a polynomial $g$ of smaller degree so that $f(x)=g(x)h(x)$, for some polynomial $h$. It is said that $f$ can be "factored" into $g$ and $h$. Note that $g$ and $h$ must both have real coefficients and be of smaller degree than $f$.
+> 4. Two polynomials are called relatively prime if they have no non-constant smaller-degree polynomial factors in common. A polynomial is called irreducible if it cannot be factored into smaller polynomials. The greatest common divisor of two polynomials $f,g$ is the monic polynomial of largest degree that is a factor of both $f$ and $g$.
 
-## 2.2.
+> **2.3** Verify the following theorem using the examples from the previous exercise. That is, write down examples and check that the theorem works as stated. If $a,n$ are relatively prime integers, then $a^{\varphi(n)}$ has remainder $1$ when dividing by $n$. This result is known as Euler's theorem (pronounced "OY-lurr"), and it is the keystone of the RSA cryptosystem.
 
-Write down examples for the following definitions:
+> **2.4** Look up Horner's method for evaluating a polynomial as a function. Implement a polynomial data structure that uses Horner's method for evaluation, and compare its runtime against naive evaluation methods.
 
-1. Two integers $a,b$ are said to be relatively prime if their only common divisor is $1$. Let $n$ be a positive integer, and define by $\varphi(n)$ (for $n>1$) the number of positive integers less than $n$ that are relatively prime to $n$. Describe why one might reasonably add the restriction $n>1$.
-2. A polynomial is called monic if its leading coefficient $a_{n}$ is $1$.
-3. A factor of a polynomial $f$ is a polynomial $g$ of smaller degree so that $f(x)=g(x)h(x)$, for some polynomial $h$. It is said that $f$ can be "factored" into $g$ and $h$. Note that $g$ and $h$ must both have real coefficients and be of smaller degree than $f$.
-4. Two polynomials are called relatively prime if they have no non-constant smaller-degree polynomial factors in common. A polynomial is called irreducible if it cannot be factored into smaller polynomials. The greatest common divisor of two polynomials $f,g$ is the monic polynomial of largest degree that is a factor of both $f$ and $g$.
+> **2.5** A number $x$ is called algebraic if it is the root of a polynomial whose coefficients are rational numbers (fractions of integers). Otherwise it is called transcendental. Numbers like $\sqrt{2}$ are algebraic, while numbers like $\pi$ and $e$ are famously not algebraic. The golden ratio is the number $\phi=\frac{1+\sqrt{5}}{2}$. Is it algebraic? What about $\sqrt{2}+\sqrt{3}$?
 
-## 2.3.
+> **2.6** Prove the product of two algebraic numbers is algebraic. Similarly (but much harder), prove the sum of two algebraic numbers is algebraic. Despite the fact that $\pi$ and $e$ are not algebraic, it is not known whether $\pi+e$ or $\pi e$ are algebraic. Look up a proof that they cannot both be algebraic. Note that many such proofs appeal to vector spaces, the topic of Chapter 10.
 
-Verify the following theorem using the examples from the previous exercise. That is, write down examples and check that the theorem works as stated. If $a,n$ are relatively prime integers, then $a^{\varphi(n)}$ has remainder $1$ when dividing by $n$. This result is known as Euler's theorem (pronounced "OY-lurr"), and it is the keystone of the RSA cryptosystem.
+> **2.7** Let $f(x)=a_{0}+a_{1}x+\cdots+a_{n}x^{n}$ be a degree $n$ polynomial, and suppose it has $n$ real roots $r_{1},\ldots,r_{n}$. Prove Vieta's formulas, which are
+>
+> $$\begin{aligned}\sum_{i=1}^{n}r_{i} &= -\frac{a_{n-1}}{a_{n}} \\ \prod_{i=1}^{n}r_{i} &= (-1)^{n}\frac{a_{0}}{a_{n}}.\end{aligned}$$
+>
+> Hint: if $r$ is a root, then $f(x)$ can be written as $f(x)=(x-r)g(x)$ for some smaller degree $g(x)$. This formula shows one way the coefficients of a polynomial encode information about the roots.
 
-## 2.4.
+> **2.8** Look up a proof of Theorem 2.3. There are many different proofs. Either read one and understand it using the techniques we described in this chapter (writing down examples and tests), or, if you cannot, then write down the words in the proofs that you don't understand and look for them later in this book.
 
-Look up Horner's method for evaluating a polynomial as a function. Implement a polynomial data structure that uses Horner's method for evaluation, and compare its runtime against naive evaluation methods.
+> **2.9** There are many ways to skin a cat. The polynomial interpolation construction from this chapter is just one, often called Lagrange interpolation. Another is called Newton interpolation. Find a source that explains what it is, try to understand how these two interpolation methods differ, and implement Newton interpolation. Compare the two interpolation methods in terms of efficiency.
 
-## 2.5.
+> **2.10** Bézier curves are single-variable polynomials that draw a curve controlled by a given set of "control points." The polynomial separately controls the $x$ and $y$ coordinates of the Bézier curve, allowing for complex shapes.
+>
+> Look up the definition of quadratic and cubic Bézier curves, and understand how it works. Write a program that computes a generic Bézier curve, and animates how the curve is traced out by the input. Bézier curves are most commonly seen in vector graphics and design applications as the "pen tool."
 
-A number $x$ is called algebraic if it is the root of a polynomial whose coefficients are rational numbers (fractions of integers). Otherwise it is called transcendental. Numbers like $\sqrt{2}$ are algebraic, while numbers like $\pi$ and $e$ are famously not algebraic. The golden ratio is the number $\phi=\frac{1+\sqrt{5}}{2}$. Is it algebraic? What about $\sqrt{2}+\sqrt{3}$?
+> **2.11** It is a natural question to ask whether the roots of a polynomial $f$ are sensitive to changes in the coefficients of $f$. Wilkinson's polynomial, defined below, shows that they are
+>
+> $$w(x)=\prod_{i=1}^{20}(x-i)$$
+>
+> This also works for possibly complex roots.
+>
+> The coefficient of $x^{19}$ in $w(x)$ is $-210$, and if it's decreased by $2^{-23}$ the position of many of the roots change by more than $0.5$. Read more details online, and find an explanation of why this polynomial is so sensitive to changes in its coefficients.
 
-## 2.6.
+> **2.12** Write a web app that implements the distribution and reconstruction of the secret sharing protocol using the polynomial interpolation algorithm presented in this chapter, using modular arithmetic with a 32-bit modulus $p$.
 
-Prove the product of two algebraic numbers is algebraic. Similarly (but much harder), prove the sum of two algebraic numbers is algebraic. Despite the fact that $\pi$
+> **2.13** The extended Euclidean algorithm computes the greatest common divisor of two numbers, but it also works for polynomials. Write a program that implements the Euclidean algorithm to compute the greatest common divisor of two monic polynomials. Note that this requires an algorithm to compute polynomial long division as a subroutine.
 
-$e$ are not algebraic, it is not known whether $\pi+e$ or $\pi e$ are algebraic. Look up a proof that they cannot both be algebraic. Note that many such proofs appeal to vector spaces, the topic of Chapter 10.
+> **2.14** The Chinese Remainder Theorem is stated as follows. Suppose $M>1$ is an integer and $M=m_{1}\cdot m_{2}\cdots m_{k}$ where each $m_{i}>1$ is an integer. Suppose further that for each $i,j$, the greatest common divisor of $m_{i}$ and $m_{j}$ is 1. Let $r_{1},\ldots,r_{k}$ be integers such that $0\leq r_{i}<m_{i}$ ($r_{i}$ is considered a desired remainder when dividing by $m_{i}$).
+>
+> Then there is a unique $x$ with $0\leq x<M$ such that $x=r_{i}\mod m_{i}$ for all $i$. One can construct the desired number directly, provided one knows how to find multiplicative inverses, and the proof is identical to the polynomial interpolation theorem. Find a source that expands on the details and try to understand them.
 
-## 2.7.
+> **2.15** Perhaps the biggest disservice in this chapter is ignoring the so-called Fundamental Theorem of Algebra, that every single-variable monic polynomial of degree $k$ can be factored into linear terms $p(x)=(x-a_{1})(x-a_{2})\cdots(x-a_{k})$. The reason is that the values $a_{i}$ are not necessarily real numbers. They might be complex. Moreover, all of the proofs of the Fundamental Theorem are quite hard.
+>
+> In fact, one litmus test for the "intellectual potency" of a new mathematical theory is whether it provides a new proof of the Fundamental Theorem of Algebra! There is an entire book dedicated to these often-repeated proofs. Sadly, we avoid complex numbers in this book. Luckily, there is a "baby" fundamental theorem, which says that every single-variable polynomial with real coefficients can be factored into a product of linear and degree-2 terms
+>
+> $$p(x)=(x-a_{1})(x-a_{2})\cdots(x-a_{m})(x^{2}+b_{m+1}x+a_{m+1})\cdots(x^{2}+b_{k}x+a_{k}),$$
+>
+> where none of the quadratic terms can be factored into smaller degree-1 terms. One of history's most famous mathematicians, Carl Friedrich Gauss, provided the first proof as his doctoral thesis in 1799. As part of this exercise, look up some different proofs of the Fundamental Theorem, but instead of trying to understand them, take note of the different areas of math that are used in the proofs.
 
-Let $f(x)=a_{0}+a_{1}x+\cdots+a_{n}x^{n}$ be a degree $n$ polynomial, and suppose it has $n$ real roots $r_{1},\ldots,r_{n}$. Prove Vieta's formulas, which are
+## Chapter Notes
 
-$$
-\begin{aligned}
-\sum_{i=1}^{n}r_{i} &= -\frac{a_{n-1}}{a_{n}} \\
-\prod_{i=1}^{n}r_{i} &= (-1)^{n}\frac{a_{0}}{a_{n}}.
-\end{aligned}
-$$
-
-Hint: if $r$ is a root, then $f(x)$ can be written as $f(x)=(x-r)g(x)$ for some smaller degree $g(x)$. This formula shows one way the coefficients of a polynomial encode information about the roots.
-
-## 2.8.
-
-Look up a proof of Theorem 2.3. There are many different proofs. Either read one and understand it using the techniques we described in this chapter (writing down examples and tests), or, if you cannot, then write down the words in the proofs that you don't understand and look for them later in this book.
-
-## 2.9.
-
-There are many ways to skin a cat. The polynomial interpolation construction from this chapter is just one, often called Lagrange interpolation. Another is called Newton interpolation. Find a source that explains what it is, try to understand how these two interpolation methods differ, and implement Newton interpolation. Compare the two interpolation methods in terms of efficiency.
-
-## 2.10.
-
-Bézier curves are single-variable polynomials that draw a curve controlled by a given set of "control points." The polynomial separately controls the $x$ and $y$ coordinates of the Bézier curve, allowing for complex shapes.
-
-Look up the definition of quadratic and cubic Bézier curves, and understand how it works. Write a program that computes a generic Bézier curve, and animates how the curve is traced out by the input. Bézier curves are most commonly seen in vector graphics and design applications as the "pen tool."
-
-## 2.11.
-
-It is a natural question to ask whether the roots of a polynomial $f$ are sensitive to changes in the coefficients of $f$. Wilkinson's polynomial, defined below, shows that they are
-
-$$w(x)=\prod_{i=1}^{20}(x-i)$$
-
-This also works for possibly complex roots.
-
-The coefficient of $x^{19}$ in $w(x)$ is $-210$, and if it's decreased by $2^{-23}$ the position of many of the roots change by more than $0.5$. Read more details online, and find an explanation of why this polynomial is so sensitive to changes in its coefficients.
-
-## 2.12.
-
-Write a web app that implements the distribution and reconstruction of the secret sharing protocol using the polynomial interpolation algorithm presented in this chapter, using modular arithmetic with a 32-bit modulus $p$.
-
-## 2.13.
-
-The extended Euclidean algorithm computes the greatest common divisor of two numbers, but it also works for polynomials. Write a program that implements the Euclidean algorithm to compute the greatest common divisor of two monic polynomials. Note that this requires an algorithm to compute polynomial long division as a subroutine.
-
-## 2.14.
-
-The Chinese Remainder Theorem is stated as follows. Suppose $M>1$ is an integer and $M=m_{1}\cdot m_{2}\cdots m_{k}$ where each $m_{i}>1$ is an integer. Suppose further that for each $i,j$, the greatest common divisor of $m_{i}$ and $m_{j}$ is 1. Let $r_{1},\ldots,r_{k}$ be integers such that $0\leq r_{i}<m_{i}$ ($r_{i}$ is considered a desired remainder when dividing by $m_{i}$).
-
-Then there is a unique $x$ with $0\leq x<M$ such that $x=r_{i}\mod m_{i}$ for all $i$. One can construct the desired number directly, provided one knows how to find multiplicative inverses, and the proof is identical to the polynomial interpolation theorem. Find a source that expands on the details and try to understand them.
-
-## 2.15.
-
-Perhaps the biggest disservice in this chapter is ignoring the so-called Fundamental Theorem of Algebra, that every single-variable monic polynomial of degree $k$ can be factored into linear terms $p(x)=(x-a_{1})(x-a_{2})\cdots(x-a_{k})$. The reason is that the values $a_{i}$ are not necessarily real numbers. They might be complex. Moreover, all of the proofs of the Fundamental Theorem are quite hard.
-
-In fact, one litmus test for the "intellectual potency" of a new mathematical theory is whether it provides a new proof of the Fundamental Theorem of Algebra! There is an entire book dedicated to these often-repeated proofs. Sadly, we avoid complex numbers in this book. Luckily, there is a "baby" fundamental theorem, which says that every single-variable polynomial with real coefficients can be factored into a product of linear and degree-2 terms
-
-$$p(x)=(x-a_{1})(x-a_{2})\cdots(x-a_{m})(x^{2}+b_{m+1}x+a_{m+1})\cdots(x^{2}+b_{k}x+a_{k}),$$
-
-where none of the quadratic terms can be factored into smaller degree-1 terms. One of history's most famous mathematicians, Carl Friedrich Gauss, provided the first proof as his doctoral thesis in 1799. As part of this exercise, look up some different proofs of the Fundamental Theorem, but instead of trying to understand them, take note of the different areas of math that are used in the proofs.
-
-2.8 Chapter Notes
-
-Which are Polynomials?
+### Which are Polynomials?
 
 The polynomials were $f(x)$, $g(x)$, $h(x)$, $j(x)$, and $l(x)$. The reason $i$ is not a polynomial is because $\sqrt{x}=x^{1/2}$ does not have an integer power. Similarly, $k(x)$ is not a polynomial because its terms have negative integer powers.
 
 Finally, $m(x)$ is not because its powers, $\pi,e$, are not integers. Of course, if you were to define $\pi$ and $e$ to be particular constants that happened to be integers, then the result would be a polynomial. But without any indication, we assume they're the famous constants.
 
-Twin Primes
+### Twin Primes
 
 The Twin Prime Conjecture, the assertion that there are infinitely many pairs of prime numbers of the form $p,p+2$, is one of the most famous open problems in mathematics. Its origin is unknown, though the earliest record of it in print is in the mid 1800's in a text of de Polignac. In an exciting turn of events, in 2013 an unknown mathematician named Yitang Zhang published a breakthrough paper making progress on Twin Primes.
 
@@ -789,7 +754,7 @@ If $M$ is replaced with $2$, then you get Twin Primes. The thinking is that perh
 
 As of this writing, subsequent progress, carried out by some of the world's most famous mathematicians in an online collaboration called the Polymath Project, brought $M$ down to $246$. Assuming a conjecture in number theory called the Elliott-Halberstam conjecture, they reduced this constant to $6$.
 
-## Impossibility of Clustering
+### Impossibility of Clustering
 
 A clustering algorithm is a program $f$ that takes as input:
 
@@ -815,7 +780,7 @@ It turns out, if you allow the required *number* of output clusters to be an inp
 
 The authors proceeded to study how to choose a clustering algorithm "in principle" by studying what properties uniquely determine various clustering algorithms; meaning if you want to do clustering in practice, you have to think hard about exactly what properties your application needs from a clustering. Suffice it to say, this process is a superb example of navigating the border separating impossibility, existence, and uniqueness in mathematics.
 
-## More on Secret Sharing
+### More on Secret Sharing
 
 The secret sharing scheme presented in this chapter was originally devised by Adi Shamir (the same Shamir of RSA) in a two-page 1979 paper called "How to share a secret." In this paper, Shamir follows the terse style and does not remind the reader how the interpolating polynomial is constructed.
 
