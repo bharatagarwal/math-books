@@ -320,7 +320,10 @@ body.zen .mobile-toolbar .mt-btn#mobileZenToggle {
 @media (max-width: 900px) {
   .outline { display: none; }
   .sidebar { width: 220px; min-width: 220px; }
-  .pane { padding: 24px 20px 96px; }
+  /* overflow-y:auto makes overflow-x compute to auto too, so a sub-pixel-wide
+     descendant lets the whole pane pan sideways on touch (most jarring in zen).
+     Pin it: wide code/equations keep their own overflow-x:auto to self-scroll. */
+  .pane { padding: 24px 20px 96px; overflow-x: hidden; }
   .keyhint { display: none; }
   .mobile-toolbar { display: flex; }
   body.zen .pane { padding: 24px 20px 96px; }
