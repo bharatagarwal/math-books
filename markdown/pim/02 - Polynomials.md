@@ -73,9 +73,9 @@ We take some liberties and usually write $g$ more briefly as $g(t)=2+4t^{2}-t^{3
 
 $$g(2)=2+4(2^{2})-2^{3}=10.$$
 
-According to the definition, a polynomial is a function that is written in a certain form. Really what's being said is that a polynomial is any function of a single input that can be written in the required form, even if you might write it a different way sometimes. This
+According to the definition, a polynomial is a function that is written in a certain form. Really what's being said is that a polynomial is any function of a single input that can be written in the required form, even if you might write it a different way sometimes. 
 
-makes our internal concept of a polynomial more general than the letter of Definition 2.1. A polynomial is any function of a single numeric input that can be expressed using only addition and multiplication and constants, along with the input variable itself. So the following is a polynomial:
+This makes our internal concept of a polynomial more general than the letter of Definition 2.1. A polynomial is any function of a single numeric input that can be expressed using only addition and multiplication and constants, along with the input variable itself. So the following is a polynomial:
 
 $$g(t)=(t-1)(t+6)^{2}$$
 
@@ -131,9 +131,7 @@ The unspoken rule is that the reader should not continue unless the reader under
 
 Software testing provides a good analogy. You start with the simplest possible tests, usually setting as many values as you can to zero or one, then work your way up to more complicated examples. Later, when you get stuck on some theorem or proof-an unavoidable occupational hazard-you return to those examples and test how the claims in the proof apply to them. This is how one builds so-called "mathematical intuition." In the long term, that intuition allows you to absorb new ideas faster.
 
-So let's write down some examples of polynomials according to Definition 2.1, starting from the simplest. To make you pay attention, I'll slip in some examples that are not
-
-polynomials and your job is to check them against the definition. Take your time, and you can check your answers in the Chapter Notes.
+So let's write down some examples of polynomials according to Definition 2.1, starting from the simplest. To make you pay attention, I'll slip in some examples that are not polynomials and your job is to check them against the definition. Take your time, and you can check your answers in the Chapter Notes.
 
 $$
 \begin{aligned}
@@ -160,9 +158,9 @@ But we don't want a polynomial to have multiple distinct possibilities for degre
 
 To avoid this, we amend Definition 2.1 so that the last coefficient $a_{n}$ is required to be nonzero. But then the function $f(x)=0$ is not allowed to be a polynomial! So, by convention, we define a special exception, the function $f(x)=0$, as the zero polynomial. By convention, the zero polynomial is defined to have degree $-1$. Note that every time a definition includes the phrase "by convention," a computer program gains an edge case.
 
-This edge case made us reconsider the right definition of a polynomial, but it was mostly a superficial change. Other times, as we will confront head on in Chapter 8 when we define limits, dealing with an edge case reveals the soul of a concept. It's curious how mathematical books tend to start with the final product, instead of the journey to the
+This edge case made us reconsider the right definition of a polynomial, but it was mostly a superficial change. Other times, as we will confront head on in Chapter 8 when we define limits, dealing with an edge case reveals the soul of a concept. It's curious how mathematical books tend to start with the final product, instead of the journey to the right definition. 
 
-right definition. Perhaps teaching the latter is much harder and more time consuming, with fewer tangible benefits. But in advanced mathematics, deep understanding comes in fits and starts. Often, no such distilled explanation is known.
+Perhaps teaching the latter is much harder and more time consuming, with fewer tangible benefits. But in advanced mathematics, deep understanding comes in fits and starts. Often, no such distilled explanation is known.
 
 In any case, examples are the primary method to clarify the features of a definition. Having examples in your pocket as you continue to read is important, and coming up with the examples yourself is what helps you internalize a concept.
 
@@ -192,9 +190,7 @@ I want to make this extremely clear because in mathematics it's implicit. My mat
 
 ### Conceptual Definitions vs. Data Definitions
 
-Polynomials may seem frivolous to illustrate the difference between an object-as-abstract-concept and the representational choices that go into understanding a defini
-
-tion, but the same pattern lurks behind more complicated definitions. First the author will start with the best conceptual definition-the one that seems to them, with the hindsight of years of study, to be the most useful way to communicate the idea behind the concept. For us that's Definition 2.1. Often these definitions seem totally useless from a programming perspective.
+Polynomials may seem frivolous to illustrate the difference between an object-as-abstract-concept and the representational choices that go into understanding a definition, but the same pattern lurks behind more complicated definitions. First the author will start with the best conceptual definition-the one that seems to them, with the hindsight of years of study, to be the most useful way to communicate the idea behind the concept. For us that's Definition 2.1. Often these definitions seem totally useless from a programming perspective.
 
 Then ten pages later (or a hundred!) the author introduces another definition, often a data definition, which turns out to be *equivalent* to the first. Any properties defined in the first definition automatically hold in the second and vice versa. But the *data definition* is the one that allows for nice programs.
 
@@ -220,9 +216,9 @@ The inputs are integers, and the *type* of the output is also integer, but 3 is 
 
 In math we disambiguate this with two words. *Range* is the set of actual outputs of a function, and the "type" of outputs is called the *codomain*. The notation $f:A\to B$ specifies the domain $A$ and codomain $B$, while the range depends on the semantics of $f$. When one introduces a function, as programmers do with type signatures and function headers, we state the notation $f:A\to B$ before the function definition.
 
-Because mathematicians were not originally constrained by ASCII, they developed
+Because mathematicians were not originally constrained by ASCII, they developed other symbols for types. The symbol for the set of real numbers is $\mathbb{R}$. The font is called "blackboard-bold," and it's the standard font for denoting number systems. 
 
-other symbols for types. The symbol for the set of real numbers is $\mathbb{R}$. The font is called "blackboard-bold," and it's the standard font for denoting number systems. Applying the arrow notation, a polynomial is $f:\mathbb{R}\to\mathbb{R}$. A common phrase is to say a polynomial is "over the reals" to mean it has real coefficients. As opposed to, say, a polynomial over the integers that has integer coefficients.
+Applying the arrow notation, a polynomial is $f:\mathbb{R}\to\mathbb{R}$. A common phrase is to say a polynomial is "over the reals" to mean it has real coefficients. As opposed to, say, a polynomial over the integers that has integer coefficients.
 
 Most famous number types have special symbols. The symbol for integers is $\mathbb{Z}$, and the positive integers are denoted by $\mathbb{N}$, often called the *natural numbers*. There is an amusing dispute of no real consequence between logicians and other mathematicians on whether zero is a natural number, with logicians demanding it is.
 
@@ -242,9 +238,7 @@ In some cases you get lucky, and the property you defined is specific enough to 
 
 For example, Kleinberg's Impossibility Theorem for Clustering lays out three natural properties for a clustering algorithm (an algorithm that finds dense groups of points in a geometric dataset) and proves that no algorithm can satisfy all three simultaneously. See the Chapter Notes for more on this. Though such theorems are often heralded as genius, more often than not mathematicians avoid impossibility by turning small examples into broad conjectures.
 
-That's how we'll approach existence and uniqueness for polynomials. Here is the theo
-
-rem we'll prove, stated in its most precise form. Don't worry, we'll go carefully through every bit of it, but try to read it now.
+That's how we'll approach existence and uniqueness for polynomials. Here is the theorem we'll prove, stated in its most precise form. Don't worry, we'll go carefully through every bit of it, but try to read it now.
 
 **Theorem 2.2**.
 
@@ -308,9 +302,9 @@ Now that we've worked out two examples of the theorem in action, let's move on t
 
 ## Existence of Polynomials Through Points
 
-We will show existence by direct construction. That is, we'll "be clever" and find a general way to write down a polynomial that works. Being clever sounds scary, but the process is actually quite natural, and it follows the same pattern as we did for reading and understanding definitions: you start with the simplest possible example (but this time the
+We will show existence by direct construction. That is, we'll "be clever" and find a general way to write down a polynomial that works. Being clever sounds scary, but the process is actually quite natural, and it follows the same pattern as we did for reading and understanding definitions: you start with the simplest possible example (but this time the example will be generic) and then you work up to more complicated examples. 
 
-example will be generic) and then you work up to more complicated examples. By the time we get to $n=2$ we will notice a pattern, that pattern will suggest a formula for the general solution, and we will prove it's correct. In fact, once we understand how to build the general formula, the proof that it works will be trivial.
+By the time we get to $n=2$ we will notice a pattern, that pattern will suggest a formula for the general solution, and we will prove it's correct. In fact, once we understand how to build the general formula, the proof that it works will be trivial.
 
 Let's start with a single point $(x_{1},y_{1})$ and $n=0$. I'm not specifying the values of $x_{1}$ or $y_{1}$ because I don't want the construction to depend on my arbitrary specific choices. I must ensure that $f(x_{1})=y_{1}$, and that $f$ has degree zero. Simply enough, we set the first coefficient of $f$ to $y_{1}$, the rest zero.
 
@@ -371,9 +365,7 @@ Note by indexing from 1 and including the upper limit of the for loop condition,
 
 I used the undefined tokens defaultValue and sometype to highlight that the meaning of the sum depends on what the conventional 'zero object' is in that setting. For adding numbers the zero object is zero, and for adding polynomials it's the zero polynomial. It gets exotic with more advanced mathematics, which we'll see in Chapter 16 when we study groups. The point is that $\sum$ does not imply a type. It's merely a shorthand for the symbol $+$.
 
-Moreover, explaining $\sum$ using code allows me to define $\prod$ by analogy: you just replace += with *= and reinterpret the "default value" as what makes sense for multiplica
-
-tion. Functional programmers will know this pattern well, because both are a "fold" (or "reduce") function with a particular choice of binary operation and initial value.
+Moreover, explaining $\sum$ using code allows me to define $\prod$ by analogy: you just replace += with *= and reinterpret the "default value" as what makes sense for multiplication. Functional programmers will know this pattern well, because both are a "fold" (or "reduce") function with a particular choice of binary operation and initial value.
 
 ### Reading Nested Sums and Products
 
